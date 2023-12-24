@@ -47,9 +47,9 @@ export default function AppNavbarNew() {
                     }}/>
 
                     <MyNavbarItem
-                        lang={"Monitor"}
+                        lang={"Resources"}
                         link={"/monitoring"}
-                        icon={"/icons/dtword.svg"}
+                        icon={"/textures/goldbar.png"}
                     />
 
                     <MyNavbarItem
