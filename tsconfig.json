@@ -1,0 +1,73 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "allowJs": true,
+    "module": "ESNext",
+    "skipLibCheck": true,
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": false,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": false,
+    "noImplicitAny": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@shared": [
+        "src/shared/*"
+      ],
+      "@api": [
+        "src/api/*"
+      ],
+      "@dt": [
+        "src/dt/*"
+      ],
+      "@commands": [
+        "src/commands/*"
+      ],
+      "@css": [
+        "src/css/*"
+      ],
+      "@components": [
+        "src/components/*"
+      ],
+      "@assets/*": [
+        "src/data/assets/*"
+      ],
+      "@data/*": [
+        "src/data/*"
+      ],
+      "@external/*": [
+        "src/external/*"
+      ],
+      "@project-gui/*": [
+        "src/project-gui/*"
+      ],
+      "@app-gui/*": [
+        "src/app-gui/*"
+      ],
+      "@uitoolkit/*": [
+        "src/uitoolkit/*"
+      ]
+    }
+  },
+  "include": [
+    "src"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}

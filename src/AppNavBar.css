@@ -1,0 +1,18 @@
+
+.navbarbody {
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.navbaritem {
+
+}
+
+.navbaritem:hover {
+    background-color: #cbd5e8;
+    cursor: pointer;
+}
