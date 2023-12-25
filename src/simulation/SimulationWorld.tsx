@@ -1,6 +1,7 @@
 import React from "react";
 import {Canvas} from "@react-three/fiber";
 import {Environment, GizmoHelper, GizmoViewport, Grid, OrbitControls} from "@react-three/drei";
+import CardTile from "../main/world/CardTile";
 
 
 export default function SimulationWorld({}) {
@@ -27,7 +28,18 @@ export default function SimulationWorld({}) {
                            enableDamping={false}
                            maxPolarAngle={Math.PI / 2}/>
 
+            <_TmpTiles/>
+
         </Canvas>
+    )
+}
+
+function _TmpTiles({}) {
+    return (
+        <group>
+            <CardTile position={[0, 0, 0]}/>
+            <CardTile position={[1, 0, 0]}/>
+        </group>
     )
 }
 

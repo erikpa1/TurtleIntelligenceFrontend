@@ -30,35 +30,8 @@
       "@api": [
         "src/api/*"
       ],
-      "@dt": [
-        "src/dt/*"
-      ],
-      "@commands": [
-        "src/commands/*"
-      ],
-      "@css": [
-        "src/css/*"
-      ],
-      "@components": [
-        "src/components/*"
-      ],
-      "@assets/*": [
-        "src/data/assets/*"
-      ],
-      "@data/*": [
-        "src/data/*"
-      ],
-      "@external/*": [
-        "src/external/*"
-      ],
-      "@project-gui/*": [
-        "src/project-gui/*"
-      ],
-      "@app-gui/*": [
-        "src/app-gui/*"
-      ],
-      "@uitoolkit/*": [
-        "src/uitoolkit/*"
+      "@ui": [
+        "src/ui/*"
       ]
     }
   },

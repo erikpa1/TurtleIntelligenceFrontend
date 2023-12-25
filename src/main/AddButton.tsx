@@ -1,5 +1,6 @@
 import React from "react";
-import {Modal} from "react-bootstrap";
+import {Col, Modal, Row} from "react-bootstrap";
+import {ImageTileButton} from "../ui/ImageTileButton";
 
 
 export function AddButton({}) {
@@ -10,7 +11,7 @@ export function AddButton({}) {
         <div style={{
             position: "absolute",
             left: "50px",
-            bottom: "0px"
+            bottom: "25px"
         }}>
             <img
                 style={{
@@ -23,18 +24,56 @@ export function AddButton({}) {
                     setPopupVisible(true)
                 }}
             />
+            {
+                popupVisible && <_SelectionModal
+                    onHide={() => setPopupVisible(false)}
+                    selected={() => {
+                        console.log("Building started")
+                        setPopupVisible(false)
+                    }}
+                />
+            }
         </div>
     )
 }
 
-function _SelectionModal({}) {
+function _SelectionModal({onHide, selected}) {
     return (
-        <Modal>
+        <Modal
+            show={true}
+            onHide={onHide}
+        >
             <Modal.Header closeButton>
 
             </Modal.Header>
+            <Modal.Body>
+                <Row>
+                    <Col>
+                        <ImageTileButton
+                            icon={"/textures/wheat-field.png"}
+                            text={"Wheat field"}
+                            onClick={selected}
+                        />
+                    </Col>
+                    <Col>
+                        <ImageTileButton
+                            icon={"/textures/wheat-field.png"}
+                            text={"Wheat field"}
+                            onClick={selected}
+                        />
+                    </Col>
+                    <Col>
+                        <ImageTileButton
+                            icon={"/textures/wheat-field.png"}
+                            text={"Wheat field"}
+                            onClick={selected}
+                        />
+                    </Col>
+                </Row>
 
+            </Modal.Body>
         </Modal>
     )
 }
+
 
