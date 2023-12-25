@@ -1,18 +1,38 @@
 import React from "react";
+import anyEventEmmiter from "../api/AnyEventEmmiter";
+import {Warehouse} from "../api/SimulationApi";
 
 
 export function MainScreenTopBar({}) {
     return (
-        <div className={"hstack gap-1"}>
-            <TopBarButton
-                icon={"/textures/goldbar.png"}
-            />
-            <TopBarButton
-                icon={"/textures/stoneblock.png"}
-            />
-            <TopBarButton
-                icon={"/textures/woodblock.png"}
-            />
+        <div>
+            <div className={"hstack gap-1"}>
+                <TopBarWarehouseButton
+                    icon={"/textures/peasant.png"}
+                    resource_key={"peasant"}
+                />
+                <TopBarWarehouseButton
+                    icon={"/textures/goldbar.png"}
+                    resource_key={"gold"}
+                />
+                <TopBarWarehouseButton
+                    icon={"/textures/stoneblock.png"}
+                    resource_key={"stone"}
+                />
+                <TopBarWarehouseButton
+                    icon={"/textures/food.png"}
+                    resource_key={"food"}
+                />
+                <TopBarWarehouseButton
+                    icon={"/textures/woodlog.png"}
+                    resource_key={"woodlogs"}
+                />
+                <TopBarWarehouseButton
+                    icon={"/textures/woodblock.png"}
+                    resource_key={"wood"}
+                />
+            </div>
+
         </div>
     )
 }
@@ -21,7 +41,40 @@ interface TopBarButtonProps {
     icon: string
 }
 
-export function TopBarButton({icon}) {
+interface TopBarWarehouseButtonProps {
+    icon: string
+    resource_key: string
+}
+
+function TopBarWarehouseButton({icon, resource_key}: TopBarWarehouseButtonProps) {
+
+    const [state, setState] = React.useState(0)
+
+
+    React.useEffect(() => {
+
+        const refreshVal = (warehouse: Warehouse) => {
+            setState(warehouse.GetResource(resource_key))
+
+        }
+
+        anyEventEmmiter.on("warehouse", refreshVal)
+
+        return () => {
+            anyEventEmmiter.off("warehouse", refreshVal)
+        }
+
+    }, [])
+
+    return (
+        <TopBarButton
+            icon={icon}
+            value={state}
+        />
+    )
+}
+
+export function TopBarButton({icon, value}) {
     return (
         <div style={{
             backgroundColor: "black",
@@ -38,9 +91,10 @@ export function TopBarButton({icon}) {
                     }}
                 />
                 <div style={{color: "white"}}>
-                    100
+                    {value}
                 </div>
             </div>
         </div>
     )
 }
+

@@ -78,3 +78,13 @@ middle-centered {
     margin-right: auto;
 }
 
+@font-face {
+    font-family: 'MyWebFont';
+    src: url('Font.ttf'); /* IE9 Compat Modes */
+
+}
+
+body {
+    font-family: 'MyWebFont', Fallback, sans-serif;
+}
+

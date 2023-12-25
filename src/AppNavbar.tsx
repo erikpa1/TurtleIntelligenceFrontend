@@ -51,31 +51,7 @@ export default function AppNavbarNew() {
                         link={"/monitoring"}
                         icon={"/textures/goldbar.png"}
                     />
-
-                    <MyNavbarItem
-                        lang={"Analysis"}
-                        link={"/analysis"}
-                        icon={"/icons/chart.svg"}
-                    />
-
-                    <MyNavbarItem
-                        lang={"Twins"}
-                        link={"/twins"}
-                        icon={"/icons/spot.svg"}
-                    />
-
-                    <MyNavbarItem
-                        lang={"I/O"}
-                        link={"/io"}
-                        icon={"/icons/spot.svg"}
-                    />
-
-                    <MyNavbarItem
-                        lang={"Sewio"}
-                        link={"/sewio"}
-                        icon={"/icons/companies/sewio-short.svg"}
-                    />
-
+                    
                     <hr style={{color: "lightgray"}}/>
 
                     <_Version/>

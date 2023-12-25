@@ -1,9 +1,30 @@
 import React from "react"
 import {MainScreenTopBar} from "./MainScreenTopBar";
 import SimulationWorld from "../simulation/SimulationWorld";
+import SimulationApi from "../api/SimulationApi";
+import {AddButton} from "./AddButton";
 
 
+let TIMEOUT: any = null
 export default function MainScreenView({}) {
+
+    async function loopRefresh() {
+        TIMEOUT = setTimeout(loopRefresh, 1000)
+        const data = await SimulationApi.GetSimulationState()
+        SimulationApi.EmitAppStateData(data)
+
+    }
+
+    React.useEffect(() => {
+        loopRefresh()
+
+        return () => {
+            if (TIMEOUT) {
+                clearTimeout(TIMEOUT)
+            }
+        }
+    }, [])
+
     return (
         <div style={{
             position: "relative",
@@ -11,7 +32,7 @@ export default function MainScreenView({}) {
         }}>
             <SimulationWorld/>
             <_Framing/>
-
+            <AddButton/>
 
         </div>
     )
