@@ -1,6 +1,6 @@
 import React from "react";
 import {Canvas} from "@react-three/fiber";
-import {Environment, GizmoHelper, GizmoViewport, Grid, OrbitControls} from "@react-three/drei";
+import {Environment, GizmoHelper, GizmoViewport, Grid, MapControls, OrbitControls} from "@react-three/drei";
 import CardTile from "../main/world/CardTile";
 
 
@@ -24,9 +24,9 @@ export default function SimulationWorld({}) {
             <_Grid/>
             <_SceneCameraRotationGizmo/>
             <_UniversalWorldEnvironment/>
-            <OrbitControls makeDefault target={[0, 0, 0]}
-                           enableDamping={false}
-                           maxPolarAngle={Math.PI / 2}/>
+            <MapControls makeDefault target={[0, 0, 0]}
+                         enableDamping={false}
+                         maxPolarAngle={Math.PI / 2}/>
 
             <_TmpTiles/>
 

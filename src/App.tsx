@@ -67,7 +67,6 @@ function App() {
 
                     <div style={{}}>
 
-                        <AppNavbarNew/>
 
                         <div style={{flexGrow: 1}}>
                             <Main/>
