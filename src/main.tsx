@@ -15,14 +15,9 @@ const root = createRoot(document.getElementById('root') as any);
 
 
 root.render(
-    <StrictMode>
-        <ProSidebarProvider>
-            <Suspense fallback={""}>
-                <HashRouter>
-                    <App/>
-                </HashRouter>
-            </Suspense>
-        </ProSidebarProvider>
-
-    </StrictMode>
+    <Suspense fallback={""}>
+        <HashRouter>
+            <App/>
+        </HashRouter>
+    </Suspense>
 );

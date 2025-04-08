@@ -1,0 +1,211 @@
+{
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 355,
+      "name": "POSITION",
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 12,
+      "componentType": 5121,
+      "count": 355,
+      "name": "WEIGHTS_0",
+      "normalized": true,
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 16,
+      "componentType": 5121,
+      "count": 355,
+      "name": "JOINTS_0",
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 20,
+      "componentType": 5126,
+      "count": 355,
+      "name": "NORMAL",
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 32,
+      "componentType": 5126,
+      "count": 355,
+      "name": "TEXCOORD_0",
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 40,
+      "componentType": 5126,
+      "count": 355,
+      "name": "TEXCOORD_1",
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5123,
+      "count": 744,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 1,
+      "name": "inverseMatBuffer",
+      "type": "MAT4"
+    }
+  ],
+  "animations": null,
+  "asset": {
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 17040,
+      "byteStride": 48,
+      "target": 34962
+    },
+    {
+      "buffer": 1,
+      "byteLength": 1488,
+      "target": 34963
+    },
+    {
+      "buffer": 2,
+      "byteLength": 64
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 17040,
+      "name": "vbo",
+      "uri": "model.bin"
+    },
+    {
+      "byteLength": 1488,
+      "name": "ibo",
+      "uri": "model0.bin"
+    },
+    {
+      "byteLength": 64,
+      "name": "inverseMatBuffer",
+      "uri": "model1.bin"
+    },
+    {
+      "byteLength": 0,
+      "name": "animationDataBuffer",
+      "uri": "model2.bin"
+    }
+  ],
+  "images": [
+    {
+      "name": "text_image_0",
+      "uri": "File0002e62b.png"
+    }
+  ],
+  "materials": [
+    {
+      "alphaCutoff": 0.501960813999176,
+      "alphaMode": "MASK",
+      "name": "batch_0",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "JOINTS_0": 2,
+            "NORMAL": 3,
+            "POSITION": 0,
+            "TEXCOORD_0": 4,
+            "TEXCOORD_1": 5,
+            "WEIGHTS_0": 1
+          },
+          "indices": 6,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "name": "Armature",
+      "rotation": [
+        -0.7071067094802856,
+        0.0,
+        0.0,
+        0.7071067690849304
+      ]
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "bone 0 prefix",
+      "translation": [
+        -2.384063482284546,
+        0.2537650167942047,
+        1.2910029888153076
+      ]
+    },
+    {
+      "name": "bone 0"
+    },
+    {
+      "mesh": 0,
+      "skin": 0
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9729,
+      "wrapS": 33071,
+      "wrapT": 33071
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "scene",
+      "nodes": [
+        3,
+        0
+      ]
+    }
+  ],
+  "skins": [
+    {
+      "inverseBindMatrices": 7,
+      "joints": [
+        2
+      ],
+      "skeleton": 0
+    }
+  ],
+  "textures": [
+    {
+      "name": "texture_0",
+      "sampler": 0,
+      "source": 0
+    }
+  ]
+}

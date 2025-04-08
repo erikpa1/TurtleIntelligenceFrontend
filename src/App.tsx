@@ -7,26 +7,7 @@ import useCookie from "react-use-cookie";
 
 import {useTranslation} from "react-i18next";
 
-import {Image, Spinner, Stack} from "react-bootstrap";
-
-
 import AppRoutes from "./AppRoutes";
-
-import AppNavbarNew from "./AppNavbar";
-
-function Main({}) {
-
-    return (
-        <main style={{
-            overflowY: "hidden",
-            overflowX: "hidden",
-            // position: "absolute",
-            // left: "200px"
-        }}>
-            <AppRoutes/>
-        </main>
-    )
-}
 
 
 function App() {
@@ -40,9 +21,7 @@ function App() {
     React.useEffect(() => {
 
         setIsLoading(true)
-
         tInstance.changeLanguage(userLanguage)
-
         setIsLoading(false)
 
     }, [])
@@ -81,5 +60,21 @@ function App() {
 
 
 }
+
+
+function Main({}) {
+
+    return (
+        <main style={{
+            overflowY: "hidden",
+            overflowX: "hidden",
+            // position: "absolute",
+            // left: "200px"
+        }}>
+            <AppRoutes/>
+        </main>
+    )
+}
+
 
 export default App;

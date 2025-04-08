@@ -1,10 +1,31 @@
 import React from "react";
 import {Canvas} from "@react-three/fiber";
 import {Environment, GizmoHelper, GizmoViewport, Grid, MapControls, OrbitControls} from "@react-three/drei";
-import CardTile from "../main/world/CardTile";
+import CardTile from "../../../main/world/CardTile";
+import StorageFiber from "../../Fibers/StorageFiber";
+import CartFiber from "../../Fibers/CartFiber";
+import WorkerFiber from "../../Fibers/WorkerFiber";
+import Entity from "../../../Turtle/Data/Entity";
 
 
-export default function SimulationWorld({}) {
+export default function PlayDock({}) {
+
+
+    const storage = new Entity()
+    storage.position = [0, 0, 5]
+
+    const cart = new Entity()
+    cart.position = [0, 0, 4]
+
+    const farmer = new Entity()
+    farmer.position = [7, 0, 0]
+
+
+    React.useEffect(() => {
+
+        //pass
+    }, [])
+
     return (
         <Canvas
             shadows
@@ -16,7 +37,7 @@ export default function SimulationWorld({}) {
             style={{
                 height: "100%"
             }}
-            raycaster={{params: {Line: {threshold: 0.15}}}}
+            // raycaster={{params: {Line: {threshold: 0.15}}}}
             onDoubleClick={() => {
             }}
         >
@@ -28,7 +49,11 @@ export default function SimulationWorld({}) {
                          enableDamping={false}
                          maxPolarAngle={Math.PI / 2}/>
 
-            <_TmpTiles/>
+            {/*<_TmpTiles/>*/}
+
+            <StorageFiber entity={storage}/>
+            <CartFiber entity={cart}/>
+            <WorkerFiber entity={farmer}/>
 
         </Canvas>
     )
