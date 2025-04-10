@@ -1,24 +1,21 @@
 import React from "react";
 import {Canvas} from "@react-three/fiber";
-import {Environment, GizmoHelper, GizmoViewport, Grid, MapControls, OrbitControls} from "@react-three/drei";
-import CardTile from "../../../main/world/CardTile";
-import StorageFiber from "../../Fibers/StorageFiber";
-import CartFiber from "../../Fibers/CartFiber";
-import WorkerFiber from "../../Fibers/WorkerFiber";
-import Entity from "../../../Turtle/Data/Entity";
+import {
+    Environment,
+    GizmoHelper,
+    GizmoViewport,
+    Grid,
+    MapControls,
+} from "@react-three/drei"
 
 
-export default function PlayDock({}) {
+import WorldEntitiesFiber from "./WorldEntitiesFiber"
+
+import TransformControlsFiber, {useTransformControls} from "@Turtle/Fibers/TransformControlsFiber"
+import Gizmo3DFlag from "../../Fibers/Gizmo3D";
 
 
-    const storage = new Entity()
-    storage.position = [0, 0, 5]
-
-    const cart = new Entity()
-    cart.position = [0, 0, 4]
-
-    const farmer = new Entity()
-    farmer.position = [7, 0, 0]
+export default function WorldDock({}) {
 
 
     React.useEffect(() => {
@@ -39,34 +36,32 @@ export default function PlayDock({}) {
             }}
             // raycaster={{params: {Line: {threshold: 0.15}}}}
             onDoubleClick={() => {
+                useTransformControls.getState().setObjectToSelect("")
             }}
+
+
         >
 
             <_Grid/>
             <_SceneCameraRotationGizmo/>
             <_UniversalWorldEnvironment/>
+
+            <TransformControlsFiber/>
+
             <MapControls makeDefault target={[0, 0, 0]}
                          enableDamping={false}
                          maxPolarAngle={Math.PI / 2}/>
 
             {/*<_TmpTiles/>*/}
 
-            <StorageFiber entity={storage}/>
-            <CartFiber entity={cart}/>
-            <WorkerFiber entity={farmer}/>
+            <Gizmo3DFlag/>
+            <WorldEntitiesFiber/>
+
 
         </Canvas>
     )
 }
 
-function _TmpTiles({}) {
-    return (
-        <group>
-            <CardTile position={[0, 0, 0]}/>
-            <CardTile position={[1, 0, 0]}/>
-        </group>
-    )
-}
 
 function _Grid({}) {
     const gridConfig = {
@@ -92,7 +87,7 @@ function _Grid({}) {
 function _SceneCameraRotationGizmo() {
     return (
         <GizmoHelper
-            alignment="bottom-right" // widget alignment within scene
+            alignment={"top-right"} // widget alignment within scene
             margin={[80, 80]} // widget margins (X, Y)
         >
             <GizmoViewport axisColors={['red', '#34eb37', '#347deb']} labelColor="black"/>

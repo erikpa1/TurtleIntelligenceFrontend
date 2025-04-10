@@ -9,17 +9,8 @@ import path from "path";
 export default defineConfig({
     resolve: {
         alias: {
-            "@css": path.resolve(__dirname, "src/css"),
-            "@api": path.resolve(__dirname, "src/api"),
-            "@shared": path.resolve(__dirname, "src/shared"),
-            "@dt": path.resolve(__dirname, "src/dt"),
-            "@assets": path.resolve(__dirname, "src/data/assets"),
-            "@commands": path.resolve(__dirname, "src/commands"),
-            "@data": path.resolve(__dirname, "src/data"),
-            "@external": path.resolve(__dirname, "src/external"),
-            "@components": path.resolve(__dirname, "src/components"),
-            "@app-gui": path.resolve(__dirname, "src/app-gui"),
-            "@uitoolkit": path.resolve(__dirname, "src/uitoolkit"),
+            "@Turtle": path.resolve(__dirname, "src/turtle"),
+            "@TurtleApp": path.resolve(__dirname, "src/TurtleApp"),
         },
     },
 
@@ -34,7 +25,6 @@ export default defineConfig({
         host: "0.0.0.0",
         proxy: {
             "/api": "http://127.0.0.1:8080",
-            "/.auth/": "http://127.0.0.1:8080",
         },
     },
 });

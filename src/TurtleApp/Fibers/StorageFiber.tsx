@@ -1,12 +1,12 @@
 import PrimitiveMesh from "../../Turtle/Fibers/PrimitiveMesh";
 import {Cylinder} from "@react-three/drei";
-import _WEFiberWrapper, {EntityFiberProps} from "./_WEFiberWrapper";
+import WEFiberWrapper, {EntityFiberProps} from "./WEFiberWrapper";
 import ModelsGallery from "../Data/ModelsGallery";
 
 
 export default function StorageFiber({entity}: EntityFiberProps) {
     return (
-        <_WEFiberWrapper entity={entity}>
+        <WEFiberWrapper entity={entity}>
 
 
             <PrimitiveMesh
@@ -23,6 +23,6 @@ export default function StorageFiber({entity}: EntityFiberProps) {
                 </Cylinder>
             </group>
 
-        </_WEFiberWrapper>
+        </WEFiberWrapper>
     )
 }

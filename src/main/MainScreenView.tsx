@@ -2,7 +2,7 @@ import React from "react"
 import {MainScreenTopBar} from "./MainScreenTopBar";
 
 import {AddButton} from "./AddButton";
-import PlayDock from "../TurtleApp/Routes/PlayDock/PlayDock";
+import WorldDock from "../TurtleApp/Routes/WorldDock/WorldDock";
 
 
 let TIMEOUT: any = null
@@ -14,7 +14,7 @@ export default function MainScreenView({}) {
             position: "relative",
             height: "100vh"
         }}>
-            <PlayDock/>
+            <WorldDock/>
             <_Framing/>
             <AddButton/>
 

@@ -8,5 +8,5 @@ interface PrimitiveMeshProps {
 export default function PrimitiveMesh({path}) {
 
     const obj: any = useGLTF(path)
-    return <primitive position={[9, 3 ,5]} object={obj.scene.clone(true)}/>
+    return <primitive object={obj.scene.clone(true)}/>
 }
