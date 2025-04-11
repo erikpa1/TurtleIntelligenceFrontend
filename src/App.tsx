@@ -46,7 +46,6 @@ function App() {
 
                     <div style={{}}>
 
-
                         <div style={{flexGrow: 1}}>
                             <Main/>
                         </div>

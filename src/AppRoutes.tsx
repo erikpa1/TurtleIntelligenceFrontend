@@ -2,7 +2,7 @@ import React from "react";
 
 import {Route, Routes} from "react-router-dom";
 
-const MainScreenView = React.lazy(() => import("./main/MainScreenView"))
+const MainScreenView = React.lazy(() => import("@TurtleApp/Routes/WorldDock/MainScreenView"))
 
 export default function AppRoutes({}) {
     return (

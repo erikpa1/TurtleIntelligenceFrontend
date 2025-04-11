@@ -13,9 +13,26 @@ import WorldEntitiesFiber from "./WorldEntitiesFiber"
 
 import TransformControlsFiber, {useTransformControls} from "@Turtle/Fibers/TransformControlsFiber"
 import Gizmo3DFlag from "../../Fibers/Gizmo3D";
+import WorldSingleton from "../../Zuses/worldZus";
+import {useParams} from "react-router-dom";
 
 
 export default function WorldDock({}) {
+
+
+    const {worldUid} = useParams()
+
+    const [world, setWorld] = React.useState(WorldSingleton.I)
+
+
+    return (
+        <_WorldDock/>
+    )
+
+
+}
+
+function _WorldDock({}) {
 
 
     React.useEffect(() => {

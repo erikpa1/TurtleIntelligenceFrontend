@@ -1,11 +1,12 @@
 import React from "react"
-import {MainScreenTopBar} from "./MainScreenTopBar";
 
-import {AddButton} from "./AddButton";
-import WorldDock from "../TurtleApp/Routes/WorldDock/WorldDock";
+import {Button} from "antd";
+import TopBarControlView from "../../Ui/TopBarControlView";
+import WorldDock from "./WorldDock";
+import {AddButton} from "../../../main/AddButton";
+import {MainScreenTopBar} from "../../../main/MainScreenTopBar";
 
 
-let TIMEOUT: any = null
 export default function MainScreenView({}) {
 
 
@@ -17,7 +18,6 @@ export default function MainScreenView({}) {
             <WorldDock/>
             <_Framing/>
             <AddButton/>
-
         </div>
     )
 }
@@ -39,6 +39,15 @@ function _Framing({}) {
 
                         }}
                     />
+                    <div style={{
+                        position: "absolute",
+                        left: "55px",
+                        top: "2.5px",
+                        zIndex: 4,
+                    }}>
+                        <TopBarControlView/>
+
+                    </div>
 
                 </div>
                 <div style={{
@@ -63,3 +72,4 @@ function _Framing({}) {
         </div>
     )
 }
+
