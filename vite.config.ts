@@ -17,6 +17,7 @@ export default defineConfig({
     plugins: [react(),],
     build: {
         outDir: "build",
+        target: "es2017",
     },
     clearScreen: false,
     server: {

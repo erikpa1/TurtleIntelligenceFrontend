@@ -1,23 +1,50 @@
 import React from "react"
 
-import {Button} from "antd";
+import {Button, Splitter} from "antd";
 import TopBarControlView from "../../Ui/TopBarControlView";
 import WorldDock from "./WorldDock";
 import {AddButton} from "../../../main/AddButton";
 import {MainScreenTopBar} from "../../../main/MainScreenTopBar";
 
 
-export default function MainScreenView({}) {
+export default function MainScreenDock({}) {
 
 
     return (
         <div style={{
-            position: "relative",
             height: "100vh"
         }}>
-            <WorldDock/>
-            <_Framing/>
-            <AddButton/>
+            <Splitter style={{
+                height: "100vh",
+                // backgroundColor: "#212124"
+            }}>
+                <Splitter.Panel
+                    defaultSize="20%"
+                    style={{
+                        padding: "15px"
+                    }}
+                >
+
+                </Splitter.Panel>
+
+                <Splitter.Panel
+                    defaultSize="80%"
+                >
+                    <div style={{
+                        position: "relative",
+                    }}>
+                        <div style={{
+                            height: "100vh",
+                        }}>
+                            <WorldDock/>
+                        </div>
+                        <_Framing/>
+                        <AddButton/>
+                    </div>
+                </Splitter.Panel>
+
+            </Splitter>
+
         </div>
     )
 }

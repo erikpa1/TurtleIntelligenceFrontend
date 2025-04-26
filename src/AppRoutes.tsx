@@ -2,13 +2,14 @@ import React from "react";
 
 import {Route, Routes} from "react-router-dom";
 
-const MainScreenView = React.lazy(() => import("@TurtleApp/Routes/WorldDock/MainScreenView"))
+const ContainersDock = React.lazy(() => import("@TurtleApp/Routes/ContainersDock/ContainersDock"))
+const MainScreenDock = React.lazy(() => import("@TurtleApp/Routes/WorldDock/MainScreenDock"))
 
 export default function AppRoutes({}) {
     return (
         <Routes>
-            <Route path={"/"} element={<MainScreenView/>}/>
-
+            <Route path={"/"} element={<MainScreenDock/>}/>
+            <Route path={"/containers"} element={<ContainersDock/>}/>
         </Routes>
     );
 }
