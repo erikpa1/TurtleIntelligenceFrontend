@@ -28,7 +28,7 @@ export default function MainScreenDock({}) {
                 </Splitter.Panel>
 
                 <Splitter.Panel
-                    defaultSize="80%"
+                    defaultSize="60%"
                 >
                     <div style={{
                         position: "relative",
@@ -42,6 +42,16 @@ export default function MainScreenDock({}) {
                         <AddButton/>
                     </div>
                 </Splitter.Panel>
+
+                <Splitter.Panel
+                    defaultSize="20%"
+                    style={{
+                        padding: "15px"
+                    }}
+                >
+
+                </Splitter.Panel>
+
 
             </Splitter>
 
