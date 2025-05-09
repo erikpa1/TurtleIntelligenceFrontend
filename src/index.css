@@ -73,18 +73,36 @@ button:focus-visible {
     }
 }
 
+
 middle-centered {
     margin-left: auto;
     margin-right: auto;
 }
 
-@font-face {
-    font-family: 'MyWebFont';
-    src: url('Font.ttf'); /* IE9 Compat Modes */
 
+
+/*from https://claude.ai/chat/9319b354-ee5e-4799-8f6d-ab01bd5c7cf7*/
+
+
+.vstack {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
 }
 
-body {
-    font-family: 'MyWebFont', Fallback, sans-serif;
+/* Horizontal Stack (hstack) */
+.hstack {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
 }
 
+/* Gap modifiers */
+.gap-0 { gap: 0; }
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 1rem; }
+.gap-4 { gap: 1.5rem; }
+.gap-5 { gap: 3rem; }

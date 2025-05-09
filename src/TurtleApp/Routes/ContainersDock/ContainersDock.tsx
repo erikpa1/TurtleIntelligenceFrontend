@@ -1,4 +1,5 @@
 import {Splitter} from "antd";
+import ContainersHierarchy from "./ContainersHierarchy";
 
 
 export default function ContainersDock() {
@@ -10,10 +11,11 @@ export default function ContainersDock() {
             <Splitter.Panel
                 defaultSize={"20%"}
                 style={{
-                    backgroundColor: "white"
+                    backgroundColor: "white",
+                    padding: "15px"
                 }}
             >
-
+                <ContainersHierarchy/>
             </Splitter.Panel>
 
             <Splitter.Panel>

@@ -80,7 +80,7 @@ export function TopBarButton({icon, value}) {
             backgroundColor: "black",
             borderRadius: "15%",
             padding: "5px",
-            minWidth: "100px"
+            width: "100px"
         }}>
             <div className={"hstack gap-3"}>
                 <img

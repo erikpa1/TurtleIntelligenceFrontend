@@ -2,7 +2,7 @@ import React from "react"
 
 import PrimitiveMesh from "@Turtle/Fibers/PrimitiveMesh"
 import ModelsGallery from "@TurtleApp/Data/ModelsGallery"
-import {create} from "zustand/index";
+import {create} from "zustand";
 import {Plane} from "@react-three/drei";
 
 

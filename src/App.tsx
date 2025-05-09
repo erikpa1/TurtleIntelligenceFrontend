@@ -3,26 +3,20 @@ import React from "react";
 import "./App.css"
 
 
-import useCookie from "react-use-cookie";
-
 import {useTranslation} from "react-i18next";
 
 import AppRoutes from "./AppRoutes";
 import {Layout} from "antd";
 import AppNavBar from "./AppNavBar";
+import Sider from "antd/es/layout/Sider";
 
 
 function App() {
 
     const [isLoading, setIsLoading] = React.useState(true)
 
-    const [_, tInstance] = useTranslation()
-
-    const [userLanguage, setUserLanguage] = useCookie("language", "en")
-
     React.useEffect(() => {
         setIsLoading(true)
-        tInstance.changeLanguage(userLanguage)
         setIsLoading(false)
 
     }, [])
@@ -37,25 +31,17 @@ function App() {
     } else {
         return (
             //Toto nemoze ist do ccska lebo z nejakeho kktskeho dovodu to nefunguje
-            <div>
-                <div className="app_background"/>
+            <Layout hasSider>
+                <Sider width={72}>
+                    <AppNavBar/>
+                </Sider>
 
-                <Layout hasSider>
-                    <Layout style={{
-                        marginInlineStart: 80
-                    }}>
-                        <AppNavBar/>
-
-                        <Layout.Content>
-                            <div style={{flexGrow: 1}}>
-                                <Main/>
-                            </div>
-                        </Layout.Content>
-                    </Layout>
-
-
-                </Layout>
-            </div>
+                <Layout.Content>
+                    <div style={{flexGrow: 1}}>
+                        <Main/>
+                    </div>
+                </Layout.Content>
+            </Layout>
         )
     }
 

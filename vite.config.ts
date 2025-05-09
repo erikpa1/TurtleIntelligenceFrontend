@@ -9,7 +9,7 @@ import path from "path";
 export default defineConfig({
     resolve: {
         alias: {
-            "@Turtle": path.resolve(__dirname, "src/turtle"),
+            "@Turtle": path.resolve(__dirname, "src/Turtle"),
             "@TurtleApp": path.resolve(__dirname, "src/TurtleApp"),
         },
     },

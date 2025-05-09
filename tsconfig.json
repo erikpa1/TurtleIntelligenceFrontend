@@ -24,19 +24,13 @@
         "noFallthroughCasesInSwitch": true,
         "baseUrl": ".",
         "paths": {
-            "@shared": [
-                "src/shared/*"
-            ],
-            "@api": [
-                "src/api/*"
-            ],
-            "@ui": [
+            "@ui/*": [
                 "src/ui/*"
             ],
-            "@Turtle": [
+            "@Turtle/*": [
                 "src/Turtle/*"
             ],
-            "@TurtleApp": [
+            "@TurtleApp/*": [
                 "src/TurtleApp/*"
             ]
         }

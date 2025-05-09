@@ -1,5 +1,5 @@
 import {Flex, Layout, Menu} from "antd";
-import {HomeOutlined, LinkOutlined} from "@ant-design/icons";
+import {ContainerOutlined, HomeOutlined, LinkOutlined} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
@@ -56,7 +56,7 @@ export default function AppNavBar() {
                             },
                             {
                                 key: "containers",
-                                icon: <HomeOutlined/>,
+                                icon: <ContainerOutlined/>,
                                 label: t("containers"),
                                 onClick: () => {
                                     navigate("/containers")

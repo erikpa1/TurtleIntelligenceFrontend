@@ -1,12 +1,11 @@
 import React from "react";
-import {Col, Modal, Row} from "react-bootstrap";
+
 import {ImageTileButton} from "../ui/ImageTileButton";
 
 
 export function AddButton({}) {
 
     const [popupVisible, setPopupVisible] = React.useState(false)
-
 
 
     return (
@@ -26,56 +25,8 @@ export function AddButton({}) {
                     setPopupVisible(true)
                 }}
             />
-            {
-                popupVisible && <_SelectionModal
-                    onHide={() => setPopupVisible(false)}
-                    selected={() => {
-                        console.log("Building started")
-                        setPopupVisible(false)
-                    }}
-                />
-            }
+
         </div>
     )
 }
-
-function _SelectionModal({onHide, selected}) {
-    return (
-        <Modal
-            show={true}
-            onHide={onHide}
-        >
-            <Modal.Header closeButton>
-
-            </Modal.Header>
-            <Modal.Body>
-                <Row>
-                    <Col>
-                        <ImageTileButton
-                            icon={"/textures/wheat-field.png"}
-                            text={"Wheat field"}
-                            onClick={selected}
-                        />
-                    </Col>
-                    <Col>
-                        <ImageTileButton
-                            icon={"/textures/wheat-field.png"}
-                            text={"Wheat field"}
-                            onClick={selected}
-                        />
-                    </Col>
-                    <Col>
-                        <ImageTileButton
-                            icon={"/textures/wheat-field.png"}
-                            text={"Wheat field"}
-                            onClick={selected}
-                        />
-                    </Col>
-                </Row>
-
-            </Modal.Body>
-        </Modal>
-    )
-}
-
 

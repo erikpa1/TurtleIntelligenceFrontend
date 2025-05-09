@@ -5,57 +5,63 @@ import TopBarControlView from "../../Ui/TopBarControlView";
 import WorldDock from "./WorldDock";
 import {AddButton} from "../../../main/AddButton";
 import {MainScreenTopBar} from "../../../main/MainScreenTopBar";
+import WorldHierarchy from "@TurtleApp/Routes/WorldDock/WorldHierarchy";
 
 
 export default function MainScreenDock({}) {
 
 
     return (
-        <div style={{
-            height: "100vh"
+        <Splitter style={{
+            height: "100vh",
+            // backgroundColor: "#212124"
         }}>
-            <Splitter style={{
-                height: "100vh",
-                // backgroundColor: "#212124"
-            }}>
-                <Splitter.Panel
-                    defaultSize="20%"
-                    style={{
-                        padding: "15px"
-                    }}
-                >
+            <Splitter.Panel
+                defaultSize="20%"
+                style={{
+                    backgroundColor: "white"
+                }}
+            >
+                <div style={{
+                    padding: "15px"
+                }}>
+                    <WorldHierarchy/>
+                </div>
 
-                </Splitter.Panel>
+            </Splitter.Panel>
 
-                <Splitter.Panel
-                    defaultSize="60%"
-                >
+            <Splitter.Panel
+                defaultSize="60%"
+                style={{
+                    backgroundColor: "#212124"
+                }}
+            >
+                <div style={{
+                    position: "relative",
+                }}>
                     <div style={{
-                        position: "relative",
+                        height: "100vh",
                     }}>
-                        <div style={{
-                            height: "100vh",
-                        }}>
-                            <WorldDock/>
-                        </div>
-                        <_Framing/>
-                        <AddButton/>
+                        <WorldDock/>
                     </div>
-                </Splitter.Panel>
+                    <_Framing/>
+                    <AddButton/>
+                </div>
+            </Splitter.Panel>
 
-                <Splitter.Panel
-                    defaultSize="20%"
-                    style={{
-                        padding: "15px"
-                    }}
-                >
+            <Splitter.Panel
+                defaultSize="20%"
+                style={{
+                    padding: "15px"
 
-                </Splitter.Panel>
+                }}
+            >
+
+            </Splitter.Panel>
 
 
-            </Splitter>
+        </Splitter>
 
-        </div>
     )
 }
 
