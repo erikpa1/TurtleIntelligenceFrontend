@@ -8,7 +8,10 @@ export default function WorldHierarchy({}) {
 
     const [t] = useTranslation()
 
-    const [data, setData] = React.useState<Array<TreeDataNode>>([])
+    const commonEntities = getBasicElements()
+
+    const [data, setData] = React.useState<Array<TreeDataNode>>([...commonEntities])
+
 
     function elementSelected(element: string) {
         aee.emit("World_PickEntity", element)
@@ -20,8 +23,27 @@ export default function WorldHierarchy({}) {
         }
     }
 
-    async function refresh() {
-        setData([
+
+    React.useEffect(() => {
+
+    }, [])
+
+    return (
+        <Tree
+            treeData={data}
+            onSelect={elementClicked as any}
+            defaultExpandAll={true}
+        />
+    )
+
+}
+
+function getBasicElements(): Array<TreeDataNode> {
+
+    const [t] = useTranslation()
+
+    return React.useMemo(() => {
+        return [
             {
                 title: t("entities"),
                 key: "entities",
@@ -36,20 +58,8 @@ export default function WorldHierarchy({}) {
                     }
                 ]
             }
-        ])
-
-    }
-
-    React.useEffect(() => {
-        refresh()
+        ]
     }, [])
 
-    return (
-        <Tree
-            treeData={data}
-            onSelect={elementClicked as any}
-            defaultExpandAll={true}
-        />
-    )
 
 }

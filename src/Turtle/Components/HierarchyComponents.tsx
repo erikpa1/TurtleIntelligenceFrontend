@@ -1,6 +1,6 @@
 import React from "react"
-import {Button, Flex} from "antd";
-import {PlusOutlined} from "@ant-design/icons";
+import {Button, Flex, Popconfirm} from "antd";
+import {DeleteRowOutlined, DeleteTwoTone, PlusOutlined} from "@ant-design/icons";
 
 
 export function HierarchyRightFlex({children}) {
@@ -8,7 +8,7 @@ export function HierarchyRightFlex({children}) {
     return (
         <Flex
             align={"center"}
-            justify={"end"}
+            justify="end"  // In Ant Design, "end" is an alias for "flex-end"
             flex={1}
             gap={5}
         >
@@ -24,6 +24,25 @@ export function HierarchyAddButton({onClick}) {
             icon={<PlusOutlined/>}
             onClick={onClick}
         />
+    )
+}
+
+export function HierarchyDeleteButton({onClick}) {
+
+    return (
+        <Popconfirm
+            title={"are.you.sure"}
+            onConfirm={onClick}
+        >
+            <HierarchyCustomIcon
+                icon={
+                    <DeleteTwoTone
+                        twoToneColor={["red", "white"]}
+                    />
+                }
+            />
+        </Popconfirm>
+
     )
 }
 

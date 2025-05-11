@@ -1,5 +1,5 @@
 //Generated via https://claude.ai/chat/4324fad1-62f8-4be3-8075-6ab90c87fee1
-import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError} from 'axios';
+import axios, {Axios as OverrideAxios, AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError} from 'axios';
 import {message} from 'antd';
 
 // Define interface for Turxios configuration
@@ -13,6 +13,10 @@ interface TurxiosConfig extends AxiosRequestConfig {
     autoRedirectOnAuthError?: boolean;
     redirectPath?: string;
 }
+
+export const Axios: OverrideAxios = axios.create();
+
+
 
 // Interface for queued requests
 interface QueueItem {

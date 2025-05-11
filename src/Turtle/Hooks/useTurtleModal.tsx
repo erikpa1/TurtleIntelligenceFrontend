@@ -13,6 +13,9 @@ export function useTurtleModal() {
         guard.current = Modal.info({
             ...props,
             title: t(props.title as any ?? ""),
+            icon: props.icon ?? null,
+            footer: null,
+            closable: true
         })
     }
 

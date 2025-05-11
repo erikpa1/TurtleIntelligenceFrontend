@@ -1,4 +1,7 @@
 {
+    "home": "Home",
     "create.container": "Create container",
-    "containers": "Containers"
+    "containers": "Containers",
+    "models": "Models",
+    "create.model": "Create model"
 }

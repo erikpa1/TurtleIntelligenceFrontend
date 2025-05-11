@@ -12,8 +12,17 @@ export default function PickEntityFiber({}) {
     return (
         <AeeWrapper
             aee={aee}
+            World_PickEntity={() => {
+                setIsDrawing(true)
+            }}
+            World_CancelPick={() => {
+                setIsDrawing(false)
+            }}
         >
-            <HoverPlane/>
+            {
+                isDrawing &&
+                <HoverPlane/>
+            }
         </AeeWrapper>
     )
 

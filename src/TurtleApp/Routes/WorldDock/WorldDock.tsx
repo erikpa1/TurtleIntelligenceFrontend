@@ -6,9 +6,12 @@ import WorldFiber from "./WorldFiber";
 import {AddButton} from "../../../main/AddButton";
 import {MainScreenTopBar} from "../../../main/MainScreenTopBar";
 import WorldHierarchy from "@TurtleApp/Routes/WorldDock/WorldHierarchy";
+import {useParams} from "react-router-dom";
 
 
-export default function MainScreenDock({}) {
+export default function WorldDock({}) {
+
+    const {modelUid} = useParams()
 
 
     return (

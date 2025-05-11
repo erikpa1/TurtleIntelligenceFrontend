@@ -9,6 +9,7 @@ import AppRoutes from "./AppRoutes";
 import {Layout} from "antd";
 import AppNavBar from "./AppNavBar";
 import Sider from "antd/es/layout/Sider";
+import {GlobalLock} from "@Turtle/Components/GlobalLock";
 
 
 function App() {
@@ -30,18 +31,21 @@ function App() {
         )
     } else {
         return (
-            //Toto nemoze ist do ccska lebo z nejakeho kktskeho dovodu to nefunguje
-            <Layout hasSider>
-                <Sider width={72}>
-                    <AppNavBar/>
-                </Sider>
+            <div>
+                <Layout hasSider>
+                    <Sider width={72}>
+                        <AppNavBar/>
+                    </Sider>
 
-                <Layout.Content>
-                    <div style={{flexGrow: 1}}>
-                        <Main/>
-                    </div>
-                </Layout.Content>
-            </Layout>
+                    <Layout.Content>
+                        <div style={{flexGrow: 1}}>
+                            <Main/>
+                        </div>
+                    </Layout.Content>
+                </Layout>
+
+                <GlobalLock/>
+            </div>
         )
     }
 
