@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import AnyEventEmmiter from "./AnyEventEmmiter";
-import anyEventEmmiter from "./AnyEventEmmiter";
+import AnyEventEmmiter from "./Aee";
+import aee from "./Aee";
 import {join} from "@tauri-apps/api/path";
 
 
@@ -19,9 +19,9 @@ export default class SimulationApi {
 
     static EmitAppStateData(data: AppStateResponse) {
 
-        anyEventEmmiter.emit("speed", data.speed)
-        anyEventEmmiter.emit("time_step", data.time_step)
-        anyEventEmmiter.emit("warehouse", data.warehouse)
+        aee.emit("speed", data.speed)
+        aee.emit("time_step", data.time_step)
+        aee.emit("warehouse", data.warehouse)
 
 
     }

@@ -15,9 +15,10 @@ import TransformControlsFiber, {useTransformControls} from "@Turtle/Fibers/Trans
 import Gizmo3DFlag from "../../Fibers/Gizmo3D";
 import WorldSingleton from "../../Zuses/worldZus";
 import {useParams} from "react-router-dom";
+import PickEntityFiber from "@TurtleApp/Routes/WorldDock/Submodules/PickEntityFiber";
 
 
-export default function WorldDock({}) {
+export default function WorldFiber({}) {
 
 
     const {worldUid} = useParams()
@@ -74,8 +75,17 @@ function _WorldDock({}) {
             <Gizmo3DFlag/>
             <WorldEntitiesFiber/>
 
+            <_SubModules/>
 
         </Canvas>
+    )
+}
+
+function _SubModules({}) {
+    return (
+        <>
+            <PickEntityFiber/>
+        </>
     )
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
-import anyEventEmmiter from "../api/AnyEventEmmiter";
+
 import {Warehouse} from "../api/SimulationApi";
+import aee from "@Turtle/Data/Aee";
 
 
 export function MainScreenTopBar({}) {
@@ -58,10 +59,10 @@ function TopBarWarehouseButton({icon, resource_key}: TopBarWarehouseButtonProps)
 
         }
 
-        anyEventEmmiter.on("warehouse", refreshVal)
+        aee.on("warehouse", refreshVal)
 
         return () => {
-            anyEventEmmiter.off("warehouse", refreshVal)
+            aee.off("warehouse", refreshVal)
         }
 
     }, [])

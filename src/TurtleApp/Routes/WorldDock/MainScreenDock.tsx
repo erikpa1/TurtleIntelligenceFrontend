@@ -2,7 +2,7 @@ import React from "react"
 
 import {Button, Splitter} from "antd";
 import TopBarControlView from "../../Ui/TopBarControlView";
-import WorldDock from "./WorldDock";
+import WorldFiber from "./WorldFiber";
 import {AddButton} from "../../../main/AddButton";
 import {MainScreenTopBar} from "../../../main/MainScreenTopBar";
 import WorldHierarchy from "@TurtleApp/Routes/WorldDock/WorldHierarchy";
@@ -42,7 +42,7 @@ export default function MainScreenDock({}) {
                     <div style={{
                         height: "100vh",
                     }}>
-                        <WorldDock/>
+                        <WorldFiber/>
                     </div>
                     <_Framing/>
                     <AddButton/>

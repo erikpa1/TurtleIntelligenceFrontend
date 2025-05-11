@@ -29,5 +29,5 @@ class AnyEventEmmiter {
 
 }
 
-const anyEventEmmiter = new AnyEventEmmiter();
-export default anyEventEmmiter;
+const aee = new AnyEventEmmiter();
+export default aee;
