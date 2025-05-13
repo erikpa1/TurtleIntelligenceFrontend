@@ -2,7 +2,12 @@ import {useTranslation} from "react-i18next";
 import React from "react";
 import {Flex, Tree, TreeDataNode} from "antd";
 import aee from "@Turtle/Data/Aee";
-import {HierarchyAddButton, HierarchyDeleteButton, HierarchyRightFlex} from "@Turtle/Components/HierarchyComponents";
+import {
+    HierarchyAddButton,
+    HierarchyDeleteButton,
+    HierarchyRightFlex,
+    HierarchyViewButton
+} from "@Turtle/Components/HierarchyComponents";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import ModelsApi from "@TurtleApp/Api/ModelsApi";
 import {useNavigate} from "react-router-dom";
@@ -71,13 +76,15 @@ export default function ModelsHierarchy({}) {
                     <Flex
                         gap={10}
                         flex={1}
-                        onClick={() =>{
-                            navigate(`/model/${val.uid}`)
-                        }}
                     >
                         {val.name}
 
                         <HierarchyRightFlex>
+
+                            <HierarchyViewButton onClick={() => {
+                                navigate(`/model/${val.uid}`)
+                            }}/>
+
                             <HierarchyDeleteButton onClick={() => {
                                 deleteModel(val.uid)
                             }}/>

@@ -1,6 +1,6 @@
 import React from "react"
 import {Button, Flex, Popconfirm} from "antd";
-import {DeleteRowOutlined, DeleteTwoTone, PlusOutlined} from "@ant-design/icons";
+import {DeleteRowOutlined, DeleteTwoTone, EyeOutlined, PlusOutlined} from "@ant-design/icons";
 
 
 export function HierarchyRightFlex({children}) {
@@ -27,12 +27,25 @@ export function HierarchyAddButton({onClick}) {
     )
 }
 
+export function HierarchyViewButton({onClick}) {
+
+    return (
+        <HierarchyCustomIcon
+            icon={<EyeOutlined/>}
+            onClick={onClick}
+        />
+    )
+}
+
 export function HierarchyDeleteButton({onClick}) {
 
     return (
         <Popconfirm
             title={"are.you.sure"}
-            onConfirm={onClick}
+            onConfirm={(e) => {
+                e?.preventDefault()
+                onClick(e)
+            }}
         >
             <HierarchyCustomIcon
                 icon={

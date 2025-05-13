@@ -42,8 +42,12 @@ export function Cross({position}) {
 }
 
 
+interface HoverPlaneProps {
+    picked: (position: number[]) => void
+}
+
 // Plane component that shows cross on hover
-export function HoverPlane() {
+export function HoverPlane({picked}: HoverPlaneProps) {
 
     const [mousePos, setMousePos] = React.useState([0, 0, 0]);
 
@@ -54,11 +58,17 @@ export function HoverPlane() {
 
     }
 
+    function onClick(event: any) {
+        event.stopPropagation()
+        picked([event.point.x, event.point.y, event.point.z])
+    }
+
     return (
         <group>
             <Plane
                 rotation={[-Math.PI / 2, 0, 0]}
                 onPointerMove={handlePointerMove}
+                onClick={onClick}
                 scale={[1000, 1000, 1]}
                 visible={false}
             />

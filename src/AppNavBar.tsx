@@ -44,7 +44,6 @@ export default function AppNavBar() {
                             display: "flex",
                             flexDirection: "column",
                         }}
-                        selectable={false}
                         items={[
                             {
                                 key: "home",

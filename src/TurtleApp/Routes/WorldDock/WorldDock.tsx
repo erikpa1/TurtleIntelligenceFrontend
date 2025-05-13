@@ -1,12 +1,13 @@
 import React from "react"
 
-import {Button, Splitter} from "antd";
+import {Button, Flex, Splitter} from "antd";
 import TopBarControlView from "../../Ui/TopBarControlView";
 import WorldFiber from "./WorldFiber";
 import {AddButton} from "../../../main/AddButton";
 import {MainScreenTopBar} from "../../../main/MainScreenTopBar";
 import WorldHierarchy from "@TurtleApp/Routes/WorldDock/WorldHierarchy";
 import {useParams} from "react-router-dom";
+import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 
 
 export default function WorldDock({}) {
@@ -15,55 +16,91 @@ export default function WorldDock({}) {
 
 
     return (
-        <Splitter style={{
-            height: "100vh",
-            // backgroundColor: "#212124"
-        }}>
-            <Splitter.Panel
-                defaultSize="20%"
-                style={{
-                    backgroundColor: "white"
-                }}
-            >
-                <div style={{
-                    padding: "15px"
-                }}>
-                    <WorldHierarchy/>
-                </div>
+        <div>
+            <div style={{
+                height: "5vh",
+                backgroundColor: "white",
+                position: "relative"
+            }}>
 
-            </Splitter.Panel>
+                <Flex
+                    gap={10}
+                >
 
-            <Splitter.Panel
-                defaultSize="60%"
-                style={{
-                    backgroundColor: "#212124"
-                }}
-            >
-                <div style={{
-                    position: "relative",
-                }}>
+
+                    <Button>
+                        Here
+                    </Button>
+
+
+                    <RightSubmitButton
+                        onClick={() => {
+                            //Do nothing
+                        }}
+                    />
+                </Flex>
+
+                <div
+                    style={{
+                        backgroundColor: "rgb(230, 230, 230)",
+                        height: "2px",
+                        width: "100%",
+                        position: "absolute",
+                        bottom: 0,
+                        left: 0
+                    }}
+                />
+            </div>
+            <Splitter style={{
+                height: "95vh",
+                // backgroundColor: "#212124"
+            }}>
+                <Splitter.Panel
+                    defaultSize="20%"
+                    style={{
+                        backgroundColor: "white"
+                    }}
+                >
                     <div style={{
-                        height: "100vh",
+                        padding: "15px"
                     }}>
-                        <WorldFiber/>
+                        <WorldHierarchy world={null}/>
                     </div>
-                    <_Framing/>
-                    <AddButton/>
-                </div>
-            </Splitter.Panel>
 
-            <Splitter.Panel
-                defaultSize="20%"
-                style={{
-                    padding: "15px"
+                </Splitter.Panel>
 
-                }}
-            >
+                <Splitter.Panel
+                    defaultSize="60%"
+                    style={{
+                        backgroundColor: "#212124"
+                    }}
+                >
+                    <div style={{
+                        position: "relative",
+                    }}>
+                        <div style={{
+                            height: "95vh",
+                        }}>
+                            <WorldFiber/>
+                        </div>
+                        <_Framing/>
+                        <AddButton/>
+                    </div>
+                </Splitter.Panel>
 
-            </Splitter.Panel>
+                <Splitter.Panel
+                    defaultSize="20%"
+                    style={{
+                        padding: "15px"
+
+                    }}
+                >
+
+                </Splitter.Panel>
 
 
-        </Splitter>
+            </Splitter>
+        </div>
 
     )
 }
@@ -80,7 +117,7 @@ function _Framing({}) {
                     <img
                         src={"/textures/frame-top.png"}
                         style={{
-                            width: "100vh",
+                            width: "95vh",
                             height: "40px",
 
                         }}
@@ -108,7 +145,7 @@ function _Framing({}) {
             <img
                 src={"/textures/frame-left.png"}
                 style={{
-                    height: "100vh",
+                    height: "95vh",
                     width: "50px",
                     position: "absolute",
                     top: "0px",
