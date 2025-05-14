@@ -23,8 +23,6 @@ export default function TransformControlsFiber({}) {
 
     const scene = useThree((state) => state.scene)
 
-    console.log(trZus.objectToSelect)
-
     return (
         <>
             {
