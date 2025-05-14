@@ -6,29 +6,26 @@ import {HoverPlane} from "@Turtle/Fibers/Drawing";
 
 export default function PickEntityFiber({}) {
 
-    const [callBack, setCallback] = React.useState<any>(null)
-
+    //Funkciu nemozno pridat do REACT komponentu
+    const [callBack, setCallback] = React.useState<any>({guard: null})
 
     function picked(point: number[]) {
-        callBack(point)
-        setCallback(null)
+        callBack.guard(point)
+        setCallback({guard: null})
     }
-
-    console.log(callBack)
 
     return (
         <AeeWrapper
             aee={aee}
             World_PickEntity={(cb) => {
-                console.log("Started drawing", cb)
-                setCallback(cb)
+                setCallback({guard: cb})
             }}
             World_CancelPick={() => {
-                setCallback(null)
+                setCallback({guard: null})
             }}
         >
             {
-                callBack &&
+                callBack.guard &&
                 <HoverPlane
                     picked={picked}
                 />

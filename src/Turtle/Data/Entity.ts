@@ -4,9 +4,10 @@ export default class Entity {
 
     uid = CreateUid()
     name = ""
+    type = ""
     position = [0, 0, 0]
     mesh = ""
-
+    parentWorld = ""
 
     modified = false
 

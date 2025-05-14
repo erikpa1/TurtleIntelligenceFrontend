@@ -5,6 +5,7 @@ class AnyEventEmmiter {
     isRunning = true
 
     on(event, listener) {
+
         if (!this.events[event]) {
             this.events[event] = [];
         }
@@ -17,8 +18,9 @@ class AnyEventEmmiter {
         }
     }
 
-    emit(event, data) {
+    emit(event: string, data) {
         const evnt = this.events[event]
+
         if (evnt) {
             evnt.forEach(listener => {
                 listener(data);

@@ -8,11 +8,22 @@ import {MainScreenTopBar} from "../../../main/MainScreenTopBar";
 import WorldHierarchy from "@TurtleApp/Routes/WorldDock/WorldHierarchy";
 import {useParams} from "react-router-dom";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
+import {SaveOutlined} from "@ant-design/icons";
+import {useTranslation} from "react-i18next";
+import aee from "@Turtle/Data/Aee";
+import WorldControllers from "@TurtleApp/Routes/WorldDock/WorldControllers";
 
 
 export default function WorldDock({}) {
 
     const {modelUid} = useParams()
+
+    const [t] = useTranslation()
+
+
+    function savePressed() {
+        aee.emit("SaveWorld", null)
+    }
 
 
     return (
@@ -20,16 +31,19 @@ export default function WorldDock({}) {
             <div style={{
                 height: "5vh",
                 backgroundColor: "white",
-                position: "relative"
+                position: "relative",
+                paddingLeft: "10px"
             }}>
 
                 <Flex
                     gap={10}
                 >
-
-
-                    <Button>
-                        Here
+                    <Button
+                        onClick={savePressed}
+                        type={"primary"}
+                    >
+                        <SaveOutlined/>
+                        {t("save")}
                     </Button>
 
 
@@ -62,7 +76,8 @@ export default function WorldDock({}) {
                     }}
                 >
                     <div style={{
-                        padding: "15px"
+                        paddingLeft: "15px",
+                        paddingRight: "15px"
                     }}>
                         <WorldHierarchy world={null}/>
                     </div>
@@ -97,6 +112,8 @@ export default function WorldDock({}) {
                 >
 
                 </Splitter.Panel>
+
+                <WorldControllers/>
 
 
             </Splitter>

@@ -2,6 +2,7 @@ import {Flex, Layout, Menu} from "antd";
 import {ContainerOutlined, HomeOutlined, LinkOutlined} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import {IconSimulation} from "@Turtle/Icons";
 
 export default function AppNavBar() {
 
@@ -47,7 +48,7 @@ export default function AppNavBar() {
                         items={[
                             {
                                 key: "home",
-                                icon: <HomeOutlined/>,
+                                icon: <IconSimulation/>,
                                 label: t("home"),
                                 onClick: () => {
                                     navigate("/")

@@ -11,6 +11,7 @@ import "./i18n"
 import {HashRouter} from "react-router-dom";
 import {configureAxios} from "./Turtle/Components/TurxiosConfig";
 import {ConfigProvider} from "antd";
+import ColorConstants from "@Turtle/Constants/ColorConstants";
 
 
 configureAxios()
@@ -22,16 +23,18 @@ root.render(
     <ConfigProvider
         theme={{
             token: {
-                // Seed Token
-                colorPrimary: '#00b96b',
-                borderRadius: 2,
-                // Alias Token
-                colorBgContainer: '#f6ffed',
+                colorPrimary: ColorConstants.AZURE_BLUE,
+                borderRadius: 0,
             },
         }}
     >
         <Suspense fallback={""}>
-            <HashRouter>
+            <HashRouter
+                future={{
+                    v7_relativeSplatPath: true,
+                    v7_startTransition: true,
+                }}
+            >
                 <App/>
             </HashRouter>
         </Suspense>
