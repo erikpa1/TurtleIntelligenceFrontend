@@ -68,7 +68,14 @@ export default function ModelsHierarchy({}) {
 
         const models = await ModelsApi.ListModels()
 
-        modelsNode.title = `${t("models")} (${models.length})`
+        modelsNode.title = (
+            <Flex>
+                {t("models")} ({models.length})
+                <HierarchyRightFlex>
+                    <HierarchyAddButton onClick={createModelPressed}/>
+                </HierarchyRightFlex>
+            </Flex>
+        )
         modelsNode.children = models.map((val) => {
             return {
                 key: val.uid,

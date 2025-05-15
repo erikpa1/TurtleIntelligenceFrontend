@@ -1,6 +1,6 @@
 import React from "react"
 
-import {Button, Flex, Splitter} from "antd";
+import {Button, Divider, Flex, Spin, Splitter} from "antd";
 import TopBarControlView from "../../Ui/TopBarControlView";
 import WorldFiber from "./WorldFiber";
 import {AddButton} from "../../../main/AddButton";
@@ -12,60 +12,55 @@ import {SaveOutlined} from "@ant-design/icons";
 import {useTranslation} from "react-i18next";
 import aee from "@Turtle/Data/Aee";
 import WorldControllers from "@TurtleApp/Routes/WorldDock/WorldControllers";
+import WorldApi from "@TurtleApp/Api/WorldApi";
+import {WorldSingleton} from "@TurtleApp/Data/World";
+import WorldTopBar from "@TurtleApp/Routes/WorldDock/WorldTopBar";
 
 
 export default function WorldDock({}) {
 
     const {modelUid} = useParams()
 
-    const [t] = useTranslation()
+    const [isLoading, setIsLoading] = React.useState(false)
 
-    function savePressed() {
-        aee.emit("SaveWorld", null)
+    async function refresh() {
+        setIsLoading(true)
+        const world = await WorldApi.GetWorld(modelUid as any)
+        WorldSingleton.I = world
+
+        document.title = `Model - ${world.name}`
+
+        setIsLoading(false)
     }
+
+    React.useEffect(() => {
+        refresh()
+    }, [modelUid])
+
+
+    if (isLoading) {
+        return (
+            <Spin size="large"/>
+        )
+    } else {
+        return (
+            <_WorldDock/>
+        )
+    }
+
+
+}
+
+function _WorldDock({}) {
+
 
 
     return (
         <div>
-            <div style={{
-                height: "5vh",
-                backgroundColor: "white",
-                position: "relative",
-                paddingLeft: "10px"
-            }}>
+            <WorldTopBar/>
 
-                <Flex
-                    gap={10}
-                >
-                    <Button
-                        onClick={savePressed}
-                        type={"primary"}
-                    >
-                        <SaveOutlined/>
-                        {t("save")}
-                    </Button>
-
-
-                    <RightSubmitButton
-                        onClick={() => {
-                            //Do nothing
-                        }}
-                    />
-                </Flex>
-
-                <div
-                    style={{
-                        backgroundColor: "rgb(230, 230, 230)",
-                        height: "2px",
-                        width: "100%",
-                        position: "absolute",
-                        bottom: 0,
-                        left: 0
-                    }}
-                />
-            </div>
             <Splitter style={{
-                height: "95vh",
+                height: "100%",
                 // backgroundColor: "#212124"
             }}>
                 <Splitter.Panel

@@ -3,6 +3,7 @@ import {ContainerOutlined, HomeOutlined, LinkOutlined} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {IconSimulation} from "@Turtle/Icons";
+import IconNetworkIntelNode from "@Turtle/Icons/IconNetworkIntelNode";
 
 export default function AppNavBar() {
 
@@ -52,6 +53,13 @@ export default function AppNavBar() {
                                 label: t("home"),
                                 onClick: () => {
                                     navigate("/")
+                                }
+                            }, {
+                                key: "neuralnetworks",
+                                icon: <IconNetworkIntelNode/>,
+                                label: t("neuralnetworks"),
+                                onClick: () => {
+                                    navigate("/nn")
                                 }
                             },
                             {

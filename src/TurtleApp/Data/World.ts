@@ -6,7 +6,7 @@ import {CreateUid} from "@Turtle/Utils/Uid";
 export default class World {
 
     name = ""
-    uid = CreateUid()
+    uid = ""
     entities: Array<Entity> = []
     deletedEntities = new Set<string>()
 
@@ -27,6 +27,8 @@ export default class World {
 
     FromJson(jObj: any) {
         this.uid = jObj.uid ?? ""
+        this.name = jObj.name ?? ""
+
         this.entities = (jObj.entities ?? []).map((val) => {
             const tmp = new Entity()
             tmp.FromJson(val)

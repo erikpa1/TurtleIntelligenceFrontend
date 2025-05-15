@@ -7,6 +7,7 @@ import aee from "@Turtle/Data/Aee";
 import {HierarchyCustomIcon} from "@Turtle/Components/HierarchyComponents";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import {fetchMongoUid} from "@Turtle/Utils/Uid";
+import IconFlagCheck from "@Turtle/Icons/IconFlagCheck";
 
 
 export default function WorldLibrary() {
@@ -44,6 +45,7 @@ export default function WorldLibrary() {
         <Tree
             treeData={data}
             defaultExpandAll={true}
+            virtual
         />
     )
 
@@ -90,7 +92,7 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
                                 elementClicked(val.key)
                             }}
                         >
-                            <HierarchyCustomIcon icon={val.icon}/>
+                            <HierarchyCustomIcon icon={<IconFlagCheck/>}/>
                             {val.title}
                         </Flex>
                     ),
@@ -109,7 +111,7 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
                                 elementClicked(val.key)
                             }}
                         >
-                            <HierarchyCustomIcon icon={val.icon}/>
+                            <HierarchyCustomIcon icon={<IconFlagCheck/>}/>
                             {val.title}
                         </Flex>
                     ),

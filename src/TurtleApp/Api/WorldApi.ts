@@ -23,5 +23,20 @@ export default class WorldApi {
         await axios.post("/api/w/save", formData)
     }
 
+    static async GetWorld(worldUid: string): Promise<World> {
+
+        const data = (await axios.get("/api/w", {
+            params: {
+                uid: worldUid
+            }
+        })).data
+
+        const world = new World()
+        world.FromJson(data)
+
+        return world
+
+    }
+
 
 }
