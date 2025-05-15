@@ -17,6 +17,10 @@ export default class World {
                 val.modified = false
                 return val.modified
             }),
+            created: this.entities.filter((val) => {
+                val.created = false
+                return val.created
+            }),
             deleted: Array.from(this.deletedEntities.values())
         }
     }
@@ -33,7 +37,7 @@ export default class World {
 
     AddEntity(entity: Entity) {
         entity.parentWorld = this.uid
-        entity.modified = true
+        entity.created = true
         this.entities.push(entity)
         this.EmitEntitiesChanged()
     }

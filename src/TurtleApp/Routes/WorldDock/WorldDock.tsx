@@ -20,7 +20,6 @@ export default function WorldDock({}) {
 
     const [t] = useTranslation()
 
-
     function savePressed() {
         aee.emit("SaveWorld", null)
     }
@@ -113,10 +112,9 @@ export default function WorldDock({}) {
 
                 </Splitter.Panel>
 
-                <WorldControllers/>
-
-
             </Splitter>
+
+            <WorldControllers/>
         </div>
 
     )

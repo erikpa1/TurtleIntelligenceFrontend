@@ -5,6 +5,8 @@ import Entity from "@Turtle/Data/Entity";
 import {WorldSingleton} from "@TurtleApp/Data/World";
 import aee from "@Turtle/Data/Aee";
 import {HierarchyCustomIcon} from "@Turtle/Components/HierarchyComponents";
+import TurtleApp from "@TurtleApp/TurtleApp";
+import {fetchMongoUid} from "@Turtle/Utils/Uid";
 
 
 export default function WorldLibrary() {
@@ -15,10 +17,15 @@ export default function WorldLibrary() {
 
     const [data] = React.useState<Array<TreeDataNode>>([...commonEntities])
 
-    function addElement(type: string, position: number[]) {
+    async function addElement(type: string, position: number[]) {
+        TurtleApp.Lock()
+
         const entity = new Entity()
         entity.position = position
         entity.type = type
+        entity.uid = await fetchMongoUid()
+
+        TurtleApp.Unlock()
 
         WorldSingleton.I.AddEntity(entity)
     }
