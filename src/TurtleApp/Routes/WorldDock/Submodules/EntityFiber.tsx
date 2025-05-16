@@ -1,6 +1,7 @@
 import React from "react"
 import Entity from "@Turtle/Data/Entity"
-import {Cylinder, Sphere} from "@react-three/drei"
+import {Cylinder, Plane, Sphere, useTexture} from "@react-three/drei"
+import WEFiberWrapper from "@TurtleApp/Fibers/WEFiberWrapper";
 
 
 interface EntityFiberProps {
@@ -10,19 +11,28 @@ interface EntityFiberProps {
 
 export default function EntityFiber({entity}: EntityFiberProps) {
 
+    const texture = useTexture("/iconsPng/flag_check.png")
 
     React.useEffect(() => {
 
     }, [entity])
 
     return (
-        <group position={entity.position as any}>
+        <WEFiberWrapper entity={entity}>
+
+            <Plane
+                position={[0, 0.27, 0]}
+                rotation={[-Math.PI / 2, 0, 0]}
+            >
+                <meshStandardMaterial map={texture}/>
+            </Plane>
             <Cylinder
-                scale={[1, 0.5, 1]}
-                position={[0, 0.25, 0]}
+                args={[1, 1, 1, 32]}
+                scale={[0.75, 0.25, 0.75]}
+                position={[0, 0.25 / 2, 0]}
             >
                 <meshStandardMaterial/>
             </Cylinder>
-        </group>
+        </WEFiberWrapper>
     )
 }

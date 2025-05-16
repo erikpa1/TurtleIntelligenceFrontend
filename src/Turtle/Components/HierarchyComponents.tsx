@@ -3,6 +3,28 @@ import {Button, Flex, Popconfirm} from "antd";
 import {DeleteRowOutlined, DeleteTwoTone, EyeOutlined, PlusOutlined} from "@ant-design/icons";
 
 
+interface HierarchFlexProps {
+    children: any
+    onClick?: (e) => void
+}
+
+export function HierarchFlex({
+                                 children,
+                                 onClick
+                             }) {
+
+    return (
+        <Flex
+            flex={1}
+            gap={5}
+            onClick={onClick}
+        >
+            {children}
+        </Flex>
+    )
+}
+
+
 export function HierarchyRightFlex({children}) {
 
     return (

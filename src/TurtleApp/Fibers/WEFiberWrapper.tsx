@@ -1,5 +1,11 @@
 import Entity from "../../Turtle/Data/Entity";
 import {useTransformControls} from "../../Turtle/Fibers/TransformControlsFiber";
+import React from "react";
+import * as THREE from "three";
+import AeeWrapper from "@Turtle/Data/AeeWrapper";
+import aee from "@Turtle/Data/Aee";
+import {Simulate} from "react-dom/test-utils";
+import click = Simulate.click;
 
 
 export interface EntityFiberProps {
@@ -17,18 +23,38 @@ export default function WEFiberWrapper({
                                        }: _WEFiberWrapperProps) {
 
 
+    const groupRef = React.useRef<THREE.Group>(null)
+
     function clicked() {
-        useTransformControls.getState().setObjectToSelect(entity.uid)
+        useTransformControls.getState().setObjectToSelect(groupRef.current)
+    }
+
+    function clickedFromWorld() {
+        clicked()
+        aee.emit("SelectEntityFromWorld", entity)
+    }
+
+    function someEntityClicked(externalEntity: Entity) {
+        if (externalEntity === entity) {
+            clicked()
+        }
     }
 
     return (
-        <group
-            name={entity.uid}
-            position={entity.position as any}
-            onClick={clicked}
+        <AeeWrapper
+            aee={aee}
+            SelectEntityInWorld={someEntityClicked}
         >
-            {children}
-        </group>
+            <group
+                ref={groupRef}
+                name={entity.uid}
+                position={entity.position as any}
+                onClick={clickedFromWorld}
+            >
+                {children}
+            </group>
+        </AeeWrapper>
+
 
     )
 

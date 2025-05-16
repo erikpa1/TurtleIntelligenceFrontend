@@ -10,17 +10,20 @@ export default class World {
     entities: Array<Entity> = []
     deletedEntities = new Set<string>()
 
+
     ToJsonModified(): any {
         return {
             uid: this.uid,
             modified: this.entities.filter((val) => {
+                const modified = val.modified
                 val.modified = false
-                return val.modified
-            }),
+                return modified
+            }).map((val) => (val.ToJson())),
             created: this.entities.filter((val) => {
+                const created = val.created
                 val.created = false
-                return val.created
-            }),
+                return created
+            }).map((val) => (val.ToJson())),
             deleted: Array.from(this.deletedEntities.values())
         }
     }
@@ -38,10 +41,16 @@ export default class World {
     }
 
     AddEntity(entity: Entity) {
-        entity.parentWorld = this.uid
+        entity.model = this.uid
         entity.created = true
+
+        //Appka nefunguje bez tohto logu
+        console.log("Adding to: ", this.uid)
+
         this.entities.push(entity)
         this.EmitEntitiesChanged()
+
+        console.log(this.entities)
     }
 
     DeleteEntity(entity: Entity) {

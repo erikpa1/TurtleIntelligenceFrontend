@@ -13,15 +13,19 @@ import {useTranslation} from "react-i18next";
 import aee from "@Turtle/Data/Aee";
 import WorldControllers from "@TurtleApp/Routes/WorldDock/WorldControllers";
 import WorldApi from "@TurtleApp/Api/WorldApi";
-import {WorldSingleton} from "@TurtleApp/Data/World";
+import World, {WorldSingleton} from "@TurtleApp/Data/World";
 import WorldTopBar from "@TurtleApp/Routes/WorldDock/WorldTopBar";
+import WorldRightBar from "@TurtleApp/Routes/WorldDock/WorldRightBar";
 
 
 export default function WorldDock({}) {
 
     const {modelUid} = useParams()
 
+    const [world, setWorld] = React.useState<World | null>(null)
+
     const [isLoading, setIsLoading] = React.useState(false)
+
 
     async function refresh() {
         setIsLoading(true)
@@ -29,8 +33,9 @@ export default function WorldDock({}) {
         WorldSingleton.I = world
 
         document.title = `Model - ${world.name}`
-
+        setWorld(world)
         setIsLoading(false)
+
     }
 
     React.useEffect(() => {
@@ -43,16 +48,24 @@ export default function WorldDock({}) {
             <Spin size="large"/>
         )
     } else {
-        return (
-            <_WorldDock/>
-        )
+        if (world) {
+            return (
+                <_WorldDock world={world}/>
+            )
+        } else {
+            return (<div/>)
+        }
+
     }
 
 
 }
 
-function _WorldDock({}) {
+interface _WorldDockProps {
+    world: World
+}
 
+function _WorldDock({world}: _WorldDockProps) {
 
 
     return (
@@ -73,7 +86,7 @@ function _WorldDock({}) {
                         paddingLeft: "15px",
                         paddingRight: "15px"
                     }}>
-                        <WorldHierarchy world={null}/>
+                        <WorldHierarchy world={world}/>
                     </div>
 
                 </Splitter.Panel>
@@ -90,7 +103,7 @@ function _WorldDock({}) {
                         <div style={{
                             height: "95vh",
                         }}>
-                            <WorldFiber/>
+                            <WorldFiber world={world}/>
                         </div>
                         <_Framing/>
                         <AddButton/>
@@ -104,7 +117,7 @@ function _WorldDock({}) {
 
                     }}
                 >
-
+                    <WorldRightBar/>
                 </Splitter.Panel>
 
             </Splitter>

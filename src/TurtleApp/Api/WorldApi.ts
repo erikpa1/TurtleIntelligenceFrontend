@@ -8,7 +8,11 @@ export default class WorldApi {
 
 
     static async Simulate(worldUid: string) {
-        await axios.post("/api/w/simulate")
+        await axios.post("/api/w/simulate", null, {
+            params: {
+                uid: worldUid
+            }
+        })
     }
 
     static async SaveWorld(world: World) {

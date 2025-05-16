@@ -3,33 +3,33 @@ import React from "react";
 import {TransformControls} from "@react-three/drei";
 import {useThree} from "@react-three/fiber"
 import {create} from "zustand";
+import * as THREE from "three"
 
 
 interface ActiveTransformControls {
-    objectToSelect: string
-    setObjectToSelect: (obj: string) => void
+    objectToSelect: THREE.Object3D | null
+    setObjectToSelect: (obj: THREE.Object3D | null) => void
 }
 
 
 export const useTransformControls = create<ActiveTransformControls>((set) => ({
-    objectToSelect: "",
-    setObjectToSelect: (newOne: string) => set((newState) => ({objectToSelect: newOne})),
+    objectToSelect: null,
+    setObjectToSelect: (obj: THREE.Object3D | null) => set((newState) => ({objectToSelect: obj})),
 }))
 
 
 export default function TransformControlsFiber({}) {
 
-    const trZus = useTransformControls()
+    const {objectToSelect} = useTransformControls()
 
-    const scene = useThree((state) => state.scene)
 
     return (
         <>
             {
-                trZus.objectToSelect !== "" && (
+                objectToSelect && (
                     <TransformControls
                         mode="translate"
-                        object={scene.getObjectByName(trZus.objectToSelect)}
+                        object={objectToSelect}
                     />
                 )
             }

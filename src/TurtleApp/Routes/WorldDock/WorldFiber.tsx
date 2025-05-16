@@ -20,20 +20,8 @@ import EntitiesFiber from "@TurtleApp/Routes/WorldDock/EntitiesFiber";
 import {WorldSingleton} from "@TurtleApp/Data/World";
 
 
-export default function WorldFiber({}) {
+export default function WorldFiber({world}) {
 
-    const {worldUid} = useParams()
-
-    const [world, setWorld] = React.useState(WorldSingleton.I)
-
-    return (
-        <_WorldDock world={world}/>
-    )
-
-
-}
-
-function _WorldDock({world}) {
 
     React.useEffect(() => {
         //pass

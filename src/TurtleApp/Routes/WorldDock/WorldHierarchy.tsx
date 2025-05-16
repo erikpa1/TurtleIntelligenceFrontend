@@ -1,12 +1,9 @@
 import React from "react"
-import {useTranslation} from "react-i18next";
-import {Flex, Segmented, Tabs, Tree, TreeDataNode} from "antd";
-import aee from "@Turtle/Data/Aee";
-import {HierarchyCustomIcon} from "@Turtle/Components/HierarchyComponents";
-import Entity from "@Turtle/Data/Entity";
-import {WorldSingleton} from "@TurtleApp/Data/World";
-import IconSimulation from "@Turtle/Icons/IconSimulation";
-import WorldLibrary from "@TurtleApp/Routes/WorldDock/WorldLibrary";
+import {useTranslation} from "react-i18next"
+import {Flex, Tabs} from "antd"
+
+import WorldLibrary from "@TurtleApp/Routes/WorldDock/WorldLibrary"
+import WorldEntitiesHierarchy from "@TurtleApp/Routes/WorldDock/WorldEntitiesHierarchy"
 
 
 export default function WorldHierarchy({world}) {
@@ -49,7 +46,7 @@ export default function WorldHierarchy({world}) {
 
             {
                 segment === "hierarchy" && (
-                    <div>Here</div>
+                    <WorldEntitiesHierarchy world={world}/>
                 )
             }
 

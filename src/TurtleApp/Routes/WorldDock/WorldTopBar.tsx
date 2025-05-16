@@ -45,7 +45,7 @@ export default function WorldTopBar({}) {
                 </Button>
 
                 <RightSubmitButton
-                    onClick={simulatePressed()}
+                    onClick={simulatePressed}
                 />
             </Flex>
 

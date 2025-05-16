@@ -28,7 +28,12 @@ export default function WorldLibrary() {
 
         TurtleApp.Unlock()
 
+
         WorldSingleton.I.AddEntity(entity)
+
+        console.log("-----x----")
+        console.log(entity)
+        console.log(WorldSingleton.I.entities)
     }
 
     function elementSelected(element: string) {
