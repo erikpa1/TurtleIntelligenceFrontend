@@ -25,5 +25,7 @@
     "connect": "Connect",
     "simulate": "Simulate",
     "nn": "Neural networks",
-    "nn.models": "Neural network models"
+    "nn.models": "Neural network models",
+    "buffer": "Buffer",
+    "simulation": "Simulation"
 }

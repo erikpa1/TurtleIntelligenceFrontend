@@ -3,6 +3,7 @@ import aee from "@Turtle/Data/Aee";
 import Entity from "@Turtle/Data/Entity";
 import React from "react";
 import {Empty} from "antd";
+import BufferEntitiyProperties from "@TurtleApp/Routes/WorldDock/EntitiesProps/BufferEntitiyProperties";
 
 
 export default function WorldRightBar() {
@@ -33,7 +34,15 @@ interface _EntityEditPropsProps {
 function _EntityEditProps({entity}: _EntityEditPropsProps) {
     return (
         <div>
+
+
             {entity.uid}
+            {
+                entity.type == "buffer" && (
+                    <BufferEntitiyProperties/>
+                )
+            }
+
         </div>
     )
 }

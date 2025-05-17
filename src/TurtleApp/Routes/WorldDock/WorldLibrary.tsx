@@ -66,6 +66,7 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
             {title: t("sink"), key: "sink", icon: "/icons/flag_check.svg"},
             {title: t("process"), key: "process", icon: "/icons/flag_check.svg"},
             {title: t("delay"), key: "delay", icon: "/icons/flag_check.svg"},
+            {title: t("buffer"), key: "buffer", icon: "/icons/flag_check.svg"},
             {title: t("queue"), key: "queue", icon: "/icons/flag_check.svg"},
             {title: t("merge"), key: "merge", icon: "/icons/flag_check.svg"},
             {title: t("split"), key: "split", icon: "/icons/flag_check.svg"},

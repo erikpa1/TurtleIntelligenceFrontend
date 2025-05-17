@@ -1,7 +1,7 @@
 import React from "react"
 
 import {Button, Divider, Flex, Spin, Splitter} from "antd";
-import TopBarControlView from "../../Ui/TopBarControlView";
+
 import WorldFiber from "./WorldFiber";
 import {AddButton} from "../../../main/AddButton";
 import {MainScreenTopBar} from "../../../main/MainScreenTopBar";
@@ -145,15 +145,6 @@ function _Framing({}) {
 
                         }}
                     />
-                    <div style={{
-                        position: "absolute",
-                        left: "55px",
-                        top: "2.5px",
-                        zIndex: 4,
-                    }}>
-                        <TopBarControlView/>
-
-                    </div>
 
                 </div>
                 <div style={{
