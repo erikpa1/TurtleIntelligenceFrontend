@@ -1,6 +1,6 @@
-import Icon from "antd/es/icon";
-import ColorConstants from "@Turtle/Constants/ColorConstants";
 
+import ColorConstants from "@Turtle/Constants/ColorConstants";
+import Icon from "@ant-design/icons"
 
 export default function IconFlagCheck({
                                           color = "#666666",

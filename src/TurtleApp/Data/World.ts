@@ -54,6 +54,9 @@ export default class World {
     }
 
     DeleteEntity(entity: Entity) {
+
+        this.deletedEntities.add(entity.uid)
+
         this.entities = this.entities.filter((val) => {
             return val !== entity
         })

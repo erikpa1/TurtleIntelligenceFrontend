@@ -1,6 +1,6 @@
 import React from 'react'
 
-import World from "@TurtleApp/Data/World"
+import World, {WorldSingleton} from "@TurtleApp/Data/World"
 import {Flex, Tree, TreeDataNode} from "antd";
 import Aee from "@Turtle/Data/Aee";
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
@@ -8,6 +8,7 @@ import aee from "@Turtle/Data/Aee";
 import {useTranslation} from "react-i18next";
 import {HierarchFlex, HierarchyDeleteButton, HierarchyRightFlex} from "@Turtle/Components/HierarchyComponents";
 import Entity from "@Turtle/Data/Entity";
+import TurtleApp from "@TurtleApp/TurtleApp";
 
 
 interface WorldEntitiesHierarchyProps {
@@ -20,7 +21,9 @@ export default function WorldEntitiesHierarchy({world}: WorldEntitiesHierarchyPr
 
 
     function entityDelete(entity: Entity) {
-        console.log("Deleting: ", entity)
+        TurtleApp.Lock()
+        WorldSingleton.I.DeleteEntity(entity)
+        TurtleApp.Unlock()
     }
 
     function entitySelected(entity: Entity) {

@@ -1,6 +1,13 @@
 import React from "react"
 import {Button, Flex, Popconfirm} from "antd";
-import {DeleteRowOutlined, DeleteTwoTone, EyeOutlined, PlusOutlined} from "@ant-design/icons";
+import {
+    DeleteRowOutlined,
+    DeleteTwoTone,
+    EyeOutlined,
+    PauseOutlined,
+    PlusOutlined,
+    StopOutlined
+} from "@ant-design/icons";
 
 
 interface HierarchFlexProps {
@@ -54,6 +61,26 @@ export function HierarchyViewButton({onClick}) {
     return (
         <HierarchyCustomIcon
             icon={<EyeOutlined/>}
+            onClick={onClick}
+        />
+    )
+}
+
+export function HierarchyStopButton({onClick}) {
+
+    return (
+        <HierarchyCustomIcon
+            icon={<StopOutlined/>}
+            onClick={onClick}
+        />
+    )
+}
+
+export function HierarchyPauseButton({onClick}) {
+
+    return (
+        <HierarchyCustomIcon
+            icon={<PauseOutlined/>}
             onClick={onClick}
         />
     )

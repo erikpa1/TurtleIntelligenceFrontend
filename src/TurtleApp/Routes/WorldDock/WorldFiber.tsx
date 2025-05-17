@@ -18,6 +18,7 @@ import {useParams} from "react-router-dom";
 import PickEntityFiber from "@TurtleApp/Routes/WorldDock/Submodules/PickEntityFiber";
 import EntitiesFiber from "@TurtleApp/Routes/WorldDock/EntitiesFiber";
 import {WorldSingleton} from "@TurtleApp/Data/World";
+import {WorldRuntimeEntitiesFiber} from "@TurtleApp/Routes/WorldDock/WorldRuntimeEntitiesFiber";
 
 
 export default function WorldFiber({world}) {
@@ -40,10 +41,8 @@ export default function WorldFiber({world}) {
             }}
             // raycaster={{params: {Line: {threshold: 0.15}}}}
             onDoubleClick={() => {
-                useTransformControls.getState().setObjectToSelect("")
+                useTransformControls.getState().setObjectToSelect(null)
             }}
-
-
         >
 
             <_Grid/>
@@ -72,7 +71,7 @@ function _SubModules({world}) {
         <>
             <EntitiesFiber world={world}/>
             <PickEntityFiber/>
-
+            <WorldRuntimeEntitiesFiber world={world}/>
         </>
     )
 }
