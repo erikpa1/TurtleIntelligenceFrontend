@@ -71,7 +71,7 @@ export default function AppNavBar() {
                                 }
                             },
                             {
-                                key: "containers",
+                                key: "documentation",
                                 icon: <UnorderedListOutlined/>,
                                 label: t("documentation"),
                                 onClick: () => {

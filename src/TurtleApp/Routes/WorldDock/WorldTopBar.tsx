@@ -8,6 +8,7 @@ import WorldApi from "@TurtleApp/Api/WorldApi";
 import {WorldSingleton} from "@TurtleApp/Data/World";
 import {HierarchyDeleteButton, HierarchyPauseButton, HierarchyStopButton} from "@Turtle/Components/HierarchyComponents";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
+import Myio from "@Turtle/Data/myio";
 
 
 export default function WorldTopBar({}) {
@@ -82,9 +83,18 @@ function _SimulationSection({}) {
 
     const [t] = useTranslation()
 
+    const myIO = React.useMemo(() => {
+        return new Myio()
+    }, [])
 
+
+    const [simSecond, setSimSecond] = React.useState(0)
     const [isSimulating, setIsSimulating] = React.useState(false)
 
+
+    function simStepReceived(stepData: any) {
+        setSimSecond(stepData.second)
+    }
 
     async function simulatePressed() {
         setIsSimulating(true)
@@ -100,13 +110,26 @@ function _SimulationSection({}) {
         setIsSimulating(false)
     }
 
+    React.useEffect(() => {
+        myIO.connect()
+        myIO.on("simstep", simStepReceived)
+
+        setTimeout(() => {
+            myIO.emit("simstart", "Some data")
+        }, 1000)
+
+        return () => {
+            myIO.disconnect()
+            myIO.off("simstep", simStepReceived)
+        }
+    }, [])
 
     if (isSimulating) {
         return (
             <Flex gap={5}>
-                <div>1 (s)</div>
+                <div>{simSecond} (s)</div>
                 <div>/</div>
-                <div>10000 (s)</div>
+                <div>100 (s)</div>
 
                 <HierarchyPauseButton onClick={pausePressed}/>
 

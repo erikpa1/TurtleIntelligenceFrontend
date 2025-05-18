@@ -22,18 +22,14 @@ export default function WorldLibrary() {
         TurtleApp.Lock()
 
         const entity = new Entity()
+        entity.name = type
         entity.position = position
         entity.type = type
         entity.uid = await fetchMongoUid()
 
         TurtleApp.Unlock()
 
-
         WorldSingleton.I.AddEntity(entity)
-
-        console.log("-----x----")
-        console.log(entity)
-        console.log(WorldSingleton.I.entities)
     }
 
     function elementSelected(element: string) {
@@ -62,15 +58,15 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
 
     const basicEntities = React.useMemo(() => {
         return [
-            {title: t("spawn"), key: "spawn", icon: "/icons/flag_check.svg"},
-            {title: t("sink"), key: "sink", icon: "/icons/flag_check.svg"},
-            {title: t("process"), key: "process", icon: "/icons/flag_check.svg"},
+            {title: t("spawn"), key: "spawn", icon: <IconFlagCheck/>},
+            {title: t("process"), key: "process", icon: "/icons/manufacturing.svg"},
             {title: t("delay"), key: "delay", icon: "/icons/flag_check.svg"},
-            {title: t("buffer"), key: "buffer", icon: "/icons/flag_check.svg"},
+            {title: t("buffer"), key: "buffer", icon: "/icons/shelves.svg"},
             {title: t("queue"), key: "queue", icon: "/icons/flag_check.svg"},
             {title: t("merge"), key: "merge", icon: "/icons/flag_check.svg"},
             {title: t("split"), key: "split", icon: "/icons/flag_check.svg"},
             {title: t("switch"), key: "switch", icon: "/icons/flag_check.svg"},
+            {title: t("sink"), key: "sink", icon: "/icons/flag_check.svg"},
         ]
     }, [])
 
@@ -98,7 +94,7 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
                                 elementClicked(val.key)
                             }}
                         >
-                            <HierarchyCustomIcon icon={<IconFlagCheck/>}/>
+                            <HierarchyCustomIcon icon={val.icon}/>
                             {val.title}
                         </Flex>
                     ),

@@ -26,6 +26,10 @@ export default defineConfig({
         host: "0.0.0.0",
         proxy: {
             "/api": "http://127.0.0.1:8080",
+            "/my.io": {
+                target: `ws://localhost:8080`,
+                ws: true,
+            },
         },
     },
 });

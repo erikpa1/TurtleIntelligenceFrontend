@@ -1,11 +1,23 @@
 import React from "react"
+import StringItem from "@Turtle/ReflectiveUI/StringItem";
+import {EntityNameProperty, EntityTypeProperty} from "@TurtleApp/Routes/WorldDock/EntitiesProps/Common";
 
 
-export default function BufferEntitiyProperties({}) {
+interface BufferEntityPropertiesProps {
+    entity: any
+}
 
+export default function BufferEntitiyProperties({
+                                                    entity,
+
+                                                }: BufferEntityPropertiesProps) {
     return (
         <div>
-            Buffer
+
+            <StringItem
+                attribute={"capacity"}
+                entity={entity}
+            />
         </div>
     )
 }

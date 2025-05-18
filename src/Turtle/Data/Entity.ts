@@ -18,8 +18,9 @@ export default class Entity {
 
     ToJson(): any {
         return {
-            _id: this.uid,
+            uid: this.uid,
             name: this.name,
+            type: this.type,
             position: this.position,
             model: this.model,
             dependencies: this.dependencies,
@@ -29,6 +30,7 @@ export default class Entity {
 
     FromJson(jObj: any): any {
         this.uid = jObj.uid ?? ""
+        this.type = jObj.type ?? this.type
         this.name = jObj.name ?? this.name
         this.position = jObj.position ?? this.position
         this.model = jObj.model ?? ""

@@ -15,11 +15,8 @@ export default function EntitiesFiber({world}: EntitiesFiberProps) {
     const [entities, setEntities] = React.useState<Array<Entity>>(world.entities)
 
     function refresh() {
-        console.log(world.entities)
         setEntities([...world.entities])
     }
-
-    console.log(entities)
 
     return (
         <AeeWrapper
@@ -29,9 +26,6 @@ export default function EntitiesFiber({world}: EntitiesFiberProps) {
             <group>
                 {
                     entities.map((val) => {
-
-                        console.log(val.uid)
-
                         return (
                             <EntityFiber
                                 key={val.uid}

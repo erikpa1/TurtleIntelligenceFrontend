@@ -26,6 +26,7 @@ export default function WEFiberWrapper({
     const groupRef = React.useRef<THREE.Group>(null)
 
     function clicked() {
+        entity.modified = true
         useTransformControls.getState().setObjectToSelect(groupRef.current)
     }
 
