@@ -9,8 +9,6 @@ import {
 } from "@react-three/drei"
 
 
-import WorldEntitiesFiber from "./WorldEntitiesFiber"
-
 import TransformControlsFiber, {useTransformControls} from "@Turtle/Fibers/TransformControlsFiber"
 import Gizmo3DFlag from "../../Fibers/Gizmo3D";
 
@@ -19,6 +17,7 @@ import PickEntityFiber from "@TurtleApp/Routes/WorldDock/Submodules/PickEntityFi
 import EntitiesFiber from "@TurtleApp/Routes/WorldDock/EntitiesFiber";
 import {WorldSingleton} from "@TurtleApp/Data/World";
 import {WorldRuntimeEntitiesFiber} from "@TurtleApp/Routes/WorldDock/WorldRuntimeEntitiesFiber";
+import ConnectionsFiber from "@TurtleApp/Routes/WorldDock/Submodules/ConnectionsFiber";
 
 
 export default function WorldFiber({world}) {
@@ -58,7 +57,6 @@ export default function WorldFiber({world}) {
             {/*<_TmpTiles/>*/}
 
             <Gizmo3DFlag/>
-            <WorldEntitiesFiber/>
 
             <_SubModules world={world}/>
 
@@ -70,6 +68,7 @@ function _SubModules({world}) {
     return (
         <>
             <EntitiesFiber world={world}/>
+            <ConnectionsFiber world={world}/>
             <PickEntityFiber/>
             <WorldRuntimeEntitiesFiber world={world}/>
         </>

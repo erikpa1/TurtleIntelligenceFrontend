@@ -4,6 +4,7 @@ import PrimitiveMesh from "@Turtle/Fibers/PrimitiveMesh"
 import ModelsGallery from "@TurtleApp/Data/ModelsGallery"
 import {create} from "zustand";
 import {Plane} from "@react-three/drei";
+import {AnyEventEmmiter} from "@Turtle/Data/Aee";
 
 
 interface IGizmoFlag {
@@ -28,9 +29,11 @@ export default function Gizmo3DFlag({}) {
                 <PrimitiveMesh path={ModelsGallery.FLAG}/>
             </group>
             <Plane
-                onContextMenu={(e) => {
-                    e.stopPropagation()
-                    useGizmo3D.getState().setPosition([e.point.x, 0, e.point.z])
+                onClick={(e) => {
+                    if (AnyEventEmmiter.isCtrlPressed) {
+                        e.stopPropagation()
+                        useGizmo3D.getState().setPosition([e.point.x, 0, e.point.z])
+                    }
                 }}
                 scale={[10000, 10000, 1]}
                 rotation={[-Math.PI / 2, 0, 0]}

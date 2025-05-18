@@ -47,13 +47,8 @@ export default function WorldTopBar({}) {
                     {t("save")}
                 </Button>
 
-                <Button
-                    onClick={savePressed}
-                    type={"text"}
-                >
-                    <MergeOutlined/>
-                    {t("connect")}
-                </Button>
+                <_ConnectButton/>
+
 
                 <Flex
                     justify={"end"}
@@ -78,6 +73,47 @@ export default function WorldTopBar({}) {
         </div>
     )
 }
+
+function _ConnectButton() {
+
+    const [t] = useTranslation()
+
+    const [isConnecting, setIsConnecting] = React.useState(false)
+
+    function startConnecting() {
+        setIsConnecting(true)
+        aee.emit("ConnectFirstOne", null)
+    }
+
+    function stopConnecting() {
+        setIsConnecting(false)
+        aee.emit("ConnectStop", null)
+    }
+
+    if (isConnecting) {
+        return (
+            <Button
+                onClick={stopConnecting}
+                type={"dashed"}
+            >
+                <MergeOutlined/>
+                {t("stop.connecing")}
+            </Button>
+        )
+    } else {
+        return (
+            <Button
+                onClick={startConnecting}
+                type={"text"}
+            >
+                <MergeOutlined/>
+                {t("connect")}
+            </Button>
+        )
+    }
+
+}
+
 
 function _SimulationSection({}) {
 
@@ -114,9 +150,6 @@ function _SimulationSection({}) {
         myIO.connect()
         myIO.on("simstep", simStepReceived)
 
-        setTimeout(() => {
-            myIO.emit("simstart", "Some data")
-        }, 1000)
 
         return () => {
             myIO.disconnect()

@@ -6,15 +6,20 @@ import {create} from "zustand";
 import * as THREE from "three"
 
 
+interface SelectableObject {
+    obj: THREE.Object3D
+    modifyFunction: () => void
+}
+
 interface ActiveTransformControls {
-    objectToSelect: THREE.Object3D | null
-    setObjectToSelect: (obj: THREE.Object3D | null) => void
+    objectToSelect: SelectableObject | null
+    setObjectToSelect: (obj: SelectableObject | null) => void
 }
 
 
 export const useTransformControls = create<ActiveTransformControls>((set) => ({
     objectToSelect: null,
-    setObjectToSelect: (obj: THREE.Object3D | null) => set((newState) => ({objectToSelect: obj})),
+    setObjectToSelect: (obj: SelectableObject | null) => set((newState) => ({objectToSelect: obj})),
 }))
 
 
@@ -28,8 +33,17 @@ export default function TransformControlsFiber({}) {
             {
                 objectToSelect && (
                     <TransformControls
+                        showY={false}
+                        rotationSnap={0.1}
+                        size={0.5}
+                        scale={[0.5, 0.5, 0.5]}
+
                         mode="translate"
-                        object={objectToSelect}
+                        object={objectToSelect.obj}
+                        onObjectChange={() => {
+                            objectToSelect?.modifyFunction()
+                        }}
+
                     />
                 )
             }

@@ -7,19 +7,22 @@ export default class World {
 
     name = ""
     uid = ""
-    entities: Array<Entity> = []
+    entities: Map<string, Entity> = new Map<string, Entity>()
     deletedEntities = new Set<string>()
 
+    connections = new Map<string, Set<string>>()
+
+    deletedConnections = new Map<string, Set<string>>()
 
     ToJsonModified(): any {
         return {
             uid: this.uid,
-            modified: this.entities.filter((val) => {
+            modified: Array.from(this.entities.values()).filter((val) => {
                 const modified = val.modified
                 val.modified = false
                 return modified
             }).map((val) => (val.ToJson())),
-            created: this.entities.filter((val) => {
+            created: Array.from(this.entities.values()).filter((val) => {
                 const created = val.created
                 val.created = false
                 return created
@@ -47,24 +50,46 @@ export default class World {
         //Appka nefunguje bez tohto logu
         console.log("Adding to: ", this.uid)
 
-        this.entities.push(entity)
+        this.entities.set(entity.uid, entity)
         this.EmitEntitiesChanged()
 
-        console.log(this.entities)
+    }
+
+    AddConnection(a: Entity, b: Entity) {
+
+        const existingConn = this.connections.get(a.uid)
+
+        if (existingConn) {
+            existingConn.add(b.uid)
+        } else {
+            this.connections.set(a.uid, new Set[b.uid])
+        }
+
+        aee.emit("WorldConnectionsChanged", null)
+    }
+
+    DeleteConnection(a: Entity, b: Entity) {
+        const existingConn = this.connections.get(a.uid)
+
+        if (existingConn) {
+            existingConn.delete(b.uid)
+        }
     }
 
     DeleteEntity(entity: Entity) {
 
         this.deletedEntities.add(entity.uid)
 
-        this.entities = this.entities.filter((val) => {
-            return val !== entity
-        })
+        this.entities.delete(entity.uid)
         this.EmitEntitiesChanged()
     }
 
     EmitEntitiesChanged() {
         aee.emit("WorldEntitiesChanged", null)
+    }
+
+    EmitConnectionsChanged() {
+        aee.emit("WorldConnectionsChanged", null)
     }
 
 

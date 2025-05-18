@@ -34,9 +34,12 @@ interface _EntityEditPropsProps {
 
 function _EntityEditProps({entity}: _EntityEditPropsProps) {
     return (
-        <Form layout={'horizontal'}>
-
+        <Form
+            layout={'horizontal'}
+            key={entity.uid}
+        >
             <EntityNameProperty entity={entity}/>
+
             <EntityTypeProperty entity={entity}/>
 
             {

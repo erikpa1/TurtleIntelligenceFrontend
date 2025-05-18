@@ -1,4 +1,4 @@
-import {CreateUid} from "../Utils/Uid";
+import {CreateUid, fetchMongoUid} from "../Utils/Uid";
 
 export default class Entity {
 
@@ -36,7 +36,14 @@ export default class Entity {
         this.model = jObj.model ?? ""
         this.dependencies = jObj.dependencies ?? {}
         this.typeData = jObj.typeData ?? {}
+    }
 
+    async Duplicate() {
+        const tmp = JSON.stringify(this.ToJson())
+        const newOne = new Entity()
+        newOne.FromJson(JSON.parse(tmp))
+        newOne.uid = await fetchMongoUid()
+        return newOne
     }
 
 }

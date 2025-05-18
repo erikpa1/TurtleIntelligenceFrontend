@@ -12,10 +12,10 @@ interface EntitiesFiberProps {
 
 export default function EntitiesFiber({world}: EntitiesFiberProps) {
 
-    const [entities, setEntities] = React.useState<Array<Entity>>(world.entities)
+    const [entities, setEntities] = React.useState<Array<Entity>>(Array.from(world.entities.values()))
 
     function refresh() {
-        setEntities([...world.entities])
+        setEntities(Array.from(world.entities.values()))
     }
 
     return (

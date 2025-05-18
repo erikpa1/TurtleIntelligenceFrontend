@@ -6,9 +6,15 @@ import Aee from "@Turtle/Data/Aee";
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
 import {useTranslation} from "react-i18next";
-import {HierarchFlex, HierarchyDeleteButton, HierarchyRightFlex} from "@Turtle/Components/HierarchyComponents";
+import {
+    HierarchFlex,
+    HierarchyCustomIcon,
+    HierarchyDeleteButton,
+    HierarchyRightFlex
+} from "@Turtle/Components/HierarchyComponents";
 import Entity from "@Turtle/Data/Entity";
 import TurtleApp from "@TurtleApp/TurtleApp";
+import EntitiesFactory from "@TurtleApp/Data/EntitiesFactory";
 
 
 interface WorldEntitiesHierarchyProps {
@@ -31,11 +37,16 @@ export default function WorldEntitiesHierarchy({world}: WorldEntitiesHierarchyPr
     }
 
     function createEntitiesTree(): Array<TreeDataNode> {
+
+
         return [
             {
                 title: t("entities"),
                 key: "entities",
-                children: world.entities.map((val) => {
+                children: Array.from(world.entities.values()).map((val) => {
+
+                    console.log(EntitiesFactory.GetIcon(val.type))
+
                     return {
                         key: val.uid,
                         title: (
@@ -44,7 +55,11 @@ export default function WorldEntitiesHierarchy({world}: WorldEntitiesHierarchyPr
                                     entitySelected(val)
                                 }}
                             >
-                                {val.uid}
+                                <HierarchyCustomIcon
+                                    icon={EntitiesFactory.GetIcon(val.type)}
+                                />
+
+                                {val.name}
 
                                 <HierarchyRightFlex>
                                     <HierarchyDeleteButton onClick={() => {
