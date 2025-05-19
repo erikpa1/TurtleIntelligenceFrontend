@@ -3,6 +3,8 @@ import TurtleApp from "@TurtleApp/TurtleApp";
 import {WorldSingleton} from "@TurtleApp/Data/World";
 import aee, {AnyEventEmmiter} from "@Turtle/Data/Aee";
 import WorldApi from "@TurtleApp/Api/WorldApi";
+import Entity from "@Turtle/Data/Entity";
+import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
 
 export default function WorldControllers({}) {
 
@@ -15,21 +17,48 @@ export default function WorldControllers({}) {
     )
 }
 
+interface ConnMemoGuard {
+    a: null | Entity
+    b: null | Entity
+}
+
 function connectionController() {
 
 
+    const {setPhase} = useWorldConnection()
+
+    const guard: ConnMemoGuard = React.useMemo(() => {
+        return {
+            a: null,
+            b: null
+        }
+    }, [])
+
+
     async function firstOneSelected(entity: any) {
-        aee.emit("ConnectSecondOne", null)
+        guard.a = entity
+
+        setPhase(2)
+
     }
 
     async function secondOneSelected(entity: any) {
-        console.log(entity)
+        guard.b = entity
 
-        if (AnyEventEmmiter.isCtrlPressed) {
-            aee.emit("ConnectSecondOne", null)
-        } else {
-            aee.emit("ConnectStop", null)
+        if (guard.a && guard.b) {
+            WorldSingleton.I.AddConnection(guard.a, guard.b)
+
+            if (AnyEventEmmiter.isCtrlPressed) {
+                guard.a = entity
+                setPhase(2)
+            } else {
+                guard.a = null
+                guard.b = null
+                setPhase(0)
+            }
         }
+
+
     }
 
     React.useEffect(() => {

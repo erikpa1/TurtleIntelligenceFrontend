@@ -12,9 +12,34 @@ export default class World {
 
     connections = new Map<string, Set<string>>()
 
+    createdConnections = new Map<string, Set<string>>()
     deletedConnections = new Map<string, Set<string>>()
 
     ToJsonModified(): any {
+
+
+        const createConnections = new Array<[string, string]>()
+
+
+        this.createdConnections.forEach((val, key) => {
+            val.forEach((val2) => {
+                createConnections.push([key, val2])
+            })
+        })
+
+
+        const deletedConnections = new Array<[string, string]>()
+
+        this.createdConnections.forEach((val, key) => {
+            val.forEach((val2) => {
+                createConnections.push([key, val2])
+            })
+        })
+
+
+        this.createdConnections.clear()
+        this.deletedConnections.clear()
+
         return {
             uid: this.uid,
             modified: Array.from(this.entities.values()).filter((val) => {
@@ -27,7 +52,10 @@ export default class World {
                 val.created = false
                 return created
             }).map((val) => (val.ToJson())),
-            deleted: Array.from(this.deletedEntities.values())
+            deleted: Array.from(this.deletedEntities.values()),
+            createdConnections: createConnections,
+            deletedConnections: deletedConnections
+
         }
     }
 
@@ -35,11 +63,32 @@ export default class World {
         this.uid = jObj.uid ?? ""
         this.name = jObj.name ?? ""
 
-        this.entities = (jObj.entities ?? []).map((val) => {
+        this.entities = new Map((jObj.entities ?? []).map((val) => {
             const tmp = new Entity()
             tmp.FromJson(val)
-            return tmp
+            return [tmp.uid, tmp]
+        }))
+
+        jObj.connections.forEach((val) => {
+            const a = this.entities.get(val.a)
+            const b = this.entities.get(val.b)
+
+            if (a && b) {
+
+                const existingConn = this.connections.get(a.uid)
+
+                if (existingConn) {
+                    existingConn.add(b.uid)
+                } else {
+                    this.connections.set(a.uid, new Set([b.uid]))
+                }
+
+            } else {
+                console.log("Missing entity: ", val.a, val.b)
+            }
+
         })
+
 
     }
 
@@ -62,7 +111,16 @@ export default class World {
         if (existingConn) {
             existingConn.add(b.uid)
         } else {
-            this.connections.set(a.uid, new Set[b.uid])
+            this.connections.set(a.uid, new Set([b.uid]))
+        }
+
+
+        const existsInCreated = this.createdConnections.get(a.uid)
+
+        if (existsInCreated) {
+            existsInCreated.add(b.uid)
+        } else {
+            this.createdConnections.set(a.uid, new Set([b.uid]))
         }
 
         aee.emit("WorldConnectionsChanged", null)
@@ -74,13 +132,27 @@ export default class World {
         if (existingConn) {
             existingConn.delete(b.uid)
         }
+
+        const createdConn = this.createdConnections.get(a.uid)
+
+        if (createdConn) {
+            createdConn.delete(b.uid)
+        }
     }
 
     DeleteEntity(entity: Entity) {
 
         this.deletedEntities.add(entity.uid)
-
         this.entities.delete(entity.uid)
+
+        this.connections.forEach((val, key) => {
+            if (val.has(entity.uid)) {
+                val.delete(entity.uid)
+            }
+        })
+
+        this.connections.delete(entity.uid)
+
         this.EmitEntitiesChanged()
     }
 

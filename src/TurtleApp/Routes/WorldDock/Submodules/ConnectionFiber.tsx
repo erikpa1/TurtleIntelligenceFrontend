@@ -20,20 +20,10 @@ export default function ConnectionFiber({
 
 
     return (
-        <>
-            <Sphere
-                position={a.position as any}
-            >
-                {lineMaterial}
-            </Sphere>
-
-            <CylinderBetweenPoints
-                material={lineMaterial}
-                start={a.position as any}
-                end={b.position as any}
-            >
-
-            </CylinderBetweenPoints>
-        </>
+        <CylinderBetweenPoints
+            material={lineMaterial}
+            start={a.position as any}
+            end={b.position as any}
+        />
     )
 }

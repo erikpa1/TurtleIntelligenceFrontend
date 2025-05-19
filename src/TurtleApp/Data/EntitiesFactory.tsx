@@ -21,11 +21,11 @@ export default class EntitiesFactory {
 
 
     static CAN_CON_OUTPUT = {
-        [EntitiesFactory.TYPE_SPAWN]: false
+        [EntitiesFactory.TYPE_SINK]: false
     }
 
     static CAN_CON_INPUT = {
-        [EntitiesFactory.TYPE_SINK]: true
+        [EntitiesFactory.TYPE_SPAWN]: true
     }
 
     static GetIcon(type: string): string {

@@ -11,19 +11,15 @@ interface ConnectionsFiberProps {
 
 export default function ConnectionsFiber({world}: ConnectionsFiberProps) {
 
-
     const [connections, setConnections] = React.useState<Array<[Entity, Entity]>>([])
 
     function refresh() {
 
         const pairs = new Array<[Entity, Entity]>()
 
-        console.log(world.connections)
-
         world.connections.entries().forEach(([aPoint, bPoints],) => {
 
             //TODO zmazat nevalidne connection ked sa stanu
-
             const a = world.entities.get(aPoint)
 
             if (a) {
@@ -38,7 +34,6 @@ export default function ConnectionsFiber({world}: ConnectionsFiberProps) {
         })
 
         setConnections(pairs)
-
     }
 
     React.useEffect(() => {

@@ -8,6 +8,7 @@ import {Simulate} from "react-dom/test-utils";
 import click = Simulate.click;
 import {Box3D} from "@Turtle/Fibers/Drawing";
 import EntitiesFactory from "@TurtleApp/Data/EntitiesFactory";
+import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
 
 
 export interface EntityFiberProps {
@@ -27,8 +28,7 @@ export default function WEFiberWrapper({
 
     const groupRef = React.useRef<THREE.Group>(null)
 
-    const [connectionState, setConnectionState] = React.useState(0)
-
+    const {phase} = useWorldConnection()
 
     function posScaleRotChanged() {
 
@@ -50,8 +50,11 @@ export default function WEFiberWrapper({
     }
 
     function clickedFromWorld() {
-        clicked()
-        aee.emit("SelectEntityFromWorld", entity)
+
+        if (phase === 0) {
+            clicked()
+            aee.emit("SelectEntityFromWorld", entity)
+        }
     }
 
     function someEntityClicked(externalEntity: Entity) {
@@ -60,27 +63,11 @@ export default function WEFiberWrapper({
         }
     }
 
-    function connectFirstOne() {
-        setConnectionState(1)
-    }
-
-    function connectSecondOne() {
-        setConnectionState(2)
-
-    }
-
-    function stopConnection() {
-        setConnectionState(0)
-
-    }
 
     return (
         <AeeWrapper
             aee={aee}
             SelectEntityInWorld={someEntityClicked}
-            ConnectFirstOne={connectFirstOne}
-            ConnectSecondOne={connectSecondOne}
-            ConnectStop={stopConnection}
         >
             <group
                 ref={groupRef}
@@ -91,7 +78,7 @@ export default function WEFiberWrapper({
                 {children}
 
                 {
-                    (connectionState === 1 && EntitiesFactory.CanConnectOutput(entity.type)) && (
+                    (phase === 1 && EntitiesFactory.CanConnectOutput(entity.type)) && (
                         <Box3D
                             color={"lightgreen"}
                             onClick={() => {
@@ -102,7 +89,7 @@ export default function WEFiberWrapper({
                 }
 
                 {
-                    (connectionState === 2 && EntitiesFactory.CanConnectInput(entity.type)) && (
+                    (phase === 2 && EntitiesFactory.CanConnectInput(entity.type)) && (
                         <Box3D
                             color={"green"}
                             onClick={() => {

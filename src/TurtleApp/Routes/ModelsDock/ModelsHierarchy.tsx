@@ -113,6 +113,9 @@ export default function ModelsHierarchy({}) {
 
     return (
         <Tree
+            blockNode
+            virtual
+            showLine
             treeData={data}
             defaultExpandAll={true}
         />

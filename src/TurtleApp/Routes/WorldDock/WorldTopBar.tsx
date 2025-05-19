@@ -9,20 +9,11 @@ import {WorldSingleton} from "@TurtleApp/Data/World";
 import {HierarchyDeleteButton, HierarchyPauseButton, HierarchyStopButton} from "@Turtle/Components/HierarchyComponents";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import Myio from "@Turtle/Data/myio";
+import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
 
 
 export default function WorldTopBar({}) {
 
-
-    const [t] = useTranslation()
-
-    function savePressed() {
-        aee.emit("SaveWorld", null)
-    }
-
-    async function simulatePressed() {
-        await WorldApi.Simulate(WorldSingleton.I.uid)
-    }
 
     return (
         <div style={{
@@ -38,15 +29,8 @@ export default function WorldTopBar({}) {
                     paddingTop: "5px"
                 }}
             >
-                <Button
-                    onClick={savePressed}
-                    type={"text"}
 
-                >
-                    <SaveOutlined/>
-                    {t("save")}
-                </Button>
-
+                <_SaveButton/>
                 <_ConnectButton/>
 
 
@@ -74,30 +58,55 @@ export default function WorldTopBar({}) {
     )
 }
 
+function _SaveButton() {
+
+
+    const [t] = useTranslation()
+
+
+    function savePressed() {
+        aee.emit("SaveWorld", null)
+    }
+
+
+    return (
+        <Button
+            onClick={savePressed}
+            type={"text"}
+
+        >
+            <SaveOutlined/>
+            {t("save")}
+        </Button>
+    )
+}
+
+
 function _ConnectButton() {
 
     const [t] = useTranslation()
 
-    const [isConnecting, setIsConnecting] = React.useState(false)
+
+    const {phase, setPhase} = useWorldConnection()
 
     function startConnecting() {
-        setIsConnecting(true)
+        setPhase(1)
         aee.emit("ConnectFirstOne", null)
     }
 
     function stopConnecting() {
-        setIsConnecting(false)
+        setPhase(0)
         aee.emit("ConnectStop", null)
     }
 
-    if (isConnecting) {
+    if (phase > 0) {
         return (
             <Button
                 onClick={stopConnecting}
-                type={"dashed"}
+                type={"primary"}
             >
                 <MergeOutlined/>
-                {t("stop.connecing")}
+                {t("stop.connecting")}
             </Button>
         )
     } else {

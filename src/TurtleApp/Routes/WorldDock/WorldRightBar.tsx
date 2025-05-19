@@ -22,7 +22,13 @@ export default function WorldRightBar() {
             SelectEntityFromWorld={entityPicked}
         >
             {
-                entity ? <_EntityEditProps entity={entity}/> : <Empty/>
+                entity ? <_EntityEditProps entity={entity}/> : (
+                    <div style={{
+                        marginTop: "30vh"
+                    }}>
+                        <Empty/>
+                    </div>
+                )
             }
         </AeeWrapper>
     )

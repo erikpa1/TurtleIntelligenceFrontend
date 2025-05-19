@@ -1,6 +1,6 @@
 import React from "react"
 
-import {Button, Divider, Flex, Spin, Splitter} from "antd";
+import {Button, Divider, Flex, Spin, Splitter, Tabs} from "antd";
 
 import WorldFiber from "./WorldFiber";
 import {AddButton} from "../../../main/AddButton";
@@ -16,6 +16,9 @@ import WorldApi from "@TurtleApp/Api/WorldApi";
 import World, {WorldSingleton} from "@TurtleApp/Data/World";
 import WorldTopBar from "@TurtleApp/Routes/WorldDock/WorldTopBar";
 import WorldRightBar from "@TurtleApp/Routes/WorldDock/WorldRightBar";
+import {IconWidgets} from "@Turtle/Icons";
+import IconFlagCheck from "@Turtle/Icons/IconFlagCheck";
+import IconNetworkIntelNode from "@Turtle/Icons/IconNetworkIntelNode";
 
 
 export default function WorldDock({}) {
@@ -76,6 +79,7 @@ function _WorldDock({world}: _WorldDockProps) {
                 height: "100%",
                 // backgroundColor: "#212124"
             }}>
+
                 <Splitter.Panel
                     defaultSize="20%"
                     style={{
