@@ -7,19 +7,16 @@ import {AddButton} from "../../../main/AddButton";
 import {MainScreenTopBar} from "../../../main/MainScreenTopBar";
 import WorldHierarchy from "@TurtleApp/Routes/WorldDock/WorldHierarchy";
 import {useParams} from "react-router-dom";
-import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
-import {SaveOutlined} from "@ant-design/icons";
-import {useTranslation} from "react-i18next";
-import aee from "@Turtle/Data/Aee";
+
 import WorldControllers from "@TurtleApp/Routes/WorldDock/WorldControllers";
 import WorldApi from "@TurtleApp/Api/WorldApi";
 import World, {WorldSingleton} from "@TurtleApp/Data/World";
 import WorldTopBar from "@TurtleApp/Routes/WorldDock/WorldTopBar";
 import WorldRightBar from "@TurtleApp/Routes/WorldDock/WorldRightBar";
-import {IconWidgets} from "@Turtle/Icons";
-import IconFlagCheck from "@Turtle/Icons/IconFlagCheck";
-import IconNetworkIntelNode from "@Turtle/Icons/IconNetworkIntelNode";
+import InitWorldFactory from "@TurtleApp/Routes/WorldDock/WorldInit";
 
+
+InitWorldFactory()
 
 export default function WorldDock({}) {
 

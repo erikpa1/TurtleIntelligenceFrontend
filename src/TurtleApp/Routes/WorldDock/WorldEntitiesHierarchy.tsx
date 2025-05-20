@@ -14,7 +14,7 @@ import {
 } from "@Turtle/Components/HierarchyComponents";
 import Entity from "@Turtle/Data/Entity";
 import TurtleApp from "@TurtleApp/TurtleApp";
-import EntitiesFactory from "@TurtleApp/Data/EntitiesFactory";
+import EntitiesFactory from "@TurtleApp/Factories/EntitiesFactory";
 
 
 interface WorldEntitiesHierarchyProps {

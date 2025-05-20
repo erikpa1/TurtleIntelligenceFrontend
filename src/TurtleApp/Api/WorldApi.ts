@@ -21,7 +21,6 @@ export default class WorldApi {
         const formData = new FormData()
         formData.set("data", jsonData)
         formData.set("tmp", "xxxxxx")
-        console.log(jsonData)
 
 
         await axios.post("/api/w/save", formData)

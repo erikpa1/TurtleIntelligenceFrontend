@@ -19,6 +19,8 @@ export default class EntitiesFactory {
         [EntitiesFactory.TYPE_BUFFER]: "/iconsPng/shelves.png"
     }
 
+    static RIGHT_BAR_COMPONENTS = {}
+
 
     static CAN_CON_OUTPUT = {
         [EntitiesFactory.TYPE_SINK]: false
@@ -68,13 +70,14 @@ export default class EntitiesFactory {
         return true
     }
 
-    static CanConnectOutput(type: string): boolean {
-        const can = EntitiesFactory.CAN_CON_OUTPUT[type]
+    static GetRightBarComponent(type: string): any {
+        const component = EntitiesFactory.RIGHT_BAR_COMPONENTS[type]
 
-        if (can !== undefined) {
-            return can
+        if (component !== undefined) {
+            return component
         }
-        return true
+        return null
     }
+
 
 }

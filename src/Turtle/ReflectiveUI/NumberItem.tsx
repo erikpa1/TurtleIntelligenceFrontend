@@ -7,11 +7,11 @@ interface StringItemProps {
     disabled?: boolean
 }
 
-export default function StringItem({
-                                       entity,
-                                       attribute,
-                                       disabled
-                                   }: StringItemProps) {
+export default function IntItem({
+                                    entity,
+                                    attribute,
+                                    disabled
+                                }: StringItemProps) {
 
 
     return (
@@ -19,10 +19,11 @@ export default function StringItem({
             label={attribute}
         >
             <Input
+                type={"number"}
                 disabled={disabled}
                 defaultValue={entity[attribute]}
                 onChange={(e) => {
-                    entity[attribute] = e.target.value
+                    entity[attribute] = parseInt(e.target.value)
                 }}
             />
 

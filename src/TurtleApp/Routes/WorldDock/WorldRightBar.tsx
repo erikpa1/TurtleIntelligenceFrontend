@@ -3,8 +3,9 @@ import aee from "@Turtle/Data/Aee";
 import Entity from "@Turtle/Data/Entity";
 import React from "react";
 import {Empty, Form} from "antd";
-import BufferEntitiyProperties from "@TurtleApp/Routes/WorldDock/EntitiesProps/BufferEntitiyProperties";
+
 import {EntityNameProperty, EntityTypeProperty} from "@TurtleApp/Routes/WorldDock/EntitiesProps/Common";
+import EntitiesFactory from "@TurtleApp/Factories/EntitiesFactory";
 
 
 export default function WorldRightBar() {
@@ -39,6 +40,18 @@ interface _EntityEditPropsProps {
 }
 
 function _EntityEditProps({entity}: _EntityEditPropsProps) {
+
+
+    const childToShow = React.useMemo(() => {
+        const component = EntitiesFactory.GetRightBarComponent(entity.type)
+        let child = <></>
+        if (component) {
+            child = React.createElement(component, {entity})
+        }
+        return child
+    }, [entity])
+
+
     return (
         <Form
             layout={'horizontal'}
@@ -49,12 +62,17 @@ function _EntityEditProps({entity}: _EntityEditPropsProps) {
             <EntityTypeProperty entity={entity}/>
 
             {
-                entity.type == "buffer" && (
-                    <BufferEntitiyProperties
-                        entity={entity}
-                    />
-                )
+                childToShow
             }
+
+            {/*{*/}
+            {/*    entity.type == "buffer" && (*/}
+            {/*        <BufferEntitiyProperties*/}
+            {/*            entity={entity}*/}
+            {/*        />*/}
+            {/*    )*/}
+            {/*}*/}
+
 
         </Form>
     )

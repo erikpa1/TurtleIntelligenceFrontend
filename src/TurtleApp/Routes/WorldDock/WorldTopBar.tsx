@@ -10,6 +10,7 @@ import {HierarchyDeleteButton, HierarchyPauseButton, HierarchyStopButton} from "
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import Myio from "@Turtle/Data/myio";
 import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
+import {useActiveSimulation} from "@TurtleApp/Routes/WorldDock/Controllers/RunningSimulationController";
 
 
 export default function WorldTopBar({}) {
@@ -128,48 +129,29 @@ function _SimulationSection({}) {
 
     const [t] = useTranslation()
 
-    const myIO = React.useMemo(() => {
-        return new Myio()
-    }, [])
 
+    const {isRunning, setIsRunning, second, endSecond} = useActiveSimulation()
 
-    const [simSecond, setSimSecond] = React.useState(0)
-    const [isSimulating, setIsSimulating] = React.useState(false)
-
-
-    function simStepReceived(stepData: any) {
-        setSimSecond(stepData.second)
-    }
 
     async function simulatePressed() {
-        setIsSimulating(true)
+        setIsRunning(true)
         await WorldApi.Simulate(WorldSingleton.I.uid)
 
     }
 
     async function pausePressed() {
-        setIsSimulating(false)
+        setIsRunning(false)
     }
 
     async function stopPressed() {
-        setIsSimulating(false)
+        setIsRunning(false)
     }
 
-    React.useEffect(() => {
-        myIO.connect()
-        myIO.on("simstep", simStepReceived)
 
-
-        return () => {
-            myIO.disconnect()
-            myIO.off("simstep", simStepReceived)
-        }
-    }, [])
-
-    if (isSimulating) {
+    if (isRunning) {
         return (
             <Flex gap={5}>
-                <div>{simSecond} (s)</div>
+                <div>{second} (s)</div>
                 <div>/</div>
                 <div>100 (s)</div>
 

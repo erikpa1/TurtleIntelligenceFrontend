@@ -1,7 +1,5 @@
 import React from "react"
 import StringItem from "@Turtle/ReflectiveUI/StringItem";
-import {EntityNameProperty, EntityTypeProperty} from "@TurtleApp/Routes/WorldDock/EntitiesProps/Common";
-
 
 interface BufferEntityPropertiesProps {
     entity: any
@@ -9,7 +7,6 @@ interface BufferEntityPropertiesProps {
 
 export default function BufferEntitiyProperties({
                                                     entity,
-
                                                 }: BufferEntityPropertiesProps) {
     return (
         <div>

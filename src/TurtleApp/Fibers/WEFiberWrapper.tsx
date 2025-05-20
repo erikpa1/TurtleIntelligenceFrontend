@@ -7,7 +7,7 @@ import aee from "@Turtle/Data/Aee";
 import {Simulate} from "react-dom/test-utils";
 import click = Simulate.click;
 import {Box3D} from "@Turtle/Fibers/Drawing";
-import EntitiesFactory from "@TurtleApp/Data/EntitiesFactory";
+import EntitiesFactory from "@TurtleApp/Factories/EntitiesFactory";
 import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
 
 
