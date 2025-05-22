@@ -9,12 +9,10 @@ import App from './App';
 
 import "./i18n"
 import {HashRouter} from "react-router-dom";
-import {configureAxios} from "./Turtle/Components/TurxiosConfig";
+
 import {ConfigProvider} from "antd";
 import ColorConstants from "@Turtle/Constants/ColorConstants";
-
-
-configureAxios()
+import {TurxiosProvider} from "@Turtle/Api/Turxios";
 
 const root = createRoot(document.getElementById('root') as any);
 
@@ -28,6 +26,8 @@ root.render(
             },
         }}
     >
+
+
         <Suspense fallback={""}>
             <HashRouter
                 future={{
@@ -35,8 +35,10 @@ root.render(
                     v7_startTransition: true,
                 }}
             >
+                <TurxiosProvider/>
                 <App/>
             </HashRouter>
         </Suspense>
+
     </ConfigProvider>
 );

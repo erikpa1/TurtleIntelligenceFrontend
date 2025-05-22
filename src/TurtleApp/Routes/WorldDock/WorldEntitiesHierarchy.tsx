@@ -7,7 +7,7 @@ import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
 import {useTranslation} from "react-i18next";
 import {
-    HierarchFlex,
+    HierarchyFlex,
     HierarchyCustomIcon,
     HierarchyDeleteButton,
     HierarchyRightFlex
@@ -50,7 +50,7 @@ export default function WorldEntitiesHierarchy({world}: WorldEntitiesHierarchyPr
                     return {
                         key: val.uid,
                         title: (
-                            <HierarchFlex
+                            <HierarchyFlex
                                 onClick={() => {
                                     entitySelected(val)
                                 }}
@@ -68,7 +68,7 @@ export default function WorldEntitiesHierarchy({world}: WorldEntitiesHierarchyPr
 
                                 </HierarchyRightFlex>
 
-                            </HierarchFlex>
+                            </HierarchyFlex>
                         ),
                     }
                 })

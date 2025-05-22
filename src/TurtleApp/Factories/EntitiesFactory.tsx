@@ -70,6 +70,14 @@ export default class EntitiesFactory {
         return true
     }
 
+    static CanConnectOutput(type: string): boolean {
+        const can = EntitiesFactory.CAN_CON_OUTPUT[type]
+        if (can !== undefined) {
+            return can
+        }
+        return true
+    }
+
     static GetRightBarComponent(type: string): any {
         const component = EntitiesFactory.RIGHT_BAR_COMPONENTS[type]
 

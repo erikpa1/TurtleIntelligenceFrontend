@@ -1,12 +1,13 @@
 import React from 'react'
 import {Splitter} from "antd"
-import NNHierarchy from "@TurtleApp/Routes/NN/NNHierarchy"
+import ActorsHierarchy from "@TurtleApp/Routes/Actors/ActorsHierarchy";
 
-export default function NNDock() {
+export default function ActorsDock() {
     return (
         <Splitter style={{
             height: "100vh"
         }}>
+
             <Splitter.Panel
                 defaultSize={"20%"}
                 style={{
@@ -14,7 +15,7 @@ export default function NNDock() {
                     padding: "15px"
                 }}
             >
-                <NNHierarchy/>
+                <ActorsHierarchy/>
             </Splitter.Panel>
 
             <Splitter.Panel>

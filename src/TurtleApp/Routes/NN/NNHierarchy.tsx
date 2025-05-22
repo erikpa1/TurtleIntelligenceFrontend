@@ -1,22 +1,46 @@
-import {Tree, TreeDataNode} from "antd";
+import {Flex, Tree, TreeDataNode} from "antd";
 import React from "react";
-import {HierarchFlex, HierarchyDeleteButton, HierarchyRightFlex} from "@Turtle/Components/HierarchyComponents";
+import {
+    HierarchyFlex,
+    HierarchyDeleteButton,
+    HierarchyRightFlex,
+    HierarchyAddButton
+} from "@Turtle/Components/HierarchyComponents";
 import {useTranslation} from "react-i18next";
+import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
+import {useNavigate} from "react-router-dom";
+import Model from "@TurtleApp/Data/Model";
+import EntityForm from "@Turtle/Components/Forms/EntityForm";
+import ModelProperties from "@TurtleApp/Data/Model_Properties";
+import ModelsApi from "@TurtleApp/Api/ModelsApi";
 
 export default function NNHierarchy() {
 
     const [t] = useTranslation()
 
+    const {activate, deactivate} = useTurtleModal()
+
+    const navigate = useNavigate()
+
+
     function createHierarchy(nnModels: Array<any>) {
         return [
             {
-                title: "nn.models",
                 key: "nnmodels",
+                title: (
+                    <Flex>
+                        {t("nn.models")} ({nnModels.length})
+                        <HierarchyRightFlex>
+                            <HierarchyAddButton onClick={createModelPressed}/>
+                        </HierarchyRightFlex>
+                    </Flex>
+                ),
+
                 children: nnModels.map((val) => {
                     return {
                         key: val.uid,
                         title: (
-                            <HierarchFlex onClick={modelClicked}>
+                            <HierarchyFlex onClick={modelClicked}>
 
                                 <HierarchyRightFlex>
                                     <HierarchyDeleteButton
@@ -25,13 +49,31 @@ export default function NNHierarchy() {
                                         }}
                                     />
                                 </HierarchyRightFlex>
-                            </HierarchFlex>
+                            </HierarchyFlex>
                         ),
                     }
                 })
             }
         ]
     }
+
+    function createModelPressed() {
+        const tmp = new Model()
+
+        activate({
+            title: t("create.nnmodel"),
+            content: (
+                <EntityForm
+                    entity={tmp}
+                    properties={ModelProperties.Get()}
+                    submitFunction={ModelsApi.COU}
+                    onBeforeSubmit={deactivate}
+                    onAfterSubmit={refresh}
+                />
+            )
+        })
+    }
+
 
     function modelClicked(nnModel: any) {
 
@@ -55,9 +97,12 @@ export default function NNHierarchy() {
 
     return (
         <Tree
-            virtual={true}
-            defaultExpandAll={true}
+            key={data[0]?.children?.length}
+            blockNode
+            virtual
+            showLine
             treeData={data}
+            defaultExpandAll={true}
         />
     )
 

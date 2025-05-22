@@ -10,9 +10,6 @@ interface ConnectionFiberProps {
 }
 
 
-const lineMaterial = <meshBasicMaterial/>
-
-
 export default function ConnectionFiber({
                                             a,
                                             b
@@ -21,7 +18,6 @@ export default function ConnectionFiber({
 
     return (
         <CylinderBetweenPoints
-            material={lineMaterial}
             start={a.position as any}
             end={b.position as any}
         />

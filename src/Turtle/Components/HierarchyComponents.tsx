@@ -2,7 +2,7 @@ import React from "react"
 import {Button, Flex, Popconfirm} from "antd";
 import {
     DeleteRowOutlined,
-    DeleteTwoTone,
+    DeleteTwoTone, EditOutlined,
     EyeOutlined,
     PauseOutlined,
     PlusOutlined,
@@ -11,14 +11,14 @@ import {
 
 
 interface HierarchFlexProps {
-    children: any
+    children?: any
     onClick?: (e) => void
 }
 
-export function HierarchFlex({
-                                 children,
-                                 onClick
-                             }) {
+export function HierarchyFlex({
+                                  children,
+                                  onClick
+                              }: HierarchFlexProps) {
 
     return (
         <Flex
@@ -102,6 +102,24 @@ export function HierarchyDeleteButton({onClick}) {
                         twoToneColor={["red", "white"]}
                     />
                 }
+            />
+        </Popconfirm>
+
+    )
+}
+
+export function HierarchyEditButton({onClick}) {
+
+    return (
+        <Popconfirm
+            title={"are.you.sure"}
+            onConfirm={(e) => {
+                e?.preventDefault()
+                onClick(e)
+            }}
+        >
+            <HierarchyCustomIcon
+                icon={<EditOutlined/>}
             />
         </Popconfirm>
 

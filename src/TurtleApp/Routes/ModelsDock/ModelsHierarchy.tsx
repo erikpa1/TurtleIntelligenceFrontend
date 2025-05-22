@@ -3,6 +3,7 @@ import React from "react";
 import {Flex, Tree, TreeDataNode} from "antd";
 import aee from "@Turtle/Data/Aee";
 import {
+    HierarchyFlex,
     HierarchyAddButton,
     HierarchyDeleteButton,
     HierarchyRightFlex,
@@ -24,21 +25,44 @@ export default function ModelsHierarchy({}) {
 
     const navigate = useNavigate()
 
-    const modelsNode: TreeDataNode = React.useMemo(() => ({
-        key: "models",
-        title: (
-            <Flex>
-                {t("models")} (0)
-                <HierarchyRightFlex>
-                    <HierarchyAddButton onClick={createModelPressed}/>
-                </HierarchyRightFlex>
-            </Flex>
-        )
-    }), [])
+    function createModelsHierarchy(models: Array<Model>) {
+        return [
+            {
+                key: "models",
+                title: (
+                    <Flex>
+                        {t("models")} ({models.length})
+                        <HierarchyRightFlex>
+                            <HierarchyAddButton onClick={createModelPressed}/>
+                        </HierarchyRightFlex>
+                    </Flex>
+                ),
+                children: models.map((val) => {
+                    return {
+                        key: val.uid,
+                        title: (
+                            <HierarchyFlex>
+                                {val.name}
 
-    const [data, setData] = React.useState<Array<TreeDataNode>>([
-        modelsNode
-    ])
+                                <HierarchyRightFlex>
+
+                                    <HierarchyViewButton onClick={() => {
+                                        navigate(`/model/${val.uid}`)
+                                    }}/>
+
+                                    <HierarchyDeleteButton onClick={() => {
+                                        deleteModel(val.uid)
+                                    }}/>
+                                </HierarchyRightFlex>
+                            </HierarchyFlex>
+                        ),
+                    }
+                })
+            }
+        ]
+    }
+
+    const [data, setData] = React.useState<Array<TreeDataNode>>(createModelsHierarchy([]))
 
 
     function createModelPressed() {
@@ -65,45 +89,8 @@ export default function ModelsHierarchy({}) {
     }
 
     async function refresh() {
-
         const models = await ModelsApi.ListModels()
-
-        modelsNode.title = (
-            <Flex>
-                {t("models")} ({models.length})
-                <HierarchyRightFlex>
-                    <HierarchyAddButton onClick={createModelPressed}/>
-                </HierarchyRightFlex>
-            </Flex>
-        )
-        modelsNode.children = models.map((val) => {
-            return {
-                key: val.uid,
-                title: (
-                    <Flex
-                        gap={10}
-                        flex={1}
-                    >
-                        {val.name}
-
-                        <HierarchyRightFlex>
-
-                            <HierarchyViewButton onClick={() => {
-                                navigate(`/model/${val.uid}`)
-                            }}/>
-
-                            <HierarchyDeleteButton onClick={() => {
-                                deleteModel(val.uid)
-                            }}/>
-                        </HierarchyRightFlex>
-                    </Flex>
-                ),
-            }
-        })
-
-        setData([
-            modelsNode
-        ])
+        setData(createModelsHierarchy(models))
     }
 
 
@@ -113,6 +100,7 @@ export default function ModelsHierarchy({}) {
 
     return (
         <Tree
+            key={data[0]?.children?.length}
             blockNode
             virtual
             showLine

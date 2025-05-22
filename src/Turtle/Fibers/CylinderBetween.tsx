@@ -1,6 +1,7 @@
 import React, {useMemo} from 'react'
 import {Cylinder, Cone, Sphere} from '@react-three/drei'
 import * as THREE from 'three'
+import ColorConstants from "@Turtle/Constants/ColorConstants";
 
 /**
  * CylinderBetweenPoints - Creates a cylinder between two 3D points with an arrow at the end
@@ -30,6 +31,8 @@ interface CylinderBetweenPointsProps {
     arrowRadius?: number
     children?: any
 }
+
+const _MATERIAL = <meshMatcapMaterial attach="material" color={ColorConstants.AZURE_BLUE}/>
 
 export default function CylinderBetweenPoints({
                                                   start = [0, 0, 0],
@@ -107,7 +110,9 @@ export default function CylinderBetweenPoints({
             <Sphere
                 scale={radius * 2}
                 position={offsetStartVec}
-            />
+            >
+                {_MATERIAL}
+            </Sphere>
 
             {/* Cylinder group */}
             <group
@@ -117,7 +122,9 @@ export default function CylinderBetweenPoints({
                 {/* Main cylinder */}
                 <Cylinder
                     args={[radius, radius, length, segments]}
-                />
+                >
+                    {_MATERIAL}
+                </Cylinder>
 
                 {/* Arrow at end */}
                 {showArrow && (
@@ -125,7 +132,9 @@ export default function CylinderBetweenPoints({
                         args={[arrowRadius, arrowHeight, segments, 1]}
                         position={[0, length / 2 + arrowHeight / 2, 0]}
                         rotation={[0, 0, 0]}
-                    />
+                    >
+                        {_MATERIAL}
+                    </Cone>
                 )}
 
                 {children}

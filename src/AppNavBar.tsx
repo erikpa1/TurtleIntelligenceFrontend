@@ -77,6 +77,14 @@ export default function AppNavBar() {
                                 onClick: () => {
                                     navigate("/documentation")
                                 }
+                            },
+                            {
+                                key: "actors",
+                                icon: <UnorderedListOutlined/>,
+                                label: t("actors"),
+                                onClick: () => {
+                                    navigate("/actors")
+                                }
                             }
                         ]}
                     />

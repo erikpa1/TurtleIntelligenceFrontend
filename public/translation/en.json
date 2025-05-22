@@ -28,5 +28,6 @@
     "nn.models": "Neural network models",
     "buffer": "Buffer",
     "simulation": "Simulation",
-    "stop.connecting": "Stop connecting"
+    "stop.connecting": "Stop connecting",
+    "create.actor": "Create actor"
 }

@@ -1,6 +1,6 @@
 import React from "react"
 import {Tree, TreeDataNode} from "antd";
-import {HierarchFlex, HierarchyDeleteButton, HierarchyRightFlex} from "@Turtle/Components/HierarchyComponents";
+import {HierarchyFlex, HierarchyDeleteButton, HierarchyRightFlex} from "@Turtle/Components/HierarchyComponents";
 import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router-dom";
 
@@ -19,10 +19,10 @@ export default function DocumentationHierarchy({}) {
                 {
                     key: "buffer",
                     title: (
-                        <HierarchFlex onClick={elementClicked}>
+                        <HierarchyFlex onClick={elementClicked}>
                             {t("buffer")}
 
-                        </HierarchFlex>
+                        </HierarchyFlex>
                     ),
                 }
             ]

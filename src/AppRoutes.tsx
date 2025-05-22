@@ -3,6 +3,7 @@ import React from "react"
 import {Route, Routes} from "react-router-dom"
 
 
+const ActorsDock = React.lazy(() => import("@TurtleApp/Routes/Actors/ActorsDock"))
 const DocumentationDock = React.lazy(() => import("@TurtleApp/Routes/Documentation/DocumentationDock"))
 const ContainersDock = React.lazy(() => import("@TurtleApp/Routes/ContainersDock/ContainersDock"))
 const WorldDock = React.lazy(() => import("@TurtleApp/Routes/WorldDock/WorldDock"))
@@ -18,6 +19,7 @@ export default function AppRoutes({}) {
             <Route path={"/nn"} element={<NNDock/>}/>
             <Route path={"/documentation"} element={<DocumentationDock/>}/>
             <Route path={"/documentation/:topic/:document"} element={<DocumentationDock/>}/>
+            <Route path={"/actors"} element={<ActorsDock/>}/>
         </Routes>
     );
 }
