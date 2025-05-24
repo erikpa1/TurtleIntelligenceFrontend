@@ -8,6 +8,7 @@ import {HierarchyCustomIcon} from "@Turtle/Components/HierarchyComponents";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import {fetchMongoUid} from "@Turtle/Utils/Uid";
 import IconFlagCheck from "@Turtle/Icons/IconFlagCheck";
+import EntitiesFactory from "@TurtleApp/Factories/EntitiesFactory";
 
 
 export default function WorldLibrary() {
@@ -58,15 +59,15 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
 
     const basicEntities = React.useMemo(() => {
         return [
-            {title: t("spawn"), key: "spawn", icon: <IconFlagCheck/>},
-            {title: t("process"), key: "process", icon: "/icons/manufacturing.svg"},
-            {title: t("delay"), key: "delay", icon: "/icons/flag_check.svg"},
-            {title: t("buffer"), key: "buffer", icon: "/icons/shelves.svg"},
-            {title: t("queue"), key: "queue", icon: "/icons/flag_check.svg"},
-            {title: t("merge"), key: "merge", icon: "/icons/flag_check.svg"},
-            {title: t("split"), key: "split", icon: "/icons/flag_check.svg"},
-            {title: t("switch"), key: "switch", icon: "/icons/flag_check.svg"},
-            {title: t("sink"), key: "sink", icon: "/icons/flag_check.svg"},
+            {title: t("spawn"), key: "spawn"},
+            {title: t("process"), key: "process"},
+            {title: t("delay"), key: "delay",},
+            {title: t("buffer"), key: "buffer"},
+            {title: t("queue"), key: "queue"},
+            {title: t("merge"), key: "merge"},
+            {title: t("split"), key: "split"},
+            {title: t("switch"), key: "switch"},
+            {title: t("sink"), key: "sink"},
         ]
     }, [])
 
@@ -94,7 +95,7 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
                                 elementClicked(val.key)
                             }}
                         >
-                            <HierarchyCustomIcon icon={val.icon}/>
+                            <HierarchyCustomIcon icon={EntitiesFactory.GetIconSvg(val.key)}/>
                             {val.title}
                         </Flex>
                     ),

@@ -18,7 +18,7 @@ export default function SpawnEntitiyProperties({
             gap={5}
         >
             <ActorsSelect
-                entity={entity}
+                typeData={entity.typeData}
                 attribute={"actor"}
             />
 

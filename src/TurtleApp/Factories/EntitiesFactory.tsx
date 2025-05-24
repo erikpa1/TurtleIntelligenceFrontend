@@ -5,9 +5,23 @@ export default class EntitiesFactory {
     static TYPE_SPAWN = "spawn"
     static TYPE_BUFFER = "buffer"
     static TYPE_SINK = "sink"
+    static TYPE_PROCESS = "process"
+    static TYPE_SPLIT = "split"
+    static TYPE_MERGE = "merge"
+    static TYPE_QUEUE = "queue"
+    static TYPE_DELAY = "delay"
+    static TYPE_SWITCH = "switch"
 
     static ICONS = {
-        [EntitiesFactory.TYPE_SPAWN]: "/icons/flag_check.png"
+        [EntitiesFactory.TYPE_SPAWN]: "/icons/flag_check.svg",
+        [EntitiesFactory.TYPE_BUFFER]: "/icons/shelves.svg",
+        [EntitiesFactory.TYPE_PROCESS]: "/icons/manufacturing.svg",
+        [EntitiesFactory.TYPE_SPLIT]: "/icons/call_split.svg",
+        [EntitiesFactory.TYPE_MERGE]: "/icons/cell_merge.svg",
+        [EntitiesFactory.TYPE_QUEUE]: "/icons/newsstand.svg",
+        [EntitiesFactory.TYPE_DELAY]: "/icons/pending_actions.svg",
+        [EntitiesFactory.TYPE_SWITCH]: "/icons/fan_indirect.svg",
+        [EntitiesFactory.TYPE_SINK]: "/icons/arrow_and_edge.svg",
     }
 
     static ICONS_COMPONENTS = {
@@ -16,7 +30,14 @@ export default class EntitiesFactory {
 
     static ICONS_PNG = {
         [EntitiesFactory.TYPE_SPAWN]: "/iconsPng/flag_check.png",
-        [EntitiesFactory.TYPE_BUFFER]: "/iconsPng/shelves.png"
+        [EntitiesFactory.TYPE_BUFFER]: "/iconsPng/shelves.png",
+        [EntitiesFactory.TYPE_PROCESS]: "/iconsPng/manufacturing.png",
+        [EntitiesFactory.TYPE_SPLIT]: "/iconsPng/call_split.png",
+        [EntitiesFactory.TYPE_MERGE]: "/iconsPng/cell_merge.png",
+        [EntitiesFactory.TYPE_QUEUE]: "/iconsPng/newsstand.png",
+        [EntitiesFactory.TYPE_DELAY]: "/iconsPng/pending_actions.png",
+        [EntitiesFactory.TYPE_SWITCH]: "/iconsPng/fan_indirect.png",
+        [EntitiesFactory.TYPE_SINK]: "/iconsPng/arrow_and_edge.png",
     }
 
     static RIGHT_BAR_COMPONENTS = {}

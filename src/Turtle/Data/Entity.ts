@@ -36,6 +36,8 @@ export default class Entity {
         this.model = jObj.model ?? ""
         this.dependencies = jObj.dependencies ?? {}
         this.typeData = jObj.typeData ?? {}
+
+        console.log(jObj)
     }
 
     async Duplicate() {

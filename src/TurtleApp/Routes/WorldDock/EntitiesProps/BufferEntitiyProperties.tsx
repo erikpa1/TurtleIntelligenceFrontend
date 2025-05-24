@@ -1,14 +1,12 @@
 import React from "react"
 import StringItem from "@Turtle/ReflectiveUI/StringItem";
-import Actor from "@TurtleApp/Data/Actor";
-import SelectItem from "@Turtle/ReflectiveUI/SelectItem";
 import {Flex} from "antd";
-import ActorsApi from "@TurtleApp/Api/ActorsApi";
 import IntItem from "@Turtle/ReflectiveUI/NumberItem";
 import {ActorsSelect} from "@TurtleApp/Routes/WorldDock/EntitiesProps/ActorSelect";
+import Entity from "@Turtle/Data/Entity";
 
 interface BufferEntityPropertiesProps {
-    entity: any
+    entity: Entity
 }
 
 export default function BufferEntitiyProperties({
@@ -26,7 +24,7 @@ export default function BufferEntitiyProperties({
             />
 
             <ActorsSelect
-                entity={entity}
+                typeData={entity.typeData}
                 attribute={"initial_actor"}
             />
 

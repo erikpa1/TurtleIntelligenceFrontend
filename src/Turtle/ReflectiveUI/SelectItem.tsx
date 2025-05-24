@@ -32,9 +32,9 @@ export default function SelectItem({
         >
             <Select
                 disabled={disabled}
-                defaultValue={entity[attribute]}
-                onChange={(e) => {
-                    entity[attribute] = e.value
+                defaultValue={entity[attribute] ?? ""}
+                onChange={(value) => {
+                    entity[attribute] = value
                 }}
             >
                 {
@@ -61,7 +61,7 @@ export default function SelectItem({
                     })
 
                 }
-                
+
 
             </Select>
 

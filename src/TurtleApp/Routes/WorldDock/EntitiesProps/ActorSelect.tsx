@@ -5,12 +5,12 @@ import SelectItem from "@Turtle/ReflectiveUI/SelectItem";
 
 interface ActorsSelectProps {
     attribute: string
-    entity: any
+    typeData: any
 }
 
 export function ActorsSelect({
                                  attribute,
-                                 entity,
+                                 typeData,
                              }: ActorsSelectProps) {
 
     const [actors, setActors] = React.useState<Array<Actor>>([])
@@ -23,11 +23,10 @@ export function ActorsSelect({
         refresh()
     }, [])
 
-
     return (
         <SelectItem
             attribute={attribute}
-            entity={entity.typeData}
+            entity={typeData}
             useEmpty={true}
             options={actors.map((val) => {
                 return {
