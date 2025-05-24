@@ -21,7 +21,7 @@ export default function EntityFiber({entity}: EntityFiberProps) {
         <WEFiberWrapper entity={entity}>
 
             <ErrorBoundary onError={<></>}>
-                <_EntityIcon textPath={EntitiesFactory.GetIconPng(entity.type)}/>
+                <_EntityIcon textPath={EntitiesFactory.GetIconSvg(entity.type)}/>
             </ErrorBoundary>
 
             <Cylinder
@@ -46,7 +46,10 @@ function _EntityIcon({textPath}) {
             position={[0, 0.27, 0]}
             rotation={[-Math.PI / 2, 0, 0]}
         >
-            <meshStandardMaterial map={texture as any}/>
+            <meshStandardMaterial
+                map={texture as any}
+                transparent={true}
+            />
         </Plane>
     )
 
