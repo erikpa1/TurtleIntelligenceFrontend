@@ -11,6 +11,7 @@ import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import Myio from "@Turtle/Data/myio";
 import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
 import {useActiveSimulation} from "@TurtleApp/Routes/WorldDock/Controllers/RunningSimulationController";
+import TurtleApp from "@TurtleApp/TurtleApp";
 
 
 export default function WorldTopBar({}) {
@@ -130,25 +131,42 @@ function _SimulationSection({}) {
     const [t] = useTranslation()
 
 
-    const {isRunning, setIsRunning, second, endSecond} = useActiveSimulation()
+    const {
+        isRunning,
+        setIsRunning,
+        setIsPaused,
+        second,
+        endSecond,
+    } = useActiveSimulation()
 
 
     async function simulatePressed() {
-        setIsRunning(true)
-        await WorldApi.Simulate(WorldSingleton.I.uid)
+        TurtleApp.Lock()
+        const simUid = await WorldApi.Simulate(WorldSingleton.I.uid)
+        setIsRunning(simUid)
+        TurtleApp.Unlock()
+
+    }
+
+    async function resumePressed() {
+        setIsPaused(true)
+        await WorldApi.ResumeSimulation(isRunning)
 
     }
 
     async function pausePressed() {
-        setIsRunning(false)
+        setIsPaused(false)
+        await WorldApi.PauseSimulation(isRunning)
+
     }
 
     async function stopPressed() {
-        setIsRunning(false)
+        setIsRunning("")
+        await WorldApi.StopSimulation(isRunning)
     }
 
 
-    if (isRunning) {
+    if (isRunning !== "") {
         return (
             <Flex gap={5}>
                 <div>{second} (s)</div>

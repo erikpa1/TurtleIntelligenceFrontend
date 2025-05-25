@@ -23,6 +23,11 @@ export default function SpawnEntitiyProperties({
             />
 
             <IntItem
+                attribute={"spawn_interval"}
+                entity={entity.typeData}
+            />
+
+            <IntItem
                 attribute={"spawn_limit"}
                 entity={entity.typeData}
             />

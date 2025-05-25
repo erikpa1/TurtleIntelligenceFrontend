@@ -7,10 +7,34 @@ import axios from "axios";
 export default class WorldApi {
 
 
-    static async Simulate(worldUid: string) {
-        await axios.post("/api/w/simulate", null, {
+    static async Simulate(worldUid: string): Promise<string> {
+        return (await axios.post("/api/w/simulate", null, {
             params: {
                 uid: worldUid
+            }
+        })).data
+    }
+
+    static async PauseSimulation(simUid: string) {
+        await axios.post("/api/w/pause", null, {
+            params: {
+                uid: simUid
+            }
+        })
+    }
+
+    static async ResumeSimulation(simUid: string) {
+        await axios.post("/api/w/resume", null, {
+            params: {
+                uid: simUid
+            }
+        })
+    }
+
+    static async StopSimulation(simUid: string) {
+        await axios.post("/api/w/stop", null, {
+            params: {
+                uid: simUid
             }
         })
     }

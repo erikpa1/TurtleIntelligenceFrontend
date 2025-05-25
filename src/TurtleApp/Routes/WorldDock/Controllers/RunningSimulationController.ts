@@ -4,8 +4,11 @@ import Myio from "@Turtle/Data/myio";
 
 
 interface RunningSimulationController {
-    isRunning: boolean
-    setIsRunning: (state: boolean) => void
+    isPaused: boolean
+    setIsPaused: (state: boolean) => void
+
+    isRunning: string
+    setIsRunning: (state: string) => void
 
     second: number
     endSecond: number
@@ -16,8 +19,10 @@ interface RunningSimulationController {
 
 
 export const useActiveSimulation = create<RunningSimulationController>((set) => ({
-    isRunning: false,
-    setIsRunning: (state: boolean) => set((newState) => ({isRunning: state})),
+    isPaused: false,
+    setIsPaused: (state: boolean) => set((newState) => ({isPaused: state})),
+    isRunning: "",
+    setIsRunning: (state: string) => set((newState) => ({isRunning: state})),
     second: 0,
     endSecond: 100,
     setSecond: (second: number) => set((newState) => ({second: second})),
