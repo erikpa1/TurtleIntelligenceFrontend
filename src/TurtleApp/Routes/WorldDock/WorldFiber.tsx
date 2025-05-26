@@ -18,6 +18,7 @@ import EntitiesFiber from "@TurtleApp/Routes/WorldDock/EntitiesFiber";
 import {WorldSingleton} from "@TurtleApp/Data/World";
 import {WorldRuntimeEntitiesFiber} from "@TurtleApp/Routes/WorldDock/WorldRuntimeEntitiesFiber";
 import ConnectionsFiber from "@TurtleApp/Routes/WorldDock/Submodules/ConnectionsFiber";
+import RuntimeActorsFiber from "@TurtleApp/Routes/WorldDock/Submodules/RuntimeActorsFiber";
 
 
 export default function WorldFiber({world}) {
@@ -71,6 +72,7 @@ function _SubModules({world}) {
             <ConnectionsFiber world={world}/>
             <PickEntityFiber/>
             <WorldRuntimeEntitiesFiber world={world}/>
+            <RuntimeActorsFiber/>
         </>
     )
 }

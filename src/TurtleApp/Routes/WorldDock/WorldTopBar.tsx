@@ -1,17 +1,23 @@
 import React from "react"
-import {Button, Flex} from "antd";
-import {MergeOutlined, PlayCircleOutlined, SaveOutlined} from "@ant-design/icons";
+import {Button, Flex, Space} from "antd";
+import {MergeOutlined, PlayCircleOutlined, SaveOutlined, SettingOutlined} from "@ant-design/icons";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import {useTranslation} from "react-i18next";
 import aee from "@Turtle/Data/Aee";
 import WorldApi from "@TurtleApp/Api/WorldApi";
 import {WorldSingleton} from "@TurtleApp/Data/World";
-import {HierarchyDeleteButton, HierarchyPauseButton, HierarchyStopButton} from "@Turtle/Components/HierarchyComponents";
+import {
+    HierarchyDeleteButton,
+    HierarchyPauseButton,
+    HierarchyPlayButton,
+    HierarchyStopButton
+} from "@Turtle/Components/HierarchyComponents";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import Myio from "@Turtle/Data/myio";
 import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
 import {useActiveSimulation} from "@TurtleApp/Routes/WorldDock/Controllers/RunningSimulationController";
 import TurtleApp from "@TurtleApp/TurtleApp";
+import SimConfigSettingsButton from "@TurtleApp/Routes/WorldDock/Components/SimConfig";
 
 
 export default function WorldTopBar({}) {
@@ -130,9 +136,9 @@ function _SimulationSection({}) {
 
     const [t] = useTranslation()
 
-
     const {
         isRunning,
+        isPaused,
         setIsRunning,
         setIsPaused,
         second,
@@ -145,19 +151,17 @@ function _SimulationSection({}) {
         const simUid = await WorldApi.Simulate(WorldSingleton.I.uid)
         setIsRunning(simUid)
         TurtleApp.Unlock()
-
     }
 
-    async function resumePressed() {
-        setIsPaused(true)
-        await WorldApi.ResumeSimulation(isRunning)
-
-    }
 
     async function pausePressed() {
-        setIsPaused(false)
-        await WorldApi.PauseSimulation(isRunning)
-
+        if (isPaused) {
+            setIsPaused(false)
+            await WorldApi.PauseSimulation(isRunning)
+        } else {
+            setIsPaused(true)
+            await WorldApi.ResumeSimulation(isRunning)
+        }
     }
 
     async function stopPressed() {
@@ -169,27 +173,38 @@ function _SimulationSection({}) {
     if (isRunning !== "") {
         return (
             <Flex gap={5}>
-                <div>{second} (s)</div>
-                <div>/</div>
-                <div>100 (s)</div>
 
-                <HierarchyPauseButton onClick={pausePressed}/>
+                <span>{second} (s) / 100 (s)</span>
+
+                {
+                    isPaused ? (
+                        <HierarchyPlayButton onClick={pausePressed}/>
+                    ) : (
+                        <HierarchyPauseButton onClick={pausePressed}/>
+                    )
+                }
 
                 <HierarchyStopButton onClick={stopPressed}/>
             </Flex>
         )
     } else {
         return (
-            <Button
-                onClick={simulatePressed}
-                type={"primary"}
-            >
-                {t("simulate")}
-                <PlayCircleOutlined/>
-            </Button>
+
+            <Flex>
+                <SimConfigSettingsButton/>
+
+                <Button
+                    onClick={simulatePressed}
+                    type={"primary"}
+                >
+
+
+                    {t("simulate")}
+                    <PlayCircleOutlined/>
+                </Button>
+            </Flex>
         )
     }
-
 
 }
 

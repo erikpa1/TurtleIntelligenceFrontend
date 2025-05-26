@@ -49,7 +49,9 @@ export default function AppNavBar() {
                         items={[
                             {
                                 key: "home",
-                                icon: <IconSimulation/>,
+                                icon: (
+                                    <IconSimulation/>
+                                ),
                                 label: t("home"),
                                 onClick: () => {
                                     navigate("/")

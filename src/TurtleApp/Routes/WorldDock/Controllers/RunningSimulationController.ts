@@ -1,6 +1,9 @@
 import {create} from "zustand";
 import React from "react";
 import Myio from "@Turtle/Data/myio";
+import {SimSecondUpdate} from "@TurtleApp/Data/SimulationResponse";
+import aee from "@Turtle/Data/Aee";
+import {RuntimeActor} from "@TurtleApp/Data/Actor";
 
 
 interface RunningSimulationController {
@@ -32,7 +35,7 @@ export const useActiveSimulation = create<RunningSimulationController>((set) => 
 
 export function runningSimulationController() {
 
-    const {setSecond, setEndSecond} = useActiveSimulation()
+    const {setSecond} = useActiveSimulation()
 
     const myIO = React.useMemo(() => {
         const tmp = new Myio()
@@ -40,14 +43,34 @@ export function runningSimulationController() {
     }, [])
 
 
-    function simStepReceived(stepData: any) {
+    function simStepReceived(stepData: SimSecondUpdate) {
         setSecond(stepData.second)
+
+        if (stepData.spawned.length > 0) {
+            const spawnedOnes = stepData.spawned.map((val) => {
+                const tmp = new RuntimeActor()
+                tmp.FromJson(val)
+                return tmp
+            })
+
+            aee.emit("SimRunActorSpawned", spawnedOnes)
+        }
+
+        if (stepData.unspawned.length > 0) {
+            aee.emit("SimRunActorUnspawned", stepData.unspawned)
+
+        }
+
+        if (stepData.states.size > 0) {
+            stepData.states.forEach((val, key) => {
+                aee.emit(`a-${key}`, val)
+            })
+        }
+
     }
 
 
     React.useEffect(() => {
-
-
         myIO.connect()
         myIO.on("simstep", simStepReceived)
 

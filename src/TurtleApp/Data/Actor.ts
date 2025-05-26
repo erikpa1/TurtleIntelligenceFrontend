@@ -28,5 +28,20 @@ export default class Actor {
         this.varDef = jObj.varDef ?? this.varDef
     }
 
+}
+
+export class RuntimeActor {
+    id = 0
+    uid = ""
+    name = ""
+    position = [0, 0, 0]
+
+    FromJson(data: any) {
+        this.id = data.id ?? 0
+        this.uid = data.uid ?? ""
+        this.name = data.name ?? ""
+        this.position = data.position ?? [0, 0, 0]
+    }
+    
 
 }

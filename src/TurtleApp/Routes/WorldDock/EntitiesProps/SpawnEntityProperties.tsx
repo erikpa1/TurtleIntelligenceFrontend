@@ -15,7 +15,7 @@ export default function SpawnEntitiyProperties({
     return (
         <Flex
             vertical
-            gap={5}
+            gap={15}
         >
             <ActorsSelect
                 typeData={entity.typeData}

@@ -4,6 +4,8 @@ import {TransformControls} from "@react-three/drei";
 import {useThree} from "@react-three/fiber"
 import {create} from "zustand";
 import * as THREE from "three"
+import app from "../../App";
+import aee from "@Turtle/Data/Aee";
 
 
 interface SelectableObject {
@@ -43,6 +45,10 @@ export default function TransformControlsFiber({}) {
                         onObjectChange={() => {
                             objectToSelect?.modifyFunction()
                         }}
+                        onMouseUp={() => {
+                            aee.emit("EntityPosChanged", null)
+                        }}
+
 
                     />
                 )

@@ -6,6 +6,7 @@ import {
     EyeOutlined,
     PauseOutlined,
     PlusOutlined,
+    StepForwardOutlined,
     StopOutlined
 } from "@ant-design/icons";
 
@@ -85,6 +86,17 @@ export function HierarchyPauseButton({onClick}) {
         />
     )
 }
+
+export function HierarchyPlayButton({onClick}) {
+
+    return (
+        <HierarchyCustomIcon
+            icon={<StepForwardOutlined/>}
+            onClick={onClick}
+        />
+    )
+}
+
 
 export function HierarchyDeleteButton({onClick}) {
 

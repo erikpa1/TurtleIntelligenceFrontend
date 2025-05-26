@@ -1,9 +1,10 @@
 import React from "react"
 import {useTranslation} from "react-i18next"
-import {Flex, Tabs} from "antd"
+import {Button, Flex, Tabs} from "antd"
 
 import WorldLibrary from "@TurtleApp/Routes/WorldDock/WorldLibrary"
 import WorldEntitiesHierarchy from "@TurtleApp/Routes/WorldDock/WorldEntitiesHierarchy"
+import {SettingOutlined} from "@ant-design/icons";
 
 
 export default function WorldHierarchy({world}) {
@@ -30,7 +31,11 @@ export default function WorldHierarchy({world}) {
                         key: "library",
                     },
                     {
-                        label: t("hierarchy"),
+                        label: (
+                            <Flex>
+                                {t("hierarchy")}
+                            </Flex>
+                        ),
                         key: "hierarchy",
                     },
 

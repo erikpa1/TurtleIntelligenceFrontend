@@ -29,8 +29,12 @@ export default function SelectItem({
     return (
         <Form.Item
             label={attribute}
+            style={{
+                margin: 0
+            }}
         >
             <Select
+                size={"small"}
                 disabled={disabled}
                 defaultValue={entity[attribute] ?? ""}
                 onChange={(value) => {

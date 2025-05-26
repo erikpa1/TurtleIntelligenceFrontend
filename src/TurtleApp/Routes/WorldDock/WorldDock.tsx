@@ -106,8 +106,8 @@ function _WorldDock({world}: _WorldDockProps) {
                         }}>
                             <WorldFiber world={world}/>
                         </div>
-                        <_Framing/>
-                        <AddButton/>
+                        {/*<_Framing/>*/}
+                        {/*<AddButton/>*/}
                     </div>
                 </Splitter.Panel>
 
