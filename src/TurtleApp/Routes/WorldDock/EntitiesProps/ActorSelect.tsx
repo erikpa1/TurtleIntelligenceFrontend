@@ -2,10 +2,11 @@ import React from "react";
 import Actor from "@TurtleApp/Data/Actor";
 import ActorsApi from "@TurtleApp/Api/ActorsApi";
 import SelectItem from "@Turtle/ReflectiveUI/SelectItem";
+import {TypeData} from "@Turtle/Data/Entity";
 
 interface ActorsSelectProps {
     attribute: string
-    typeData: any
+    typeData: TypeData
 }
 
 export function ActorsSelect({

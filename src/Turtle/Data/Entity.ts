@@ -1,5 +1,8 @@
 import {CreateUid, fetchMongoUid} from "../Utils/Uid";
 
+
+export type TypeData = {}
+
 export default class Entity {
 
     uid = ""
@@ -14,7 +17,7 @@ export default class Entity {
     modified = false
     created = false
 
-    typeData = {}
+    typeData: TypeData = {}
 
     ToJson(): any {
         return {
@@ -37,7 +40,6 @@ export default class Entity {
         this.dependencies = jObj.dependencies ?? {}
         this.typeData = jObj.typeData ?? {}
 
-        console.log(jObj)
     }
 
     async Duplicate() {

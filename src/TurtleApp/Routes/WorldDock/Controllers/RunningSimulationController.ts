@@ -46,8 +46,10 @@ export function runningSimulationController() {
     function simStepReceived(stepData: SimSecondUpdate) {
         setSecond(stepData.second)
 
-        if (stepData.spawned.length > 0) {
-            const spawnedOnes = stepData.spawned.map((val) => {
+        const spawned = Object.values(stepData.spawned)
+
+        if (spawned.length > 0) {
+            const spawnedOnes = spawned.map((val) => {
                 const tmp = new RuntimeActor()
                 tmp.FromJson(val)
                 return tmp
@@ -61,14 +63,14 @@ export function runningSimulationController() {
 
         }
 
-        if (stepData.states.size > 0) {
-            stepData.states.forEach((val, key) => {
+        const states = Object.entries(stepData.states)
+
+        if (states.length > 0) {
+            states.forEach(([key, val]) => {
                 aee.emit(`a-${key}`, val)
             })
         }
-
     }
-
 
     React.useEffect(() => {
         myIO.connect()

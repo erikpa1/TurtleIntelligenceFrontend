@@ -71,7 +71,7 @@ export default class Myio {
 
     _handleMessage(data) {
 
-        console.log(data)
+
         try {
             const parsedData = JSON.parse(data)
 

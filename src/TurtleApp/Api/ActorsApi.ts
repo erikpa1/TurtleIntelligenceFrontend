@@ -3,6 +3,7 @@ import turxios from "@Turtle/Api/Turxios";
 
 export default class ActorsApi {
 
+
     static async QueryActors(query?: any): Promise<Array<Actor>> {
 
         const data = (await turxios.get<Array<any>>("/api/actors/query", {
