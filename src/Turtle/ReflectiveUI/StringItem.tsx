@@ -1,4 +1,5 @@
 import {Form, Input} from "antd";
+import {useTranslation} from "react-i18next";
 
 
 interface StringItemProps {
@@ -14,9 +15,12 @@ export default function StringItem({
                                    }: StringItemProps) {
 
 
+    const [t] = useTranslation()
+
     return (
+
         <Form.Item
-            label={attribute}
+            label={t(attribute)}
             style={{
                 margin: 0
             }}

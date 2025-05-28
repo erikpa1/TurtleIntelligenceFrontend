@@ -1,4 +1,5 @@
 import {Form, Input, Select} from "antd";
+import {useTranslation} from "react-i18next";
 
 
 export interface SelectItemOptions {
@@ -26,9 +27,11 @@ export default function SelectItem({
 
     //TODO dorobit search + odstranit diakritiku
 
+    const [t] = useTranslation()
+
     return (
         <Form.Item
-            label={attribute}
+            label={t(attribute)}
             style={{
                 margin: 0
             }}

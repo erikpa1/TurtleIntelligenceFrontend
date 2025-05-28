@@ -89,9 +89,11 @@ export default function WorldEntitiesHierarchy({world}: WorldEntitiesHierarchyPr
             WorldEntitiesChanged={refresh}
         >
             <Tree
-                treeData={treeData}
-                defaultExpandAll={true}
+                blockNode
                 virtual
+                showLine
+                defaultExpandAll={true}
+                treeData={treeData}
             />
         </AeeWrapper>
     )

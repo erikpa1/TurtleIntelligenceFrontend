@@ -29,5 +29,10 @@
     "buffer": "Buffer",
     "simulation": "Simulation",
     "stop.connecting": "Stop connecting",
-    "create.actor": "Create actor"
+    "create.actor": "Create actor",
+    "name": "Name",
+    "type": "Type",
+    "capacity": "Capacity",
+    "initial_actor": "Initial actor",
+    "initial_count": "Initial count"
 }

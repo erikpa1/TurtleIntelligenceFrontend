@@ -154,6 +154,7 @@ export default class World {
         this.connections.delete(entity.uid)
 
         this.EmitEntitiesChanged()
+        this.EmitConnectionsChanged()
     }
 
     EmitEntitiesChanged() {
