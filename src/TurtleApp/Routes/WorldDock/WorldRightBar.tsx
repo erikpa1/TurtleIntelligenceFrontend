@@ -56,6 +56,8 @@ function _EntityEditProps({entity}: _EntityEditPropsProps) {
         <Form
             layout={'horizontal'}
             key={entity.uid}
+            labelCol={{span: 10}}
+            wrapperCol={{span: 15}}
         >
             <EntityNameProperty entity={entity}/>
 

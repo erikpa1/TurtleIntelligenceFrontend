@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next";
 
 
 export interface SelectItemOptions {
-    value: string
+    value: string | number
     label: string
 }
 

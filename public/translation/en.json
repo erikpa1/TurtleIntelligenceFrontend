@@ -34,5 +34,10 @@
     "type": "Type",
     "capacity": "Capacity",
     "initial_actor": "Initial actor",
-    "initial_count": "Initial count"
+    "initial_count": "Initial count",
+    "transformsTo": "Transforms to",
+    "processTime": "Process time",
+    "firstfree": "First free",
+    "roundrobin": "Round robin",
+    "mode": "Mode"
 }

@@ -5,6 +5,7 @@ import Entity from "@Turtle/Data/Entity"
 
 import {ActorsSelect} from "@TurtleApp/Routes/WorldDock/EntitiesProps/ActorSelect";
 import StringItem from "@Turtle/ReflectiveUI/StringItem";
+import TimeExrItem from "@Turtle/ReflectiveUI/TimeExprItem";
 
 interface ProcessEntityPropertiesProps {
     entity: Entity
@@ -24,22 +25,19 @@ export default function ProcessEntityProperties({
 
 
     return (
-        <Flex
-            vertical
-            gap={15}
-        >
+        <>
             <ActorsSelect
                 typeData={entity.typeData}
                 attribute={"transformsTo"}
             />
 
-            <StringItem
+            <TimeExrItem
                 attribute={"processTime"}
                 entity={entity.typeData}
             />
 
 
-        </Flex>
+        </>
     )
 }
 
