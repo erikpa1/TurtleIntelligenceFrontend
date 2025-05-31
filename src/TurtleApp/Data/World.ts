@@ -27,12 +27,11 @@ export default class World {
             })
         })
 
-
         const deletedConnections = new Array<[string, string]>()
 
-        this.createdConnections.forEach((val, key) => {
+        this.deletedConnections.forEach((val, key) => {
             val.forEach((val2) => {
-                createConnections.push([key, val2])
+                deletedConnections.push([key, val2])
             })
         })
 
@@ -123,7 +122,7 @@ export default class World {
             this.createdConnections.set(a.uid, new Set([b.uid]))
         }
 
-        aee.emit("WorldConnectionsChanged", null)
+        this.EmitConnectionsChanged()
     }
 
     DeleteConnection(a: Entity, b: Entity) {
@@ -131,13 +130,25 @@ export default class World {
 
         if (existingConn) {
             existingConn.delete(b.uid)
+        } else {
+            console.log("Trying to delete non existing connection: ", a, b)
         }
 
         const createdConn = this.createdConnections.get(a.uid)
 
         if (createdConn) {
             createdConn.delete(b.uid)
+        } else {
+            const existingConn = this.deletedConnections.get(a.uid)
+            if (existingConn) {
+                existingConn.add(b.uid)
+            } else {
+                this.deletedConnections.set(a.uid, new Set([b.uid]))
+            }
         }
+
+
+        this.EmitConnectionsChanged()
     }
 
     DeleteEntity(entity: Entity) {

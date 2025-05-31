@@ -1,7 +1,8 @@
 import React, {useMemo} from 'react'
-import {Cylinder, Cone, Sphere} from '@react-three/drei'
+import {Cylinder, Cone, Sphere, Box} from '@react-three/drei'
 import * as THREE from 'three'
 import ColorConstants from "@Turtle/Constants/ColorConstants";
+import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
 
 /**
  * CylinderBetweenPoints - Creates a cylinder between two 3D points with an arrow at the end
@@ -45,6 +46,7 @@ export default function CylinderBetweenPoints({
                                                   arrowRadius = 0.15,
                                                   children,
                                               }: CylinderBetweenPointsProps) {
+
 
     const HEIGHT = 0.25
 
@@ -136,6 +138,9 @@ export default function CylinderBetweenPoints({
                         {_MATERIAL}
                     </Cone>
                 )}
+
+
+
 
                 {children}
             </group>

@@ -1,6 +1,6 @@
 import React from "react"
 import {Button, Flex, Space} from "antd";
-import {MergeOutlined, PlayCircleOutlined, SaveOutlined, SettingOutlined} from "@ant-design/icons";
+import {DisconnectOutlined, MergeOutlined, PlayCircleOutlined, SaveOutlined, SettingOutlined} from "@ant-design/icons";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import {useTranslation} from "react-i18next";
 import aee from "@Turtle/Data/Aee";
@@ -40,6 +40,7 @@ export default function WorldTopBar({}) {
 
                 <_SaveButton/>
                 <_ConnectButton/>
+                <_DisconnectButton/>
 
 
                 <Flex
@@ -81,7 +82,6 @@ function _SaveButton() {
         <Button
             onClick={savePressed}
             type={"text"}
-
         >
             <SaveOutlined/>
             {t("save")}
@@ -131,6 +131,32 @@ function _ConnectButton() {
 
 }
 
+function _DisconnectButton() {
+
+    const {phase, setPhase} = useWorldConnection()
+
+
+    return (
+        <Button
+            type={"text"}
+            style={{
+                opacity: phase == -1 ? 0.5 : 1,
+                paddingLeft: "2px",
+                paddingRight: "2px",
+            }}
+            onClick={() => {
+
+                if (phase == -1) {
+                    setPhase(0)
+                } else {
+                    setPhase(-1)
+                }
+            }}
+        >
+            <DisconnectOutlined/>
+        </Button>
+    )
+}
 
 function _SimulationSection({}) {
 
@@ -196,6 +222,7 @@ function _SimulationSection({}) {
                 <Button
                     onClick={simulatePressed}
                     type={"primary"}
+
                 >
 
 

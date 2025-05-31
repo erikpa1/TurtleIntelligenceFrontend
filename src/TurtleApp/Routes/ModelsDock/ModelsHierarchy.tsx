@@ -86,6 +86,7 @@ export default function ModelsHierarchy({}) {
         TurtleApp.Lock()
         await ModelsApi.DeleteModel(uid)
         TurtleApp.Unlock()
+        refresh()
     }
 
     async function refresh() {
