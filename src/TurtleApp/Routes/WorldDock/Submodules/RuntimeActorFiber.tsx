@@ -17,14 +17,12 @@ export default function RuntimeActorFiber({actor}: RuntimeActorFiberProps) {
 
     function refreshFn(newState: any) {
 
-        console.log(newState)
-
         if (newState.position) {
             actor.position = newState.position
             setPosition(newState.position)
         }
-
     }
+
 
     return (
         <AeeWrapper
@@ -39,7 +37,9 @@ export default function RuntimeActorFiber({actor}: RuntimeActorFiberProps) {
                     args={[1, 1, 1, 32]}
                     scale={[0.25, 1.5, 0.25]}
                     position={[0, 0.75, 0]}
-                />
+                >
+                    <meshStandardMaterial color={actor.color}/>
+                </Cylinder>
             </group>
         </AeeWrapper>
     )

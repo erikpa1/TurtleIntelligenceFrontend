@@ -11,6 +11,7 @@ export default class EntitiesFactory {
     static TYPE_QUEUE = "queue"
     static TYPE_DELAY = "delay"
     static TYPE_SWITCH = "switch"
+    static TYPE_DOWNTIME = "downtime"
 
     static ICONS = {
         [EntitiesFactory.TYPE_SPAWN]: "/icons/flag_check.svg",
@@ -22,6 +23,7 @@ export default class EntitiesFactory {
         [EntitiesFactory.TYPE_DELAY]: "/icons/pending_actions.svg",
         [EntitiesFactory.TYPE_SWITCH]: "/icons/fan_indirect.svg",
         [EntitiesFactory.TYPE_SINK]: "/icons/arrow_and_edge.svg",
+        [EntitiesFactory.TYPE_DOWNTIME]: "/icons/arrow_and_edge.svg",
     }
 
     static ICONS_COMPONENTS = {
@@ -38,6 +40,7 @@ export default class EntitiesFactory {
         [EntitiesFactory.TYPE_DELAY]: "/iconsPng/pending_actions.png",
         [EntitiesFactory.TYPE_SWITCH]: "/iconsPng/fan_indirect.png",
         [EntitiesFactory.TYPE_SINK]: "/iconsPng/arrow_and_edge.png",
+        [EntitiesFactory.TYPE_DOWNTIME]: "/iconsPng/arrow_and_edge.png",
     }
 
     static RIGHT_BAR_COMPONENTS = {}

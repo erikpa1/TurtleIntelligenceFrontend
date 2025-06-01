@@ -17,6 +17,8 @@ import EntityForm from "@Turtle/Components/Forms/EntityForm";
 import ModelProperties from "@TurtleApp/Data/Model_Properties";
 import ModelsApi from "@TurtleApp/Api/ModelsApi";
 import ActorProperties from "@TurtleApp/Data/Actor_Properties";
+import {BgColorsOutlined} from "@ant-design/icons";
+import IconColor from "@Turtle/Icons/IconColor";
 
 export default function ActorsHierarchy() {
 
@@ -24,8 +26,20 @@ export default function ActorsHierarchy() {
 
     const {activate, deactivate} = useTurtleModal()
 
-    function editActor(actorUid: string) {
-        console.log("Edit pressed")
+    function editActor(actor: Actor) {
+
+        activate({
+            title: t("edit.actor"),
+            content: (
+                <EntityForm
+                    entity={actor}
+                    properties={ActorProperties.Get()}
+                    onBeforeSubmit={deactivate}
+                    onAfterSubmit={refresh}
+                    submitFunction={ActorsApi.SaveActor}
+                />
+            )
+        })
     }
 
 
@@ -71,6 +85,10 @@ export default function ActorsHierarchy() {
                         title: (
                             <HierarchyFlex>
 
+                                <IconColor
+                                    color={val.color}
+                                    width="20px"
+                                />
 
                                 {val.name}
 
@@ -78,7 +96,7 @@ export default function ActorsHierarchy() {
 
                                     <HierarchyEditButton
                                         onClick={() => {
-                                            editActor(val.uid)
+                                            editActor(val)
                                         }}
                                     />
                                     <HierarchyDeleteButton

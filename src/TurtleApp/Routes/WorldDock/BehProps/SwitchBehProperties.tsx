@@ -1,5 +1,5 @@
 import Entity from "@Turtle/Data/Entity";
-import {ActorsSelect} from "@TurtleApp/Routes/WorldDock/EntitiesProps/ActorSelect";
+import {ActorsSelect} from "@TurtleApp/Routes/WorldDock/BehProps/ActorSelect";
 import StringItem from "@Turtle/ReflectiveUI/StringItem";
 import React from "react";
 import SelectItem from "@Turtle/ReflectiveUI/SelectItem";
@@ -11,7 +11,7 @@ interface ProcessEntityPropertiesProps {
 }
 
 
-export default function SwitchEntityProperties({
+export default function SwitchBehProperties({
                                                    entity,
                                                }: ProcessEntityPropertiesProps) {
 

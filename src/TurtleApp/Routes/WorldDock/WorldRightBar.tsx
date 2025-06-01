@@ -4,8 +4,9 @@ import Entity from "@Turtle/Data/Entity";
 import React from "react";
 import {Empty, Form} from "antd";
 
-import {EntityNameProperty, EntityTypeProperty} from "@TurtleApp/Routes/WorldDock/EntitiesProps/Common";
+import {EntityNameProperty, EntityTypeProperty} from "@TurtleApp/Routes/WorldDock/BehProps/Common";
 import EntitiesFactory from "@TurtleApp/Factories/EntitiesFactory";
+import ErrorBoundary, {CompactErrorView} from "@Turtle/Components/ErrorBoundary";
 
 
 export default function WorldRightBar() {
@@ -42,16 +43,6 @@ interface _EntityEditPropsProps {
 function _EntityEditProps({entity}: _EntityEditPropsProps) {
 
 
-    const childToShow = React.useMemo(() => {
-        const component = EntitiesFactory.GetRightBarComponent(entity.type)
-        let child = <></>
-        if (component) {
-            child = React.createElement(component, {entity})
-        }
-        return child
-    }, [entity])
-
-
     return (
         <Form
             layout={'horizontal'}
@@ -63,13 +54,11 @@ function _EntityEditProps({entity}: _EntityEditPropsProps) {
 
             <EntityTypeProperty entity={entity}/>
 
-            {
-                childToShow
-            }
+            <_ViewDispatcher entity={entity}/>
 
             {/*{*/}
             {/*    entity.type == "buffer" && (*/}
-            {/*        <BufferEntitiyProperties*/}
+            {/*        <BufferBehProperties*/}
             {/*            entity={entity}*/}
             {/*        />*/}
             {/*    )*/}
@@ -77,5 +66,22 @@ function _EntityEditProps({entity}: _EntityEditPropsProps) {
 
 
         </Form>
+    )
+}
+
+function _ViewDispatcher({entity}: _EntityEditPropsProps) {
+
+
+    const childToShow = React.useMemo(() => {
+        const component = EntitiesFactory.GetRightBarComponent(entity.type)
+        let child = <></>
+        if (component) {
+            child = React.createElement(component, {entity})
+        }
+        return child
+    }, [entity])
+
+    return (
+        childToShow
     )
 }

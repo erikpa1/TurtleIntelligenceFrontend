@@ -1,16 +1,16 @@
 import React from "react"
 import Entity from "@Turtle/Data/Entity"
 
-import {ActorsSelect} from "@TurtleApp/Routes/WorldDock/EntitiesProps/ActorSelect";
+import {ActorsSelect} from "@TurtleApp/Routes/WorldDock/BehProps/ActorSelect";
 import TimeExrItem from "@Turtle/ReflectiveUI/TimeExprItem";
 
 interface ProcessEntityPropertiesProps {
     entity: Entity
 }
 
-export default function ProcessEntityProperties({
-                                                    entity,
-                                                }: ProcessEntityPropertiesProps) {
+export default function ProcessBehProperties({
+                                                 entity,
+                                             }: ProcessEntityPropertiesProps) {
 
 
     if (Object.keys(entity.typeData).length === 0) {

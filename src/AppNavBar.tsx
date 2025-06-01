@@ -87,6 +87,14 @@ export default function AppNavBar() {
                                 onClick: () => {
                                     navigate("/actors")
                                 }
+                            },
+                            {
+                                key: "llm",
+                                icon: <UnorderedListOutlined/>,
+                                label: t("llm"),
+                                onClick: () => {
+                                    navigate("/llm-chat")
+                                }
                             }
                         ]}
                     />

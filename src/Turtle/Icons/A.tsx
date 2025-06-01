@@ -5,10 +5,8 @@ export default function TurtleIcon(props) {
     return (
         <span
             role={"img"}
-            aria-label={"container"}
-            className={`anticon anticon-container ${props.className ?? ""}`}
+            className={`anticon`}
             style={{
-                display: "block",
                 // transform: "translateX(-50%) translateY(50%)",
             }}
         >

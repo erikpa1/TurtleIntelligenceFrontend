@@ -123,18 +123,10 @@ export function HierarchyDeleteButton({onClick}) {
 export function HierarchyEditButton({onClick}) {
 
     return (
-        <Popconfirm
-            title={"are.you.sure"}
-            onConfirm={(e) => {
-                e?.preventDefault()
-                onClick(e)
-            }}
-        >
-            <HierarchyCustomIcon
-                icon={<EditOutlined/>}
-            />
-        </Popconfirm>
-
+        <HierarchyCustomIcon
+            onClick={onClick}
+            icon={<EditOutlined/>}
+        />
     )
 }
 

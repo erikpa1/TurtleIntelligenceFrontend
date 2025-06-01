@@ -2,14 +2,14 @@ import React from "react"
 import StringItem from "@Turtle/ReflectiveUI/StringItem";
 import {Flex} from "antd";
 import IntItem from "@Turtle/ReflectiveUI/NumberItem";
-import {ActorsSelect} from "@TurtleApp/Routes/WorldDock/EntitiesProps/ActorSelect";
+import {ActorsSelect} from "@TurtleApp/Routes/WorldDock/BehProps/ActorSelect";
 import Entity from "@Turtle/Data/Entity";
 
 interface BufferEntityPropertiesProps {
     entity: Entity
 }
 
-export default function BufferEntitiyProperties({
+export default function BufferBehProperties({
                                                     entity,
                                                 }: BufferEntityPropertiesProps) {
 

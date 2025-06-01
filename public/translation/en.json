@@ -41,5 +41,6 @@
     "roundrobin": "Round robin",
     "mode": "Mode",
     "queue": "Queue",
-    "limit": "Limit"
+    "limit": "Limit",
+    "edit.actor": "Edit actor"
 }

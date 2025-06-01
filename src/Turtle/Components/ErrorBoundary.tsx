@@ -157,7 +157,11 @@ function _ErrorView({error = ""}): any {
     }
 }
 
-export function CompactErrorView({error = ""}): any {
+interface CompactErrorViewProps {
+    error?: any
+}
+
+export function CompactErrorView({error = ""}: CompactErrorViewProps): any {
     return (
         <_ErrorCoreCompactErrorView
             error={error}

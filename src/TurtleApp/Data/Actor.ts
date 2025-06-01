@@ -36,12 +36,16 @@ export class RuntimeActor {
     name = ""
     position = [0, 0, 0]
 
+    color = ""
+
     FromJson(data: any) {
         this.id = data.id ?? 0
         this.uid = data.uid ?? ""
         this.name = data.name ?? ""
         this.position = data.position ?? [0, 0, 0]
+        this.color = data.color ?? ColorConstants.AZURE_BLUE
+
     }
-    
+
 
 }
