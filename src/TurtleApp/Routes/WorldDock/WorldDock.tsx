@@ -3,8 +3,6 @@ import React from "react"
 import {Button, Divider, Flex, Spin, Splitter, Tabs} from "antd";
 
 import WorldFiber from "./WorldFiber";
-import {AddButton} from "../../../main/AddButton";
-import {MainScreenTopBar} from "../../../main/MainScreenTopBar";
 import WorldHierarchy from "@TurtleApp/Routes/WorldDock/WorldHierarchy";
 import {useParams} from "react-router-dom";
 

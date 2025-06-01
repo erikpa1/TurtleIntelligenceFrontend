@@ -24,16 +24,10 @@ export default function LLMDock() {
                     defaultSize="20%"
                     style={{
                         backgroundColor: "white",
-                        padding: "15px"
+                        padding: bigPadding
                     }}
                 >
-                    <div style={{
-                        paddingLeft: "15px",
-                        paddingRight: "15px"
-                    }}>
-                        <LLMChatHierarchy/>
-                    </div>
-
+                    <LLMChatHierarchy/>
                 </Splitter.Panel>
 
                 <Splitter.Panel
