@@ -1,10 +1,7 @@
 import React from "react"
-import IntItem from "@Turtle/ReflectiveUI/NumberItem"
-import {Flex} from "antd"
 import Entity from "@Turtle/Data/Entity"
 
 import {ActorsSelect} from "@TurtleApp/Routes/WorldDock/EntitiesProps/ActorSelect";
-import StringItem from "@Turtle/ReflectiveUI/StringItem";
 import TimeExrItem from "@Turtle/ReflectiveUI/TimeExprItem";
 
 interface ProcessEntityPropertiesProps {

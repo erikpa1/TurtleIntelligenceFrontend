@@ -39,5 +39,7 @@
     "processTime": "Process time",
     "firstfree": "First free",
     "roundrobin": "Round robin",
-    "mode": "Mode"
+    "mode": "Mode",
+    "queue": "Queue",
+    "limit": "Limit"
 }

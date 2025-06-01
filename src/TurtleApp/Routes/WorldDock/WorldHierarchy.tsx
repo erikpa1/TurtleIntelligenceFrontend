@@ -2,7 +2,7 @@ import React from "react"
 import {useTranslation} from "react-i18next"
 import {Button, Flex, Tabs} from "antd"
 
-import WorldLibrary from "@TurtleApp/Routes/WorldDock/WorldLibrary"
+import SimEntitiesLibrary from "@TurtleApp/Routes/WorldDock/SimEntitiesLibrary"
 import WorldEntitiesHierarchy from "@TurtleApp/Routes/WorldDock/WorldEntitiesHierarchy"
 import {SettingOutlined} from "@ant-design/icons";
 
@@ -44,7 +44,7 @@ export default function WorldHierarchy({world}) {
 
             {
                 segment === "library" && (
-                    <WorldLibrary/>
+                    <SimEntitiesLibrary/>
                 )
             }
 

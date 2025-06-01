@@ -12,12 +12,15 @@ interface BufferEntityPropertiesProps {
 export default function BufferEntitiyProperties({
                                                     entity,
                                                 }: BufferEntityPropertiesProps) {
-    return (
-        <Flex
-            vertical
-            gap={5}
-        >
 
+    if (Object.keys(entity.typeData).length === 0) {
+        entity.typeData = {
+            capacity: 10,
+        }
+    }
+
+    return (
+        <>
             <StringItem
                 attribute={"capacity"}
                 entity={entity}
@@ -33,7 +36,7 @@ export default function BufferEntitiyProperties({
                 entity={entity.typeData}
             />
 
-        </Flex>
+        </>
     )
 }
 

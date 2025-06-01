@@ -1,17 +1,17 @@
-import {useTranslation} from "react-i18next";
-import React from "react";
-import {Flex, Tree, TreeDataNode} from "antd";
-import Entity from "@Turtle/Data/Entity";
-import {WorldSingleton} from "@TurtleApp/Data/World";
-import aee from "@Turtle/Data/Aee";
-import {HierarchyCustomIcon} from "@Turtle/Components/HierarchyComponents";
-import TurtleApp from "@TurtleApp/TurtleApp";
-import {fetchMongoUid} from "@Turtle/Utils/Uid";
-import IconFlagCheck from "@Turtle/Icons/IconFlagCheck";
-import EntitiesFactory from "@TurtleApp/Factories/EntitiesFactory";
+import {useTranslation} from "react-i18next"
+import React from "react"
+import {Flex, Tree, TreeDataNode} from "antd"
+import Entity from "@Turtle/Data/Entity"
+import {WorldSingleton} from "@TurtleApp/Data/World"
+import aee from "@Turtle/Data/Aee"
+import {HierarchyCustomIcon} from "@Turtle/Components/HierarchyComponents"
+import TurtleApp from "@TurtleApp/TurtleApp"
+import {fetchMongoUid} from "@Turtle/Utils/Uid"
+import IconFlagCheck from "@Turtle/Icons/IconFlagCheck"
+import EntitiesFactory from "@TurtleApp/Factories/EntitiesFactory"
 
 
-export default function WorldLibrary() {
+export default function SimEntitiesLibrary() {
 
     const [t] = useTranslation()
 
@@ -59,15 +59,15 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
 
     const basicEntities = React.useMemo(() => {
         return [
-            {title: t("spawn"), key: "spawn"},
-            {title: t("process"), key: "process"},
-            {title: t("delay"), key: "delay",},
-            {title: t("buffer"), key: "buffer"},
-            {title: t("queue"), key: "queue"},
-            {title: t("merge"), key: "merge"},
-            {title: t("split"), key: "split"},
-            {title: t("switch"), key: "switch"},
-            {title: t("sink"), key: "sink"},
+            {title: t(EntitiesFactory.TYPE_SPAWN), key: EntitiesFactory.TYPE_SPAWN},
+            {title: t(EntitiesFactory.TYPE_PROCESS), key: EntitiesFactory.TYPE_PROCESS},
+            {title: t(EntitiesFactory.TYPE_DELAY), key: EntitiesFactory.TYPE_DELAY},
+            {title: t(EntitiesFactory.TYPE_BUFFER), key: EntitiesFactory.TYPE_BUFFER},
+            {title: t(EntitiesFactory.TYPE_QUEUE), key: EntitiesFactory.TYPE_QUEUE},
+            {title: t(EntitiesFactory.TYPE_MERGE), key: EntitiesFactory.TYPE_MERGE},
+            {title: t(EntitiesFactory.TYPE_SPLIT), key: EntitiesFactory.TYPE_SPLIT},
+            {title: t(EntitiesFactory.TYPE_SWITCH), key: EntitiesFactory.TYPE_SWITCH},
+            {title: t(EntitiesFactory.TYPE_SINK), key: EntitiesFactory.TYPE_SINK},
         ]
     }, [])
 
