@@ -1,3 +1,5 @@
+import React from "react"
+
 import {useTranslation} from "react-i18next";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {useNavigate} from "react-router-dom";
@@ -12,12 +14,9 @@ import Model from "@TurtleApp/Data/Model"
 import EntityForm from "@Turtle/Components/Forms/EntityForm"
 import ModelProperties from "@TurtleApp/Data/Model_Properties"
 import ModelsApi from "@TurtleApp/Api/ModelsApi"
-import React from "react"
-import AIChatApi from "@Turtle/Api/AIChatApi";
 
 
-export default function LLMChatHierarchy() {
-
+export default function LLMClusterHierarchy() {
 
     const [t] = useTranslation()
 
@@ -25,16 +24,16 @@ export default function LLMChatHierarchy() {
 
     const navigate = useNavigate()
 
+
     function createHierarchy(nnModels: Array<any>) {
         return [
             {
-                key: "chat",
+                key: "nnmodels",
                 title: (
                     <Flex>
-                        {t("chat")} ({nnModels.length})
+                        {t("nn.models")} ({nnModels.length})
                         <HierarchyRightFlex>
-                            <HierarchyAddButton onClick={createChatTopicPressed}/>
-                            <HierarchyAddButton onClick={chatClicked}/>
+                            <HierarchyAddButton onClick={createModelPressed}/>
                         </HierarchyRightFlex>
                     </Flex>
                 ),
@@ -43,7 +42,7 @@ export default function LLMChatHierarchy() {
                     return {
                         key: val.uid,
                         title: (
-                            <HierarchyFlex onClick={chatClicked}>
+                            <HierarchyFlex onClick={modelClicked}>
 
                                 <HierarchyRightFlex>
                                     <HierarchyDeleteButton
@@ -60,12 +59,21 @@ export default function LLMChatHierarchy() {
         ]
     }
 
-    async function chatClicked() {
-        await AIChatApi.Chat("", "How are you")
-    }
+    function createModelPressed() {
+        const tmp = new Model()
 
-    function createChatTopicPressed() {
-
+        activate({
+            title: t("create.nnmodel"),
+            content: (
+                <EntityForm
+                    entity={tmp}
+                    properties={ModelProperties.Get()}
+                    submitFunction={ModelsApi.COU}
+                    onBeforeSubmit={deactivate}
+                    onAfterSubmit={refresh}
+                />
+            )
+        })
     }
 
 

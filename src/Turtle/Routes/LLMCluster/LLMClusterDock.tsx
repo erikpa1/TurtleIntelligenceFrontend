@@ -2,19 +2,12 @@ import {Splitter} from "antd"
 import React from "react"
 
 import WorldControllers from "@TurtleApp/Routes/WorldDock/WorldControllers"
-import LLMChatHierarchy from "@Turtle/Routes/LLMDock/LLMChatHierarchy"
-import LLMChatTopBar from "@Turtle/Routes/LLMDock/LLMChatTopBar";
-import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme";
-import {useParams} from "react-router-dom";
-import LLMChatView from "@Turtle/Routes/LLMDock/LLMChatView";
+import LLMChatTopBar from "@Turtle/Routes/LLMDock/LLMChatTopBar"
+import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme"
 
-export default function LLMDock() {
+export default function LLMClusterDock() {
 
     const {bigPadding} = useTurtleTheme()
-
-
-    const {chatUid} = useParams()
-
 
     return (
         <div>
@@ -33,16 +26,22 @@ export default function LLMDock() {
                         padding: bigPadding
                     }}
                 >
-                    <LLMChatHierarchy/>
+                    <LLMClusterDock/>
+
                 </Splitter.Panel>
 
                 <Splitter.Panel
                     defaultSize="80%"
-                    style={{
-                        height: "95vh",
-                    }}
                 >
-                    <LLMChatView/>
+                    <div style={{
+                        position: "relative",
+                    }}>
+                        <div style={{
+                            height: "95vh",
+                        }}>
+
+                        </div>
+                    </div>
                 </Splitter.Panel>
 
             </Splitter>
