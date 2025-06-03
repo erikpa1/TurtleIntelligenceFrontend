@@ -199,46 +199,100 @@ function QuestionsAnswerHistory({}) {
 
 function UserSegment({message = "Sample user message"}) {
     return (
-        <Flex justify="flex-end" style={{width: "100%"}}>
-            <div style={{
-                maxWidth: "70%",
-                display: "flex",
-                alignItems: "flex-start",
-                gap: "12px",
-                flexDirection: "row-reverse"
-            }}>
-                <Avatar
-                    icon={<UserOutlined/>}
-                    style={{
-                        backgroundColor: "#1890ff",
-                        flexShrink: 0,
-                        marginTop: "4px"
-                    }}
-                />
-                <Card
+
+        <Flex vertical gap={10}>
+            <Flex justify="flex-end" style={{width: "100%"}}>
+                <div style={{
+                    maxWidth: "70%",
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "12px",
+                    flexDirection: "row-reverse"
+                }}>
+                    <Avatar
+                        icon={<UserOutlined/>}
+                        style={{
+                            backgroundColor: "#1890ff",
+                            flexShrink: 0,
+                            marginTop: "4px"
+                        }}
+                    />
+                    <Card
+                        size="small"
+                        style={{
+                            backgroundColor: "#1890ff",
+                            border: "none",
+                            borderRadius: "18px 18px 4px 18px",
+                            boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
+                        }}
+                        bodyStyle={{
+                            padding: "12px 16px",
+                            color: "white"
+                        }}
+                    >
+                        <div style={{
+                            fontSize: "14px",
+                            lineHeight: "1.5",
+                            whiteSpace: "pre-wrap",
+                            color: "white"
+                        }}>
+                            {message}
+                        </div>
+
+                    </Card>
+
+
+                </div>
+
+
+            </Flex>
+
+            {/* Action buttons */}
+            <Flex
+                justify={"end"}
+            >
+                <Button
+                    type="text"
                     size="small"
+                    icon={<EditOutlined/>}
                     style={{
-                        backgroundColor: "#1890ff",
-                        border: "none",
-                        borderRadius: "18px 18px 4px 18px",
-                        boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
-                    }}
-                    bodyStyle={{
-                        padding: "12px 16px",
-                        color: "white"
+                        color: "#8c8c8c",
+                        fontSize: "12px",
+                        height: "auto",
+                        padding: "4px 8px"
                     }}
                 >
-                    <div style={{
-                        fontSize: "14px",
-                        lineHeight: "1.5",
-                        whiteSpace: "pre-wrap",
-                        color: "white"
-                    }}>
-                        {message}
-                    </div>
-                </Card>
-            </div>
+                    Edit
+                </Button>
+                <Button
+                    type="text"
+                    size="small"
+                    icon={<CopyOutlined/>}
+                    style={{
+                        color: "#8c8c8c",
+                        fontSize: "12px",
+                        height: "auto",
+                        padding: "4px 8px"
+                    }}
+                >
+                    Copy
+                </Button>
+                <Button
+                    type="text"
+                    size="small"
+                    icon={<DeleteOutlined/>}
+                    style={{
+                        color: "#ff4d4f",
+                        fontSize: "12px",
+                        height: "auto",
+                        padding: "4px 8px"
+                    }}
+                >
+                    Delete
+                </Button>
+            </Flex>
         </Flex>
+
     );
 }
 
@@ -289,19 +343,6 @@ function LLMSegment({message = "Sample LLM response"}) {
                         gap: "8px",
                         paddingLeft: "4px"
                     }}>
-                        <Button
-                            type="text"
-                            size="small"
-                            icon={<EditOutlined/>}
-                            style={{
-                                color: "#8c8c8c",
-                                fontSize: "12px",
-                                height: "auto",
-                                padding: "4px 8px"
-                            }}
-                        >
-                            Edit
-                        </Button>
                         <Button
                             type="text"
                             size="small"
