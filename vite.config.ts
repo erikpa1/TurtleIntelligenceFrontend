@@ -4,6 +4,8 @@ import basicSsl from "@vitejs/plugin-basic-ssl";
 
 import path from "path";
 
+
+
 // basicSsl()
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,7 +16,7 @@ export default defineConfig({
         },
     },
 
-    plugins: [react(),],
+    plugins: [react()],
     build: {
         outDir: "build",
         target: "es2017",

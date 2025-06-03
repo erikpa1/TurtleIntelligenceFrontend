@@ -1,6 +1,5 @@
 import Container from "@TurtleApp/Data/Container"
-import axios from "axios";
-import {Turxios} from "@Turtle/Api/Turxios";
+import Turxios from "@Turtle/Api/Turxios";
 
 export class ContainersApi {
 
@@ -12,7 +11,7 @@ export class ContainersApi {
     static async CreateContainer(container: Container) {
         const formData = new FormData()
         formData.set("data", JSON.stringify(container.ToJson()))
-        await axios.post('/api/container', formData);
+        await Turxios.post('/api/container', formData);
     }
 
 }

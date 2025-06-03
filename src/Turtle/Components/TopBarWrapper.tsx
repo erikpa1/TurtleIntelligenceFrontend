@@ -14,7 +14,6 @@ export default function TopBarWrapper({children}) {
 
             <Flex
                 gap={5}
-                justify={"center"}
                 style={{
                     paddingTop: "5px",
                 }}

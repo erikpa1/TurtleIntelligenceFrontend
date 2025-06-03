@@ -40,9 +40,12 @@ export default function LLMDock() {
                     defaultSize="80%"
                     style={{
                         height: "95vh",
+
                     }}
                 >
                     <LLMChatView/>
+
+
                 </Splitter.Panel>
 
             </Splitter>
