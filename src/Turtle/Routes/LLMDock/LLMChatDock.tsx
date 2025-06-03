@@ -8,7 +8,7 @@ import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme";
 import {useParams} from "react-router-dom";
 import LLMChatView from "@Turtle/Routes/LLMDock/LLMChatView";
 
-export default function LLMDock() {
+export default function LLMChatDock() {
 
     const {bigPadding} = useTurtleTheme()
 
@@ -43,7 +43,7 @@ export default function LLMDock() {
 
                     }}
                 >
-                    <LLMChatView/>
+                    <LLMChatView chatUid={chatUid}/>
 
 
                 </Splitter.Panel>

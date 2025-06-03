@@ -10,11 +10,39 @@ import TextArea from "antd/es/input/TextArea";
 import {PaperClipOutlined, SettingOutlined} from '@ant-design/icons';
 import React from "react";
 import LLMChatContext from "@Turtle/Routes/LLMDock/LLMChatContext";
+import LLMChatInput from "@Turtle/Routes/LLMDock/LLMChatInput";
+import AIChatApi from "@Turtle/Api/AIChatApi";
+import {useNavigate} from "react-router-dom";
 
-export default function LLMChatView({}) {
+interface LLMChatViewProps {
+    chatUid: string
+}
 
+
+export default function LLMChatView({chatUid}) {
+
+    const navigate = useNavigate()
 
     const context = React.useMemo(() => new LLMChatContext(), [])
+
+    const [isProcessing, setIsProcessing] = React.useState(false)
+
+    const [chatHistory, setChatHistory] = React.useState<Array<string>>([])
+
+
+    async function onChatResponse(chatText: string) {
+        setIsProcessing(true)
+
+        if (chatUid === "new") {
+            const chatUid = await AIChatApi.CreateNewChat()
+            navigate(chatUid)
+            await AIChatApi.Chat(chatUid, chatText)
+        } else {
+            await AIChatApi.Chat(chatUid, chatText)
+        }
+
+        setIsProcessing(false)
+    }
 
 
     return (
@@ -37,146 +65,15 @@ export default function LLMChatView({}) {
                 <QuestionsAnswerHistory/>
             </div>
 
-            <AskWindow/>
+            <LLMChatInput
+                onChat={onChatResponse}
+                isBlocked={isProcessing}
+            />
+
         </Flex>
     );
 }
 
-function AskWindow({}) {
-    return (
-        <div style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            padding: "20px 30px 30px 30px",
-            borderTop: "1px solid #f0f0f0",
-        }}>
-            <div style={{
-                width: "100%",
-                maxWidth: 800,
-                position: "relative"
-            }}>
-                <TextArea
-                    placeholder="Type your message here..."
-                    autoSize={{
-                        minRows: 4,
-                        maxRows: 6
-                    }}
-                    style={{
-                        width: "100%",
-                        borderRadius: "12px",
-                        fontSize: "14px",
-                        resize: "none",
-                        paddingRight: "80px", // Add space for the button
-                        // Custom scrollbar styles
-                        scrollbarWidth: "thin",
-                        scrollbarColor: "#d9d9d9 transparent",
-                        // Webkit scrollbar styles
-                        "&::-webkit-scrollbar": {
-                            width: "6px"
-                        },
-                        "&::-webkit-scrollbar-track": {
-                            background: "transparent"
-                        },
-                        "&::-webkit-scrollbar-thumb": {
-                            background: "#d9d9d9",
-                            borderRadius: "3px"
-                        },
-                        "&::-webkit-scrollbar-thumb:hover": {
-                            background: "#bfbfbf"
-                        }
-                    } as any}
-                />
-                <Button
-                    type="primary"
-                    size="large"
-                    style={{
-                        position: "absolute",
-                        right: "30px",
-                        bottom: "50px",
-                        height: "36px",
-                        borderRadius: "8px",
-                        fontWeight: 500,
-                        padding: "0 16px",
-                        zIndex: 1
-                    }}
-                >
-                    Send
-                </Button>
-
-                {/* Icon buttons below textarea */}
-                <div style={{
-                    display: "flex",
-                    gap: "8px",
-                    marginTop: "8px",
-                    justifyContent: "flex-start"
-                }}>
-                    <Button
-                        type="text"
-                        size="small"
-                        icon={<PaperClipOutlined/>}
-                        style={{
-                            color: "#8c8c8c",
-                            fontSize: "14px",
-                            height: "32px",
-                            padding: "0 8px",
-                            display: "flex",
-                            alignItems: "center",
-                            borderRadius: "6px"
-                        }}
-                        onClick={() => {
-                            // Handle file upload
-                            console.log('Add file clicked');
-                        }}
-                    >
-                        Add file
-                    </Button>
-                    <Button
-                        type="text"
-                        size="small"
-                        icon={<SettingOutlined/>}
-                        style={{
-                            color: "#8c8c8c",
-                            fontSize: "14px",
-                            height: "32px",
-                            padding: "0 8px",
-                            display: "flex",
-                            alignItems: "center",
-                            borderRadius: "6px"
-                        }}
-                        onClick={() => {
-                            // Handle settings
-                            console.log('Settings clicked');
-                        }}
-                    >
-                        Settings
-                    </Button>
-                </div>
-
-                {/* Custom scrollbar styles as CSS */}
-                <style>{`
-                    .ant-input::-webkit-scrollbar {
-                        width: 6px;
-                    }
-
-                    .ant-input::-webkit-scrollbar-track {
-                        background: transparent;
-                    }
-
-                    .ant-input::-webkit-scrollbar-thumb {
-                        background: #d9d9d9;
-                        border-radius: 3px;
-                    }
-
-                    .ant-input::-webkit-scrollbar-thumb:hover {
-                        background: #bfbfbf;
-                    }
-                `}</style>
-            </div>
-        </div>
-    )
-}
 
 function QuestionsAnswerHistory({}) {
     return (

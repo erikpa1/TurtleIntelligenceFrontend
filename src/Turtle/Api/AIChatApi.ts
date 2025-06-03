@@ -10,4 +10,8 @@ export default class AIChatApi {
 
         await Turxios.post("/api/llm/chat-ask", data)
     }
+
+    static async CreateNewChat(): Promise<string> {
+        return (await Turxios.post("/api/llm/chat/start")).data
+    }
 }

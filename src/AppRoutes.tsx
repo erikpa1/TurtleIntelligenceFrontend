@@ -9,7 +9,7 @@ const ContainersDock = React.lazy(() => import("@TurtleApp/Routes/ContainersDock
 const WorldDock = React.lazy(() => import("@TurtleApp/Routes/WorldDock/WorldDock"))
 const ModelsDock = React.lazy(() => import( "@TurtleApp/Routes/ModelsDock/ModelsDock"))
 const NNDock = React.lazy(() => import("@TurtleApp/Routes/NN/NNDock"))
-const LLMDOck = React.lazy(() => import("@Turtle/Routes/LLMDock/LLMDock"))
+const LLMDOck = React.lazy(() => import("@Turtle/Routes/LLMDock/LLMChatDock"))
 
 export default function AppRoutes({}) {
     return (
@@ -22,6 +22,7 @@ export default function AppRoutes({}) {
             <Route path={"/documentation/:topic/:document"} element={<DocumentationDock/>}/>
             <Route path={"/actors"} element={<ActorsDock/>}/>
             <Route path={"/llm-chat"} element={<LLMDOck/>}/>
+            <Route path={"/llm-chat/:chatUid"} element={<LLMDOck/>}/>
         </Routes>
     );
 }

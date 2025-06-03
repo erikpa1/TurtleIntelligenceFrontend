@@ -8,12 +8,8 @@ import {
     HierarchyFlex,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents"
-import Model from "@TurtleApp/Data/Model"
-import EntityForm from "@Turtle/Components/Forms/EntityForm"
-import ModelProperties from "@TurtleApp/Data/Model_Properties"
-import ModelsApi from "@TurtleApp/Api/ModelsApi"
+
 import React from "react"
-import AIChatApi from "@Turtle/Api/AIChatApi";
 
 
 export default function LLMChatHierarchy() {
@@ -34,7 +30,7 @@ export default function LLMChatHierarchy() {
                         {t("chat")} ({nnModels.length})
                         <HierarchyRightFlex>
                             <HierarchyAddButton onClick={createChatTopicPressed}/>
-                            <HierarchyAddButton onClick={chatClicked}/>
+
                         </HierarchyRightFlex>
                     </Flex>
                 ),
@@ -43,7 +39,9 @@ export default function LLMChatHierarchy() {
                     return {
                         key: val.uid,
                         title: (
-                            <HierarchyFlex onClick={chatClicked}>
+                            <HierarchyFlex>
+
+                                {val.name}
 
                                 <HierarchyRightFlex>
                                     <HierarchyDeleteButton
@@ -60,9 +58,6 @@ export default function LLMChatHierarchy() {
         ]
     }
 
-    async function chatClicked() {
-        await AIChatApi.Chat("", "How are you")
-    }
 
     function createChatTopicPressed() {
 

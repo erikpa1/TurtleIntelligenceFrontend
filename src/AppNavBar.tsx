@@ -93,7 +93,7 @@ export default function AppNavBar() {
                                 icon: <UnorderedListOutlined/>,
                                 label: t("llm"),
                                 onClick: () => {
-                                    navigate("/llm-chat")
+                                    navigate("/llm-chat/new")
                                 }
                             }
                         ]}
