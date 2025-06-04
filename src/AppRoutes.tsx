@@ -3,13 +3,14 @@ import React from "react"
 import {Route, Routes} from "react-router-dom"
 
 
+const LLMChatDock = React.lazy(() => import("@Turtle/LLM/LLMDock/LLMChatDock"))
 const ActorsDock = React.lazy(() => import("@TurtleApp/Routes/Actors/ActorsDock"))
 const DocumentationDock = React.lazy(() => import("@TurtleApp/Routes/Documentation/DocumentationDock"))
 const ContainersDock = React.lazy(() => import("@TurtleApp/Routes/ContainersDock/ContainersDock"))
 const WorldDock = React.lazy(() => import("@TurtleApp/Routes/WorldDock/WorldDock"))
 const ModelsDock = React.lazy(() => import( "@TurtleApp/Routes/ModelsDock/ModelsDock"))
 const NNDock = React.lazy(() => import("@TurtleApp/Routes/NN/NNDock"))
-const LLMDOck = React.lazy(() => import("@Turtle/Routes/LLMDock/LLMChatDock"))
+
 
 export default function AppRoutes({}) {
     return (
@@ -21,8 +22,8 @@ export default function AppRoutes({}) {
             <Route path={"/documentation"} element={<DocumentationDock/>}/>
             <Route path={"/documentation/:topic/:document"} element={<DocumentationDock/>}/>
             <Route path={"/actors"} element={<ActorsDock/>}/>
-            <Route path={"/llm-chat"} element={<LLMDOck/>}/>
-            <Route path={"/llm-chat/:chatUid"} element={<LLMDOck/>}/>
+            <Route path={"/llm-chat"} element={<LLMChatDock/>}/>
+            <Route path={"/llm-chat/:chatUid"} element={<LLMChatDock/>}/>
         </Routes>
     );
 }

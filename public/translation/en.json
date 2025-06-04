@@ -42,5 +42,12 @@
     "mode": "Mode",
     "queue": "Queue",
     "limit": "Limit",
-    "edit.actor": "Edit actor"
+    "edit.actor": "Edit actor",
+    "send": "Send",
+    "add.file": "Add file",
+    "settings": "Settings",
+    "edit": "Edit",
+    "copy": "Copy",
+    "delete": "Delete",
+    "chats": "Chats"
 }

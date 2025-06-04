@@ -10,6 +10,11 @@ import {
 } from "@Turtle/Components/HierarchyComponents"
 
 import React from "react"
+import AIChatApi from "@Turtle/LLM/Api/AIChatApi";
+import {ChatHistoryLight} from "@Turtle/LLM/Data/ChatHistory";
+import AeeWrapper from "@Turtle/Data/AeeWrapper";
+import aee from "@Turtle/Data/Aee";
+import TurtleApp from "@TurtleApp/TurtleApp";
 
 
 export default function LLMChatHierarchy() {
@@ -21,32 +26,38 @@ export default function LLMChatHierarchy() {
 
     const navigate = useNavigate()
 
-    function createHierarchy(nnModels: Array<any>) {
+    function createHierarchy(chatHistory: Array<ChatHistoryLight>) {
         return [
             {
-                key: "chat",
+                key: "chats",
                 title: (
                     <Flex>
-                        {t("chat")} ({nnModels.length})
-                        <HierarchyRightFlex>
-                            <HierarchyAddButton onClick={createChatTopicPressed}/>
+                        {t("chats")} ({chatHistory.length})
 
+                        <HierarchyRightFlex>
+                            <HierarchyAddButton
+                                onClick={() => {
+                                    navigate("/llm-chat/new")
+                                }}
+                            />
                         </HierarchyRightFlex>
                     </Flex>
                 ),
 
-                children: nnModels.map((val) => {
+                children: chatHistory.map((val) => {
                     return {
                         key: val.uid,
                         title: (
-                            <HierarchyFlex>
+                            <HierarchyFlex onClick={() => {
+                                navigate(`/llm-chat/${val.uid}`)
+                            }}>
 
                                 {val.name}
 
                                 <HierarchyRightFlex>
                                     <HierarchyDeleteButton
                                         onClick={() => {
-
+                                            deleteModel(val.uid)
                                         }}
                                     />
                                 </HierarchyRightFlex>
@@ -64,11 +75,11 @@ export default function LLMChatHierarchy() {
     }
 
 
-    function modelClicked(nnModel: any) {
+    async function deleteModel(chatUid: string) {
 
-    }
-
-    function deleteModel(nnModel: string) {
+        TurtleApp.Lock()
+        await AIChatApi.DeleteChat(chatUid)
+        TurtleApp.Unlock()
 
         refresh()
     }
@@ -76,6 +87,7 @@ export default function LLMChatHierarchy() {
     const [data, setData] = React.useState<Array<TreeDataNode>>(createHierarchy([]))
 
     async function refresh() {
+        setData(createHierarchy(await AIChatApi.GetMyChatHistory()))
 
     }
 
@@ -85,13 +97,18 @@ export default function LLMChatHierarchy() {
 
 
     return (
-        <Tree
-            key={data[0]?.children?.length}
-            blockNode
-            virtual
-            showLine
-            treeData={data}
-            defaultExpandAll={true}
-        />
+        <AeeWrapper
+            aee={aee}
+            ChatsChange={refresh}
+        >
+            <Tree
+                key={data[0]?.children?.length}
+                blockNode
+                virtual
+                showLine
+                treeData={data}
+                defaultExpandAll={true}
+            />
+        </AeeWrapper>
     )
 }

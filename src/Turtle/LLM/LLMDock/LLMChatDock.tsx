@@ -2,11 +2,12 @@ import {Splitter} from "antd"
 import React from "react"
 
 import WorldControllers from "@TurtleApp/Routes/WorldDock/WorldControllers"
-import LLMChatHierarchy from "@Turtle/Routes/LLMDock/LLMChatHierarchy"
-import LLMChatTopBar from "@Turtle/Routes/LLMDock/LLMChatTopBar";
+
 import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme";
 import {useParams} from "react-router-dom";
-import LLMChatView from "@Turtle/Routes/LLMDock/LLMChatView";
+import LLMChatTopBar from "@Turtle/LLM/LLMDock/LLMChatTopBar";
+import LLMChatView from "@Turtle/LLM/LLMDock/LLMChatView";
+import LLMChatHierarchy from "@Turtle/LLM/LLMDock/LLMChatHierarchy";
 
 export default function LLMChatDock() {
 
@@ -43,7 +44,7 @@ export default function LLMChatDock() {
 
                     }}
                 >
-                    <LLMChatView chatUid={chatUid}/>
+                    <LLMChatView chatUid={chatUid ?? "new"}/>
 
 
                 </Splitter.Panel>

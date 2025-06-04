@@ -14,10 +14,20 @@ export default function LLMChatInput({isBlocked, onChat}: LLMChatInputProps) {
 
     const [t] = useTranslation()
 
+    const inputRef = React.useRef<HTMLInputElement>()
+
     const [activeText, setActiveText] = React.useState("")
 
     function submitPressed() {
         onChat(activeText)
+
+        const curr = inputRef.current
+
+        if (curr) {
+            curr.value = ""
+            setActiveText("")
+        }
+
     }
 
     return (
@@ -35,6 +45,7 @@ export default function LLMChatInput({isBlocked, onChat}: LLMChatInputProps) {
                 position: "relative"
             }}>
                 <TextArea
+                    ref={inputRef as any}
                     placeholder="Type your message here..."
                     onChange={(e) => {
                         setActiveText(e.target.value)
@@ -52,20 +63,7 @@ export default function LLMChatInput({isBlocked, onChat}: LLMChatInputProps) {
                         // Custom scrollbar styles
                         scrollbarWidth: "thin",
                         scrollbarColor: "#d9d9d9 transparent",
-                        // Webkit scrollbar styles
-                        "&::-webkit-scrollbar": {
-                            width: "6px"
-                        },
-                        "&::-webkit-scrollbar-track": {
-                            background: "transparent"
-                        },
-                        "&::-webkit-scrollbar-thumb": {
-                            background: "#d9d9d9",
-                            borderRadius: "3px"
-                        },
-                        "&::-webkit-scrollbar-thumb:hover": {
-                            background: "#bfbfbf"
-                        }
+
                     } as any}
                 />
                 <Button
@@ -83,7 +81,7 @@ export default function LLMChatInput({isBlocked, onChat}: LLMChatInputProps) {
                         zIndex: 1
                     }}
 
-                    onChange={submitPressed}
+                    onClick={submitPressed}
                 >
                     {t("send")}
                 </Button>
