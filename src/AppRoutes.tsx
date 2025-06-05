@@ -1,9 +1,10 @@
 import React from "react"
 
 import {Route, Routes} from "react-router-dom"
-import LLMsDock from "@Turtle/LLM/LLMsDock/LLMsDock";
 
 
+const LLMsDock = React.lazy(() => import("@Turtle/LLM/LLMsDock/LLMsDock"))
+const LLMAgentsDock = React.lazy(() => import("@Turtle/LLM/LLMAgentsDock/LLMAgentsDock"))
 const LLMChatDock = React.lazy(() => import("@Turtle/LLM/AiChatDock/LLMChatDock"))
 const ActorsDock = React.lazy(() => import("@TurtleApp/Routes/Actors/ActorsDock"))
 const DocumentationDock = React.lazy(() => import("@TurtleApp/Routes/Documentation/DocumentationDock"))
@@ -26,6 +27,8 @@ export default function AppRoutes({}) {
             <Route path={"/llm-chat"} element={<LLMChatDock/>}/>
             <Route path={"/llm-chat/:chatUid"} element={<LLMChatDock/>}/>
             <Route path={"/llms"} element={<LLMsDock/>}/>
+            <Route path={"/agents"} element={<LLMAgentsDock/>}/>
+            <Route path={"/agents/:agentUid"} element={<LLMAgentsDock/>}/>
         </Routes>
     );
 }

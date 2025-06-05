@@ -50,5 +50,9 @@
     "copy": "Copy",
     "delete": "Delete",
     "chats": "Chats",
-    "clusters": "Clusters"
+    "clusters": "Clusters",
+    "documentation": "Documentation",
+    "aichat": "AI Chat",
+    "llms": "LLMS",
+    "agents": "Agents"
 }

@@ -1,17 +1,16 @@
 import React from "react"
-import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme";
-import {Splitter} from "antd";
-import LLMsHierarchy from "@Turtle/LLM/LLMsDock/LLMsHierarchy";
+import {Splitter} from "antd"
+import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme"
 
 
-export default function LLMsDock() {
+export default function LLMAgentsDock() {
     const {bigPadding} = useTurtleTheme()
 
 
     return (
         <div>
             <Splitter style={{
-                height: "100%",
+                height: "100vh",
                 // backgroundColor: "#212124"
             }}>
 
@@ -22,7 +21,7 @@ export default function LLMsDock() {
                         padding: bigPadding
                     }}
                 >
-                    <LLMsHierarchy/>
+
                 </Splitter.Panel>
 
                 <Splitter.Panel

@@ -1,5 +1,5 @@
 import Turxios from "@Turtle/Api/Turxios";
-import {ChatHistoryLight, LLMChat} from "@Turtle/LLM/Data/ChatHistory";
+import {ChatHistoryLight, LLMChat} from "@Turtle/LLM/Data/LLMChatHistory";
 
 
 export default class AIChatApi {

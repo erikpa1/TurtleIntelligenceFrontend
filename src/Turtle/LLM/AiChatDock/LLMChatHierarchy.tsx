@@ -11,7 +11,7 @@ import {
 
 import React from "react"
 import AIChatApi from "@Turtle/LLM/Api/AIChatApi";
-import {ChatHistoryLight} from "@Turtle/LLM/Data/ChatHistory";
+import {ChatHistoryLight} from "@Turtle/LLM/Data/LLMChatHistory";
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
 import TurtleApp from "@TurtleApp/TurtleApp";

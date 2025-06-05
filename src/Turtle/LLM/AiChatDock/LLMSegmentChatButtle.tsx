@@ -1,5 +1,5 @@
 import React from "react"
-import {ConversationSegment} from "@Turtle/LLM/Data/ChatHistory";
+import {ConversationSegment} from "@Turtle/LLM/Data/LLMChatHistory";
 import {useTranslation} from "react-i18next";
 import {Avatar, Button, Card, Flex} from "antd";
 import {CopyOutlined, DeleteOutlined, RobotOutlined} from "@ant-design/icons";
