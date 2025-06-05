@@ -1,5 +1,13 @@
 import {Flex, Layout, Menu} from "antd";
-import {ContainerOutlined, HomeOutlined, LinkOutlined, UnorderedListOutlined} from "@ant-design/icons";
+import {
+    BookOutlined,
+    ContainerOutlined, FilePdfOutlined,
+    HomeOutlined,
+    LinkOutlined, MessageOutlined,
+    OpenAIOutlined,
+    UnorderedListOutlined,
+    UserOutlined
+} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {IconSimulation} from "@Turtle/Icons";
@@ -74,7 +82,7 @@ export default function AppNavBar() {
                             },
                             {
                                 key: "documentation",
-                                icon: <UnorderedListOutlined/>,
+                                icon: <FilePdfOutlined/>,
                                 label: t("documentation"),
                                 onClick: () => {
                                     navigate("/documentation")
@@ -82,18 +90,34 @@ export default function AppNavBar() {
                             },
                             {
                                 key: "actors",
-                                icon: <UnorderedListOutlined/>,
+                                icon: <UserOutlined/>,
                                 label: t("actors"),
                                 onClick: () => {
                                     navigate("/actors")
                                 }
                             },
                             {
-                                key: "llm",
-                                icon: <UnorderedListOutlined/>,
-                                label: t("llm"),
+                                key: "aichat",
+                                icon: <MessageOutlined/>,
+                                label: t("aichat"),
                                 onClick: () => {
                                     navigate("/llm-chat/new")
+                                }
+                            },
+                            {
+                                key: "llms",
+                                icon: <BookOutlined/>,
+                                label: t("llms"),
+                                onClick: () => {
+                                    navigate("/llms")
+                                }
+                            },
+                            {
+                                key: "agents",
+                                icon: <OpenAIOutlined/>,
+                                label: t("agents"),
+                                onClick: () => {
+                                    navigate("/agents")
                                 }
                             }
                         ]}
