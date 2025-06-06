@@ -14,6 +14,8 @@ import Model from "@TurtleApp/Data/Model"
 import EntityForm from "@Turtle/Components/Forms/EntityForm"
 import ModelProperties from "@TurtleApp/Data/Model_Properties"
 import ModelsApi from "@TurtleApp/Api/ModelsApi"
+import LLMCluster from "@Turtle/LLM/Data/LLMCluster";
+import CreateLLMClusterModal from "@Turtle/LLM/LLMCluster/CreateLLMClusterModal";
 
 
 export default function LLMClusterHierarchy() {
@@ -24,16 +26,15 @@ export default function LLMClusterHierarchy() {
 
     const navigate = useNavigate()
 
-
     function createHierarchy(nnModels: Array<any>) {
         return [
             {
-                key: "nnmodels",
+                key: "llmclusters",
                 title: (
                     <Flex>
-                        {t("nn.models")} ({nnModels.length})
+                        {t("llm.clusters")} ({nnModels.length})
                         <HierarchyRightFlex>
-                            <HierarchyAddButton onClick={createModelPressed}/>
+                            <HierarchyAddButton onClick={createClusterPressed}/>
                         </HierarchyRightFlex>
                     </Flex>
                 ),
@@ -59,18 +60,16 @@ export default function LLMClusterHierarchy() {
         ]
     }
 
-    function createModelPressed() {
-        const tmp = new Model()
+    function createClusterPressed() {
+        const tmp = new LLMCluster()
 
         activate({
-            title: t("create.nnmodel"),
+            title: t("create.llmcluster"),
             content: (
-                <EntityForm
-                    entity={tmp}
-                    properties={ModelProperties.Get()}
-                    submitFunction={ModelsApi.COU}
-                    onBeforeSubmit={deactivate}
-                    onAfterSubmit={refresh}
+                <CreateLLMClusterModal
+                    cluster={tmp}
+                    beforeSubmit={deactivate}
+                    afterSubmit={refresh}
                 />
             )
         })

@@ -31,10 +31,10 @@ export default function LLMsHierarchy() {
     function createHierarchy(clusters: Array<LLM>) {
         return [
             {
-                key: "clusters",
+                key: "models",
                 title: (
                     <Flex>
-                        {t("clusters")} ({clusters.length})
+                        {t("models")} ({clusters.length})
 
                         <HierarchyRightFlex>
                             <HierarchyAddButton

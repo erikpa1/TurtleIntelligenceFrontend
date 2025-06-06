@@ -4,6 +4,7 @@ import React from "react"
 import WorldControllers from "@TurtleApp/Routes/WorldDock/WorldControllers"
 
 import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme"
+import LLMClusterHierarchy from "@Turtle/LLM/LLMCluster/LLMClusterHierarchy";
 
 export default function LLMClusterDock() {
 
@@ -11,8 +12,6 @@ export default function LLMClusterDock() {
 
     return (
         <div>
-
-
             <Splitter style={{
                 height: "100vh",
                 // backgroundColor: "#212124"
@@ -25,7 +24,7 @@ export default function LLMClusterDock() {
                         padding: bigPadding
                     }}
                 >
-
+                    <LLMClusterHierarchy/>
                 </Splitter.Panel>
 
                 <Splitter.Panel

@@ -1,7 +1,11 @@
 import {Button, Flex} from "antd";
+import {useTranslation} from "react-i18next";
 
 
 export function RightSubmitButton({onClick}) {
+
+    const [t] = useTranslation()
+
     return (
         <Flex
             justify="end"  // In Ant Design, "end" is an alias for "flex-end"
@@ -11,7 +15,7 @@ export function RightSubmitButton({onClick}) {
                 onClick={onClick}
                 type={"primary"}
             >
-                {"submit"}
+                {t("submit")}
             </Button>
 
         </Flex>

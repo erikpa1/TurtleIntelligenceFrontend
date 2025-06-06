@@ -55,5 +55,6 @@
     "aichat": "AI Chat",
     "llms": "LLMS",
     "agents": "Agents",
-    "llm.clusters": "LLM Clusters"
+    "llm.clusters": "LLM Clusters",
+    "create.llmcluster": "Create LLM cluster"
 }
