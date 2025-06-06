@@ -26,7 +26,7 @@ export default function AppRoutes({}) {
             <Route path={"/actors"} element={<ActorsDock/>}/>
             <Route path={"/llm-chat"} element={<LLMChatDock/>}/>
             <Route path={"/llm-chat/:chatUid"} element={<LLMChatDock/>}/>
-            <Route path={"/llms"} element={<LLMsDock/>}/>
+            <Route path={"/llm-clusters"} element={<LLMsDock/>}/>
             <Route path={"/agents"} element={<LLMAgentsDock/>}/>
             <Route path={"/agents/:agentUid"} element={<LLMAgentsDock/>}/>
         </Routes>

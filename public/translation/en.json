@@ -54,5 +54,6 @@
     "documentation": "Documentation",
     "aichat": "AI Chat",
     "llms": "LLMS",
-    "agents": "Agents"
+    "agents": "Agents",
+    "llm.clusters": "LLM Clusters"
 }

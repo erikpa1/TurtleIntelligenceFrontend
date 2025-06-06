@@ -107,9 +107,9 @@ export default function AppNavBar() {
                             {
                                 key: "llms",
                                 icon: <BookOutlined/>,
-                                label: t("llms"),
+                                label: t("llm.clusters"),
                                 onClick: () => {
-                                    navigate("/llms")
+                                    navigate("/llm-clusters")
                                 }
                             },
                             {

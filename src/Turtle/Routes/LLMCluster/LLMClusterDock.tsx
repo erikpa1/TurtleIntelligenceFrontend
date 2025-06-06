@@ -2,7 +2,7 @@ import {Splitter} from "antd"
 import React from "react"
 
 import WorldControllers from "@TurtleApp/Routes/WorldDock/WorldControllers"
-import LLMChatTopBar from "@Turtle/Routes/AiChatDock/LLMChatTopBar"
+
 import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme"
 
 export default function LLMClusterDock() {
@@ -12,10 +12,9 @@ export default function LLMClusterDock() {
     return (
         <div>
 
-            <LLMChatTopBar/>
 
             <Splitter style={{
-                height: "100%",
+                height: "100vh",
                 // backgroundColor: "#212124"
             }}>
 
@@ -26,22 +25,13 @@ export default function LLMClusterDock() {
                         padding: bigPadding
                     }}
                 >
-                    <LLMClusterDock/>
 
                 </Splitter.Panel>
 
                 <Splitter.Panel
                     defaultSize="80%"
                 >
-                    <div style={{
-                        position: "relative",
-                    }}>
-                        <div style={{
-                            height: "95vh",
-                        }}>
 
-                        </div>
-                    </div>
                 </Splitter.Panel>
 
             </Splitter>
