@@ -5,9 +5,9 @@ import WorldControllers from "@TurtleApp/Routes/WorldDock/WorldControllers"
 
 import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme";
 import {useParams} from "react-router-dom";
-import LLMChatTopBar from "@Turtle/LLM/AiChatDock/LLMChatTopBar";
-import LLMChatView from "@Turtle/LLM/AiChatDock/LLMChatView";
-import LLMChatHierarchy from "@Turtle/LLM/AiChatDock/LLMChatHierarchy";
+import LLMChatTopBar from "@Turtle/LLM/LLMChatDock/LLMChatTopBar";
+import LLMChatView from "@Turtle/LLM/LLMChatDock/LLMChatView";
+import LLMChatHierarchy from "@Turtle/LLM/LLMChatDock/LLMChatHierarchy";
 
 export default function LLMChatDock() {
 

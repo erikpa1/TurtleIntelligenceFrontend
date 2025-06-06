@@ -11,11 +11,11 @@ import React from "react";
 import {useNavigate} from "react-router-dom";
 import AIChatApi from "@Turtle/LLM/Api/AIChatApi";
 import LLMChatContext from "@Turtle/LLM/Data/LLMChatContext";
-import LLMChatInput from "@Turtle/LLM/AiChatDock/LLMChatInput";
+import LLMChatInput from "@Turtle/LLM/LLMChatDock/LLMChatInput";
 import aee from "@Turtle/Data/Aee";
 import {ConversationSegment} from "@Turtle/LLM/Data/LLMChatHistory";
 import {useTranslation} from "react-i18next";
-import LLMSegmentChatButtle from "@Turtle/LLM/AiChatDock/LLMSegmentChatButtle";
+import LLMSegmentChatButtle from "@Turtle/LLM/LLMChatDock/LLMSegmentChatButtle";
 
 interface LLMChatViewProps {
     chatUid: string

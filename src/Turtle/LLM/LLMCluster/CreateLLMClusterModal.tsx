@@ -6,6 +6,7 @@ import StringItem from "@Turtle/ReflectiveUI/StringItem";
 import StringPropertyView from "@Turtle/Components/Forms/StringPropertyView";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import TurtleApp from "@TurtleApp/TurtleApp";
+import LLMApi from "@Turtle/LLM/Api/LLMApi";
 
 interface CreateLLMClusterModalProps {
     cluster: LLMCluster
@@ -36,12 +37,10 @@ export default function CreateLLMClusterModal({
 
     async function onSubmit() {
         beforeSubmit()
-
         TurtleApp.Lock()
-
-        //TODO create here
-
+        await LLMApi.COUCluster(cluster)
         TurtleApp.Unlock()
+        afterSubmit()
     }
 
 

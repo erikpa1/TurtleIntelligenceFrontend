@@ -16,7 +16,10 @@ import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import LLMApi from "@Turtle/LLM/Api/LLMApi";
-import LLM from "@Turtle/LLM/Data/LLM";
+import LLMModel from "@Turtle/LLM/Data/LLMModel";
+import LLMCluster from "@Turtle/LLM/Data/LLMCluster";
+import CreateLLMClusterModal from "@Turtle/LLM/LLMCluster/CreateLLMClusterModal";
+import RegisterLLLMModel from "@Turtle/LLM/LLMsDock/RegisterLLMModel";
 
 
 export default function LLMsHierarchy() {
@@ -28,25 +31,23 @@ export default function LLMsHierarchy() {
 
     const navigate = useNavigate()
 
-    function createHierarchy(clusters: Array<LLM>) {
+    function createHierarchy(models: Array<LLMModel>) {
         return [
             {
                 key: "models",
                 title: (
                     <Flex>
-                        {t("models")} ({clusters.length})
+                        {t("llm.models")} ({models.length})
 
                         <HierarchyRightFlex>
                             <HierarchyAddButton
-                                onClick={() => {
-
-                                }}
+                                onClick={createClusterPressed}
                             />
                         </HierarchyRightFlex>
                     </Flex>
                 ),
 
-                children: clusters.map((val) => {
+                children: models.map((val) => {
                     return {
                         key: val.uid,
                         title: (
@@ -57,7 +58,7 @@ export default function LLMsHierarchy() {
                                 <HierarchyRightFlex>
                                     <HierarchyDeleteButton
                                         onClick={() => {
-                                            deleteCluster(val.uid)
+                                            deleteModel(val.uid)
                                         }}
                                     />
                                 </HierarchyRightFlex>
@@ -69,19 +70,25 @@ export default function LLMsHierarchy() {
         ]
     }
 
-    function addLLM() {
+    function createClusterPressed() {
+        const tmp = new LLMModel()
 
+        activate({
+            title: t("register.llmmodel"),
+            content: (
+                <RegisterLLLMModel
+                    llmModel={tmp}
+                    beforeSubmit={deactivate}
+                    afterSubmit={refresh}
+                />
+            )
+        })
     }
 
 
-    function deleteCluster(clusterUids: string) {
-
-    }
-
-
-    async function deleteModel(chatUid: string) {
+    async function deleteModel(modelUid: string) {
         TurtleApp.Lock()
-        await AIChatApi.DeleteChat(chatUid)
+        await LLMApi.DeleteModel(modelUid)
         TurtleApp.Unlock()
 
         refresh()

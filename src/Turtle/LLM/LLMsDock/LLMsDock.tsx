@@ -11,7 +11,7 @@ export default function LLMsDock() {
     return (
         <div>
             <Splitter style={{
-                height: "100%",
+                height: "100vh",
                 // backgroundColor: "#212124"
             }}>
 

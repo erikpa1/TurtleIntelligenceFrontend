@@ -1,7 +1,14 @@
+export enum LLMClusterType {
+    RAW = 0,
+    TURTLE = 1
+}
+
+
 export default class LLMCluster {
     uid = ""
-    name = ""
-    url = ""
+    name = "Active server"
+    url = "http://localhost:11434"
+    type = LLMClusterType.RAW
     xApiKey = ""
     org = ""
 

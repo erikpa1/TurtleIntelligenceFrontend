@@ -105,11 +105,19 @@ export default function AppNavBar() {
                                 }
                             },
                             {
-                                key: "llms",
+                                key: "clustrers",
                                 icon: <BookOutlined/>,
                                 label: t("llm.clusters"),
                                 onClick: () => {
                                     navigate("/llm-clusters")
+                                }
+                            },
+                            {
+                                key: "llmmodels",
+                                icon: <BookOutlined/>,
+                                label: t("llm.models"),
+                                onClick: () => {
+                                    navigate("/llm-models")
                                 }
                             },
                             {
@@ -119,7 +127,8 @@ export default function AppNavBar() {
                                 onClick: () => {
                                     navigate("/agents")
                                 }
-                            }
+                            },
+
                         ]}
                     />
                 </div>

@@ -21,3 +21,24 @@ export function RightSubmitButton({onClick}) {
         </Flex>
     )
 }
+
+export function RightSubmitHtmlButton({onClick}) {
+
+    const [t] = useTranslation()
+
+    return (
+        <Flex
+            justify="end"  // In Ant Design, "end" is an alias for "flex-end"
+            flex={1}
+        >
+            <Button
+                onClick={onClick}
+                type={"primary"}
+                htmlType={"button"}
+            >
+                {t("submit")}
+            </Button>
+
+        </Flex>
+    )
+}

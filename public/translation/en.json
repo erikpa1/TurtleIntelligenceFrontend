@@ -56,5 +56,8 @@
     "llms": "LLMS",
     "agents": "Agents",
     "llm.clusters": "LLM Clusters",
-    "create.llmcluster": "Create LLM cluster"
+    "create.llmcluster": "Create LLM cluster",
+    "llm.models": "LLM Models",
+    "cluster": "Cluster",
+    "register.llmmodel": "Register LLM model"
 }

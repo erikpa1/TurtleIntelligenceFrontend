@@ -1,5 +1,6 @@
 import {Form, Input, Select} from "antd";
 import {useTranslation} from "react-i18next";
+import {SizeType} from "antd/es/config-provider/SizeContext";
 
 
 export interface SelectItemOptions {
@@ -14,6 +15,7 @@ interface SelectItemProps {
     disabled?: boolean
     options: SelectItemOptions[]
     useEmpty?: boolean
+    size?: SizeType
 }
 
 export default function SelectItem({
@@ -21,7 +23,8 @@ export default function SelectItem({
                                        attribute,
                                        disabled,
                                        options,
-                                       useEmpty
+                                       useEmpty,
+                                       size
                                    }: SelectItemProps) {
 
 
@@ -31,13 +34,13 @@ export default function SelectItem({
 
     return (
         <Form.Item
-            label={t(attribute)}
+            label={`${t(attribute)}:`}
             style={{
                 margin: 0
             }}
         >
             <Select
-                size={"small"}
+                size={size ?? "small"}
                 disabled={disabled}
                 defaultValue={entity[attribute] ?? ""}
                 onChange={(value) => {

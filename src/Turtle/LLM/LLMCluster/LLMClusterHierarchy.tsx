@@ -16,6 +16,10 @@ import ModelProperties from "@TurtleApp/Data/Model_Properties"
 import ModelsApi from "@TurtleApp/Api/ModelsApi"
 import LLMCluster from "@Turtle/LLM/Data/LLMCluster";
 import CreateLLMClusterModal from "@Turtle/LLM/LLMCluster/CreateLLMClusterModal";
+import LLMApi from "@Turtle/LLM/Api/LLMApi";
+import {bodkaBodkaText} from "@Turtle/Utils/StringFormatters";
+import * as cluster from "cluster";
+import TurtleApp from "@TurtleApp/TurtleApp";
 
 
 export default function LLMClusterHierarchy() {
@@ -45,10 +49,12 @@ export default function LLMClusterHierarchy() {
                         title: (
                             <HierarchyFlex onClick={modelClicked}>
 
+                                {val.name} [{bodkaBodkaText(val.url, 15)}]
+
                                 <HierarchyRightFlex>
                                     <HierarchyDeleteButton
                                         onClick={() => {
-
+                                            deleteCluster(val.uid)
                                         }}
                                     />
                                 </HierarchyRightFlex>
@@ -80,15 +86,18 @@ export default function LLMClusterHierarchy() {
 
     }
 
-    function deleteModel(nnModel: string) {
-
+    async function deleteCluster(clusterUid: string) {
+        TurtleApp.Lock()
+        await LLMApi.DeleteCluster(clusterUid)
+        TurtleApp.Unlock()
         refresh()
     }
 
     const [data, setData] = React.useState<Array<TreeDataNode>>(createHierarchy([]))
 
     async function refresh() {
-
+        const clusters = await LLMApi.ListClusters()
+        setData(createHierarchy(clusters))
     }
 
     React.useEffect(() => {
