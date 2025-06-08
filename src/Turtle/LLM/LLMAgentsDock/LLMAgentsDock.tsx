@@ -1,6 +1,7 @@
 import React from "react"
 import {Splitter} from "antd"
 import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme"
+import LLMAgentsHierarchy from "@Turtle/LLM/LLMAgentsDock/LLMAgentsHierarchy";
 
 
 export default function LLMAgentsDock() {
@@ -21,7 +22,7 @@ export default function LLMAgentsDock() {
                         padding: bigPadding
                     }}
                 >
-
+                    <LLMAgentsHierarchy/>
                 </Splitter.Panel>
 
                 <Splitter.Panel

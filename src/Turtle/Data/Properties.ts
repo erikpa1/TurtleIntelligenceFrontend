@@ -21,3 +21,16 @@ export class StringProperty extends PropertyParent {
 
 
 }
+
+export class IntProperty extends PropertyParent {
+
+    static New(key: string, label: string): StringProperty {
+        const tmp = new StringProperty()
+        tmp.key = key
+        tmp.label = label
+        return tmp
+    }
+
+
+
+}

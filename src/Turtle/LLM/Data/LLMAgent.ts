@@ -32,6 +32,14 @@ export class LLMAgentParamsProps {
 
 }
 
+
+export enum LLMAgentMethodType {
+    GET = 0,
+    POST = 1,
+    PUT = 2,
+    DELETE = 3
+}
+
 export class LLMAgent {
 
     uid = ""
@@ -47,8 +55,11 @@ export class LLMAgent {
     updatedBy = ""
     url = ""
     xApiKey = ""
+    commandExample = ""
     args = []
     agentsProps = new LLMAgentParamsProps()
+
+    methodType = LLMAgentMethodType.GET
 
     FromJson(jObj: any) {
 
@@ -66,6 +77,8 @@ export class LLMAgent {
         this.url = jObj.url ?? ""
         this.xApiKey = jObj.xApiKey ?? ""
         this.args = []
+        this.methodType = jObj.methodType ?? LLMAgentMethodType.GET
+        this.commandExample = jObj.commandExample ?? ""
         this.agentsProps.FromJson(jObj.agentsProps ?? {})
 
     }
@@ -75,7 +88,57 @@ export class LLMAgent {
         return {
             uid: this.uid,
             userLevel: this.userLevel,
+            name: this.name,
+            description: this.description,
+            specialization: this.specialization,
+            useModel: this.useModel,
+            createdAt: this.createdAt,
+            updatedAt: this.updatedAt,
+            createdBy: this.createdBy,
+            updatedBy: this.updatedBy,
+            url: this.url,
+            xApiKey: this.xApiKey,
+            args: this.args,
+            methodType: this.methodType,
+            commandExample: this.commandExample,
+            agentsProps: this.agentsProps.ToJson()
         }
     }
 
 }
+
+export class Mistral7bResponse {
+    selectedAgent = ""
+    confidence = 0
+    parameters = {}
+    reasoning = ""
+
+    FromJson(jObj: any) {
+        this.selectedAgent = jObj.selectedAgent ?? ""
+        this.confidence = jObj.confidence ?? ""
+        this.reasoning = jObj.reasoning ?? ""
+    }
+
+}
+
+export class LLMAgentTestResponse {
+    uid = ""
+    agentUid = ""
+    at = 0
+    state = 0
+    result = new Mistral7bResponse()
+    error = ""
+    text = ""
+
+    FromJson(jObj: any) {
+        console.log(jObj)
+        this.uid = jObj.uid ?? ""
+        this.agentUid = jObj.agentUid ?? ""
+        this.at = jObj.at ?? 0
+        this.result.FromJson(jObj.result)
+        this.error = jObj.error ?? ""
+        this.text = jObj.text ?? ""
+    }
+
+}
+

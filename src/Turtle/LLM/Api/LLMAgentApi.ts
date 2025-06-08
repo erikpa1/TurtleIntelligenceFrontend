@@ -1,4 +1,4 @@
-import {LLMAgent} from "@Turtle/LLM/Data/LLMAgent";
+import {LLMAgent, LLMAgentTestResponse} from "@Turtle/LLM/Data/LLMAgent";
 import Turxios from "@Turtle/Api/Turxios";
 
 
@@ -8,8 +8,35 @@ export default class LLMAgentApi {
     static async COUAgent(agent: LLMAgent) {
         const data = new FormData()
         data.set("data", JSON.stringify(agent.ToJson()))
-        await Turxios.post("/api/llm/agents", data)
+        await Turxios.post("/api/llm/agent", data)
+    }
 
+    static async ListAgents(): Promise<Array<LLMAgent>> {
+        return (await Turxios.get("/api/llm/agents")).data.map((item) => {
+            const tmp = new LLMAgent()
+            tmp.FromJson(item)
+            return tmp
+        })
+    }
+
+    static async DeleteAgent(agentUid: string) {
+        await Turxios.delete("/api/llm/agent", {
+            params: {
+                uid: agentUid
+            }
+        })
+    }
+
+    static async TestAgent(agentUid: string, text: string): Promise<LLMAgentTestResponse> {
+
+        const data = new FormData()
+        data.set("text", text)
+        data.set("agent", agentUid)
+
+        const response = (await Turxios.post("/api/llm/agent/test", data)).data
+        const testResponse = new LLMAgentTestResponse()
+        testResponse.FromJson(response)
+        return testResponse
     }
 
 

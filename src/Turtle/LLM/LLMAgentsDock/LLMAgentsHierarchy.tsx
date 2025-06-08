@@ -1,23 +1,22 @@
 import React from "react"
-
-import {useTranslation} from "react-i18next";
+import {Flex, Tree, TreeDataNode} from "antd";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {useNavigate} from "react-router-dom";
-import {Flex, Tree, TreeDataNode} from "antd";
+import {useTranslation} from "react-i18next";
 import {
     HierarchyAddButton,
     HierarchyDeleteButton,
-    HierarchyFlex,
+    HierarchyFlex, HierarchyPlayButton,
     HierarchyRightFlex
-} from "@Turtle/Components/HierarchyComponents"
-import LLMApi from "@Turtle/LLM/Api/LLMApi"
-import {bodkaBodkaText} from "@Turtle/Utils/StringFormatters"
-import TurtleApp from "@TurtleApp/TurtleApp"
+} from "@Turtle/Components/HierarchyComponents";
+import {bodkaBodkaText} from "@Turtle/Utils/StringFormatters";
+import {LLMAgent} from "@Turtle/LLM/Data/LLMAgent";
+import LLMAgentApi from "@Turtle/LLM/Api/LLMAgentApi";
+import TurtleApp from "@TurtleApp/TurtleApp";
 import CreateLLMAgentModal from "@Turtle/LLM/LLMAgentsDock/CreateLLMAgentView";
-import {LLMAgent} from "@Turtle/LLM/Data/LLMAgent"
+import TestLLMAgentView from "@Turtle/LLM/LLMAgentsDock/TestLLMAgentView";
 
-
-export default function LLMClusterHierarchy() {
+export default function LLMAgentsHierarchy({}) {
 
     const [t] = useTranslation()
 
@@ -25,31 +24,40 @@ export default function LLMClusterHierarchy() {
 
     const navigate = useNavigate()
 
-    function createHierarchy(nnModels: Array<any>) {
+    const [data, setData] = React.useState<Array<TreeDataNode>>(createHierarchy([]))
+
+    function createHierarchy(agents: Array<LLMAgent>) {
         return [
             {
-                key: "llmclusters",
+                key: "agents",
                 title: (
                     <Flex>
-                        {t("llm.clusters")} ({nnModels.length})
+                        {t("llm.agents")} ({agents.length})
                         <HierarchyRightFlex>
-                            <HierarchyAddButton onClick={createClusterPressed}/>
+                            <HierarchyAddButton onClick={createAgentPressed}/>
                         </HierarchyRightFlex>
                     </Flex>
                 ),
 
-                children: nnModels.map((val) => {
+                children: agents.map((val) => {
                     return {
                         key: val.uid,
                         title: (
-                            <HierarchyFlex onClick={modelClicked}>
+                            <HierarchyFlex>
 
-                                {val.name} [{bodkaBodkaText(val.url, 15)}]
+                                {val.name}
 
                                 <HierarchyRightFlex>
+
+                                    <HierarchyPlayButton
+                                        onClick={() => {
+                                            testAgent(val)
+                                        }}
+                                    />
+
                                     <HierarchyDeleteButton
                                         onClick={() => {
-                                            deleteCluster(val.uid)
+                                            deleteAgentPressed(val.uid)
                                         }}
                                     />
                                 </HierarchyRightFlex>
@@ -61,7 +69,18 @@ export default function LLMClusterHierarchy() {
         ]
     }
 
-    function createClusterPressed() {
+    function testAgent(agent: LLMAgent) {
+        activate({
+            title: "test.agent",
+            closable: true,
+            content: (
+                <TestLLMAgentView agent={agent}/>
+            )
+        })
+    }
+
+
+    function createAgentPressed() {
         const tmp = new LLMAgent()
 
         activate({
@@ -76,29 +95,23 @@ export default function LLMClusterHierarchy() {
         })
     }
 
-
-    function modelClicked(nnModel: any) {
-
-    }
-
-    async function deleteCluster(clusterUid: string) {
+    async function deleteAgentPressed(agentUid: string) {
         TurtleApp.Lock()
-        await LLMApi.DeleteCluster(clusterUid)
+        await LLMAgentApi.DeleteAgent(agentUid)
         TurtleApp.Unlock()
         refresh()
     }
 
-    const [data, setData] = React.useState<Array<TreeDataNode>>(createHierarchy([]))
-
     async function refresh() {
-        const clusters = await LLMApi.ListClusters()
-        setData(createHierarchy(clusters))
+        const agents = await LLMAgentApi.ListAgents()
+        setData(createHierarchy(agents))
+
+        console.log(agents)
     }
 
     React.useEffect(() => {
         refresh()
     }, [])
-
 
     return (
         <Tree

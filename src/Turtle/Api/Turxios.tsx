@@ -11,31 +11,31 @@ const turxios = axios.create();
 export function TurxiosProvider() {
 
     const {message} = App.useApp()
+
     const [t] = useTranslation()
+
+    function responseInterceptor(response) {
+        return response;
+    }
+
+    function errorInterceptor(error: AxiosError) {
+        if (error.response && error.response.status === 401) {
+            message.error(t("Unauthorized"))
+            // setActiveUser(null)
+        } else if (error.response && error.response.status === 404) {
+            message.error(t("404 - not found"))
+        } else {
+            message.error({
+                content: `${error.name}: ${error.message}`,
+            })
+        }
+
+        TurtleApp.Unlock()
+        return Promise.reject()
+    }
 
     React.useEffect(() => {
 
-
-        const responseInterceptor = (response) => {
-            return response;
-        };
-
-        const errorInterceptor = (error: AxiosError) => {
-            if (error.response && error.response.status === 401) {
-                console.log(message.error)
-                message.error(t("Unauthorized"))
-                // setActiveUser(null)
-            } else if (error.response && error.response.status === 404) {
-                message.error(t("404 - not found"))
-            } else {
-                message.error({
-                    content: `${error.name}: ${error.message}`,
-                })
-            }
-
-            TurtleApp.Unlock()
-            return Promise.reject()
-        };
 
         // const interceptorRequest =
         //     Axios.interceptors.request.use(requestInterceptor);
@@ -44,7 +44,6 @@ export function TurxiosProvider() {
             responseInterceptor,
             errorInterceptor
         );
-
         return () => {
             // Axios.interceptors.request.eject(interceptorRequest);
             turxios.interceptors.response.eject(interceptorResponse);

@@ -59,5 +59,14 @@
     "create.llmcluster": "Create LLM cluster",
     "llm.models": "LLM Models",
     "cluster": "Cluster",
-    "register.llmmodel": "Register LLM model"
+    "register.llmmodel": "Register LLM model",
+    "llm.agents": "LLM agents",
+    "create.llmagent": "Create LLM agent",
+    "description": "Description",
+    "specialization": "Specialization",
+    "user.level": "User level",
+    "user": "User",
+    "editor": "Editor",
+    "admin": "Admin",
+    "superadmin": "Super admin"
 }
