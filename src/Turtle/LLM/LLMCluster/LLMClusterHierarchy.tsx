@@ -66,6 +66,8 @@ export default function LLMClusterHierarchy() {
 
         activate({
             title: t("create.llmagent"),
+            width: 800,
+            closable: true,
             content: (
                 <CreateLLMAgentModal
                     agent={tmp}

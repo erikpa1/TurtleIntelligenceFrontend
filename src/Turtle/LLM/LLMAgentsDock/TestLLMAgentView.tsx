@@ -1,11 +1,12 @@
 import React from "react"
 import {LLMAgent, LLMAgentTestResponse} from "@Turtle/LLM/Data/LLMAgent";
-import {Form, Spin} from "antd";
+import {Flex, Form, Spin, Timeline, Typography} from "antd";
 import TextArea from "antd/es/input/TextArea";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import LLMAgentApi from "@Turtle/LLM/Api/LLMAgentApi";
 import {Simulate} from "react-dom/test-utils";
 import reset = Simulate.reset;
+import {useTranslation} from "react-i18next";
 
 
 interface TestLLMAgentViewProps {
@@ -21,7 +22,9 @@ enum ProgressStates {
 
 export default function TestLLMAgentView({agent}: TestLLMAgentViewProps) {
 
-    const [progressState, setProgressState] = React.useState(ProgressStates.START)
+    const [t] = useTranslation()
+
+    const [progressState, setProgressState] = React.useState<ProgressStates>(ProgressStates.START)
 
     const [testResponse, setTestResponse] = React.useState<LLMAgentTestResponse | null>(null)
 
@@ -37,48 +40,116 @@ export default function TestLLMAgentView({agent}: TestLLMAgentViewProps) {
         setProgressState(ProgressStates.TESTED)
     }
 
-    if (progressState == ProgressStates.START) {
+    return (
+        <Form layout={"vertical"}>
 
-        return (
-            <Form layout={"vertical"}>
+            <Form.Item label={"Test LLMAgent:"}>
+                <TextArea
+                    defaultValue={agent.commandExample}
+                    disabled={progressState !== ProgressStates.START}
+                    onChange={(e) => [
+                        setCommandText(e.target.value)
+                    ]}
+                />
+            </Form.Item>
 
-                <Form.Item label={"Test LLMAgent:"}>
-                    <TextArea
-                        defaultValue={agent.commandExample}
-                        onChange={(e) => [
-                            setCommandText(e.target.value)
+
+            {
+                progressState === ProgressStates.START && (
+                    <RightSubmitButton onClick={testAgent}/>
+                )
+            }
+
+            {
+                progressState === ProgressStates.LOADING && (
+                    <Timeline
+                        pending={t("generating")}
+                        items={[
+                            {
+                                color: "gray",
+                                children: t("agent.selected")
+                            },
+                            {
+                                color: "gray",
+                                children: t("parameters")
+                            },
+                            {
+                                color: "gray",
+                                children: t("agent.called")
+                            },
+                            {
+                                color: "gray",
+                                children: t("agent.response.status")
+                            }
                         ]}
                     />
-                </Form.Item>
+                )
+            }
 
-                <RightSubmitButton onClick={testAgent}/>
+            {
+                (progressState === ProgressStates.TESTED && testResponse) && (
+                    <div>
+                        <Timeline
+                            items={[
+                                {
+                                    color: testResponse.agentUid == agent.uid ? "green" : "red",
+                                    children: t("agent.selected")
+                                },
+                                {
+                                    color: "gray",
 
-            </Form>
-        )
-    } else if (progressState == ProgressStates.LOADING) {
-        return (
-            <Spin/>
-        )
-    } else if (progressState == ProgressStates.TESTED) {
-        return (
-            <div>
-                {
-                    testResponse && (
-                        <div>
-                            <div>{testResponse.uid}</div>
-                            <div>{testResponse.text}</div>
-                            <div>{testResponse.error}</div>
-                            <div>{testResponse.result.reasoning}</div>
-                        </div>
-                    )
-                }
-            </div>
+                                    children: (
+                                        <Flex vertical gap={10}>
+                                            {t("parameters")}
+                                            <Timeline
+                                                items={[
+                                                    {
+                                                        color: "red",
+                                                        children: `$name="Some name"`
+                                                    },
+                                                    {
+                                                        color: "red",
+                                                        children: `date="07.06.1997"`
+                                                    },
+                                                ]}
+                                                style={{
+                                                    paddingBottom: 0
+                                                }}
+                                            />
+                                        </Flex>
+                                    )
+                                },
+                                {
+                                    color: "gray",
+                                    children: t("agent.called")
+                                },
+                                {
+                                    color: "gray",
+                                    children: t("agent.response.status")
+                                }
+                            ]}
+                        />
 
-        )
-    } else {
-        return (
-            <div/>
-        )
-    }
+                        <div>{testResponse.uid}</div>
+                        <div>{testResponse.text}</div>
+                        <div>{testResponse.error}</div>
+
+
+                        <Form.Item label={`${t("reasoning")}:`}>
+                            <TextArea
+
+                                onChange={(e) => {
+                                    e.preventDefault()
+                                }}
+                                value={testResponse.result.reasoning}
+                            />
+                        </Form.Item>
+                    </div>
+                )
+            }
+
+
+        </Form>
+    )
 
 }

@@ -1,16 +1,17 @@
 import React from "react"
-import {Form, Select} from "antd";
+import {Col, Flex, Form, Row, Select, Tabs, Timeline} from "antd";
 import {StringProperty} from "@Turtle/Data/Properties";
 import StringPropertyView from "@Turtle/Components/Forms/StringPropertyView";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import TurtleApp from "@TurtleApp/TurtleApp";
-import LLMApi from "@Turtle/LLM/Api/LLMApi";
+
 import {LLMAgent} from "@Turtle/LLM/Data/LLMAgent";
 import LLMAgentApi from "@Turtle/LLM/Api/LLMAgentApi";
 import {ListUserTypes} from "@Turtle/Users/User";
 import {useTranslation} from "react-i18next";
 import XApiKeySelect from "@Turtle/XApiKey/XApiKeySelect";
 import StringAreaPropertyView from "@Turtle/Components/Forms/StringAreaPropertyView";
+
 
 interface CreateLLMClusterModalProps {
     agent: LLMAgent
@@ -54,67 +55,183 @@ export default function CreateLLMAgentModal({
         afterSubmit()
     }
 
+    const [activeTimeLine, setActiveTimeLine] = React.useState("basicInfo")
+
 
     return (
         <Form layout={"vertical"}>
-            <StringPropertyView
-                entity={agent}
-                property={nameField}
-            />
 
-            {/*TODO user level*/}
+            <Row gutter={2}>
+                <Col span={8}>
+                    <Timeline
+                        items={[
+                            {
+                                color: activeTimeLine == "basicInfo" ? "green" : "gray",
+                                children: (
+                                    <Flex
+                                        onClick={() => {
+                                            setActiveTimeLine("basicInfo")
+                                        }}
+                                        style={{
+                                            cursor: "pointer"
+                                        }}
+                                    >
+                                        {t("basicInfo")}
+                                    </Flex>
+                                )
+                            },
+                            {
+                                color: activeTimeLine == "agentType" ? "green" : "gray",
+                                children: (
+                                    <Flex
+                                        onClick={() => {
+                                            setActiveTimeLine("agentType")
 
+                                        }}
+                                        style={{
+                                            cursor: "pointer"
+                                        }}
+                                    >
+                                        {t("agentType")}
+                                    </Flex>
+                                )
+                            },
+                            {
+                                color: activeTimeLine == "outputStreams" ? "green" : "gray",
+                                children: (
+                                    <Flex
+                                        onClick={() => {
+                                            setActiveTimeLine("agentType")
 
-            <StringAreaPropertyView
-                entity={agent}
-                property={descriptionField}
-            />
+                                        }}
+                                        style={{
+                                            cursor: "pointer"
+                                        }}
+                                    >
+                                        {t("outputStreams")}
+                                    </Flex>
+                                )
+                            }
+                        ]}
+                    />
 
-            <StringPropertyView
-                entity={agent}
-                property={specializationField}
-            />
+                </Col>
 
+                <Col span={16}>
 
-            <Form.Item
-                label={`${t("user.level")}:`}
-            >
-                <Select
-                    defaultValue={0}
-                    onChange={(value) => {
-                        agent.userLevel = value
-                    }}
-                >
                     {
-                        ListUserTypes().map((entity) => {
-                            return (
-                                <Select.Option
-                                    key={entity.lang}
-                                    value={entity.value}
+                        activeTimeLine === "basicInfo" && (
+                            <React.Fragment>
+                                <StringPropertyView
+                                    entity={agent}
+                                    property={nameField}
+                                />
+
+                                {/*TODO user level*/}
+
+
+                                <StringAreaPropertyView
+                                    entity={agent}
+                                    property={descriptionField}
+                                />
+
+                                <StringPropertyView
+                                    entity={agent}
+                                    property={specializationField}
+                                />
+
+
+                                <Form.Item
+                                    label={`${t("user.level")}:`}
                                 >
-                                    {t(entity.lang)}
-                                </Select.Option>
-                            )
-                        })
+                                    <Select
+                                        defaultValue={0}
+                                        onChange={(value) => {
+                                            agent.userLevel = value
+                                        }}
+                                    >
+                                        {
+                                            ListUserTypes().map((entity) => {
+                                                return (
+                                                    <Select.Option
+                                                        key={entity.lang}
+                                                        value={entity.value}
+                                                    >
+                                                        {t(entity.lang)}
+                                                    </Select.Option>
+                                                )
+                                            })
+                                        }
+
+                                    </Select>
+                                </Form.Item>
+
+                                <XApiKeySelect
+                                    entity={agent}
+                                    itemKey={"xApiKey"}
+                                />
+
+                                <StringAreaPropertyView
+                                    entity={agent}
+                                    property={commandExampleField}
+                                />
+
+                            </React.Fragment>
+                        )
                     }
 
-                </Select>
-            </Form.Item>
+                    {
+                        activeTimeLine === "agentType" && (
+                            <_LLMAgentEditType agent={agent}/>
+                        )
+                    }
 
-            <XApiKeySelect
-                entity={agent}
-                itemKey={"xApiKey"}
-            />
 
-            <StringAreaPropertyView
-                entity={agent}
-                property={commandExampleField}
-            />
+                </Col>
+            </Row>
+
 
             <RightSubmitButton
                 onClick={onSubmit}
             />
 
         </Form>
+    )
+}
+
+
+function _LLMAgentEditType({agent}: { agent: LLMAgent }) {
+
+
+    const [t] = useTranslation()
+
+    const [agentType, setAgentType] = React.useState("url")
+
+    return (
+        <React.Fragment>
+            <Tabs
+                defaultActiveKey="url"
+                centered
+                size={"small"}
+                onChange={(newType) => {
+                    setAgentType(newType)
+                }}
+                items={[
+                    {
+                        label: "URL",
+                        key: "url",
+                    },
+                    {
+                        label: t("database"),
+                        key: "database",
+                    },
+                    {
+                        label: t("code"),
+                        key: "code",
+                    },
+                ]}
+            />
+
+        </React.Fragment>
     )
 }

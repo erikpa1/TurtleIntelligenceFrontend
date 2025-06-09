@@ -1,5 +1,6 @@
 import {LLMAgent, LLMAgentTestResponse} from "@Turtle/LLM/Data/LLMAgent";
 import Turxios from "@Turtle/Api/Turxios";
+import axios from "axios";
 
 
 export default class LLMAgentApi {
@@ -33,7 +34,17 @@ export default class LLMAgentApi {
         data.set("text", text)
         data.set("agent", agentUid)
 
-        const response = (await Turxios.post("/api/llm/agent/test", data)).data
+        const response = (await axios.post("/api/llm/agent/test", data).catch((e) => {
+
+            return {
+                data: {
+                    error: `${e.response.status}`,
+                    text: "",
+                    result: {}
+                }
+            }
+        })).data
+
         const testResponse = new LLMAgentTestResponse()
         testResponse.FromJson(response)
         return testResponse

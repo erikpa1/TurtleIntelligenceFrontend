@@ -5,11 +5,11 @@ import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {
     HierarchyAddButton,
-    HierarchyDeleteButton,
+    HierarchyDeleteButton, HierarchyEditButton,
     HierarchyFlex, HierarchyPlayButton,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents";
-import {bodkaBodkaText} from "@Turtle/Utils/StringFormatters";
+
 import {LLMAgent} from "@Turtle/LLM/Data/LLMAgent";
 import LLMAgentApi from "@Turtle/LLM/Api/LLMAgentApi";
 import TurtleApp from "@TurtleApp/TurtleApp";
@@ -55,6 +55,12 @@ export default function LLMAgentsHierarchy({}) {
                                         }}
                                     />
 
+                                    <HierarchyEditButton
+                                        onClick={() => {
+                                            editAgent(val)
+                                        }}
+                                    />
+
                                     <HierarchyDeleteButton
                                         onClick={() => {
                                             deleteAgentPressed(val.uid)
@@ -71,10 +77,26 @@ export default function LLMAgentsHierarchy({}) {
 
     function testAgent(agent: LLMAgent) {
         activate({
-            title: "test.agent",
+            title: `${t("test.agent")}:`,
             closable: true,
             content: (
                 <TestLLMAgentView agent={agent}/>
+            )
+        })
+    }
+
+
+    function editAgent(agent: LLMAgent) {
+        activate({
+            title: `${t("edit.agent")}:`,
+            closable: true,
+            width: 800,
+            content: (
+                <CreateLLMAgentModal
+                    agent={agent}
+                    beforeSubmit={deactivate}
+                    afterSubmit={refresh}
+                />
             )
         })
     }
@@ -85,6 +107,8 @@ export default function LLMAgentsHierarchy({}) {
 
         activate({
             title: t("create.llmagent"),
+            width: 800,
+            closable: true,
             content: (
                 <CreateLLMAgentModal
                     agent={tmp}

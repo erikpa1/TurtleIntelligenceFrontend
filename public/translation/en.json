@@ -68,5 +68,15 @@
     "user": "User",
     "editor": "Editor",
     "admin": "Admin",
-    "superadmin": "Super admin"
+    "superadmin": "Super admin",
+    "test.agent": "Test agent",
+    "agent.selected": "Agent selected",
+    "parameters": "Parameters",
+    "agent.called": "Agent called",
+    "agent.response.status": "Agent response status",
+    "reasoning": "Reasoning",
+    "generating": "Generating",
+    "basicInfo": "Basic info",
+    "agentType": "Agent type",
+    "outputStreams": "Output streams"
 }
