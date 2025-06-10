@@ -13,6 +13,8 @@ export default class LLMModel {
     org = ""
     description = ""
     type = LLMModelType.GENERAL
+    defaultTemperature = 1
+    canUserOverrideTemperature = false
 
 
     ToJson(): any {

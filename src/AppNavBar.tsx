@@ -128,6 +128,14 @@ export default function AppNavBar() {
                                     navigate("/agents")
                                 }
                             },
+                            {
+                                key: "docint",
+                                icon: <OpenAIOutlined/>,
+                                label: t("document.intelligence"),
+                                onClick: () => {
+                                    navigate("/doc-int")
+                                }
+                            },
 
                         ]}
                     />

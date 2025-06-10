@@ -78,5 +78,7 @@
     "generating": "Generating",
     "basicInfo": "Basic info",
     "agentType": "Agent type",
-    "outputStreams": "Output streams"
+    "outputStreams": "Output streams",
+    "document.intelligence": "Document intelligence",
+    "documents": "Documents"
 }
