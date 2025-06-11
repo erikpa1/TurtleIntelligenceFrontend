@@ -1,9 +1,10 @@
 import React from "react"
 import {Form} from "antd";
-import {PropertyParent, StringProperty} from "@Turtle/Data/Properties";
+import {ColorProperty, PropertyParent, StringProperty} from "@Turtle/Data/Properties";
 import StringPropertyView from "@Turtle/Components/Forms/StringPropertyView";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import TurtleApp from "@TurtleApp/TurtleApp";
+import ColorPropertyView from "@Turtle/Components/Forms/ColorPropertyView";
 
 
 interface EntityFormProps {
@@ -92,6 +93,10 @@ function _ViewDispatcher({
     if (property instanceof StringProperty) {
         return (
             <StringPropertyView entity={entity} property={property}/>
+        )
+    } else if (property instanceof ColorProperty) {
+        return (
+            <ColorPropertyView entity={entity} property={property}/>
         )
     } else {
         return (

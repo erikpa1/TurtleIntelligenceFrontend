@@ -1,5 +1,5 @@
 import React from "react"
-import {Col, Flex, Form, Row, Select, Tabs, Timeline} from "antd";
+import {Checkbox, Col, Flex, Form, Row, Select, Switch, Tabs, Timeline} from "antd";
 import {StringProperty} from "@Turtle/Data/Properties";
 import StringPropertyView from "@Turtle/Components/Forms/StringPropertyView";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
@@ -59,7 +59,12 @@ export default function CreateLLMAgentModal({
 
 
     return (
-        <Form layout={"vertical"}>
+        <Form
+            layout={"vertical"}
+            style={{
+                paddingTop: "30px"
+            }}
+        >
 
             <Row gutter={2}>
                 <Col span={8}>
@@ -93,22 +98,6 @@ export default function CreateLLMAgentModal({
                                         }}
                                     >
                                         {t("agentType")}
-                                    </Flex>
-                                )
-                            },
-                            {
-                                color: activeTimeLine == "outputStreams" ? "green" : "gray",
-                                children: (
-                                    <Flex
-                                        onClick={() => {
-                                            setActiveTimeLine("agentType")
-
-                                        }}
-                                        style={{
-                                            cursor: "pointer"
-                                        }}
-                                    >
-                                        {t("outputStreams")}
                                     </Flex>
                                 )
                             }
@@ -186,7 +175,6 @@ export default function CreateLLMAgentModal({
                         )
                     }
 
-
                 </Col>
             </Row>
 
@@ -209,6 +197,8 @@ function _LLMAgentEditType({agent}: { agent: LLMAgent }) {
 
     return (
         <React.Fragment>
+
+
             <Tabs
                 defaultActiveKey="url"
                 centered
@@ -229,9 +219,12 @@ function _LLMAgentEditType({agent}: { agent: LLMAgent }) {
                         label: t("code"),
                         key: "code",
                     },
+                    {
+                        label: t("exe"),
+                        key: "exe",
+                    },
                 ]}
             />
-
         </React.Fragment>
     )
 }

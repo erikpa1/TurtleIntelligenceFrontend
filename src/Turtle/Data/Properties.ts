@@ -22,7 +22,7 @@ export class StringProperty extends PropertyParent {
 
 }
 
-export class IntProperty extends PropertyParent {
+export class ColorProperty extends PropertyParent {
 
     static New(key: string, label: string): StringProperty {
         const tmp = new StringProperty()
@@ -31,6 +31,24 @@ export class IntProperty extends PropertyParent {
         return tmp
     }
 
+    static NewColor(): ColorProperty {
+        const tmp = new ColorProperty()
+        tmp.key = "color"
+        tmp.label = "color"
+        return tmp
+    }
+
+
+}
+
+export class IntProperty extends PropertyParent {
+
+    static New(key: string, label: string): StringProperty {
+        const tmp = new StringProperty()
+        tmp.key = key
+        tmp.label = label
+        return tmp
+    }
 
 
 }
