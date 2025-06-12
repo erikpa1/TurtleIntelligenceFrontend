@@ -64,7 +64,12 @@ export default function ContainersHierarchy({}) {
 
     return (
         <Tree
+            key={data[0]?.children?.length}
+            blockNode
+            virtual
+            showLine
             treeData={data}
+            defaultExpandAll={true}
         />
     )
 

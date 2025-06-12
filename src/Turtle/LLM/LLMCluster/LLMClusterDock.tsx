@@ -5,10 +5,16 @@ import WorldControllers from "@TurtleApp/Routes/WorldDock/WorldControllers"
 
 import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme"
 import LLMClusterHierarchy from "@Turtle/LLM/LLMCluster/LLMClusterHierarchy";
+import {useParams} from "react-router-dom";
+import LLMClusterPerformanceView from "@Turtle/LLM/LLMCluster/LLMClusterPerformanceView";
 
 export default function LLMClusterDock() {
 
+
+    const {clusterUid} = useParams()
+
     const {bigPadding} = useTurtleTheme()
+
 
     return (
         <div>
@@ -18,7 +24,7 @@ export default function LLMClusterDock() {
             }}>
 
                 <Splitter.Panel
-                    defaultSize="20%"
+                    defaultSize="30%"
                     style={{
                         backgroundColor: "white",
                         padding: bigPadding
@@ -28,8 +34,13 @@ export default function LLMClusterDock() {
                 </Splitter.Panel>
 
                 <Splitter.Panel
-                    defaultSize="80%"
+                    defaultSize="70%"
                 >
+                    {
+                        clusterUid && (
+                            <LLMClusterPerformanceView clusterUid={clusterUid}/>
+                        )
+                    }
 
                 </Splitter.Panel>
 

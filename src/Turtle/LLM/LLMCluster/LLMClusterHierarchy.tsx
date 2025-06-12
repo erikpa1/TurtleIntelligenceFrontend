@@ -15,6 +15,8 @@ import {bodkaBodkaText} from "@Turtle/Utils/StringFormatters"
 import TurtleApp from "@TurtleApp/TurtleApp"
 import CreateLLMAgentModal from "@Turtle/LLM/LLMAgentsDock/CreateLLMAgentView";
 import {LLMAgent} from "@Turtle/LLM/Data/LLMAgent"
+import CreateLLMClusterModal from "@Turtle/LLM/LLMCluster/CreateLLMClusterModal";
+import LLMCluster from "@Turtle/LLM/Data/LLMCluster";
 
 
 export default function LLMClusterHierarchy() {
@@ -62,15 +64,14 @@ export default function LLMClusterHierarchy() {
     }
 
     function createClusterPressed() {
-        const tmp = new LLMAgent()
+        const tmp = new LLMCluster()
 
         activate({
-            title: t("create.llmagent"),
-            width: 800,
+            title: t("create.llmcluster"),
             closable: true,
             content: (
-                <CreateLLMAgentModal
-                    agent={tmp}
+                <CreateLLMClusterModal
+                    cluster={tmp}
                     beforeSubmit={deactivate}
                     afterSubmit={refresh}
                 />
