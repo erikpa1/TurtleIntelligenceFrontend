@@ -1,6 +1,7 @@
 import {Modal, ModalFuncProps} from "antd";
 import React from "react"
 import {useTranslation} from "react-i18next";
+import ErrorBoundary from "@Turtle/Components/ErrorBoundary";
 
 
 export function useTurtleModal() {
@@ -9,13 +10,23 @@ export function useTurtleModal() {
 
     const guard: any = React.useMemo(() => ({current: null}), [])
 
-    function activate(props: ModalFuncProps) {
+    function activate({
+                          content,
+                          ...props
+                      }: ModalFuncProps) {
         guard.current = Modal.info({
             ...props,
             title: t(props.title as any ?? ""),
             icon: props.icon ?? null,
             footer: null,
-            closable: true
+            closable: true,
+            content: (
+                <ErrorBoundary>
+                    {content}
+                </ErrorBoundary>
+            )
+
+
         })
     }
 

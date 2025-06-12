@@ -84,5 +84,6 @@
     "database": "Database",
     "code": "Code",
     "exe": "Executable",
-    "color": "Color"
+    "color": "Color",
+    "requests.perday": "Requests per day"
 }

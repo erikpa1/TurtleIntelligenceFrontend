@@ -13,8 +13,6 @@ import {
 import LLMApi from "@Turtle/LLM/Api/LLMApi"
 import {bodkaBodkaText} from "@Turtle/Utils/StringFormatters"
 import TurtleApp from "@TurtleApp/TurtleApp"
-import CreateLLMAgentModal from "@Turtle/LLM/LLMAgentsDock/CreateLLMAgentView";
-import {LLMAgent} from "@Turtle/LLM/Data/LLMAgent"
 import CreateLLMClusterModal from "@Turtle/LLM/LLMCluster/CreateLLMClusterModal";
 import LLMCluster from "@Turtle/LLM/Data/LLMCluster";
 
@@ -27,24 +25,28 @@ export default function LLMClusterHierarchy() {
 
     const navigate = useNavigate()
 
-    function createHierarchy(nnModels: Array<any>) {
+    function createHierarchy(clusters: Array<LLMCluster>) {
         return [
             {
                 key: "llmclusters",
                 title: (
                     <Flex>
-                        {t("llm.clusters")} ({nnModels.length})
+                        {t("llm.clusters")} ({clusters.length})
                         <HierarchyRightFlex>
                             <HierarchyAddButton onClick={createClusterPressed}/>
                         </HierarchyRightFlex>
                     </Flex>
                 ),
 
-                children: nnModels.map((val) => {
+                children: clusters.map((val) => {
                     return {
                         key: val.uid,
                         title: (
-                            <HierarchyFlex onClick={modelClicked}>
+                            <HierarchyFlex
+                                onClick={() => {
+                                    clusterClicked(val)
+                                }}
+                            >
 
                                 {val.name} [{bodkaBodkaText(val.url, 15)}]
 
@@ -63,6 +65,10 @@ export default function LLMClusterHierarchy() {
         ]
     }
 
+    function clusterClicked(cluster: LLMCluster) {
+        navigate(`/llm-clusters/${cluster.uid}`)
+    }
+
     function createClusterPressed() {
         const tmp = new LLMCluster()
 
@@ -79,10 +85,6 @@ export default function LLMClusterHierarchy() {
         })
     }
 
-
-    function modelClicked(nnModel: any) {
-
-    }
 
     async function deleteCluster(clusterUid: string) {
         TurtleApp.Lock()

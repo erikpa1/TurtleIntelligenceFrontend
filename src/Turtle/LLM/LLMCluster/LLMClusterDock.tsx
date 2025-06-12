@@ -35,6 +35,9 @@ export default function LLMClusterDock() {
 
                 <Splitter.Panel
                     defaultSize="70%"
+                    style={{
+                        padding: "15px"
+                    }}
                 >
                     {
                         clusterUid && (
