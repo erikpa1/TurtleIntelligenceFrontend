@@ -3,7 +3,7 @@ import React from "react"
 import {useTranslation} from "react-i18next";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {useNavigate} from "react-router-dom";
-import {Flex, Tree, TreeDataNode} from "antd";
+import {Flex, Space, Tree, TreeDataNode} from "antd";
 import {
     HierarchyAddButton,
     HierarchyDeleteButton,
@@ -15,6 +15,7 @@ import {bodkaBodkaText} from "@Turtle/Utils/StringFormatters"
 import TurtleApp from "@TurtleApp/TurtleApp"
 import CreateLLMClusterModal from "@Turtle/LLM/LLMCluster/CreateLLMClusterModal";
 import LLMCluster from "@Turtle/LLM/Data/LLMCluster";
+import ColorConstants from "@Turtle/Constants/ColorConstants";
 
 
 export default function LLMClusterHierarchy() {
@@ -48,7 +49,13 @@ export default function LLMClusterHierarchy() {
                                 }}
                             >
 
-                                {val.name} [{bodkaBodkaText(val.url, 15)}]
+                                <Space>
+                                    <_ClusterHealthCheck clusterUid={val.uid}/>
+
+                                    <div>
+                                        {val.name} [{bodkaBodkaText(val.url, 15)}]
+                                    </div>
+                                </Space>
 
                                 <HierarchyRightFlex>
                                     <HierarchyDeleteButton
@@ -113,6 +120,22 @@ export default function LLMClusterHierarchy() {
             showLine
             treeData={data}
             defaultExpandAll={true}
+        />
+    )
+}
+
+function _ClusterHealthCheck({clusterUid}) {
+
+
+    return (
+        <div
+            style={{
+                width: "10px",
+                height: "10px",
+                borderRadius: "50%",
+                backgroundColor: ColorConstants.GREEN,
+                border: "solid 1px grey",
+            }}
         />
     )
 }

@@ -6,11 +6,12 @@ export enum LLMClusterType {
 
 export default class LLMCluster {
     uid = ""
-    name = "Active server"
+    name = "localhost"
     url = "http://localhost:11434"
     type = LLMClusterType.RAW
     xApiKey = ""
     org = ""
+    energyConsumption = 0
 
     ToJson(): any {
         return {
@@ -19,6 +20,7 @@ export default class LLMCluster {
             url: this.url,
             xApiKey: this.xApiKey,
             org: this.org,
+            energyConsumption: this.energyConsumption,
         }
     }
 
@@ -28,6 +30,7 @@ export default class LLMCluster {
         this.url = json.url ?? ""
         this.xApiKey = json.xApiKey ?? ""
         this.org = json.org ?? ""
+        this.energyConsumption = json.energyConsumption ?? 0
     }
 
 

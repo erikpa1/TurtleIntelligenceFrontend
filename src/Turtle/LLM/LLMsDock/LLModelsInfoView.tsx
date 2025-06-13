@@ -1,6 +1,8 @@
 import React from "react"
 import {Col, Flex, Row, Tabs, Timeline, Typography} from "antd";
 import {useTranslation} from "react-i18next";
+import {HierarchyInfoButton} from "@Turtle/Components/HierarchyComponents";
+import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 
 export default function LLModelsInfoView() {
 
@@ -78,5 +80,33 @@ export default function LLModelsInfoView() {
                 />
             </Col>
         </Row>
+    )
+}
+
+export function ModelsInfoButton({}) {
+
+
+    const [t] = useTranslation()
+
+    const {activate, deactivate} = useTurtleModal()
+
+    function showModels() {
+        activate({
+            title: t("models"),
+            width: 800,
+            content: (
+                <div style={{
+                    padding: "15px"
+                }}>
+                    <LLModelsInfoView/>
+                </div>
+            )
+        })
+    }
+
+    return (
+        <HierarchyInfoButton
+            onClick={showModels}
+        />
     )
 }

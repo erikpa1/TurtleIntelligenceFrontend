@@ -10,6 +10,7 @@ import SelectItem, {SelectItemOptions} from "@Turtle/ReflectiveUI/SelectItem";
 import LLMApi from "@Turtle/LLM/Api/LLMApi";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import BoolPropertyView from "@Turtle/Components/Forms/BoolPropertyView";
+import {ModelsInfoButton} from "@Turtle/LLM/LLMsDock/LLModelsInfoView";
 
 interface RegisterLLLMModelProps {
     llmModel: LLMModel
@@ -37,10 +38,6 @@ export default function RegisterLLLMModel({
         }
     }, [llmModel])
 
-
-    const isAgenticField = React.useMemo(() => {
-        return
-    }, [llmModel])
 
     async function onSubmit() {
         beforeSubmit()
@@ -87,7 +84,9 @@ export default function RegisterLLLMModel({
                 <StringPropertyView
                     entity={llmModel}
                     property={fields.modelVersion}
+                    behindLabel={<ModelsInfoButton/>}
                 />
+
 
                 <SelectItem
                     entity={llmModel}
