@@ -7,6 +7,7 @@ import LLMAgentApi from "@Turtle/LLM/Api/LLMAgentApi";
 import {Simulate} from "react-dom/test-utils";
 import reset = Simulate.reset;
 import {useTranslation} from "react-i18next";
+import LLModelSelect from "@Turtle/LLM/LLMsDock/LLMModelsSelect";
 
 
 interface TestLLMAgentViewProps {
@@ -24,6 +25,8 @@ export default function TestLLMAgentView({agent}: TestLLMAgentViewProps) {
 
     const [t] = useTranslation()
 
+    const [activeModel, setActiveModel] = React.useState("")
+
     const [progressState, setProgressState] = React.useState<ProgressStates>(ProgressStates.START)
 
     const [testResponse, setTestResponse] = React.useState<LLMAgentTestResponse | null>(null)
@@ -32,7 +35,7 @@ export default function TestLLMAgentView({agent}: TestLLMAgentViewProps) {
 
     function testAgent() {
         setProgressState(ProgressStates.LOADING)
-        LLMAgentApi.TestAgent(agent.uid, commandText).then(backendResponse)
+        LLMAgentApi.TestAgent(agent.uid, activeModel, commandText).then(backendResponse)
     }
 
     function backendResponse(response: LLMAgentTestResponse) {
@@ -53,6 +56,10 @@ export default function TestLLMAgentView({agent}: TestLLMAgentViewProps) {
                 />
             </Form.Item>
 
+            <LLModelSelect
+                defaultValue={activeModel}
+                modelChanged={setActiveModel}
+            />
 
             {
                 progressState === ProgressStates.START && (

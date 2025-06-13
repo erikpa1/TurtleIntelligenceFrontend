@@ -89,5 +89,8 @@
     "generic": "Generic",
     "agentic": "Agentic",
     "healthcare": "Healthcare",
-    "visionencoder": "Vision encoder"
+    "visionencoder": "Vision encoder",
+    "edit.llmodel": "Edit LLM",
+    "modelVersion": "Model version",
+    "isAgentic": "Is agentic"
 }

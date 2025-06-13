@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {Flex, Tree, TreeDataNode} from "antd";
 import {
     HierarchyAddButton,
-    HierarchyDeleteButton,
+    HierarchyDeleteButton, HierarchyEditButton,
     HierarchyFlex, HierarchyInfoButton,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents"
@@ -45,13 +45,16 @@ export default function LLMsHierarchy() {
                                 onClick={showModels}
                             />
                             <HierarchyAddButton
-                                onClick={createClusterPressed}
+                                onClick={createModelPressed}
                             />
                         </HierarchyRightFlex>
                     </Flex>
                 ),
 
                 children: models.map((val) => {
+
+                    console.log(val.uid)
+
                     return {
                         key: val.uid,
                         title: (
@@ -60,6 +63,10 @@ export default function LLMsHierarchy() {
                                 {val.name}
 
                                 <HierarchyRightFlex>
+                                    <HierarchyEditButton
+                                        onClick={editModelPressed}
+                                    />
+
                                     <HierarchyDeleteButton
                                         onClick={() => {
                                             deleteModel(val.uid)
@@ -88,11 +95,25 @@ export default function LLMsHierarchy() {
         })
     }
 
-    function createClusterPressed() {
+    function editModelPressed(model: LLMModel) {
+        activate({
+            title: t("edit.llmodel"),
+            content: (
+                <RegisterLLLMModel
+                    llmModel={model}
+                    beforeSubmit={deactivate}
+                    afterSubmit={refresh}
+                />
+            )
+        })
+    }
+
+    function createModelPressed() {
+
         const tmp = new LLMModel()
 
         activate({
-            title: t("register.llmmodel"),
+            title: t("register.llmodel"),
             content: (
                 <RegisterLLLMModel
                     llmModel={tmp}

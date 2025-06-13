@@ -1,3 +1,5 @@
+
+
 export enum LLMModelType {
     GENERAL = 0,
     AGENTIC = 1,
@@ -33,6 +35,7 @@ export default class LLMModel {
     }
 
     FromJson(jObj: any) {
+        console.log(jObj)
         this.uid = jObj.uid ?? ""
         this.name = jObj.name ?? ""
         this.cluster = jObj.cluster ?? ""

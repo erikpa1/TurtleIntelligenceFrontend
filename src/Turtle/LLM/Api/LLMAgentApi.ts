@@ -28,7 +28,7 @@ export default class LLMAgentApi {
         })
     }
 
-    static async TestAgent(agentUid: string, text: string): Promise<LLMAgentTestResponse> {
+    static async TestAgent(agentUid: string, activeModel: string, text: string): Promise<LLMAgentTestResponse> {
 
         const data = new FormData()
         data.set("text", text)
