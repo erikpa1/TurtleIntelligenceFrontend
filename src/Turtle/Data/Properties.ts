@@ -52,3 +52,16 @@ export class IntProperty extends PropertyParent {
 
 
 }
+
+export class BoolProperty extends PropertyParent {
+
+
+    static New(key: string, label: string): BoolProperty {
+        const tmp = new BoolProperty()
+        tmp.key = key
+        tmp.label = label
+        return tmp
+    }
+
+
+}

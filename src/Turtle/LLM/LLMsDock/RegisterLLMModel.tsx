@@ -1,7 +1,7 @@
 import React from "react"
 import LLMModel from "@Turtle/LLM/Data/LLMModel";
 import {Form, Spin} from "antd";
-import {StringProperty} from "@Turtle/Data/Properties";
+import {BoolProperty, StringProperty} from "@Turtle/Data/Properties";
 
 import StringPropertyView from "@Turtle/Components/Forms/StringPropertyView";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
@@ -9,6 +9,7 @@ import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import SelectItem, {SelectItemOptions} from "@Turtle/ReflectiveUI/SelectItem";
 import LLMApi from "@Turtle/LLM/Api/LLMApi";
 import TurtleApp from "@TurtleApp/TurtleApp";
+import BoolPropertyView from "@Turtle/Components/Forms/BoolPropertyView";
 
 interface RegisterLLLMModelProps {
     llmModel: LLMModel
@@ -27,10 +28,19 @@ export default function RegisterLLLMModel({
 
     const [clustersOptions, setClusterOptions] = React.useState<Array<SelectItemOptions>>([])
 
-    const nameField = React.useMemo(() => {
-        return StringProperty.NewName()
+
+    const fields = React.useMemo(() => {
+        return {
+            name: StringProperty.NewName(),
+            modelVersion: StringProperty.New("modelVersion", "modelVersion"),
+            isAgentic: BoolProperty.New("isAgentic", "isAgentic")
+        }
     }, [llmModel])
 
+
+    const isAgenticField = React.useMemo(() => {
+        return
+    }, [llmModel])
 
     async function onSubmit() {
         beforeSubmit()
@@ -71,7 +81,12 @@ export default function RegisterLLLMModel({
 
                 <StringPropertyView
                     entity={llmModel}
-                    property={nameField}
+                    property={fields.name}
+                />
+
+                <StringPropertyView
+                    entity={llmModel}
+                    property={fields.modelVersion}
                 />
 
                 <SelectItem
@@ -80,6 +95,11 @@ export default function RegisterLLLMModel({
                     options={clustersOptions}
                     useEmpty={true}
                     size={"middle"}
+                />
+
+                <BoolPropertyView
+                    entity={llmModel}
+                    property={fields.isAgentic}
                 />
 
 

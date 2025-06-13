@@ -3,7 +3,7 @@ import {Button, Flex, Popconfirm} from "antd";
 import {
     DeleteRowOutlined,
     DeleteTwoTone, EditOutlined,
-    EyeOutlined,
+    EyeOutlined, InfoOutlined,
     PauseOutlined,
     PlusOutlined,
     StepForwardOutlined,
@@ -52,6 +52,16 @@ export function HierarchyAddButton({onClick}) {
     return (
         <HierarchyCustomIcon
             icon={<PlusOutlined/>}
+            onClick={onClick}
+        />
+    )
+}
+
+export function HierarchyInfoButton({onClick}) {
+
+    return (
+        <HierarchyCustomIcon
+            icon={<InfoOutlined/>}
             onClick={onClick}
         />
     )

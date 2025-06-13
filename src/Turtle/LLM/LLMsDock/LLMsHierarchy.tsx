@@ -5,7 +5,7 @@ import {Flex, Tree, TreeDataNode} from "antd";
 import {
     HierarchyAddButton,
     HierarchyDeleteButton,
-    HierarchyFlex,
+    HierarchyFlex, HierarchyInfoButton,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents"
 
@@ -20,6 +20,7 @@ import LLMModel from "@Turtle/LLM/Data/LLMModel";
 import LLMCluster from "@Turtle/LLM/Data/LLMCluster";
 import CreateLLMClusterModal from "@Turtle/LLM/LLMCluster/CreateLLMClusterModal";
 import RegisterLLLMModel from "@Turtle/LLM/LLMsDock/RegisterLLMModel";
+import LLModelsInfoView from "@Turtle/LLM/LLMsDock/LLModelsInfoView";
 
 
 export default function LLMsHierarchy() {
@@ -40,6 +41,9 @@ export default function LLMsHierarchy() {
                         {t("llm.models")} ({models.length})
 
                         <HierarchyRightFlex>
+                            <HierarchyInfoButton
+                                onClick={showModels}
+                            />
                             <HierarchyAddButton
                                 onClick={createClusterPressed}
                             />
@@ -68,6 +72,20 @@ export default function LLMsHierarchy() {
                 })
             }
         ]
+    }
+
+    function showModels() {
+        activate({
+            title: t("models"),
+            width: 800,
+            content: (
+                <div style={{
+                    padding: "15px"
+                }}>
+                    <LLModelsInfoView/>
+                </div>
+            )
+        })
     }
 
     function createClusterPressed() {

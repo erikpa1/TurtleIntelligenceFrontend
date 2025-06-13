@@ -85,5 +85,9 @@
     "code": "Code",
     "exe": "Executable",
     "color": "Color",
-    "requests.perday": "Requests per day"
+    "requests.perday": "Requests per day",
+    "generic": "Generic",
+    "agentic": "Agentic",
+    "healthcare": "Healthcare",
+    "visionencoder": "Vision encoder"
 }
