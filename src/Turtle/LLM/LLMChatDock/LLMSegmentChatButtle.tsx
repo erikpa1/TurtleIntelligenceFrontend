@@ -109,10 +109,12 @@ function _SmartTextsView({segment}: LLMSegmentProps) {
                     if (item.type === "text") {
                         return (
 
-                            <ErrorBoundary onError={<_EmergencyView text={segment.text}/>}>
+                            <ErrorBoundary
+                                key={index}
+                                onError={<_EmergencyView text={segment.text}/>}>
                                 <_HtmlPrettyView
                                     text={item.text}
-                                    key={index}
+
                                 />
                             </ErrorBoundary>
 

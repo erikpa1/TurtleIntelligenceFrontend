@@ -43,7 +43,11 @@ export default function LLMAgentsHierarchy({}) {
                     return {
                         key: val.uid,
                         title: (
-                            <HierarchyFlex>
+                            <HierarchyFlex
+                                onClick={() => {
+                                    agentClicked(val)
+                                }}
+                            >
 
                                 {val.name}
 
@@ -73,6 +77,10 @@ export default function LLMAgentsHierarchy({}) {
                 })
             }
         ]
+    }
+
+    function agentClicked(agent: LLMAgent) {
+        navigate(`/agents/${agent.uid}`)
     }
 
     function testAgent(agent: LLMAgent) {

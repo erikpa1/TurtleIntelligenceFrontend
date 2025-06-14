@@ -2,9 +2,14 @@ import React from "react"
 import {Splitter} from "antd"
 import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme"
 import LLMAgentsHierarchy from "@Turtle/LLM/LLMAgentsDock/LLMAgentsHierarchy";
+import {useParams} from "react-router-dom";
+import LLMAgentView from "@Turtle/LLM/LLMAgentsDock/LLMAgentView";
 
 
 export default function LLMAgentsDock() {
+
+    const {agentUid} = useParams()
+
     const {bigPadding} = useTurtleTheme()
 
 
@@ -29,6 +34,11 @@ export default function LLMAgentsDock() {
                     defaultSize="80%"
                 >
 
+                    {
+                        agentUid && (
+                            <LLMAgentView agentUid={agentUid}/>
+                        )
+                    }
 
                 </Splitter.Panel>
 

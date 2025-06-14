@@ -13,6 +13,7 @@ import {
 } from "@Turtle/Components/HierarchyComponents";
 import DocumentsApi from "@Turtle/DocInt/Api/DocumentsApi";
 import {FileDocumentLight} from "@Turtle/DocInt/Data/Document";
+import CreateDocumentView from "@Turtle/DocInt/Dock/CreateDocumentView";
 
 export default function DocIntHierarchy({}) {
 
@@ -39,9 +40,7 @@ export default function DocIntHierarchy({}) {
 
                         <HierarchyRightFlex>
                             <HierarchyAddButton
-                                onClick={() => {
-                                    navigate("/llm-chat/new")
-                                }}
+                                onClick={createDocument}
                             />
                         </HierarchyRightFlex>
                     </Flex>
@@ -58,6 +57,7 @@ export default function DocIntHierarchy({}) {
                                 {val.name}
 
                                 <HierarchyRightFlex>
+
                                     <HierarchyDeleteButton
                                         onClick={() => {
                                             deleteDocument(val.uid)
@@ -70,6 +70,16 @@ export default function DocIntHierarchy({}) {
                 })
             }
         ]
+    }
+
+    function createDocument() {
+        activate({
+            title: t("create.document"),
+            closable: true,
+            content: (
+                <CreateDocumentView/>
+            )
+        })
     }
 
     function deleteDocument(documentUid: string) {
