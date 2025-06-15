@@ -12,6 +12,18 @@ export default class AIChatApi {
         await Turxios.post("/api/llm/chat-ask", data)
     }
 
+    static async AskModel(modelUid: string, text: string): Promise<string> {
+        const data = new FormData()
+
+        data.set("modelUid", modelUid)
+        data.set("text", text)
+        return (await Turxios.post("/api/llm/ask", data)).data
+    }
+
+    static async TestEmbeding(): Promise<string> {
+        return (await Turxios.post("/api/llm/embedding")).data
+    }
+
     static async GetMyChatHistory(): Promise<Array<ChatHistoryLight>> {
 
         const tmp = (await Turxios.get<Array<any>>("/api/llm/chats")).data.map((val) => {

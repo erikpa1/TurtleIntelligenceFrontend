@@ -1,12 +1,12 @@
 import React from "react"
-import LLMModel from "@Turtle/LLM/Data/LLMModel";
+import LLM from "@Turtle/LLM/Data/LLM";
 import {Form, Select} from "antd";
 import LLMApi from "@Turtle/LLM/Api/LLMApi";
 
 
 export default function LLModelSelect({defaultValue, modelChanged}) {
 
-    const [models, setModels] = React.useState<Array<LLMModel>>([])
+    const [models, setModels] = React.useState<Array<LLM>>([])
 
     async function refresh() {
         setModels(await LLMApi.ListLLMS())

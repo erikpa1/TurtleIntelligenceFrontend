@@ -3,9 +3,9 @@ import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {useNavigate} from "react-router-dom";
 import {Flex, Tree, TreeDataNode} from "antd";
 import {
-    HierarchyAddButton,
+    HierarchyAddButton, HierarchyChatButton,
     HierarchyDeleteButton, HierarchyEditButton,
-    HierarchyFlex, HierarchyInfoButton,
+    HierarchyFlex, HierarchyInfoButton, HierarchyPlayButton,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents"
 
@@ -16,11 +16,12 @@ import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import LLMApi from "@Turtle/LLM/Api/LLMApi";
-import LLMModel from "@Turtle/LLM/Data/LLMModel";
+import LLM from "@Turtle/LLM/Data/LLM";
 import LLMCluster from "@Turtle/LLM/Data/LLMCluster";
 import CreateLLMClusterModal from "@Turtle/LLM/LLMCluster/CreateLLMClusterModal";
 import RegisterLLLMModel from "@Turtle/LLM/LLMsDock/RegisterLLMModel";
 import LLModelsInfoView, {ModelsInfoButton} from "@Turtle/LLM/LLMsDock/LLModelsInfoView";
+import LLMSingleChat from "@Turtle/LLM/LLMsDock/LLMSingleChat";
 
 
 export default function LLMsHierarchy() {
@@ -32,7 +33,7 @@ export default function LLMsHierarchy() {
 
     const navigate = useNavigate()
 
-    function createHierarchy(models: Array<LLMModel>) {
+    function createHierarchy(models: Array<LLM>) {
         return [
             {
                 key: "models",
@@ -50,19 +51,27 @@ export default function LLMsHierarchy() {
                 ),
 
                 children: models.map((val) => {
-
-                    console.log(val.uid)
-
                     return {
                         key: val.uid,
                         title: (
-                            <HierarchyFlex>
+                            <HierarchyFlex
+                                onClick={() => {
+                                    modelClicked(val)
+                                }}
+                            >
 
                                 {val.name}
 
                                 <HierarchyRightFlex>
+                                    <HierarchyChatButton
+                                        onClick={() => {
+                                            chatModelPressed(val)
+                                        }}
+                                    />
                                     <HierarchyEditButton
-                                        onClick={editModelPressed}
+                                        onClick={() => {
+                                            editModelPressed(val)
+                                        }}
                                     />
 
                                     <HierarchyDeleteButton
@@ -79,8 +88,23 @@ export default function LLMsHierarchy() {
         ]
     }
 
+    function modelClicked(model: LLM) {
+        navigate(`/llms/${model.uid}`)
+    }
 
-    function editModelPressed(model: LLMModel) {
+    function chatModelPressed(model: LLM) {
+
+        activate({
+            title: t("chat"),
+            content: (
+                <LLMSingleChat
+                    modelUid={model.uid}
+                />
+            )
+        })
+    }
+
+    function editModelPressed(model: LLM) {
         activate({
             title: t("edit.llmodel"),
             content: (
@@ -95,7 +119,7 @@ export default function LLMsHierarchy() {
 
     function createModelPressed() {
 
-        const tmp = new LLMModel()
+        const tmp = new LLM()
 
         activate({
             title: t("register.llmodel"),

@@ -1,12 +1,10 @@
-
-
 export enum LLMModelType {
     GENERAL = 0,
     AGENTIC = 1,
     SPECIALIZED = 2
 }
 
-export default class LLMModel {
+export default class LLM {
 
     uid = ""
     name = ""

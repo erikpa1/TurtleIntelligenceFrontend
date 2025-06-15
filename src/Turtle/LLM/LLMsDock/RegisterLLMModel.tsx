@@ -1,5 +1,5 @@
 import React from "react"
-import LLMModel from "@Turtle/LLM/Data/LLMModel";
+import LLM from "@Turtle/LLM/Data/LLM";
 import {Form, Spin} from "antd";
 import {BoolProperty, StringProperty} from "@Turtle/Data/Properties";
 
@@ -11,9 +11,11 @@ import LLMApi from "@Turtle/LLM/Api/LLMApi";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import BoolPropertyView from "@Turtle/Components/Forms/BoolPropertyView";
 import {ModelsInfoButton} from "@Turtle/LLM/LLMsDock/LLModelsInfoView";
+import StringItem from "@Turtle/ReflectiveUI/StringItem";
+import StringSelectPropertyView from "@Turtle/Components/Forms/StringSelectPropertyView";
 
 interface RegisterLLLMModelProps {
-    llmModel: LLMModel
+    llmModel: LLM
     beforeSubmit: () => void
     afterSubmit: () => void
 }
@@ -76,19 +78,20 @@ export default function RegisterLLLMModel({
         return (
             <Form layout={"vertical"}>
 
+
                 <StringPropertyView
                     entity={llmModel}
-                    property={fields.name}
+                    attribute={"name"}
                 />
 
                 <StringPropertyView
                     entity={llmModel}
-                    property={fields.modelVersion}
+                    attribute={"modelVersion"}
                     behindLabel={<ModelsInfoButton/>}
                 />
 
 
-                <SelectItem
+                <StringSelectPropertyView
                     entity={llmModel}
                     attribute={"cluster"}
                     options={clustersOptions}
@@ -108,6 +111,8 @@ export default function RegisterLLLMModel({
                     <RightSubmitButton
                         onClick={onSubmit}
                     />
+
+
                 </div>
 
             </Form>

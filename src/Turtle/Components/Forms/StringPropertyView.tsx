@@ -5,41 +5,35 @@ import {useTranslation} from "react-i18next";
 
 interface StringPropertyViewProps {
     entity: any
-    property: StringProperty
+    attribute: string
+    label?: string
     behindLabel?: any
 }
 
 
 export default function StringPropertyView({
                                                entity,
-                                               property,
+                                               attribute,
+                                               label,
                                                behindLabel
                                            }: StringPropertyViewProps) {
-
     const [t] = useTranslation()
 
-
     return (
-        <Form.Item label={`${t(property.label)}:`}>
-            <Flex>
+        <Form.Item label={`${t(label ?? attribute)}:`}>
+            <Flex align="center" gap="small">
                 <Input
-                    defaultValue={entity[property.key]}
+                    defaultValue={entity[attribute]}
                     onChange={(e) => {
-                        entity[property.key] = e.target.value
+                        entity[attribute] = e.target.value
                     }}
                 />
-
-                {
-                    behindLabel && (
-                        <div style={{
-                            marginLeft: "5px"
-                        }}>
-                            {behindLabel}
-                        </div>
-                    )
-                }
+                {behindLabel && (
+                    <div>
+                        {behindLabel}
+                    </div>
+                )}
             </Flex>
-
         </Form.Item>
     )
 }

@@ -30,7 +30,8 @@ export default function AppRoutes({}) {
             <Route path={"/llm-chat/:chatUid"} element={<LLMChatDock/>}/>
             <Route path={"/llm-clusters"} element={<LLMClusterDock/>}/>
             <Route path={"/llm-clusters/:clusterUid"} element={<LLMClusterDock/>}/>
-            <Route path={"/llm-models"} element={<LLMsDock/>}/>
+            <Route path={"/llms"} element={<LLMsDock/>}/>
+            <Route path={"/llms/:llmUid"} element={<LLMsDock/>}/>
             <Route path={"/agents"} element={<LLMAgentsDock/>}/>
             <Route path={"/agents/:agentUid"} element={<LLMAgentsDock/>}/>
             <Route path={"/doc-int"} element={<DocIntDock/>}/>

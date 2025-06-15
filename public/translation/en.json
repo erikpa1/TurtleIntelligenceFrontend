@@ -94,5 +94,6 @@
     "modelVersion": "Model version",
     "isAgentic": "Is agentic",
     "document": "Document",
-    "create.document": "Create document"
+    "create.document": "Create document",
+    "llm.defaultquestion": "What is an purpose of life?"
 }

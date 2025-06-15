@@ -113,7 +113,7 @@ export default function CreateLLMAgentModal({
                             <React.Fragment>
                                 <StringPropertyView
                                     entity={agent}
-                                    property={nameField}
+                                    attribute={"name"}
                                 />
 
                                 {/*TODO user level*/}
@@ -124,9 +124,10 @@ export default function CreateLLMAgentModal({
                                     property={descriptionField}
                                 />
 
+
                                 <StringPropertyView
                                     entity={agent}
-                                    property={specializationField}
+                                    attribute={"specialization"}
                                 />
 
 

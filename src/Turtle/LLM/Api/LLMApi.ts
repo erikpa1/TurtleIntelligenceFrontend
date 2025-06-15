@@ -1,4 +1,4 @@
-import LLMModel from "@Turtle/LLM/Data/LLMModel";
+import LLM from "@Turtle/LLM/Data/LLM";
 import Turxios from "@Turtle/Api/Turxios";
 import LLMCluster from "@Turtle/LLM/Data/LLMCluster";
 
@@ -6,9 +6,9 @@ export default class LLMApi {
 
     //---od tadato zacinaju modely
 
-    static async ListLLMS(): Promise<Array<LLMModel>> {
+    static async ListLLMS(): Promise<Array<LLM>> {
         return (await Turxios.get("/api/llm/models")).data.map((val) => {
-            const tmp = new LLMModel()
+            const tmp = new LLM()
             tmp.FromJson(val)
             return tmp
         })
@@ -22,7 +22,7 @@ export default class LLMApi {
         })
     }
 
-    static async COUModel(model: LLMModel) {
+    static async COUModel(model: LLM) {
         const formData = new FormData()
         formData.set("data", JSON.stringify(model.ToJson()))
         await Turxios.post("/api/llm/model", formData)

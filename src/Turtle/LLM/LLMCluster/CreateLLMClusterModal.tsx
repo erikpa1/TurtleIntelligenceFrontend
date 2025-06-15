@@ -46,14 +46,15 @@ export default function CreateLLMClusterModal({
     ``
     return (
         <Form layout={"vertical"}>
+
             <StringPropertyView
                 entity={cluster}
-                property={nameField}
+                attribute={"name"}
             />
 
             <StringPropertyView
                 entity={cluster}
-                property={urlField}
+                attribute={"url"}
             />
 
             <RightSubmitButton

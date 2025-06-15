@@ -7,7 +7,7 @@ import {
     PauseOutlined,
     PlusOutlined,
     StepForwardOutlined,
-    StopOutlined
+    StopOutlined, WechatWorkOutlined
 } from "@ant-design/icons";
 
 
@@ -107,6 +107,15 @@ export function HierarchyPlayButton({onClick}) {
     )
 }
 
+export function HierarchyChatButton({onClick}) {
+
+    return (
+        <HierarchyCustomIcon
+            icon={<WechatWorkOutlined/>}
+            onClick={onClick}
+        />
+    )
+}
 
 export function HierarchyDeleteButton({onClick}) {
 

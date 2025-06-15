@@ -19,6 +19,9 @@ export function TurxiosProvider() {
     }
 
     function errorInterceptor(error: AxiosError) {
+
+        console.log(error)
+
         if (error.response && error.response.status === 401) {
             message.error(t("Unauthorized"))
             // setActiveUser(null)

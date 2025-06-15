@@ -117,7 +117,7 @@ export default function AppNavBar() {
                                 icon: <BookOutlined/>,
                                 label: t("llm.models"),
                                 onClick: () => {
-                                    navigate("/llm-models")
+                                    navigate("/llms")
                                 }
                             },
                             {

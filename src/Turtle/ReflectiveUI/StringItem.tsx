@@ -6,21 +6,21 @@ interface StringItemProps {
     entity: any
     attribute: string
     disabled?: boolean
+
 }
 
 export default function StringItem({
                                        entity,
                                        attribute,
-                                       disabled
-                                   }: StringItemProps) {
-
+                                       disabled,
+                                       ...restProps // Capture all other props
+                                   }: StringItemProps & React.ComponentProps<typeof Input>) {
 
     const [t] = useTranslation()
 
     return (
-
         <Form.Item
-            label={t(attribute)}
+            label={`${t(attribute)}:`}
             style={{
                 margin: 0
             }}
@@ -32,9 +32,8 @@ export default function StringItem({
                 onChange={(e) => {
                     entity[attribute] = e.target.value
                 }}
+                {...restProps} // Forward all additional props to Input
             />
-
         </Form.Item>
     )
-
 }
