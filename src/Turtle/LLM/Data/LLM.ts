@@ -26,6 +26,7 @@ export default class LLM {
             ttl: this.ttl,
             org: this.org,
             description: this.description,
+            modelVersion: this.modelVersion,
             isAgentic: this.isAgentic,
             defaultTemperature: this.defaultTemperature,
             canUserOverrideTemperature: this.canUserOverrideTemperature,
@@ -33,13 +34,13 @@ export default class LLM {
     }
 
     FromJson(jObj: any) {
-        console.log(jObj)
         this.uid = jObj.uid ?? ""
         this.name = jObj.name ?? ""
         this.cluster = jObj.cluster ?? ""
         this.ttl = jObj.ttl ?? ""
         this.org = jObj.org ?? ""
         this.description = jObj.description ?? ""
+        this.modelVersion = jObj.modelVersion ?? ""
         this.isAgentic = jObj.isAgentic ?? false
         this.defaultTemperature = jObj.defaultTemperature ?? 1
         this.canUserOverrideTemperature = jObj.canUserOverrideTemperature ?? false

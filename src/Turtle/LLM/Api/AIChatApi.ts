@@ -1,5 +1,6 @@
 import Turxios from "@Turtle/Api/Turxios";
 import {ChatHistoryLight, LLMChat} from "@Turtle/LLM/Data/LLMChatHistory";
+import {LangChainStreamer, StreamCallbacks} from "@Turtle/LLM/Api/LangChainStream";
 
 
 export default class AIChatApi {
@@ -12,12 +13,29 @@ export default class AIChatApi {
         await Turxios.post("/api/llm/chat-ask", data)
     }
 
+
     static async AskModel(modelUid: string, text: string): Promise<string> {
         const data = new FormData()
 
         data.set("modelUid", modelUid)
         data.set("text", text)
         return (await Turxios.post("/api/llm/ask", data)).data
+    }
+
+    static AskModelStream(modelUid: string, text: string, callbacks: StreamCallbacks = {}): LangChainStreamer {
+
+        const streamer = new LangChainStreamer()
+
+        console.log("Started stream")
+
+        streamer.streamResponse("/api/llm/ask/stream", modelUid, text, {
+            onToken: (token: string) => {
+                console.log(token)
+            }
+        })
+
+        return streamer
+
     }
 
     static async TestEmbeding(): Promise<string> {

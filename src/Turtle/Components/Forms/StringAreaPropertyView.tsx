@@ -26,3 +26,21 @@ export default function StringAreaPropertyView({entity, property}: StringPropert
         </Form.Item>
     )
 }
+
+
+export function StringAreaView({entity, attribute}) {
+
+    const [t] = useTranslation()
+
+
+    return (
+        <Form.Item label={`${t(attribute)}:`}>
+            <TextArea
+                defaultValue={entity[attribute]}
+                onChange={(e) => {
+                    entity[attribute] = e.target.value
+                }}
+            />
+        </Form.Item>
+    )
+}

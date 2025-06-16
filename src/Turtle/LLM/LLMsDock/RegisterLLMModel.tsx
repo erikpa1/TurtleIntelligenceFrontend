@@ -13,6 +13,7 @@ import BoolPropertyView from "@Turtle/Components/Forms/BoolPropertyView";
 import {ModelsInfoButton} from "@Turtle/LLM/LLMsDock/LLModelsInfoView";
 import StringItem from "@Turtle/ReflectiveUI/StringItem";
 import StringSelectPropertyView from "@Turtle/Components/Forms/StringSelectPropertyView";
+import StringAreaPropertyView, {StringAreaView} from "@Turtle/Components/Forms/StringAreaPropertyView";
 
 interface RegisterLLLMModelProps {
     llmModel: LLM
@@ -55,12 +56,21 @@ export default function RegisterLLLMModel({
 
         const clusters = await LLMApi.ListClusters()
 
-        setClusterOptions(clusters.map((val) => {
-            return {
+        const models: Array<SelectItemOptions> = [
+            {
+                label: "",
+                value: "000000000000000000000000",
+            }
+        ]
+
+        clusters.forEach((val) => {
+            models.push({
                 label: val.name,
                 value: val.uid
-            }
-        }))
+            })
+        })
+
+        setClusterOptions(models)
 
         setIsLoading(false)
     }
@@ -88,6 +98,12 @@ export default function RegisterLLLMModel({
                     entity={llmModel}
                     attribute={"modelVersion"}
                     behindLabel={<ModelsInfoButton/>}
+                />
+
+                <StringAreaView
+                    entity={llmModel}
+                    attribute={"description"}
+
                 />
 
 

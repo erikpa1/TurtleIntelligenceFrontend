@@ -19,14 +19,21 @@ export default function LLMSingleChat({modelUid}) {
 
     async function ask() {
         setIsLoading(true)
-        setResponse(await AIChatApi.AskModel(modelUid, messageToAsk))
+         setResponse(await AIChatApi.AskModel(modelUid, messageToAsk))
+        // AIChatApi.AskModelStream(modelUid, messageToAsk, {
+        //     onToken: (token: string) => {
+        //         console.log(token)
+        //         setResponse(response + token)
+        //     }
+        // })
+
         setIsLoading(false)
     }
 
 
     async function testEmbeding() {
         setIsLoading(true)
-        setResponse(await AIChatApi.TestEmbeding(modelUid))
+        setResponse(await AIChatApi.TestEmbeding())
         setIsLoading(false)
     }
 

@@ -136,6 +136,14 @@ export default function AppNavBar() {
                                     navigate("/doc-int")
                                 }
                             },
+                            {
+                                key: "knowledgehub",
+                                icon: <OpenAIOutlined/>,
+                                label: t("knowledgehub"),
+                                onClick: () => {
+                                    navigate("/knowledge-hub")
+                                }
+                            },
 
                         ]}
                     />
