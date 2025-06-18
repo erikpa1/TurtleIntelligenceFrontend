@@ -4,7 +4,7 @@ import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {
-    HierarchyAddButton,
+    HierarchyAddButton, HierarchyCustomIcon,
     HierarchyDeleteButton, HierarchyEditButton,
     HierarchyFlex, HierarchyPlayButton,
     HierarchyRightFlex
@@ -15,6 +15,8 @@ import LLMAgentApi from "@Turtle/LLM/Api/LLMAgentApi";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import CreateLLMAgentModal from "@Turtle/LLM/LLMAgentsDock/CreateLLMAgentView";
 import TestLLMAgentView from "@Turtle/LLM/LLMAgentsDock/TestLLMAgentView";
+import {ShoppingCartOutlined} from "@ant-design/icons";
+import LLMAgentsShop from "@Turtle/LLM/LLMAgentsShop/LLMAgentsShop";
 
 export default function LLMAgentsHierarchy({}) {
 
@@ -35,6 +37,11 @@ export default function LLMAgentsHierarchy({}) {
                         {t("llm.agents")} ({agents.length})
                         <HierarchyRightFlex>
                             <HierarchyAddButton onClick={createAgentPressed}/>
+
+                            <HierarchyCustomIcon
+                                icon={<ShoppingCartOutlined/>}
+                                onClick={showAgentsShopPressed}/>
+
                         </HierarchyRightFlex>
                     </Flex>
                 ),
@@ -77,6 +84,18 @@ export default function LLMAgentsHierarchy({}) {
                 })
             }
         ]
+    }
+
+
+    function showAgentsShopPressed() {
+        activate({
+            title: `${t("agents.shop")}:`,
+            width: 800,
+            closable: true,
+            content: (
+                <LLMAgentsShop/>
+            )
+        })
     }
 
     function agentClicked(agent: LLMAgent) {
