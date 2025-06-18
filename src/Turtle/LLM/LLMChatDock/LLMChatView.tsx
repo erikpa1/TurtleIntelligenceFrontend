@@ -16,6 +16,8 @@ import aee from "@Turtle/Data/Aee";
 import {ConversationSegment} from "@Turtle/LLM/Data/LLMChatHistory";
 import {useTranslation} from "react-i18next";
 import LLMSegmentChatButtle from "@Turtle/LLM/LLMChatDock/LLMSegmentChatButtle";
+import LLLMSelectDropdown from "@Turtle/LLM/Components/LLMSelectDropdown";
+import useLocalStorage from "@Turtle/Hooks/useLocalStorage";
 
 interface LLMChatViewProps {
     chatUid: string
@@ -31,12 +33,13 @@ export default function LLMChatView({chatUid}) {
     const [isAnswerLoading, setIsAnswerLoading] = React.useState(false)
 
 
+    const [selectedModel, setSelectedModel] = useLocalStorage("chat-llm", "")
+
     const context = React.useMemo(() => new LLMChatContext(), [])
 
     const [isProcessing, setIsProcessing] = React.useState(false)
 
     const [chatHistory, setChatHistory] = React.useState<Array<ConversationSegment>>([])
-
 
     async function onChatResponse(chatText: string) {
         setIsProcessing(true)
@@ -46,13 +49,13 @@ export default function LLMChatView({chatUid}) {
             navigate(`/llm-chat/${chatUid}`)
 
             setIsAnswerLoading(true)
-            await AIChatApi.Ask(chatUid, chatText)
+            await AIChatApi.Ask(selectedModel, chatUid, chatText)
             setIsAnswerLoading(false)
             aee.emit("ChatsChange", null)
             refresh()
         } else {
             setIsAnswerLoading(true)
-            await AIChatApi.Ask(chatUid, chatText)
+            await AIChatApi.Ask(selectedModel, chatUid, chatText)
             setIsAnswerLoading(false)
             refresh()
         }
@@ -85,14 +88,10 @@ export default function LLMChatView({chatUid}) {
             justifyContent: "space-between"
         }}>
             <TopBarWrapper>
-                <Select defaultValue={"llama"} style={{minWidth: 200}}>
-                    <Select.Option value={"llama"}>
-                        🦙 Llama
-                    </Select.Option>
-                    <Select.Option value={"deepseek-coder-v2:latest"}>
-                        🤖 DeepSeek Coder V2
-                    </Select.Option>
-                </Select>
+                <LLLMSelectDropdown
+                    setSelectedModel={setSelectedModel}
+                    modelSelected={selectedModel}
+                />
             </TopBarWrapper>
 
             <div style={{flex: 1, overflow: "hidden"}}>

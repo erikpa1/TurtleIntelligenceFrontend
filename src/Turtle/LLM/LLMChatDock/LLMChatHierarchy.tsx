@@ -6,7 +6,7 @@ import {
     HierarchyAddButton,
     HierarchyDeleteButton,
     HierarchyFlex,
-    HierarchyRightFlex
+    HierarchyRightFlex, HierarchySettingsButton
 } from "@Turtle/Components/HierarchyComponents"
 
 import React from "react"
@@ -15,6 +15,7 @@ import {ChatHistoryLight} from "@Turtle/LLM/Data/LLMChatHistory";
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
 import TurtleApp from "@TurtleApp/TurtleApp";
+import useLocalStorage from "@Turtle/Hooks/useLocalStorage"
 
 
 export default function LLMChatHierarchy() {
@@ -25,6 +26,11 @@ export default function LLMChatHierarchy() {
     const {activate, deactivate} = useTurtleModal()
 
     const navigate = useNavigate()
+
+    const [chatsQuery, setChatsQuery] = useLocalStorage("chats-query", JSON.stringify({
+        "lastRecord": "30"
+    }))
+
 
     function createHierarchy(chatHistory: Array<ChatHistoryLight>) {
         return [
@@ -39,6 +45,9 @@ export default function LLMChatHierarchy() {
                                 onClick={() => {
                                     navigate("/llm-chat/new")
                                 }}
+                            />
+                            <HierarchySettingsButton
+                                onClick={chatHistorySettingsClicked}
                             />
                         </HierarchyRightFlex>
                     </Flex>
@@ -69,6 +78,9 @@ export default function LLMChatHierarchy() {
         ]
     }
 
+    function chatHistorySettingsClicked() {
+
+    }
 
     function createChatTopicPressed() {
 

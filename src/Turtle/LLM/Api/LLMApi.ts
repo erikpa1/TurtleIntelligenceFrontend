@@ -14,6 +14,10 @@ export default class LLMApi {
         })
     }
 
+    static async ListLLMSMap(): Promise<Map<string, LLM>> {
+        return new Map((await LLMApi.ListLLMS()).map((val) => [val.uid, val]))
+    }
+
     static async DeleteModel(mopdelUid: string) {
         await Turxios.delete("/api/llm/model", {
             params: {

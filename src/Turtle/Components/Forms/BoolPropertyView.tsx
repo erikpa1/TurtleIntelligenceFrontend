@@ -24,3 +24,20 @@ export default function BoolPropertyView({entity, property}: StringPropertyViewP
         </Form.Item>
     )
 }
+
+
+export function BoolAttributeView({entity, attribute}) {
+
+    const [t] = useTranslation()
+
+    return (
+        <Form.Item label={`${t(attribute)}:`}>
+            <Switch
+                defaultChecked={entity[attribute]}
+                onChange={(e) => {
+                    entity[attribute] = e
+                }}
+            />
+        </Form.Item>
+    )
+}

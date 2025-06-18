@@ -95,5 +95,7 @@
     "isAgentic": "Is agentic",
     "document": "Document",
     "create.document": "Create document",
-    "llm.defaultquestion": "What is an purpose of life?"
+    "llm.defaultquestion": "What is an purpose of life?",
+    "knowledge.hub": "Knowledge Hub",
+    "embedding": "Embedding"
 }

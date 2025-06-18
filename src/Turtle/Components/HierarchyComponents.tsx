@@ -5,7 +5,7 @@ import {
     DeleteTwoTone, EditOutlined,
     EyeOutlined, InfoOutlined,
     PauseOutlined,
-    PlusOutlined,
+    PlusOutlined, SettingOutlined,
     StepForwardOutlined,
     StopOutlined, WechatWorkOutlined
 } from "@ant-design/icons";
@@ -52,6 +52,16 @@ export function HierarchyAddButton({onClick}) {
     return (
         <HierarchyCustomIcon
             icon={<PlusOutlined/>}
+            onClick={onClick}
+        />
+    )
+}
+
+export function HierarchySettingsButton({onClick}) {
+
+    return (
+        <HierarchyCustomIcon
+            icon={<SettingOutlined/>}
             onClick={onClick}
         />
     )

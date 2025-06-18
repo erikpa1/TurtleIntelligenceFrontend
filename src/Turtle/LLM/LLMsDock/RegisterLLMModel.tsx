@@ -9,11 +9,12 @@ import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import SelectItem, {SelectItemOptions} from "@Turtle/ReflectiveUI/SelectItem";
 import LLMApi from "@Turtle/LLM/Api/LLMApi";
 import TurtleApp from "@TurtleApp/TurtleApp";
-import BoolPropertyView from "@Turtle/Components/Forms/BoolPropertyView";
+import BoolPropertyView, {BoolAttributeView} from "@Turtle/Components/Forms/BoolPropertyView";
 import {ModelsInfoButton} from "@Turtle/LLM/LLMsDock/LLModelsInfoView";
 import StringItem from "@Turtle/ReflectiveUI/StringItem";
 import StringSelectPropertyView from "@Turtle/Components/Forms/StringSelectPropertyView";
 import StringAreaPropertyView, {StringAreaView} from "@Turtle/Components/Forms/StringAreaPropertyView";
+import {HierarchyAddButton} from "@Turtle/Components/HierarchyComponents";
 
 interface RegisterLLLMModelProps {
     llmModel: LLM
@@ -37,7 +38,6 @@ export default function RegisterLLLMModel({
         return {
             name: StringProperty.NewName(),
             modelVersion: StringProperty.New("modelVersion", "modelVersion"),
-            isAgentic: BoolProperty.New("isAgentic", "isAgentic")
         }
     }, [llmModel])
 
@@ -106,20 +106,21 @@ export default function RegisterLLLMModel({
 
                 />
 
-
-                <StringSelectPropertyView
-                    entity={llmModel}
-                    attribute={"cluster"}
-                    options={clustersOptions}
-                    useEmpty={true}
-                    size={"middle"}
+                <_SelectClustersList
+                    llm={llmModel}
+                    clusterOptions={clustersOptions}
                 />
 
-                <BoolPropertyView
+
+                <BoolAttributeView
                     entity={llmModel}
-                    property={fields.isAgentic}
+                    attribute={"isAgentic"}
                 />
 
+                <BoolAttributeView
+                    entity={llmModel}
+                    attribute={"isDefault"}
+                />
 
                 <div style={{
                     marginTop: "15px"
@@ -127,12 +128,48 @@ export default function RegisterLLLMModel({
                     <RightSubmitButton
                         onClick={onSubmit}
                     />
-
-
                 </div>
 
             </Form>
         )
     }
+}
 
+
+interface _SelectClustersListProps {
+    llm: LLM,
+    clusterOptions: Array<SelectItemOptions>,
+}
+
+
+function _SelectClustersList({
+                                 llm,
+                                 clusterOptions
+                             }: _SelectClustersListProps) {
+
+
+    function addClusterClicked() {
+        console.log("Here")
+    }
+
+    return (
+        <div>
+
+            {
+                Array.from(llm.clusters.values()).map((val) => {
+                    return (
+                        <div key={val}>
+                            {val}
+
+                        </div>
+                    )
+                })
+            }
+
+
+            <HierarchyAddButton
+                onClick={addClusterClicked}
+            />
+        </div>
+    )
 }

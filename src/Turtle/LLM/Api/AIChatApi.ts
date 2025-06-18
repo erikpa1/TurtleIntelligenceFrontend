@@ -5,8 +5,9 @@ import {LangChainStreamer, StreamCallbacks} from "@Turtle/LLM/Api/LangChainStrea
 
 export default class AIChatApi {
 
-    static async Ask(chatUid: string, text: string) {
+    static async Ask(modelUid: string, chatUid: string, text: string) {
         const data = new FormData()
+        data.set("modelUid", modelUid)
         data.set("chatUid", chatUid)
         data.set("text", text)
 

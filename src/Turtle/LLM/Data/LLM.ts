@@ -8,7 +8,7 @@ export default class LLM {
 
     uid = ""
     name = ""
-    cluster = ""
+    clusters = new Set<string>()
     ttl = "-1"
     modelVersion = "deepseek-coder-v2:latest"
     org = ""
@@ -17,12 +17,13 @@ export default class LLM {
     defaultTemperature = 1
     canUserOverrideTemperature = false
     isAgentic = false
+    isDefault = false
 
     ToJson(): any {
         return {
             uid: this.uid,
             name: this.name,
-            cluster: this.cluster,
+            clusters: Array.from(this.clusters.values()),
             ttl: this.ttl,
             org: this.org,
             description: this.description,
@@ -30,13 +31,13 @@ export default class LLM {
             isAgentic: this.isAgentic,
             defaultTemperature: this.defaultTemperature,
             canUserOverrideTemperature: this.canUserOverrideTemperature,
+            isDefault: this.isDefault,
         }
     }
 
     FromJson(jObj: any) {
         this.uid = jObj.uid ?? ""
         this.name = jObj.name ?? ""
-        this.cluster = jObj.cluster ?? ""
         this.ttl = jObj.ttl ?? ""
         this.org = jObj.org ?? ""
         this.description = jObj.description ?? ""
@@ -44,6 +45,9 @@ export default class LLM {
         this.isAgentic = jObj.isAgentic ?? false
         this.defaultTemperature = jObj.defaultTemperature ?? 1
         this.canUserOverrideTemperature = jObj.canUserOverrideTemperature ?? false
+        this.isDefault = jObj.isDefault ?? false
+
+        this.clusters = new Set(jObj.clusters ?? [])
     }
 
 }

@@ -26,6 +26,9 @@ export default function LLModelsInfoView() {
                 {name: "llava:13b"},
                 {name: "llava:34b"},
             ],
+            embedding: [
+                {name: "nomic-embed-text:latest"}
+            ]
 
         }
     }, [])
@@ -57,6 +60,9 @@ export default function LLModelsInfoView() {
                         {
                             label: t("visionencoder"),
                             key: "visionencoder",
+                        }, {
+                            label: t("embedding"),
+                            key: "embedding",
                         }
                     ]}
                 />

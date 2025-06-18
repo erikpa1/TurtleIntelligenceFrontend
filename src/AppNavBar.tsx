@@ -139,7 +139,7 @@ export default function AppNavBar() {
                             {
                                 key: "knowledgehub",
                                 icon: <OpenAIOutlined/>,
-                                label: t("knowledgehub"),
+                                label: t("knowledge.hub"),
                                 onClick: () => {
                                     navigate("/knowledge-hub")
                                 }
