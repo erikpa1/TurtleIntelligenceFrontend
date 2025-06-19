@@ -8,15 +8,17 @@ interface StringPropertyViewProps {
     attribute: string
     label?: string
     behindLabel?: any
+    onChange?: any
 }
 
 
-export default function StringPropertyView({
-                                               entity,
-                                               attribute,
-                                               label,
-                                               behindLabel
-                                           }: StringPropertyViewProps) {
+export default function StringAttributeView({
+                                                entity,
+                                                attribute,
+                                                label,
+                                                behindLabel,
+                                                onChange
+                                            }: StringPropertyViewProps) {
     const [t] = useTranslation()
 
     return (
@@ -26,6 +28,7 @@ export default function StringPropertyView({
                     defaultValue={entity[attribute]}
                     onChange={(e) => {
                         entity[attribute] = e.target.value
+                        onChange && onChange()
                     }}
                 />
                 {behindLabel && (

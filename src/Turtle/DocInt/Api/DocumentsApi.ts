@@ -14,7 +14,9 @@ export default class DocumentsApi {
     }
 
     static async UploadDocument(file: File, params: UploadDocumentFileParams) {
-
+        const data = new FormData()
+        data.set("pdf", file)
+        await Turxios.post("/api/documents/upload", data)
 
     }
 

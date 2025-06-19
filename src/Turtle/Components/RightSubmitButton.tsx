@@ -1,8 +1,15 @@
 import {Button, Flex} from "antd";
 import {useTranslation} from "react-i18next";
 
+interface RightSubmitButtonProps {
+    onClick: (e: any) => void
+    disabled?: boolean
+}
 
-export function RightSubmitButton({onClick}) {
+export function RightSubmitButton({
+                                      onClick,
+                                      disabled
+                                  }: RightSubmitButtonProps) {
 
     const [t] = useTranslation()
 
@@ -14,6 +21,7 @@ export function RightSubmitButton({onClick}) {
             <Button
                 onClick={onClick}
                 type={"primary"}
+                disabled={disabled}
             >
                 {t("submit")}
             </Button>

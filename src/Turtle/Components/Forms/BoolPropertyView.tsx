@@ -1,15 +1,16 @@
-import {PropertyParent, StringProperty} from "@Turtle/Data/Properties";
+import {BoolProperty, PropertyParent, StringProperty} from "@Turtle/Data/Properties";
 import {Form, Input, Switch} from "antd";
 import {useTranslation} from "react-i18next";
 
 
-interface StringPropertyViewProps {
+interface BoolPropertyViewProps {
     entity: any
-    property: StringProperty
+    property: BoolProperty
+
 }
 
 
-export default function BoolPropertyView({entity, property}: StringPropertyViewProps) {
+export default function BoolPropertyView({entity, property}: BoolPropertyViewProps) {
 
     const [t] = useTranslation()
 
@@ -25,8 +26,18 @@ export default function BoolPropertyView({entity, property}: StringPropertyViewP
     )
 }
 
+interface BoolAttributeViewProps {
+    entity: any
+    attribute: string
+    onChange?: (newVal: boolean) => void
+}
 
-export function BoolAttributeView({entity, attribute}) {
+
+export function BoolAttributeView({
+                                      entity,
+                                      attribute,
+                                      onChange
+                                  }: BoolAttributeViewProps) {
 
     const [t] = useTranslation()
 
@@ -36,6 +47,7 @@ export function BoolAttributeView({entity, attribute}) {
                 defaultChecked={entity[attribute]}
                 onChange={(e) => {
                     entity[attribute] = e
+                    onChange && onChange(e)
                 }}
             />
         </Form.Item>

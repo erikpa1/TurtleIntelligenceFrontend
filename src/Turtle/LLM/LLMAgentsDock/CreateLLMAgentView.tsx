@@ -1,7 +1,7 @@
 import React from "react"
 import {Checkbox, Col, Flex, Form, Row, Select, Switch, Tabs, Timeline} from "antd";
 import {StringProperty} from "@Turtle/Data/Properties";
-import StringPropertyView from "@Turtle/Components/Forms/StringPropertyView";
+import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import TurtleApp from "@TurtleApp/TurtleApp";
 
@@ -111,7 +111,7 @@ export default function CreateLLMAgentModal({
                     {
                         activeTimeLine === "basicInfo" && (
                             <React.Fragment>
-                                <StringPropertyView
+                                <StringAttributeView
                                     entity={agent}
                                     attribute={"name"}
                                 />
@@ -125,7 +125,7 @@ export default function CreateLLMAgentModal({
                                 />
 
 
-                                <StringPropertyView
+                                <StringAttributeView
                                     entity={agent}
                                     attribute={"specialization"}
                                 />

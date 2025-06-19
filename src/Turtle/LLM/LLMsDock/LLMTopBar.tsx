@@ -4,7 +4,7 @@ import {useTranslation} from "react-i18next";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import OllamaApi from "@Turtle/LLM/Api/OllamaApi";
-import StringPropertyView from "@Turtle/Components/Forms/StringPropertyView";
+import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import * as stream from "stream";
 
@@ -101,7 +101,7 @@ function _InstallOllamaButton() {
                         marginTop: "15px"
                     }}
                 >
-                    <StringPropertyView
+                    <StringAttributeView
                         entity={attribute}
                         attribute={"model"}
                     />

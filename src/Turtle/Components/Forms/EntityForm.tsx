@@ -1,7 +1,7 @@
 import React from "react"
 import {Form} from "antd";
 import {ColorProperty, PropertyParent, StringProperty} from "@Turtle/Data/Properties";
-import StringPropertyView from "@Turtle/Components/Forms/StringPropertyView";
+import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import ColorPropertyView from "@Turtle/Components/Forms/ColorPropertyView";
@@ -92,7 +92,7 @@ function _ViewDispatcher({
 
     if (property instanceof StringProperty) {
         return (
-            <StringPropertyView entity={entity} property={property}/>
+            <StringAttributeView entity={entity} property={property}/>
         )
     } else if (property instanceof ColorProperty) {
         return (

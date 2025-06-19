@@ -3,7 +3,7 @@ import LLM from "@Turtle/LLM/Data/LLM";
 import {Form, Spin} from "antd";
 import {BoolProperty, StringProperty} from "@Turtle/Data/Properties";
 
-import StringPropertyView from "@Turtle/Components/Forms/StringPropertyView";
+import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 
 import SelectItem, {SelectItemOptions} from "@Turtle/ReflectiveUI/SelectItem";
@@ -13,7 +13,7 @@ import BoolPropertyView, {BoolAttributeView} from "@Turtle/Components/Forms/Bool
 import {ModelsInfoButton} from "@Turtle/LLM/LLMsDock/LLModelsInfoView";
 import StringItem from "@Turtle/ReflectiveUI/StringItem";
 import StringSelectPropertyView from "@Turtle/Components/Forms/StringSelectPropertyView";
-import StringAreaPropertyView, {StringAreaView} from "@Turtle/Components/Forms/StringAreaPropertyView";
+import StringAreaPropertyView, {StringAreaAttributeView} from "@Turtle/Components/Forms/StringAreaPropertyView";
 import {HierarchyAddButton} from "@Turtle/Components/HierarchyComponents";
 
 interface RegisterLLLMModelProps {
@@ -89,18 +89,18 @@ export default function RegisterLLLMModel({
             <Form layout={"vertical"}>
 
 
-                <StringPropertyView
+                <StringAttributeView
                     entity={llmModel}
                     attribute={"name"}
                 />
 
-                <StringPropertyView
+                <StringAttributeView
                     entity={llmModel}
                     attribute={"modelVersion"}
                     behindLabel={<ModelsInfoButton/>}
                 />
 
-                <StringAreaView
+                <StringAreaAttributeView
                     entity={llmModel}
                     attribute={"description"}
 

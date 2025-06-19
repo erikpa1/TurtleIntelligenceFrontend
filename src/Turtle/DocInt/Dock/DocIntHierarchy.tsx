@@ -14,6 +14,7 @@ import {
 import DocumentsApi from "@Turtle/DocInt/Api/DocumentsApi";
 import {FileDocumentLight} from "@Turtle/DocInt/Data/Document";
 import CreateDocumentView from "@Turtle/DocInt/Dock/CreateDocumentView";
+import {FileDropExample1} from "@Turtle/Examples/FileDropExample";
 
 export default function DocIntHierarchy({}) {
 
@@ -22,7 +23,6 @@ export default function DocIntHierarchy({}) {
     const {activate, deactivate} = useTurtleModal()
 
     const navigate = useNavigate()
-
 
     const [data, setData] = React.useState<Array<TreeDataNode>>(createHierarchy([]))
 
@@ -77,7 +77,10 @@ export default function DocIntHierarchy({}) {
             title: t("create.document"),
             closable: true,
             content: (
-                <CreateDocumentView/>
+                <CreateDocumentView
+                    beforeUpdate={deactivate}
+                    afterUpdate={refresh}
+                />
             )
         })
     }
@@ -89,6 +92,7 @@ export default function DocIntHierarchy({}) {
     React.useEffect(() => {
         refresh()
     }, [])
+
 
     return (
         <Tree

@@ -28,7 +28,7 @@ export default function StringAreaPropertyView({entity, property}: StringPropert
 }
 
 
-export function StringAreaView({entity, attribute}) {
+export function StringAreaAttributeView({entity, attribute}) {
 
     const [t] = useTranslation()
 

@@ -1,80 +1,90 @@
 import React from "react"
-import {Form, Input, message, Upload, UploadProps} from "antd";
-import {useTranslation} from "react-i18next";
-import {InboxOutlined} from "@ant-design/icons";
+import {Form, Input, message, Upload, UploadFile, UploadProps} from "antd"
+import {useTranslation} from "react-i18next"
+import {FilePdfOutlined, InboxOutlined} from "@ant-design/icons"
+import {UploadDocumentFileParams} from "@Turtle/DocInt/Api/Params"
+import {BoolAttributeView} from "@Turtle/Components/Forms/BoolPropertyView"
+import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView"
+import {StringAreaAttributeView} from "@Turtle/Components/Forms/StringAreaPropertyView"
+import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
+import TurtleApp from "@TurtleApp/TurtleApp";
+import DocumentsApi from "@Turtle/DocInt/Api/DocumentsApi";
 
-export default function CreateDocumentView({}) {
+export default function CreateDocumentView({
+                                               beforeUpdate,
+                                               afterUpdate,
+                                           }) {
 
     const [t] = useTranslation()
 
-    const [docName, setDocName] = React.useState("")
+    const [fileToUpload, setFileToUpload] = React.useState<File | UploadFile | null>(null)
 
+    const [documentCreation] = React.useState(new UploadDocumentFileParams())
 
-    function nameChange(newName: string) {
-        setDocName(newName)
+    const [descVisible, setDescVisible] = React.useState(documentCreation.llmDescription)
+
+    async function submitClicked() {
+        TurtleApp.Lock()
+        await DocumentsApi.UploadDocument(fileToUpload as File, documentCreation)
+        TurtleApp.Unlock()
     }
-
-    function beforeUpload(data: any) {
-        console.log(data)
-    }
-
-    function afterUpload(data: any) {
-        console.log(data)
-    }
-
-    const props: UploadProps = {
-        name: 'file',
-        multiple: true,
-        action: 'https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload',
-        onChange(info) {
-            const {status} = info.file;
-            if (status !== 'uploading') {
-                console.log(info.file, info.fileList);
-            }
-            if (status === 'done') {
-                message.success(`${info.file.name} file uploaded successfully.`);
-            } else if (status === 'error') {
-                message.error(`${info.file.name} file upload failed.`);
-            }
-        },
-        onDrop(e) {
-            console.log('Dropped files', e.dataTransfer.files);
-        },
-    };
 
 
     return (
         <Form layout={"vertical"}>
 
-            <Form.Item label={`${t("name")}:`}>
-                <Input
-                    value={docName}
-                    onChange={(e) => {
-                        nameChange(e.target.value)
-                    }}
-                />
-            </Form.Item>
+            <StringAttributeView
+                entity={documentCreation}
+                attribute={"name"}
+            />
 
-            <Form.Item label={`${t("description")}:`}>
-                <Input
-                    value={docName}
-                    onChange={(e) => {
-                        nameChange(e.target.value)
-                    }}
-                />
-            </Form.Item>
+            <BoolAttributeView
+                entity={documentCreation}
+                attribute={"llmDescription"}
+                onChange={() => {
+                    setDescVisible(documentCreation.llmDescription)
+                }}
+            />
 
-            <div>
-                <Upload {...props}>
+            {
+                descVisible === false && (
+                    <StringAreaAttributeView
+                        entity={documentCreation}
+                        attribute={"description"}
+                    />
+                )
+            }
+
+            <Form.Item>
+                <Upload.Dragger
+                    name={'file'}
+                    multiple={false}
+                    accept={"application/pdf"}
+                    onChange={(e) => {
+                        if (e.fileList.length > 0) {
+                            const file = e.fileList[0]
+                            setFileToUpload(file)
+                        }
+                    }}
+                    beforeUpload={() => {
+                        return false
+                    }}
+                >
                     <p className="ant-upload-drag-icon">
-                        <InboxOutlined/>
+                        <FilePdfOutlined/>
                     </p>
                     <p className="ant-upload-text">Click or drag file to this area to upload</p>
+
                     <p className="ant-upload-hint">
                         .pdf
                     </p>
-                </Upload>
-            </div>
+                </Upload.Dragger>
+            </Form.Item>
+
+            <RightSubmitButton
+                disabled={Boolean(fileToUpload) === false}
+                onClick={submitClicked}
+            />
         </Form>
     )
 

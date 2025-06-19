@@ -1,5 +1,14 @@
 export class UploadDocumentFileParams {
-    generateLLMSummary = true
-    summaryModel = ""
+    name = ""
+    llmDescription = true
+    descriptionModel = ""
+
+    ToJson(): any {
+        return {
+            name: this.name,
+            llmDescription: this.llmDescription,
+            descriptionModel: this.descriptionModel,
+        }
+    }
 
 }

@@ -3,7 +3,7 @@ import {Form} from "antd";
 import LLMCluster from "@Turtle/LLM/Data/LLMCluster";
 import {StringProperty} from "@Turtle/Data/Properties";
 import StringItem from "@Turtle/ReflectiveUI/StringItem";
-import StringPropertyView from "@Turtle/Components/Forms/StringPropertyView";
+import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import LLMApi from "@Turtle/LLM/Api/LLMApi";
@@ -47,12 +47,12 @@ export default function CreateLLMClusterModal({
     return (
         <Form layout={"vertical"}>
 
-            <StringPropertyView
+            <StringAttributeView
                 entity={cluster}
                 attribute={"name"}
             />
 
-            <StringPropertyView
+            <StringAttributeView
                 entity={cluster}
                 attribute={"url"}
             />
