@@ -24,6 +24,11 @@ export const TurtleTheme = {
         DatePicker: {
             borderRadius: 0,
         },
+        Modal: {
+            borderRadius: 0,
+            borderRadiusLG: 0,
+            borderRadiusSM: 0,
+        }
         // Add other input components as needed
     },
 }

@@ -17,16 +17,20 @@ export default function CreateDocumentView({
 
     const [t] = useTranslation()
 
-    const [fileToUpload, setFileToUpload] = React.useState<File | UploadFile | null>(null)
+    const [fileToUpload, setFileToUpload] = React.useState<UploadFile | null>(null)
 
     const [documentCreation] = React.useState(new UploadDocumentFileParams())
 
     const [descVisible, setDescVisible] = React.useState(documentCreation.llmDescription)
 
     async function submitClicked() {
-        TurtleApp.Lock()
-        await DocumentsApi.UploadDocument(fileToUpload as File, documentCreation)
-        TurtleApp.Unlock()
+
+        if (fileToUpload) {
+            TurtleApp.Lock()
+            await DocumentsApi.UploadDocument(fileToUpload.originFileObj, documentCreation)
+            TurtleApp.Unlock()
+        }
+
     }
 
 
@@ -62,7 +66,7 @@ export default function CreateDocumentView({
                     accept={"application/pdf"}
                     onChange={(e) => {
                         if (e.fileList.length > 0) {
-                            const file = e.fileList[0]
+                            const file = Array.from(e.fileList)[0]
                             setFileToUpload(file)
                         }
                     }}

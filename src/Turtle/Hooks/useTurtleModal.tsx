@@ -1,7 +1,8 @@
-import {Modal, ModalFuncProps} from "antd";
+import {ConfigProvider, Modal, ModalFuncProps} from "antd";
 import React from "react"
 import {useTranslation} from "react-i18next";
 import ErrorBoundary from "@Turtle/Components/ErrorBoundary";
+import {TurtleTheme} from "../../mainTheme";
 
 
 export function useTurtleModal() {
@@ -21,9 +22,14 @@ export function useTurtleModal() {
             footer: null,
             closable: true,
             content: (
-                <ErrorBoundary>
-                    {content}
-                </ErrorBoundary>
+                <ConfigProvider
+                    theme={TurtleTheme}>
+                    <ErrorBoundary>
+                        {content}
+                    </ErrorBoundary>
+                </ConfigProvider>
+
+
             )
 
 

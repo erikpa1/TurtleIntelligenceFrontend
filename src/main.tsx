@@ -22,8 +22,6 @@ root.render(
     <ConfigProvider
         theme={TurtleTheme}
     >
-
-
         <Suspense fallback={""}>
             <HashRouter
                 future={{
@@ -35,6 +33,5 @@ root.render(
                 <App/>
             </HashRouter>
         </Suspense>
-
     </ConfigProvider>
 );
