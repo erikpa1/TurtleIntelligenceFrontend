@@ -35,6 +35,7 @@ export default function AppRoutes({}) {
             <Route path={"/agents"} element={<LLMAgentsDock/>}/>
             <Route path={"/agents/:agentUid"} element={<LLMAgentsDock/>}/>
             <Route path={"/doc-int"} element={<DocIntDock/>}/>
+            <Route path={"/doc-int/:documentUid"} element={<DocIntDock/>}/>
             <Route path={"/knowledge-hub"} element={<KHDock/>}/>
             <Route path={"/knowledge-hub/:knowledgeUid"} element={<KHDock/>}/>
         </Routes>

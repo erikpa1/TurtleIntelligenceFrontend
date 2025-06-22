@@ -22,4 +22,13 @@ export default class DocumentsApi {
 
     }
 
+    static async Delete(uid: string) {
+        await Turxios.delete("/api/docs", {
+            params: {
+                uid: uid
+            }
+        })
+
+    }
+
 }

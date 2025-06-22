@@ -15,6 +15,7 @@ import DocumentsApi from "@Turtle/DocInt/Api/DocumentsApi";
 import {FileDocumentLight} from "@Turtle/DocInt/Data/Document";
 import CreateDocumentView from "@Turtle/DocInt/Dock/CreateDocumentView";
 import {FileDropExample1} from "@Turtle/Examples/FileDropExample";
+import TurtleApp from "@TurtleApp/TurtleApp";
 
 export default function DocIntHierarchy({}) {
 
@@ -82,8 +83,11 @@ export default function DocIntHierarchy({}) {
         })
     }
 
-    function deleteDocument(documentUid: string) {
-
+    async function deleteDocument(documentUid: string) {
+        TurtleApp.Lock()
+        await DocumentsApi.Delete(documentUid)
+        TurtleApp.Unlock()
+        refresh()
     }
 
     async function refresh() {
