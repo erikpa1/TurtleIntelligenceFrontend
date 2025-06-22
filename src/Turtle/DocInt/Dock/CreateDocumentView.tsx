@@ -1,5 +1,5 @@
 import React from "react"
-import {Form, Input, message, Upload, UploadFile, UploadProps} from "antd"
+import {Col, Form, Input, message, Row, Upload, UploadFile, UploadProps} from "antd"
 import {useTranslation} from "react-i18next"
 import {FilePdfOutlined, InboxOutlined} from "@ant-design/icons"
 import {UploadDocumentFileParams} from "@Turtle/DocInt/Api/Params"
@@ -26,9 +26,11 @@ export default function CreateDocumentView({
     async function submitClicked() {
 
         if (fileToUpload) {
+            beforeUpdate()
             TurtleApp.Lock()
-            await DocumentsApi.UploadDocument(fileToUpload.originFileObj, documentCreation)
+            await DocumentsApi.UploadDocument(fileToUpload.originFileObj as any, documentCreation)
             TurtleApp.Unlock()
+            afterUpdate()
         }
 
     }
@@ -42,13 +44,27 @@ export default function CreateDocumentView({
                 attribute={"name"}
             />
 
-            <BoolAttributeView
-                entity={documentCreation}
-                attribute={"llmDescription"}
-                onChange={() => {
-                    setDescVisible(documentCreation.llmDescription)
-                }}
-            />
+            <Row gutter={24}>
+                <Col>
+                    <BoolAttributeView
+                        entity={documentCreation}
+                        attribute={"llmDescription"}
+                        onChange={() => {
+                            setDescVisible(documentCreation.llmDescription)
+                        }}
+                    />
+                </Col>
+
+                <Col>
+                    <BoolAttributeView
+                        entity={documentCreation}
+                        attribute={"createEmbedding"}
+                        onChange={() => {
+                            setDescVisible(documentCreation.createEmbedding)
+                        }}
+                    />
+                </Col>
+            </Row>
 
             {
                 descVisible === false && (

@@ -26,9 +26,6 @@ export default function DocIntHierarchy({}) {
 
     const [data, setData] = React.useState<Array<TreeDataNode>>(createHierarchy([]))
 
-    async function refresh() {
-        setData(createHierarchy(await DocumentsApi.ListDocuments()))
-    }
 
     function createHierarchy(documents: Array<FileDocumentLight>) {
         return [
@@ -87,6 +84,10 @@ export default function DocIntHierarchy({}) {
 
     function deleteDocument(documentUid: string) {
 
+    }
+
+    async function refresh() {
+        setData(createHierarchy(await DocumentsApi.ListDocuments()))
     }
 
     React.useEffect(() => {
