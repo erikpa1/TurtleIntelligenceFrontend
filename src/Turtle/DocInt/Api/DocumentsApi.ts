@@ -1,14 +1,14 @@
-import {FileDocumentLight} from "@Turtle/DocInt/Data/Document";
-import Turxios from "@Turtle/Api/Turxios";
+import {FileDocument} from "@Turtle/DocInt/Data/Document";
+import Turxios, {getWithAbort} from "@Turtle/Api/Turxios";
 import {UploadDocumentFileParams} from "@Turtle/DocInt/Api/Params";
 import axios from "axios";
 
 
 export default class DocumentsApi {
 
-    static async ListDocuments(): Promise<Array<FileDocumentLight>> {
+    static async ListDocuments(): Promise<Array<FileDocument>> {
         return (await axios.get<Array<any>>("/api/docs")).data.map((val) => {
-            const tmp = new FileDocumentLight()
+            const tmp = new FileDocument()
             tmp.FromJson(val)
             return tmp
         })
@@ -19,6 +19,12 @@ export default class DocumentsApi {
         data.set("pdf", file)
         data.set("data", JSON.stringify(params.ToJson()))
         await Turxios.post("/api/docs/upload", data)
+    }
+
+    static async UpdateDocument(doc: FileDocument) {
+        const data = new FormData()
+        data.set("data", JSON.stringify(doc.ToJson()))
+        await Turxios.put("/api/docs", data)
 
     }
 
@@ -28,7 +34,32 @@ export default class DocumentsApi {
                 uid: uid
             }
         })
+    }
+
+    static async VSearch(abort: AbortController, searchText: string): Promise<Array<VSearchResult>> {
+        const tmp = (await getWithAbort<Array<VSearchResult>>(abort, "/api/doc/vsearch", {
+            params: {
+                query: searchText
+            }
+        })).data
+
+        console.log(tmp)
+
+        return tmp.map((val) => {
+            const doc = new FileDocument()
+            doc.FromJson(val.doc)
+
+            return {
+                similarity: val.similarity,
+                doc: doc
+            }
+        })
 
     }
 
+}
+
+export interface VSearchResult {
+    similarity: number
+    doc: FileDocument
 }

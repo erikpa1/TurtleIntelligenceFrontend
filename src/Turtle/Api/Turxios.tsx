@@ -1,5 +1,5 @@
 import React from "react";
-import axios, {Axios, Axios as BigAxios, AxiosError} from "axios";
+import axios, {Axios, Axios as BigAxios, AxiosError, AxiosRequestConfig, AxiosResponse} from "axios";
 import {useTranslation} from "react-i18next";
 import {App} from "antd";
 import TurtleApp from "@TurtleApp/TurtleApp";
@@ -56,5 +56,20 @@ export function TurxiosProvider() {
     return <></>;
 };
 
+
+export async function getWithAbort<T = any>(
+    controller: AbortController,
+    url: string,
+    config?: AxiosRequestConfig<any>
+): Promise<AxiosResponse<T>> {
+    return await axios.get<T>(url, {
+        ...config,
+        signal: controller.signal
+    }).catch((error) => {
+        if (error.name === 'AbortError') {
+            return {data: []} as any
+        }
+    })
+}
 
 export default turxios;

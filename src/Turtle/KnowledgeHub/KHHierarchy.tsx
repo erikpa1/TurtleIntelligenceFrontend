@@ -4,7 +4,7 @@ import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {useNavigate} from "react-router-dom";
 import {Flex, Tree, TreeDataNode} from "antd";
 import DocumentsApi from "@Turtle/DocInt/Api/DocumentsApi";
-import {FileDocumentLight} from "@Turtle/DocInt/Data/Document";
+import {FileDocument} from "@Turtle/DocInt/Data/Document";
 import {
     HierarchyAddButton,
     HierarchyDeleteButton,

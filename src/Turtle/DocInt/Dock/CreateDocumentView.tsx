@@ -9,6 +9,7 @@ import {StringAreaAttributeView} from "@Turtle/Components/Forms/StringAreaProper
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import DocumentsApi from "@Turtle/DocInt/Api/DocumentsApi";
+import {FileDocument} from "@Turtle/DocInt/Data/Document";
 
 export default function CreateDocumentView({
                                                beforeUpdate,
@@ -103,6 +104,49 @@ export default function CreateDocumentView({
 
             <RightSubmitButton
                 disabled={Boolean(fileToUpload) === false}
+                onClick={submitClicked}
+            />
+        </Form>
+    )
+
+}
+
+interface EditDocumentViewProps {
+    doc: FileDocument,
+    beforeUpdate: any,
+    afterUpdate: any,
+}
+
+export function EditDocumentView({
+                                     doc,
+                                     beforeUpdate,
+                                     afterUpdate,
+                                 }: EditDocumentViewProps) {
+
+    async function submitClicked() {
+        beforeUpdate()
+        TurtleApp.Lock()
+        await DocumentsApi.UpdateDocument(doc)
+        TurtleApp.Unlock()
+        afterUpdate()
+
+    }
+
+
+    return (
+        <Form layout={"vertical"}>
+
+            <StringAttributeView
+                entity={doc}
+                attribute={"name"}
+            />
+
+            <StringAreaAttributeView
+                entity={doc}
+                attribute={"description"}
+            />
+
+            <RightSubmitButton
                 onClick={submitClicked}
             />
         </Form>

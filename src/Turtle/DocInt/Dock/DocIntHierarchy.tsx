@@ -7,13 +7,13 @@ import AIChatApi from "@Turtle/LLM/Api/AIChatApi";
 import {ChatHistoryLight} from "@Turtle/LLM/Data/LLMChatHistory";
 import {
     HierarchyAddButton,
-    HierarchyDeleteButton,
+    HierarchyDeleteButton, HierarchyEditButton,
     HierarchyFlex,
-    HierarchyRightFlex
+    HierarchyRightFlex, HierarchyViewButton
 } from "@Turtle/Components/HierarchyComponents";
 import DocumentsApi from "@Turtle/DocInt/Api/DocumentsApi";
-import {FileDocumentLight} from "@Turtle/DocInt/Data/Document";
-import CreateDocumentView from "@Turtle/DocInt/Dock/CreateDocumentView";
+import {FileDocument} from "@Turtle/DocInt/Data/Document";
+import CreateDocumentView, {EditDocumentView} from "@Turtle/DocInt/Dock/CreateDocumentView";
 import {FileDropExample1} from "@Turtle/Examples/FileDropExample";
 import TurtleApp from "@TurtleApp/TurtleApp";
 
@@ -28,7 +28,7 @@ export default function DocIntHierarchy({}) {
     const [data, setData] = React.useState<Array<TreeDataNode>>(createHierarchy([]))
 
 
-    function createHierarchy(documents: Array<FileDocumentLight>) {
+    function createHierarchy(documents: Array<FileDocument>) {
         return [
             {
                 key: "chats",
@@ -56,6 +56,12 @@ export default function DocIntHierarchy({}) {
 
                                 <HierarchyRightFlex>
 
+                                    <HierarchyEditButton
+                                        onClick={() => {
+                                            editDocument(val)
+                                        }}
+                                    />
+
                                     <HierarchyDeleteButton
                                         onClick={() => {
                                             deleteDocument(val.uid)
@@ -76,6 +82,20 @@ export default function DocIntHierarchy({}) {
             closable: true,
             content: (
                 <CreateDocumentView
+                    beforeUpdate={deactivate}
+                    afterUpdate={refresh}
+                />
+            )
+        })
+    }
+
+    function editDocument(doc: FileDocument) {
+        activate({
+            title: t("create.document"),
+            closable: true,
+            content: (
+                <EditDocumentView
+                    doc={doc}
                     beforeUpdate={deactivate}
                     afterUpdate={refresh}
                 />
