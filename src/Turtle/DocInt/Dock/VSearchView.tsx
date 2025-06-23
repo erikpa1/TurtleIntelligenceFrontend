@@ -5,6 +5,8 @@ import Search from "antd/es/input/Search";
 import DocumentsApi, {VSearchResult} from "@Turtle/DocInt/Api/DocumentsApi";
 import {FileDocument} from "@Turtle/DocInt/Data/Document";
 import {DownloadOutlined, EyeOutlined, FileTextOutlined} from "@ant-design/icons";
+import {DownloadDocumentIconBtn, OpenDocumentIconBtn} from "@Turtle/DocInt/Components/DocManipulation";
+import {HierarchyRightFlex} from "@Turtle/Components/HierarchyComponents";
 
 
 export default function VSearchView() {
@@ -68,13 +70,21 @@ export default function VSearchView() {
             gap={15}
         >
 
-            <Search
-                defaultValue={searchText}
-                onChange={(e) => {
-                    searchTyping(e.target.value)
-                }}
-
-            />
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+                <Search
+                    defaultValue={searchText}
+                    onChange={(e) => {
+                        searchTyping(e.target.value)
+                    }}
+                    variant="borderless"
+                    style={{
+                        width: '200px',
+                        flex: 'none',
+                        borderBottom: '1px solid #d9d9d9',
+                        borderRadius: 0
+                    }}
+                />
+            </div>
 
             {
                 (isSearchTyping || isSearching) && (
@@ -110,24 +120,36 @@ export function DocSimmilarityCard({doc, similarity}: DocSimmilarityCardProps) {
                 body: {padding: '16px'}
             }}
         >
-            <div className="flex items-start justify-between">
-                <div className="flex items-start space-x-3 flex-1">
-                    <div className="flex-shrink-0 mt-1">
+            <Flex vertical>
+                <Flex gap={15}>
+
+                    <div>
                         <FileTextOutlined style={{fontSize: '20px', color: '#f5222d'}}/>
                     </div>
 
-                    <div className="flex-1 min-w-0">
-                        <div className="flex items-center space-x-2 mb-2">
-                            <Typography.Title level={5} className="!mb-0 truncate" style={{fontSize: '14px'}}>
-                                {doc.name}
-                            </Typography.Title>
+                    <Flex vertical>
+                        <Flex vertical>
+
+                            <Flex>
+                                <Typography.Title level={5}>
+                                    {doc.name}
+                                </Typography.Title>
+
+                                <HierarchyRightFlex>
+                                    <OpenDocumentIconBtn doc={doc}/>
+                                    <DownloadDocumentIconBtn doc={doc}/>
+                                </HierarchyRightFlex>
+
+                            </Flex>
+
                             <Tag>
                                 {doc.ext}
                             </Tag>
+
                             <Typography.Text type="secondary" style={{fontSize: '12px'}}>
                                 {doc.ext}
                             </Typography.Text>
-                        </div>
+                        </Flex>
 
                         <Typography.Paragraph
                             type="secondary"
@@ -137,44 +159,35 @@ export function DocSimmilarityCard({doc, similarity}: DocSimmilarityCardProps) {
                             {doc.description}
                         </Typography.Paragraph>
 
-                        <div className="flex items-center space-x-4">
+                        <Flex vertical>
 
-                            <div className="flex items-center space-x-2">
+                            <Flex gap={15}>
                                 <Typography.Text type="secondary" style={{fontSize: '12px'}}>
                                     Similarity:
                                 </Typography.Text>
+
                                 <Tag
                                     color={getSimilarityColor(0)}
                                 >
                                     {similarity}%
                                 </Tag>
-                            </div>
 
-                            <Progress
-                                percent={similarity}
-                                size="small"
-                                style={{width: '80px'}}
-                                showInfo={false}
-                            />
-                        </div>
-                    </div>
-                </div>
+                                <Progress
+                                    percent={similarity}
+                                    size="small"
+                                    style={{width: '80px'}}
+                                    showInfo={false}
+                                />
 
-                <div className="flex items-center space-x-2 ml-4">
-                    <Button
-                        type="text"
-                        size="small"
-                        icon={<EyeOutlined/>}
-                        style={{width: '32px', height: '32px'}}
-                    />
-                    <Button
-                        type="text"
-                        size="small"
-                        icon={<DownloadOutlined/>}
-                        style={{width: '32px', height: '32px'}}
-                    />
-                </div>
-            </div>
+                            </Flex>
+
+
+                        </Flex>
+                    </Flex>
+
+
+                </Flex>
+            </Flex>
         </Card>
     )
 }
