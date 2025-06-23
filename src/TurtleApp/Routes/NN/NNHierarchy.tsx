@@ -9,10 +9,11 @@ import {
 import {useTranslation} from "react-i18next";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {useNavigate} from "react-router-dom";
-import Model from "@TurtleApp/Data/Model";
-import EntityForm from "@Turtle/Components/Forms/EntityForm";
-import ModelProperties from "@TurtleApp/Data/Model_Properties";
-import ModelsApi from "@TurtleApp/Api/ModelsApi";
+
+import SimModelsApi from "@TurtleApp/Api/SimModelsApi";
+import CreateNNView from "@TurtleApp/Routes/NN/CreateNNView";
+import {NeuralNetwork} from "@TurtleApp/Data/NN";
+import TurtleApp from "@TurtleApp/TurtleApp";
 
 export default function NNHierarchy() {
 
@@ -58,15 +59,13 @@ export default function NNHierarchy() {
     }
 
     function createModelPressed() {
-        const tmp = new Model()
+        const tmp = new NeuralNetwork()
 
         activate({
-            title: t("create.nnmodel"),
+            title: `${t("create.nnmodel")}:`,
             content: (
-                <EntityForm
-                    entity={tmp}
-                    properties={ModelProperties.Get()}
-                    submitFunction={ModelsApi.COU}
+                <CreateNNView
+                    nn={tmp}
                     onBeforeSubmit={deactivate}
                     onAfterSubmit={refresh}
                 />
@@ -79,8 +78,10 @@ export default function NNHierarchy() {
 
     }
 
-    function deleteModel(nnModel: string) {
-
+    async function deleteModel(nnModel: string) {
+        TurtleApp.Lock()
+        await SimModelsApi.DeleteModel(nnModel)
+        TurtleApp.Unlock()
         refresh()
     }
 

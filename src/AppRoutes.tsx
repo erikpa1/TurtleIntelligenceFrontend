@@ -11,16 +11,16 @@ const LLMChatDock = React.lazy(() => import("@Turtle/LLM/LLMChatDock/LLMChatDock
 const ActorsDock = React.lazy(() => import("@TurtleApp/Routes/Actors/ActorsDock"))
 const DocumentationDock = React.lazy(() => import("@TurtleApp/Routes/Documentation/DocumentationDock"))
 const ContainersDock = React.lazy(() => import("@TurtleApp/Routes/ContainersDock/ContainersDock"))
-const WorldDock = React.lazy(() => import("@TurtleApp/Routes/WorldDock/WorldDock"))
-const ModelsDock = React.lazy(() => import( "@TurtleApp/Routes/ModelsDock/ModelsDock"))
+const SimWorldDock = React.lazy(() => import("@TurtleApp/Routes/WorldDock/WorldDock"))
+const SimModelsDock = React.lazy(() => import( "@TurtleApp/Routes/SimModelsDock/SimModelsDock"))
 const NNDock = React.lazy(() => import("@TurtleApp/Routes/NN/NNDock"))
 
 
 export default function AppRoutes({}) {
     return (
         <Routes>
-            <Route path={"/"} element={<ModelsDock/>}/>
-            <Route path={"/model/:modelUid"} element={<WorldDock/>}/>
+            <Route path={"/"} element={<SimModelsDock/>}/>
+            <Route path={"/model/:modelUid"} element={<SimWorldDock/>}/>
             <Route path={"/containers"} element={<ContainersDock/>}/>
             <Route path={"/nn"} element={<NNDock/>}/>
             <Route path={"/documentation"} element={<DocumentationDock/>}/>

@@ -98,5 +98,7 @@
     "llm.defaultquestion": "What is an purpose of life?",
     "knowledge.hub": "Knowledge Hub",
     "embedding": "Embedding",
-    "llmDescription": "Generate LLM description"
+    "llmDescription": "Generate LLM description",
+    "create.nnmodel": "Create Neural Network model",
+    "sim.models": "Simulation models"
 }

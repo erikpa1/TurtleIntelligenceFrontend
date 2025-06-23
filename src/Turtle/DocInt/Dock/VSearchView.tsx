@@ -68,6 +68,7 @@ export default function VSearchView() {
         <Flex
             vertical
             gap={15}
+
         >
 
             <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -96,6 +97,7 @@ export default function VSearchView() {
                 searchResults.map((searchResult) => {
                     return (
                         <DocSimmilarityCard
+                            key={searchResult.doc.uid}
                             doc={searchResult.doc}
                             similarity={searchResult.similarity}
                         />
@@ -117,7 +119,9 @@ export function DocSimmilarityCard({doc, similarity}: DocSimmilarityCardProps) {
             hoverable
             className="mb-4"
             styles={{
-                body: {padding: '16px'}
+                body: {
+                    padding: '16px'
+                }
             }}
         >
             <Flex vertical>
@@ -128,28 +132,26 @@ export function DocSimmilarityCard({doc, similarity}: DocSimmilarityCardProps) {
                     </div>
 
                     <Flex vertical>
-                        <Flex vertical>
 
-                            <Flex>
-                                <Typography.Title level={5}>
-                                    {doc.name}
-                                </Typography.Title>
+                        <Flex>
+                            <Typography.Title level={5}>
+                                {doc.name}
+                            </Typography.Title>
 
-                                <HierarchyRightFlex>
-                                    <OpenDocumentIconBtn doc={doc}/>
-                                    <DownloadDocumentIconBtn doc={doc}/>
-                                </HierarchyRightFlex>
+                            <HierarchyRightFlex>
+                                <OpenDocumentIconBtn doc={doc}/>
+                                <DownloadDocumentIconBtn doc={doc}/>
+                            </HierarchyRightFlex>
 
-                            </Flex>
-
-                            <Tag>
-                                {doc.ext}
-                            </Tag>
-
-                            <Typography.Text type="secondary" style={{fontSize: '12px'}}>
-                                {doc.ext}
-                            </Typography.Text>
                         </Flex>
+
+                        <Tag>
+                            {doc.ext}
+                        </Tag>
+
+                        <Typography.Text type="secondary" style={{fontSize: '12px'}}>
+                            {doc.ext}
+                        </Typography.Text>
 
                         <Typography.Paragraph
                             type="secondary"

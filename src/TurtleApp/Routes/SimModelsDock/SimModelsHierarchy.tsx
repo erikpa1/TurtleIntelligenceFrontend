@@ -1,5 +1,6 @@
 import {useTranslation} from "react-i18next";
 import React from "react";
+import {useNavigate} from "react-router-dom";
 import {Flex, Tree, TreeDataNode} from "antd";
 import {
     HierarchyFlex,
@@ -9,23 +10,22 @@ import {
     HierarchyViewButton
 } from "@Turtle/Components/HierarchyComponents";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
-import ModelsApi from "@TurtleApp/Api/ModelsApi";
-import {useNavigate} from "react-router-dom";
-import TurtleApp from "@TurtleApp/TurtleApp";
-import EntityForm from "@Turtle/Components/Forms/EntityForm";
-import Model from "@TurtleApp/Data/Model";
-import ModelProperties from "@TurtleApp/Data/Model_Properties";
-import LLM from "@Turtle/LLM/Data/LLM";
+import SimModelsApi from "@TurtleApp/Api/SimModelsApi";
+
+import TurtleApp from "@TurtleApp/TurtleApp"
+import EntityForm from "@Turtle/Components/Forms/EntityForm"
+import SimModel from "@TurtleApp/Data/SimModel"
+import COUSimModel from "@TurtleApp/Routes/SimModelsDock/COUSimModel";
 
 
-export default function ModelsHierarchy({}) {
+export default function SimModelsHierarchy({}) {
     const [t] = useTranslation()
 
     const {activate, deactivate} = useTurtleModal()
 
     const navigate = useNavigate()
 
-    function createModelsHierarchy(models: Array<Model>) {
+    function createModelsHierarchy(models: Array<SimModel>) {
         return [
             {
                 key: "models",
@@ -66,17 +66,14 @@ export default function ModelsHierarchy({}) {
     const [data, setData] = React.useState<Array<TreeDataNode>>(createModelsHierarchy([]))
 
 
-
     function createModelPressed() {
-        const tmp = new Model()
+        const tmp = new SimModel()
 
         activate({
             title: t("create.model"),
             content: (
-                <EntityForm
-                    entity={tmp}
-                    properties={ModelProperties.Get()}
-                    submitFunction={ModelsApi.COU}
+                <COUSimModel
+                    model={tmp}
                     onBeforeSubmit={deactivate}
                     onAfterSubmit={refresh}
                 />
@@ -86,13 +83,13 @@ export default function ModelsHierarchy({}) {
 
     async function deleteModel(uid: string) {
         TurtleApp.Lock()
-        await ModelsApi.DeleteModel(uid)
+        await SimModelsApi.DeleteModel(uid)
         TurtleApp.Unlock()
         refresh()
     }
 
     async function refresh() {
-        const models = await ModelsApi.ListModels()
+        const models = await SimModelsApi.ListModels()
         setData(createModelsHierarchy(models))
     }
 

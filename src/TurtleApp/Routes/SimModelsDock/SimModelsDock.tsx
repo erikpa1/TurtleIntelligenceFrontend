@@ -1,8 +1,8 @@
 import {Splitter} from "antd";
-import ModelsHierarchy from "@TurtleApp/Routes/ModelsDock/ModelsHierarchy";
+import SimModelsHierarchy from "@TurtleApp/Routes/SimModelsDock/SimModelsHierarchy";
 
 
-export default function ModelsDock({}) {
+export default function SimModelsDock({}) {
 
 
 
@@ -11,9 +11,6 @@ export default function ModelsDock({}) {
             height: "100vh"
         }}>
 
-
-
-
             <Splitter.Panel
                 defaultSize={"20%"}
                 style={{
@@ -21,7 +18,7 @@ export default function ModelsDock({}) {
                     padding: "15px"
                 }}
             >
-                <ModelsHierarchy/>
+                <SimModelsHierarchy/>
             </Splitter.Panel>
 
             <Splitter.Panel>

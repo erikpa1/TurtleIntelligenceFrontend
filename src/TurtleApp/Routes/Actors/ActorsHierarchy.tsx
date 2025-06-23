@@ -12,10 +12,10 @@ import TurtleApp from "@TurtleApp/TurtleApp";
 import Actor from "@TurtleApp/Data/Actor";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import IconFolderIcon from "@Turtle/Icons/IconFolder";
-import Model from "@TurtleApp/Data/Model";
+import SimModel from "@TurtleApp/Data/SimModel";
 import EntityForm from "@Turtle/Components/Forms/EntityForm";
 import ModelProperties from "@TurtleApp/Data/Model_Properties";
-import ModelsApi from "@TurtleApp/Api/ModelsApi";
+import SimModelsApi from "@TurtleApp/Api/SimModelsApi";
 import ActorProperties from "@TurtleApp/Data/Actor_Properties";
 import {BgColorsOutlined} from "@ant-design/icons";
 import IconColor from "@Turtle/Icons/IconColor";
@@ -116,7 +116,7 @@ export default function ActorsHierarchy() {
     }
 
     function createActorPressed() {
-        const tmp = new Model()
+        const tmp = new SimModel()
 
         activate({
             title: t("create.model"),
@@ -124,7 +124,7 @@ export default function ActorsHierarchy() {
                 <EntityForm
                     entity={tmp}
                     properties={ModelProperties.Get()}
-                    submitFunction={ModelsApi.COU}
+                    submitFunction={SimModelsApi.COU}
                     onBeforeSubmit={deactivate}
                     onAfterSubmit={refresh}
                 />
