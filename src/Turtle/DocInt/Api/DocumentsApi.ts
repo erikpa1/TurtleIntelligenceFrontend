@@ -43,8 +43,6 @@ export default class DocumentsApi {
             }
         })).data
 
-        console.log(tmp)
-
         return tmp.map((val) => {
             const doc = new FileDocument()
             doc.FromJson(val.doc)

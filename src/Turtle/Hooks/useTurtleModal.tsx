@@ -15,6 +15,9 @@ export function useTurtleModal() {
                           content,
                           ...props
                       }: ModalFuncProps) {
+
+
+
         guard.current = Modal.info({
             ...props,
             title: t(props.title as any ?? ""),

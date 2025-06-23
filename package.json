@@ -10,9 +10,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@ant-design/icons": "^5.2.6",
-        "@emotion/react": "^11.10.8",
-        "@emotion/styled": "^11.10.8",
+        "@ant-design/icons": "6.0.0",
         "@react-three/drei": "^9.13.0",
         "@react-three/fiber": "^8.0.22",
         "@react-three/postprocessing": "^3.0.4",
@@ -26,7 +24,7 @@
         "@types/react": "^17.0.34",
         "@types/react-dom": "^17.0.11",
         "@types/three": "^0.134.0",
-        "antd": "5.23.1",
+        "antd": "5.26.1",
         "apexcharts": "^4.7.0",
         "axios": "^1.8.4",
         "dayjs": "1.11.13",

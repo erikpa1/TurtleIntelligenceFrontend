@@ -1,10 +1,10 @@
+//Created on https://v0.dev/chat/2q29thzdYOd
 import React from "react"
-import {Flex, Spin} from "antd";
+import {Button, Card, Flex, Progress, Spin, Tag, Typography} from "antd";
 import Search from "antd/es/input/Search";
-import {getWithAbort} from "@Turtle/Api/Turxios";
 import DocumentsApi, {VSearchResult} from "@Turtle/DocInt/Api/DocumentsApi";
-import {Simulate} from "react-dom/test-utils";
-import abort = Simulate.abort;
+import {FileDocument} from "@Turtle/DocInt/Data/Document";
+import {DownloadOutlined, EyeOutlined, FileTextOutlined} from "@ant-design/icons";
 
 
 export default function VSearchView() {
@@ -63,7 +63,10 @@ export default function VSearchView() {
 
 
     return (
-        <Flex vertical>
+        <Flex
+            vertical
+            gap={15}
+        >
 
             <Search
                 defaultValue={searchText}
@@ -82,16 +85,103 @@ export default function VSearchView() {
             {
                 searchResults.map((searchResult) => {
                     return (
-                        <div>
-                            <div>{searchResult.similarity}</div>
-                            <div>{searchResult.doc.name}</div>
-                            <div>{searchResult.doc.description}</div>
-                        </div>
+                        <DocSimmilarityCard
+                            doc={searchResult.doc}
+                            similarity={searchResult.similarity}
+                        />
                     )
                 })
             }
-
-
         </Flex>
     )
 }
+
+interface DocSimmilarityCardProps {
+    similarity: number
+    doc: FileDocument
+}
+
+export function DocSimmilarityCard({doc, similarity}: DocSimmilarityCardProps) {
+    return (
+        <Card
+            hoverable
+            className="mb-4"
+            styles={{
+                body: {padding: '16px'}
+            }}
+        >
+            <div className="flex items-start justify-between">
+                <div className="flex items-start space-x-3 flex-1">
+                    <div className="flex-shrink-0 mt-1">
+                        <FileTextOutlined style={{fontSize: '20px', color: '#f5222d'}}/>
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                        <div className="flex items-center space-x-2 mb-2">
+                            <Typography.Title level={5} className="!mb-0 truncate" style={{fontSize: '14px'}}>
+                                {doc.name}
+                            </Typography.Title>
+                            <Tag>
+                                {doc.ext}
+                            </Tag>
+                            <Typography.Text type="secondary" style={{fontSize: '12px'}}>
+                                {doc.ext}
+                            </Typography.Text>
+                        </div>
+
+                        <Typography.Paragraph
+                            type="secondary"
+                            style={{fontSize: '14px', marginBottom: '12px'}}
+                            ellipsis={{rows: 2}}
+                        >
+                            {doc.description}
+                        </Typography.Paragraph>
+
+                        <div className="flex items-center space-x-4">
+
+                            <div className="flex items-center space-x-2">
+                                <Typography.Text type="secondary" style={{fontSize: '12px'}}>
+                                    Similarity:
+                                </Typography.Text>
+                                <Tag
+                                    color={getSimilarityColor(0)}
+                                >
+                                    {similarity}%
+                                </Tag>
+                            </div>
+
+                            <Progress
+                                percent={similarity}
+                                size="small"
+                                style={{width: '80px'}}
+                                showInfo={false}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex items-center space-x-2 ml-4">
+                    <Button
+                        type="text"
+                        size="small"
+                        icon={<EyeOutlined/>}
+                        style={{width: '32px', height: '32px'}}
+                    />
+                    <Button
+                        type="text"
+                        size="small"
+                        icon={<DownloadOutlined/>}
+                        style={{width: '32px', height: '32px'}}
+                    />
+                </div>
+            </div>
+        </Card>
+    )
+}
+
+// Helper function for similarity colors
+const getSimilarityColor = (similarity) => {
+    if (similarity >= 80) return 'green';
+    if (similarity >= 60) return 'orange';
+    return 'red';
+};

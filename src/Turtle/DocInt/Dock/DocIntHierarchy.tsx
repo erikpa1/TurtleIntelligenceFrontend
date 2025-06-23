@@ -29,9 +29,12 @@ export default function DocIntHierarchy({}) {
 
 
     function createHierarchy(documents: Array<FileDocument>) {
+
+        console.log(documents)
+
         return [
             {
-                key: "chats",
+                key: "documents",
                 title: (
                     <Flex>
                         {t("documents")} ({documents.length})

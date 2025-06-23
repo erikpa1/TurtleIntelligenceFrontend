@@ -18,12 +18,13 @@ function _SearchAll({}) {
 
     const [t] = useTranslation()
 
-    const {activate, deactivate} = useTurtleModal()
+    const {activate} = useTurtleModal()
 
     function activateSearch({}) {
         activate({
             title: "VSearch",
             closable: true,
+            width: 800,
             content: (
                 <VSearchView/>
             )
