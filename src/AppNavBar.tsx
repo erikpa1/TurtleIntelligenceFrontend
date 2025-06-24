@@ -62,9 +62,30 @@ export default function AppNavBar() {
 
                         <MyNavbarItem
                             icon={"/icons/widgets.svg"}
-                            iconStyle={ICON_STYLE}
+                            iconStyle={{
+                                ...ICON_STYLE,
+                                width: "35px",
+                                height: "35px",
+                            }}
                             onClick={showWidgets}
+
                         />
+                        <hr/>
+
+                        <MyNavbarItem
+                            icon={"/icons/simulation.svg"}
+                            iconStyle={ICON_STYLE}
+                            link={"/"}
+                            lang={"simulations"}
+                        />
+
+                        <MyNavbarItem
+                            icon={"/icons/network_intel_node.svg"}
+                            iconStyle={ICON_STYLE}
+                            link={"/nn"}
+                            lang={"neuralnetworks"}
+                        />
+
 
                         <Menu
                             style={{
@@ -74,30 +95,6 @@ export default function AppNavBar() {
                                 flexDirection: "column",
                             }}
                             items={[
-                                {
-                                    key: "widgets",
-                                    icon: (<IconSimulation/>),
-                                    label: t("widgets"),
-                                    onClick: showWidgets
-                                },
-                                {
-                                    key: "home",
-                                    icon: (
-                                        <IconSimulation/>
-                                    ),
-                                    label: t("home"),
-                                    onClick: () => {
-                                        navigate("/")
-                                    }
-                                },
-                                {
-                                    key: "neuralnetworks",
-                                    icon: <IconNetworkIntelNode/>,
-                                    label: t("neuralnetworks"),
-                                    onClick: () => {
-                                        navigate("/nn")
-                                    }
-                                },
                                 {
                                     key: "containers",
                                     icon: <ContainerOutlined/>,
@@ -172,10 +169,10 @@ export default function AppNavBar() {
     )
 }
 const ICON_STYLE = {
-    width: "35px",
-    height: "35px",
-    marginTop: "5px",
-    marginBottom: "5px"
+    width: "25px",
+    height: "25px",
+    marginTop: "2px",
+    marginBottom: "2px"
 }
 
 

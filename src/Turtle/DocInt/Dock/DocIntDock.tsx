@@ -4,11 +4,15 @@ import {Splitter} from "antd"
 import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme"
 import DocIntTopBar from "@Turtle/DocInt/Dock/DocIntTopBar";
 import DocIntHierarchy from "@Turtle/DocInt/Dock/DocIntHierarchy";
+import {useParams} from "react-router-dom";
+import DocumentPreview from "@Turtle/DocInt/Dock/DocumentPreview";
 
 
 export default function DocIntDock({}) {
 
     const {bigPadding} = useTurtleTheme()
+
+    const {documentUid} = useParams()
 
 
     return (
@@ -38,7 +42,11 @@ export default function DocIntDock({}) {
 
                     }}
                 >
-
+                    {
+                        documentUid && (
+                            <DocumentPreview documentUid={documentUid} />
+                        )
+                    }
                 </Splitter.Panel>
 
             </Splitter>

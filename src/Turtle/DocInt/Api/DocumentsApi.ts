@@ -1,10 +1,24 @@
+import axios from "axios";
 import {FileDocument} from "@Turtle/DocInt/Data/Document";
 import Turxios, {getWithAbort} from "@Turtle/Api/Turxios";
 import {UploadDocumentFileParams} from "@Turtle/DocInt/Api/Params";
-import axios from "axios";
-
 
 export default class DocumentsApi {
+
+    static DocFilePath(documentUid: string): string {
+        return `/api/doc/file?uid=${documentUid}`
+    }
+
+    static async Get(documentUid: string): Promise<FileDocument> {
+        const response = (await axios.get<Array<any>>("/api/doc", {
+            params: {
+                uid: documentUid
+            }
+        })).data
+        const tmp = new FileDocument()
+        tmp.FromJson(response)
+        return tmp
+    }
 
     static async ListDocuments(): Promise<Array<FileDocument>> {
         return (await axios.get<Array<any>>("/api/docs")).data.map((val) => {
