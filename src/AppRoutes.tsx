@@ -3,7 +3,7 @@ import React from "react"
 import {Route, Routes} from "react-router-dom"
 
 const FunctionsDock = React.lazy(() => import("@Turtle/Functions/FunctionsDock"))
-const KHDock = React.lazy(() => import("@Turtle/KnowledgeHub/KHDock"))
+const KHDock = React.lazy(() => import("@Turtle/Knowledge/KnowledgeDock"))
 const DocIntDock = React.lazy(() => import("@Turtle/DocInt/Dock/DocIntDock"))
 const LLMClusterDock = React.lazy(() => import("@Turtle/LLM/LLMCluster/LLMClusterDock"))
 const LLMsDock = React.lazy(() => import("@Turtle/LLM/LLMsDock/LLMsDock"))

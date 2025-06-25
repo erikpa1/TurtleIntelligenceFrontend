@@ -2,9 +2,10 @@ import React from "react"
 import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme";
 import DocIntTopBar from "@Turtle/DocInt/Dock/DocIntTopBar";
 import {Splitter} from "antd";
+import KnowledgeHierarchy from "@Turtle/Knowledge/KnowledgeHierarchy";
 
 
-export default function KHDock() {
+export default function KnowledgeDock() {
 
 
     const {bigPadding} = useTurtleTheme()
@@ -27,7 +28,7 @@ export default function KHDock() {
                         padding: bigPadding
                     }}
                 >
-
+                    <KnowledgeHierarchy/>
                 </Splitter.Panel>
 
                 <Splitter.Panel

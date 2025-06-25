@@ -100,5 +100,10 @@
     "embedding": "Embedding",
     "llmDescription": "Generate LLM description",
     "create.nnmodel": "Create Neural Network model",
-    "sim.models": "Simulation models"
+    "sim.models": "Simulation models",
+    "knowledge": "Knowledge",
+    "create.knowledge": "Create knowledge",
+    "edit.knowledge": "Edit knowledge",
+    "plain.text": "Plain text",
+    "guidance": "Guidance"
 }

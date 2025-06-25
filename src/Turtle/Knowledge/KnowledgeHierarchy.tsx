@@ -1,20 +1,23 @@
+import {Flex, Tree, TreeDataNode} from "antd"
 import React from "react"
-import {useTranslation} from "react-i18next";
-import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
-import {useNavigate} from "react-router-dom";
-import {Flex, Tree, TreeDataNode} from "antd";
-import DocumentsApi from "@Turtle/DocInt/Api/DocumentsApi";
-import {FileDocument} from "@Turtle/DocInt/Data/Document";
+import {useTranslation} from "react-i18next"
+import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal"
+import {useNavigate} from "react-router-dom"
+
 import {
     HierarchyAddButton,
     HierarchyDeleteButton,
     HierarchyFlex,
     HierarchyRightFlex
-} from "@Turtle/Components/HierarchyComponents";
-import CreateDocumentView from "@Turtle/DocInt/Dock/CreateDocumentView";
-import {Knowledge} from "@Turtle/KnowledgeHub/Data/Knowledge";
+} from "@Turtle/Components/HierarchyComponents"
 
-export default function KHierarchy() {
+import CreateDocumentView from "@Turtle/DocInt/Dock/CreateDocumentView"
+import {Knowledge} from "@Turtle/Knowledge/Data/Knowledge"
+import COUKnowledgeView from "@Turtle/Knowledge/COUKnowledgeView";
+import TurtleApp from "@TurtleApp/TurtleApp";
+import KnowledgeApi from "@Turtle/Knowledge/Api/KnowledgeApi";
+
+export default function KnowledgeHierarchy() {
     const [t] = useTranslation()
 
     const {activate, deactivate} = useTurtleModal()
@@ -24,9 +27,6 @@ export default function KHierarchy() {
 
     const [data, setData] = React.useState<Array<TreeDataNode>>(createHierarchy([]))
 
-    async function refresh() {
-        setData(createHierarchy([]))
-    }
 
     function createHierarchy(documents: Array<Knowledge>) {
         return [
@@ -34,7 +34,7 @@ export default function KHierarchy() {
                 key: "chats",
                 title: (
                     <Flex>
-                        {t("documents")} ({documents.length})
+                        {t("knowledge")} ({documents.length})
 
                         <HierarchyRightFlex>
                             <HierarchyAddButton
@@ -58,7 +58,7 @@ export default function KHierarchy() {
 
                                     <HierarchyDeleteButton
                                         onClick={() => {
-                                            deleteDocument(val.uid)
+                                            deleteKnowledge(val.uid)
                                         }}
                                     />
                                 </HierarchyRightFlex>
@@ -70,19 +70,39 @@ export default function KHierarchy() {
         ]
     }
 
+
     function createDocument() {
+
+        const knowledge = new Knowledge()
+
         activate({
-            title: t("create.document"),
+            title: t("create.knowledge"),
             closable: true,
             content: (
-                <CreateDocumentView/>
+                <COUKnowledgeView
+                    knowledge={knowledge}
+                    onBeforeSubmit={deactivate}
+                    onAfterSubmit={refresh}
+
+                />
             )
         })
     }
 
-    function deleteDocument(documentUid: string) {
+    async function deleteKnowledge(knowledgeUid: string) {
+
+        TurtleApp.Lock()
+        await KnowledgeApi.Delete(knowledgeUid)
+        TurtleApp.Unlock()
+        refresh()
 
     }
+
+    async function refresh() {
+        const knowledge = await KnowledgeApi.List()
+        setData(createHierarchy(knowledge))
+    }
+
 
     React.useEffect(() => {
         refresh()
