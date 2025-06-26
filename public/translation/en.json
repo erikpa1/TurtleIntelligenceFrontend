@@ -105,5 +105,12 @@
     "create.knowledge": "Create knowledge",
     "edit.knowledge": "Edit knowledge",
     "plain.text": "Plain text",
-    "guidance": "Guidance"
+    "guidance": "Guidance",
+    "knowledgehub": "Knowledge Hub",
+    "functions": "Functions",
+    "data": "Data",
+    "other": "Other",
+    "neuralnetworks": "Neural network",
+    "widgets": "Widgets",
+    "text": "Text"
 }

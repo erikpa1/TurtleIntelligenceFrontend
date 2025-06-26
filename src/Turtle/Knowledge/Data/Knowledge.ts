@@ -1,3 +1,7 @@
+export enum KnowledgeType {
+    PLAIN_TEXT = 0
+}
+
 export class Knowledge {
     uid = ""
     name = ""

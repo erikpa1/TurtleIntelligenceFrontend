@@ -5,14 +5,15 @@ import ActorsHierarchy from "@TurtleApp/Routes/Actors/ActorsHierarchy";
 export default function ActorsDock() {
     return (
         <Splitter style={{
-            height: "100vh"
+            height: "100vh",
+
         }}>
 
             <Splitter.Panel
                 defaultSize={"20%"}
                 style={{
                     backgroundColor: "white",
-                    padding: "15px"
+                    padding: "15px",
                 }}
             >
                 <ActorsHierarchy/>

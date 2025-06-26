@@ -30,17 +30,16 @@ function App() {
             </>
         )
     } else {
+
         return (
             <div>
                 <Layout hasSider>
-                    <Sider width={72}>
+                    <Sider width={65}>
                         <AppNavBar/>
                     </Sider>
 
-                    <Layout.Content>
-                        <div style={{flexGrow: 1}}>
-                            <Main/>
-                        </div>
+                    <Layout.Content style={{flexGrow: 1}}>
+                        <Main/>
                     </Layout.Content>
                 </Layout>
 

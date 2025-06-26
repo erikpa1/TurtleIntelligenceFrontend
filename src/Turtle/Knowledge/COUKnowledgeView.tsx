@@ -1,6 +1,6 @@
 import React from "react"
-import {Flex, Form, Select} from "antd"
-import {Knowledge} from "@Turtle/Knowledge/Data/Knowledge";
+import {Flex, Form, Select, Timeline, Typography} from "antd"
+import {Knowledge, KnowledgeType} from "@Turtle/Knowledge/Data/Knowledge";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import {useTranslation} from "react-i18next";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
@@ -23,6 +23,8 @@ export default function COUKnowledgeView({
 
     const [t] = useTranslation()
 
+    const [kType, setKType] = React.useState(knowledge.type)
+
 
     async function submitPressed() {
         onBeforeSubmit()
@@ -35,6 +37,7 @@ export default function COUKnowledgeView({
 
     return (
         <Form layout={"vertical"}>
+
             <Flex vertical>
 
                 <StringAttributeView
@@ -47,26 +50,46 @@ export default function COUKnowledgeView({
                     attribute={"description"}
                 />
 
-                <Form.Item label={`${t("type")}:`}>
-                    <Select defaultValue={`${knowledge.type}`}>
-                        <Select.Option value={"0"}>
-                            {t("plain.text")}
-                        </Select.Option>
+                {
+                    knowledge.uid === "" && (
+                        <Form.Item label={`${t("type")}:`}>
+                            <Select
+                                defaultValue={`${knowledge.type}`}
+                                onChange={(val) => {
+                                    knowledge.type = Number(val)
+                                    setKType(knowledge.type)
+                                }}
+                            >
+                                <Select.Option value={"0"}>
+                                    {t("plain.text")}
+                                </Select.Option>
 
-                        <Select.Option value={"1"}>
-                            {t("document")}
-                        </Select.Option>
+                                <Select.Option value={"1"}>
+                                    {t("document")}
+                                </Select.Option>
 
-                        <Select.Option value={"4"}>
-                            {t("guidance")}
-                        </Select.Option>
+                                <Select.Option value={"4"}>
+                                    {t("guidance")}
+                                </Select.Option>
 
-                    </Select>
-                </Form.Item>
+                            </Select>
+                        </Form.Item>
+                    )
+                }
+
+                {
+                    kType === KnowledgeType.PLAIN_TEXT && (
+                        <StringAreaAttributeView
+                            entity={knowledge.typeData}
+                            attribute={"text"}
+                        />
+                    )
+                }
 
                 <RightSubmitButton onClick={submitPressed}/>
 
             </Flex>
+
         </Form>
     )
 }

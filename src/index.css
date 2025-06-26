@@ -1,6 +1,10 @@
 
 /*from https://claude.ai/chat/9319b354-ee5e-4799-8f6d-ab01bd5c7cf7*/
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
 
 .vstack {
   display: flex;

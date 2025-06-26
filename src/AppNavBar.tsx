@@ -58,7 +58,11 @@ export default function AppNavBar() {
                 >
 
 
-                    <div style={{width: "100%", marginBottom: "10px"}}>
+                    <div style={{
+                        width: "100%",
+                        marginBottom: "10px",
+                        marginTop: "10px"
+                    }}>
 
                         <MyNavbarItem
                             icon={"/icons/widgets.svg"}
@@ -68,93 +72,39 @@ export default function AppNavBar() {
                                 height: "35px",
                             }}
                             onClick={showWidgets}
-
+                            lang={"widgets"}
                         />
+
                         <hr/>
 
                         <MyNavbarItem
                             icon={"/icons/simulation.svg"}
-                            iconStyle={ICON_STYLE}
                             link={"/"}
                             lang={"simulations"}
+                            iconStyle={ICON_STYLE}
                         />
 
                         <MyNavbarItem
-                            icon={"/icons/network_intel_node.svg"}
+                            icon={"/icons/chat.svg"}
+                            link={"/"}
+                            lang={"aichat"}
                             iconStyle={ICON_STYLE}
-                            link={"/nn"}
-                            lang={"neuralnetworks"}
                         />
 
-
-                        <Menu
-                            style={{
-                                border: "0px",
-                                height: "100%",
-                                display: "flex",
-                                flexDirection: "column",
-                            }}
-                            items={[
-                                {
-                                    key: "containers",
-                                    icon: <ContainerOutlined/>,
-                                    label: t("containers"),
-                                    onClick: () => {
-                                        navigate("/containers")
-                                    }
-                                },
-                                {
-                                    key: "documentation",
-                                    icon: <FilePdfOutlined/>,
-                                    label: t("documentation"),
-                                    onClick: () => {
-                                        navigate("/documentation")
-                                    }
-                                },
-                                {
-                                    key: "actors",
-                                    icon: <UserOutlined/>,
-                                    label: t("actors"),
-                                    onClick: () => {
-                                        navigate("/actors")
-                                    }
-                                },
-                                {
-                                    key: "aichat",
-                                    icon: <MessageOutlined/>,
-                                    label: t("aichat"),
-                                    onClick: () => {
-                                        navigate("/llm-chat/new")
-                                    }
-                                },
-                                {
-                                    key: "clustrers",
-                                    icon: <BookOutlined/>,
-                                    label: t("llm.clusters"),
-                                    onClick: () => {
-                                        navigate("/llm-clusters")
-                                    }
-                                },
-                                {
-                                    key: "llmmodels",
-                                    icon: <BookOutlined/>,
-                                    label: t("llm.models"),
-                                    onClick: () => {
-                                        navigate("/llms")
-                                    }
-                                },
-
-                                {
-                                    key: "docint",
-                                    icon: <OpenAIOutlined/>,
-                                    label: t("document.intelligence"),
-                                    onClick: () => {
-                                        navigate("/doc-int")
-                                    }
-                                },
-
-                            ]}
+                        <MyNavbarItem
+                            icon={"/icons/article_person.svg"}
+                            link={"/doc-int"}
+                            lang={"document.intelligence"}
+                            iconStyle={ICON_STYLE}
                         />
+
+                        <MyNavbarItem
+                            lang={"knowledgehub"}
+                            link={"/knowledge-hub"}
+                            icon={"/icons/article_person.svg"}
+                            iconStyle={ICON_STYLE}
+                        />
+
                     </div>
                 </Flex>
 
@@ -192,6 +142,7 @@ function _WidgetsView({onRereoute}) {
             closable={true}
             onCancel={onRereoute}
             open={true}
+            width={800}
         >
             <Flex vertical>
 
@@ -220,9 +171,21 @@ function _WidgetsView({onRereoute}) {
 
                     <Col className="gutter-row" span={6}>
                         <MyNavbarItem
-                            lang={"knowledgehub"}
-                            link={"/knowledge-hub"}
-                            icon={"/icons/article_person.svg"}
+                            icon={"/icons/network_intel_node.svg"}
+                            link={"/nn"}
+                            lang={"neuralnetworks"}
+                            onRerouted={onRereoute}
+                            iconStyle={ICON_STYLE}
+                        />
+                    </Col>
+
+
+                    <Col className="gutter-row" span={6}>
+
+                        <MyNavbarItem
+                            lang={"llm.models"}
+                            link={"/llms"}
+                            icon={"/icons/ollama.svg"}
                             onRerouted={onRereoute}
                             iconStyle={ICON_STYLE}
                         />
@@ -232,7 +195,7 @@ function _WidgetsView({onRereoute}) {
                         <MyNavbarItem
                             lang={"agents"}
                             link={"/agents"}
-                            icon={"/icons/support_agent.svg"}
+                            icon={"/icons/robot_2.svg"}
                             onRerouted={onRereoute}
                             iconStyle={ICON_STYLE}
                         />
@@ -251,13 +214,63 @@ function _WidgetsView({onRereoute}) {
                         <MyNavbarItem
                             lang={"functions"}
                             link={"/functions"}
-                            icon={"/icons/widgets.svg"}
+                            icon={"/icons/function.svg"}
+                            onRerouted={onRereoute}
+                            iconStyle={ICON_STYLE}
+                        />
+                    </Col>
+
+
+                    <Col className="gutter-row" span={6}>
+                        <MyNavbarItem
+                            lang={"containers"}
+                            link={"/containers"}
+                            icon={"/icons/inventory_2.svg"}
+                            onRerouted={onRereoute}
+                            iconStyle={ICON_STYLE}
+                        />
+                    </Col>
+
+                    <Col className="gutter-row" span={6}>
+                        <MyNavbarItem
+                            lang={"actors"}
+                            link={"/actors"}
+                            icon={"/icons/support_agent.svg"}
                             onRerouted={onRereoute}
                             iconStyle={ICON_STYLE}
                         />
                     </Col>
                 </Row>
 
+
+                <Divider orientation={"left"}>
+                    {t("other")}:
+                </Divider>
+
+                <Row gutter={16}>
+                    <Col className="gutter-row" span={6}>
+                        <MyNavbarItem
+                            lang={"documentation"}
+                            link={"/documentation"}
+                            icon={"/icons/article.svg"}
+                            onRerouted={onRereoute}
+                            iconStyle={ICON_STYLE}
+                        />
+                    </Col>
+
+                    <Col className="gutter-row" span={6}>
+                        <MyNavbarItem
+                            lang={"llm.clusters"}
+                            link={"/llm-clusters"}
+                            icon={"/icons/graph_3.svg"}
+                            onRerouted={onRereoute}
+                            iconStyle={ICON_STYLE}
+                        />
+
+                    </Col>
+
+
+                </Row>
 
             </Flex>
         </Modal>
@@ -296,7 +309,7 @@ function MyNavbarItem({lang, icon, link, onClick, onRerouted, iconStyle}: MyNavb
                 }
             }}
             style={{
-                paddingTop: "2.5px",
+                paddingTop: "15px",
                 paddingBottom: "2.5px",
             }}
         >
