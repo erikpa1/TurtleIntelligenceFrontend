@@ -201,6 +201,16 @@ function _WidgetsView({onRereoute}) {
                         />
                     </Col>
 
+                    <Col className="gutter-row" span={6}>
+                        <MyNavbarItem
+                            lang={"agents-tools"}
+                            link={"/agents-tools"}
+                            icon={"/icons/robot_2.svg"}
+                            onRerouted={onRereoute}
+                            iconStyle={ICON_STYLE}
+                        />
+                    </Col>
+
 
                 </Row>
 
