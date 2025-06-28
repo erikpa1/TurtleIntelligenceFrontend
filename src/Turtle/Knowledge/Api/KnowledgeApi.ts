@@ -3,6 +3,18 @@ import {Knowledge} from "@Turtle/Knowledge/Data/Knowledge";
 
 export default class KnowledgeApi {
 
+    static async Get(knUid: string) {
+        const data = (await Turxios.get("/api/knowledge", {
+            params: {
+                uid: knUid
+            }
+        })).data
+
+        const knowledge = new Knowledge()
+        knowledge.FromJson(data)
+        return knowledge
+    }
+
     static async Delete(knowledge: string) {
         await Turxios.delete("/api/knowledge", {
             params: {

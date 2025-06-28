@@ -3,12 +3,15 @@ import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme";
 import DocIntTopBar from "@Turtle/DocInt/Dock/DocIntTopBar";
 import {Splitter} from "antd";
 import KnowledgeHierarchy from "@Turtle/Knowledge/KnowledgeHierarchy";
+import {useParams} from "react-router-dom";
+import KnowledgeEditView from "@Turtle/Knowledge/KnowledgeEditView";
 
 
 export default function KnowledgeDock() {
 
 
     const {bigPadding} = useTurtleTheme()
+    const {knowledgeUid} = useParams()
 
 
     return (
@@ -39,6 +42,12 @@ export default function KnowledgeDock() {
                     }}
                 >
 
+
+                    {
+                        knowledgeUid && (
+                            <KnowledgeEditView knUid={knowledgeUid}/>
+                        )
+                    }
                 </Splitter.Panel>
 
             </Splitter>
