@@ -143,6 +143,7 @@ function _WidgetsView({onRereoute}) {
             onCancel={onRereoute}
             open={true}
             width={800}
+            footer={<></>}
         >
             <Flex vertical>
 

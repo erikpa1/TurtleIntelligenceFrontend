@@ -3,6 +3,7 @@ import React from "react"
 import {Route, Routes} from "react-router-dom"
 
 
+const KnowledgeGuidanceDock = React.lazy(() => import( "@Turtle/Guidance/GuidanceDock"))
 const AgentToolsDock = React.lazy(() => import("@Turtle/AgentTools/AgentToolsDock"))
 const FunctionsDock = React.lazy(() => import("@Turtle/Functions/FunctionsDock"))
 const KHDock = React.lazy(() => import("@Turtle/Knowledge/KnowledgeDock"))
@@ -41,10 +42,13 @@ export default function AppRoutes({}) {
             <Route path={"/doc-int/:documentUid"} element={<DocIntDock/>}/>
             <Route path={"/knowledge-hub"} element={<KHDock/>}/>
             <Route path={"/knowledge-hub/:knowledgeUid"} element={<KHDock/>}/>
+            <Route path={"/guidance-edit/:knUid"} element={<KnowledgeGuidanceDock/>}/>
+
             <Route path={"/functions"} element={<FunctionsDock/>}/>
             <Route path={"/fn/:fnUid"} element={<FunctionsDock/>}/>
             <Route path={"/agents-tools"} element={<AgentToolsDock/>}/>
             <Route path={"/agents-tools/:toolUid"} element={<AgentToolsDock/>}/>
+
         </Routes>
     );
 }

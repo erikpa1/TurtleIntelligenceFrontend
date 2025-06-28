@@ -1,9 +1,11 @@
 import Turxios from "@Turtle/Api/Turxios";
 import {Knowledge} from "@Turtle/Knowledge/Data/Knowledge";
+import {GuidanceStep} from "@Turtle/Knowledge/Data/Guidance";
 
 export default class KnowledgeApi {
 
-    static async Get(knUid: string) {
+
+    static async Get(knUid: string): Promise<Knowledge> {
         const data = (await Turxios.get("/api/knowledge", {
             params: {
                 uid: knUid
@@ -14,6 +16,21 @@ export default class KnowledgeApi {
         knowledge.FromJson(data)
         return knowledge
     }
+
+    static async COUStep(guidanceStep: GuidanceStep) {
+        const data = new FormData()
+        data.set("data", JSON.stringify(guidanceStep.ToJson()))
+        await Turxios.post("/api/knowledge/step", data)
+    }
+
+    static async DeleteStep(stepUid: string) {
+        await Turxios.delete("/api/knowledge/step", {
+            params: {
+                uid: stepUid
+            }
+        })
+    }
+
 
     static async Delete(knowledge: string) {
         await Turxios.delete("/api/knowledge", {

@@ -112,5 +112,9 @@
     "other": "Other",
     "neuralnetworks": "Neural network",
     "widgets": "Widgets",
-    "text": "Text"
+    "text": "Text",
+    "steps": "Steps",
+    "import.document": "Import document",
+    "simulations": "Simulations",
+    "create.step": "Create step"
 }

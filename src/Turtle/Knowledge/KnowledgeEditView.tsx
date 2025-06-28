@@ -23,7 +23,7 @@ export default function KnowledgeEditView({knUid}) {
 
     React.useEffect(() => {
         refresh()
-    }, [])
+    }, [knUid])
 
     if (isLoading) {
         return (

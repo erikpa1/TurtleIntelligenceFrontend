@@ -6,13 +6,13 @@ import {useNavigate} from "react-router-dom"
 
 import {
     HierarchyAddButton,
-    HierarchyDeleteButton,
+    HierarchyDeleteButton, HierarchyEditButton,
     HierarchyFlex,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents"
 
 import CreateDocumentView from "@Turtle/DocInt/Dock/CreateDocumentView"
-import {Knowledge} from "@Turtle/Knowledge/Data/Knowledge"
+import {Knowledge, KnowledgeType} from "@Turtle/Knowledge/Data/Knowledge"
 import COUKnowledgeView from "@Turtle/Knowledge/COUKnowledgeView";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import KnowledgeApi from "@Turtle/Knowledge/Api/KnowledgeApi";
@@ -56,6 +56,11 @@ export default function KnowledgeHierarchy() {
 
                                 <HierarchyRightFlex>
 
+                                    <HierarchyEditButton
+                                        onClick={() => {
+                                            editKnowledge(val)
+                                        }}
+                                    />
                                     <HierarchyDeleteButton
                                         onClick={() => {
                                             deleteKnowledge(val.uid)
@@ -70,6 +75,27 @@ export default function KnowledgeHierarchy() {
         ]
     }
 
+
+    function editKnowledge(kn: Knowledge) {
+
+        if (kn.type === KnowledgeType.PLAIN_TEXT) {
+            activate({
+                title: t("edit.knowledge"),
+                closable: true,
+                content: (
+                    <COUKnowledgeView
+                        knowledge={kn}
+                        onBeforeSubmit={deactivate}
+                        onAfterSubmit={refresh}
+
+                    />
+                )
+            })
+        } else {
+            navigate(`/guidance-edit/${kn.uid}`)
+        }
+
+    }
 
     function createDocument() {
 

@@ -17,6 +17,7 @@ export class Knowledge {
             description: this.description,
             type: this.type,
             hasEmbedding: this.hasEmbedding,
+            typeData: this.typeData,
         }
     }
 
@@ -30,6 +31,5 @@ export class Knowledge {
     }
 }
 
-export class TextKnowledge {
 
-}
+
