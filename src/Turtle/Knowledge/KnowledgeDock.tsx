@@ -1,5 +1,5 @@
 import React from "react"
-import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import DocIntTopBar from "@Turtle/DocInt/Dock/DocIntTopBar";
 import {Splitter} from "antd";
 import KnowledgeHierarchy from "@Turtle/Knowledge/KnowledgeHierarchy";

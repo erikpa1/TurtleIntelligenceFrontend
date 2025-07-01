@@ -1,19 +1,19 @@
-import AgentsToolsTopBar from "@Turtle/AgentTools/AgentToolsTopBar";
-import {Splitter} from "antd";
+import React from "react"
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
-import React from "react";
-import AgentToolsHierarchy from "@Turtle/AgentTools/AgentToolHierarchy";
 import {useParams} from "react-router-dom";
+import DocIntTopBar from "@Turtle/DocInt/Dock/DocIntTopBar";
+import {Splitter} from "antd";
+import DocIntHierarchy from "@Turtle/DocInt/Dock/DocIntHierarchy";
+import DocumentPreview from "@Turtle/DocInt/Dock/DocumentPreview";
 
-export default function AgentToolsDock() {
+export default function ThemeDock({}) {
 
     const {bigPadding} = useTurtleTheme()
 
-
+    const {themeUid} = useParams()
 
     return (
         <div>
-            <AgentsToolsTopBar/>
 
             <Splitter style={{
                 height: "100%",
@@ -27,22 +27,22 @@ export default function AgentToolsDock() {
                         padding: bigPadding
                     }}
                 >
-                    <AgentToolsHierarchy/>
+
                 </Splitter.Panel>
 
                 <Splitter.Panel
                     defaultSize="80%"
                     style={{
-                        height: "95vh",
+                        height: "100vh",
 
                     }}
                 >
 
-
                 </Splitter.Panel>
 
-
             </Splitter>
+
         </div>
     )
+
 }

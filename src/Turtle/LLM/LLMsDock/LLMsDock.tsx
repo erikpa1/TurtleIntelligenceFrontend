@@ -1,5 +1,5 @@
 import React from "react"
-import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import {Splitter} from "antd";
 import LLMsHierarchy from "@Turtle/LLM/LLMsDock/LLMsHierarchy";
 import {useParams} from "react-router-dom";

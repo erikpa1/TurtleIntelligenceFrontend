@@ -3,7 +3,7 @@ import React from "react"
 import {Splitter} from "antd";
 
 import FunctionsTopBar from "@Turtle/Functions/FunctionsTopBar";
-import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import FunctionsHierarchy from "@Turtle/Functions/FunctionsHierarchy";
 
 export default function FunctionsDock() {

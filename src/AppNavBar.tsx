@@ -1,15 +1,8 @@
 import {Col, Divider, Flex, Layout, Menu, Modal, Row} from "antd";
-import {
-    BookOutlined,
-    ContainerOutlined, FilePdfOutlined,
-    MessageOutlined,
-    OpenAIOutlined,
-    UserOutlined
-} from "@ant-design/icons";
+
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {IconSimulation, IconWidgets} from "@Turtle/Icons";
-import IconNetworkIntelNode from "@Turtle/Icons/IconNetworkIntelNode";
 import Search from "antd/es/input/Search";
 import React from "react";
 
@@ -78,7 +71,7 @@ export default function AppNavBar() {
                         <hr/>
 
                         <MyNavbarItem
-                            icon={"/icons/simulation.svg"}
+                            icon={<IconSimulation width={"30px"} height={"30px"}/>}
                             link={"/"}
                             lang={"simulations"}
                             iconStyle={ICON_STYLE}
@@ -290,7 +283,7 @@ function _WidgetsView({onRereoute}) {
 
 interface MyNavbarItemProps {
     lang?: string
-    icon: string
+    icon: any
     link?: string
     onClick?: () => void
     onRerouted?: () => void
@@ -325,15 +318,31 @@ function MyNavbarItem({lang, icon, link, onClick, onRerouted, iconStyle}: MyNavb
             }}
         >
             <div className={"vstack"}>
-                <img
-                    src={icon}
-                    style={{
-                        margin: "auto",
-                        width: "30px",
-                        height: "30px",
-                        ...(iconStyle ?? {})
-                    }}
-                />
+
+                {(typeof icon === "string") ? (
+                    <Flex
+                        justify="center"
+                        align="center"
+                    >
+                        <img
+                            src={icon}
+                            style={{
+                                width: "30px",
+                                height: "30px",
+                                ...(iconStyle ?? {})
+                            }}
+                            alt="icon"
+                        />
+                    </Flex>
+                ) : (
+                    <Flex
+                        justify="center"
+                        align="center"
+                    >
+                        {icon}
+                    </Flex>
+                )}
+
                 <div style={{
                     textAlign: "center",
                     fontSize: "10px",

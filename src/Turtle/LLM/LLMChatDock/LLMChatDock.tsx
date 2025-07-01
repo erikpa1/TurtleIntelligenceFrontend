@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom"
 
 import {Splitter} from "antd"
 
-import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme"
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
 
 import LLMChatTopBar from "@Turtle/LLM/LLMChatDock/LLMChatTopBar"
 import LLMChatView from "@Turtle/LLM/LLMChatDock/LLMChatView"

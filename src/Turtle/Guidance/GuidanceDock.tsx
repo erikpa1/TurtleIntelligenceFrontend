@@ -1,5 +1,5 @@
 import React from "react"
-import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import {useParams} from "react-router-dom";
 import DocIntTopBar from "@Turtle/DocInt/Dock/DocIntTopBar";
 import {Splitter} from "antd";

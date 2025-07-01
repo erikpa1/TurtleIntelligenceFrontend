@@ -1,6 +1,6 @@
 import React from "react"
 import {Splitter} from "antd"
-import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme"
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
 import LLMAgentsHierarchy from "@Turtle/LLM/LLMAgentsDock/LLMAgentsHierarchy";
 import {useParams} from "react-router-dom";
 import LLMAgentView from "@Turtle/LLM/LLMAgentsDock/LLMAgentView";

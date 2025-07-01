@@ -1,7 +1,7 @@
 import React from "react"
 import {Splitter} from "antd"
 
-import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme"
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
 import DocIntTopBar from "@Turtle/DocInt/Dock/DocIntTopBar";
 import DocIntHierarchy from "@Turtle/DocInt/Dock/DocIntHierarchy";
 import {useParams} from "react-router-dom";

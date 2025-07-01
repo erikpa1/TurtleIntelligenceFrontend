@@ -4,7 +4,7 @@ import {Knowledge, KnowledgeType} from "@Turtle/Knowledge/Data/Knowledge";
 import KnowledgeApi from "@Turtle/Knowledge/Api/KnowledgeApi";
 import {CenterSpinner} from "@Turtle/Components/Loadings";
 import TurtleEmpty from "@Turtle/Components/TurtleEmpty";
-import {useTurtleTheme} from "@Turtle/Zuses/useTurleTheme";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 
 export default function KnowledgeEditView({knUid}) {
 
