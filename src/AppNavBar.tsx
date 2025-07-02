@@ -79,7 +79,7 @@ export default function AppNavBar() {
 
                         <MyNavbarItem
                             icon={"/icons/chat.svg"}
-                            link={"/"}
+                            link={"/llm-chat"}
                             lang={"aichat"}
                             iconStyle={ICON_STYLE}
                         />

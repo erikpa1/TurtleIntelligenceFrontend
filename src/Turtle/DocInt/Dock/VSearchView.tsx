@@ -146,11 +146,11 @@ export function DocSimmilarityCard({doc, similarity}: DocSimmilarityCardProps) {
                         </Flex>
 
                         <Tag>
-                            {doc.ext}
+                            {doc.extension}
                         </Tag>
 
                         <Typography.Text type="secondary" style={{fontSize: '12px'}}>
-                            {doc.ext}
+                            {doc.extension}
                         </Typography.Text>
 
                         <Typography.Paragraph
