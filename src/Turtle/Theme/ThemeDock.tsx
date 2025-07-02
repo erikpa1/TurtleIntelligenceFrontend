@@ -1,10 +1,7 @@
 import React from "react"
-import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
-import {useParams} from "react-router-dom";
-import DocIntTopBar from "@Turtle/DocInt/Dock/DocIntTopBar";
-import {Splitter} from "antd";
-import DocIntHierarchy from "@Turtle/DocInt/Dock/DocIntHierarchy";
-import DocumentPreview from "@Turtle/DocInt/Dock/DocumentPreview";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
+import {useParams} from "react-router-dom"
+import {Splitter} from "antd"
 
 export default function ThemeDock({}) {
 

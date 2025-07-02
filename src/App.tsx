@@ -10,15 +10,19 @@ import {Layout} from "antd";
 import AppNavBar from "./AppNavBar";
 import Sider from "antd/es/layout/Sider";
 import {GlobalLock} from "@Turtle/Components/GlobalLock";
+import {useThemeInit} from "@Turtle/Theme/useTurleTheme";
 
 
 function App() {
 
     const [isLoading, setIsLoading] = React.useState(true)
 
+    const initTheme = useThemeInit()
+
     React.useEffect(() => {
         setIsLoading(true)
         setIsLoading(false)
+        initTheme()
 
     }, [])
 
