@@ -116,5 +116,6 @@
     "steps": "Steps",
     "import.document": "Import document",
     "simulations": "Simulations",
-    "create.step": "Create step"
+    "create.step": "Create step",
+    "edit.document": "Edit document"
 }

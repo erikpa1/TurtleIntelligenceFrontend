@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 import AIChatApi from "@Turtle/LLM/Api/AIChatApi";
 import {ChatHistoryLight} from "@Turtle/LLM/Data/LLMChatHistory";
 import {
-    HierarchyAddButton,
+    HierarchyAddButton, HierarchyChatButton,
     HierarchyDeleteButton, HierarchyEditButton,
     HierarchyFlex,
     HierarchyRightFlex, HierarchyViewButton
@@ -16,6 +16,7 @@ import {FileDocument} from "@Turtle/DocInt/Data/Document";
 import CreateDocumentView, {EditDocumentView} from "@Turtle/DocInt/Dock/CreateDocumentView";
 import {FileDropExample1} from "@Turtle/Examples/FileDropExample";
 import TurtleApp from "@TurtleApp/TurtleApp";
+import AskInDocumentView from "@Turtle/DocInt/Dock/AskInDocumentView";
 
 export default function DocIntHierarchy({}) {
 
@@ -65,6 +66,12 @@ export default function DocIntHierarchy({}) {
                                         }}
                                     />
 
+                                    <HierarchyChatButton
+                                        onClick={() => {
+                                            askInDocument(val)
+                                        }}
+                                    />
+
                                     <HierarchyDeleteButton
                                         onClick={() => {
                                             deleteDocument(val.uid)
@@ -94,7 +101,7 @@ export default function DocIntHierarchy({}) {
 
     function editDocument(doc: FileDocument) {
         activate({
-            title: t("create.document"),
+            title: t("edit.document"),
             closable: true,
             content: (
                 <EditDocumentView
@@ -105,6 +112,19 @@ export default function DocIntHierarchy({}) {
             )
         })
     }
+
+    function askInDocument(doc: FileDocument) {
+        activate({
+            title: t("ask.in.document"),
+            closable: true,
+            content: (
+                <AskInDocumentView
+                    doc={doc}
+                />
+            )
+        })
+    }
+
 
     async function deleteDocument(documentUid: string) {
         TurtleApp.Lock()
