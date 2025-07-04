@@ -270,7 +270,16 @@ function _WidgetsView({onRereoute}) {
                             onRerouted={onRereoute}
                             iconStyle={ICON_STYLE}
                         />
+                    </Col>
 
+                    <Col className="gutter-row" span={6}>
+                        <MyNavbarItem
+                            lang={"agents.incidents"}
+                            link={"/agents-incidents"}
+                            icon={"/icons/graph_3.svg"}
+                            onRerouted={onRereoute}
+                            iconStyle={ICON_STYLE}
+                        />
                     </Col>
 
 

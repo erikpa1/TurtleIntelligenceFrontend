@@ -1,18 +1,26 @@
-import AgentsToolsTopBar from "@Turtle/AgentTools/AgentToolsTopBar"
-import {Splitter} from "antd"
-import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
 import React from "react"
-import AgentToolsHierarchy from "@Turtle/AgentTools/AgentToolHierarchy"
+import {Splitter} from "antd"
+import {useParams} from "react-router-dom"
+import TopBarWrapper from "@Turtle/Components/TopBarWrapper"
 
-export default function AgentToolsDock() {
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
+
+import AgentIncidentPreview from "@Turtle/AgentIncidents/AgentIncidentPreview"
+import AgentIncidentsHierarchy from "@Turtle/AgentIncidents/AgentIncidentsHierarchy";
+
+export default function AgentIncidentsDock({}) {
+
 
     const {bigPadding} = useTurtleTheme()
 
-
+    const {incUid} = useParams()
 
     return (
         <div>
-            <AgentsToolsTopBar/>
+
+            <TopBarWrapper>
+                <div/>
+            </TopBarWrapper>
 
             <Splitter style={{
                 height: "100%",
@@ -26,7 +34,7 @@ export default function AgentToolsDock() {
                         padding: bigPadding
                     }}
                 >
-                    <AgentToolsHierarchy/>
+                    <AgentIncidentsHierarchy/>
                 </Splitter.Panel>
 
                 <Splitter.Panel
@@ -38,10 +46,16 @@ export default function AgentToolsDock() {
                 >
 
 
+                    {
+                        incUid && (
+                            <AgentIncidentPreview incUid={incUid}/>
+                        )
+                    }
                 </Splitter.Panel>
 
-
             </Splitter>
+
+
         </div>
     )
 }

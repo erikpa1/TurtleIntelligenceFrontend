@@ -117,5 +117,6 @@
     "import.document": "Import document",
     "simulations": "Simulations",
     "create.step": "Create step",
-    "edit.document": "Edit document"
+    "edit.document": "Edit document",
+    "agents.incidents": "Agents incidents"
 }
