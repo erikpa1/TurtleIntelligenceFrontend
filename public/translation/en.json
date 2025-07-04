@@ -118,5 +118,6 @@
     "simulations": "Simulations",
     "create.step": "Create step",
     "edit.document": "Edit document",
-    "agents.incidents": "Agents incidents"
+    "agents.incidents": "Agents incidents",
+    "tools": "Tools"
 }

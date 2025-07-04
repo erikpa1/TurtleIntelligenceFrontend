@@ -11,6 +11,7 @@ import {ListUserTypes} from "@Turtle/Users/User";
 import {useTranslation} from "react-i18next";
 import XApiKeySelect from "@Turtle/XApiKey/XApiKeySelect";
 import StringAreaPropertyView from "@Turtle/Components/Forms/StringAreaPropertyView";
+import LLMAgentToolsSelectionView from "@Turtle/LLM/LLMAgentsDock/LLMAgentToolsSelectionView";
 
 
 interface CreateLLMClusterModalProps {
@@ -100,6 +101,22 @@ export default function CreateLLMAgentModal({
                                         {t("agentType")}
                                     </Flex>
                                 )
+                            },
+                            {
+                                color: activeTimeLine == "tools" ? "green" : "gray",
+                                children: (
+                                    <Flex
+                                        onClick={() => {
+                                            setActiveTimeLine("tools")
+
+                                        }}
+                                        style={{
+                                            cursor: "pointer"
+                                        }}
+                                    >
+                                        {t("tools")}
+                                    </Flex>
+                                )
                             }
                         ]}
                     />
@@ -173,6 +190,12 @@ export default function CreateLLMAgentModal({
                     {
                         activeTimeLine === "agentType" && (
                             <_LLMAgentEditType agent={agent}/>
+                        )
+                    }
+
+                    {
+                        activeTimeLine === "tools" && (
+                            <LLMAgentToolsSelectionView/>
                         )
                     }
 

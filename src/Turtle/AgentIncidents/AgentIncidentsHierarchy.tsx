@@ -15,6 +15,7 @@ import AskInDocumentView from "@Turtle/DocInt/Dock/AskInDocumentView"
 import TurtleApp from "@TurtleApp/TurtleApp"
 import DocumentsApi from "@Turtle/DocInt/Api/DocumentsApi"
 import AgentIncident from "@Turtle/AgentIncidents/AgentIncident";
+import AgentIncidentsApi from "@Turtle/AgentIncidents/AgentIncidentsApi";
 
 
 export default function AgentIncidentsHierarchy(props: any) {
@@ -27,9 +28,7 @@ export default function AgentIncidentsHierarchy(props: any) {
 
     const [data, setData] = React.useState<Array<TreeDataNode>>(createHierarchy([]))
 
-
     function createHierarchy(incidents: Array<AgentIncident>) {
-
 
         return [
             {
@@ -37,12 +36,6 @@ export default function AgentIncidentsHierarchy(props: any) {
                 title: (
                     <Flex>
                         {t("incidents")} ({incidents.length})
-
-                        <HierarchyRightFlex>
-                            <HierarchyAddButton
-                                onClick={createDocument}
-                            />
-                        </HierarchyRightFlex>
                     </Flex>
                 ),
 
@@ -51,28 +44,22 @@ export default function AgentIncidentsHierarchy(props: any) {
                         key: val.uid,
                         title: (
                             <HierarchyFlex onClick={() => {
-                                navigate(`/doc-int/${val.uid}`)
+                                navigate(`/agents-incidents/${val.uid}`)
                             }}>
 
-                                {val.name}
+                                {val.at}
 
                                 <HierarchyRightFlex>
 
                                     <HierarchyEditButton
                                         onClick={() => {
-                                            editDocument(val)
-                                        }}
-                                    />
-
-                                    <HierarchyChatButton
-                                        onClick={() => {
-                                            askInDocument(val)
+                                            editIncident(val)
                                         }}
                                     />
 
                                     <HierarchyDeleteButton
                                         onClick={() => {
-                                            deleteDocument(val.uid)
+                                            deleteIncindent(val.uid)
                                         }}
                                     />
                                 </HierarchyRightFlex>
@@ -97,42 +84,28 @@ export default function AgentIncidentsHierarchy(props: any) {
         })
     }
 
-    function editDocument(doc: FileDocument) {
+    function editIncident(inc: AgentIncident) {
         activate({
-            title: t("edit.document"),
+            title: t("edit.incident"),
             closable: true,
             content: (
-                <EditDocumentView
-                    doc={doc}
-                    beforeUpdate={deactivate}
-                    afterUpdate={refresh}
-                />
-            )
-        })
-    }
-
-    function askInDocument(doc: FileDocument) {
-        activate({
-            title: t("ask.in.document"),
-            closable: true,
-            content: (
-                <AskInDocumentView
-                    doc={doc}
-                />
+                <div>
+                    TODO
+                </div>
             )
         })
     }
 
 
-    async function deleteDocument(documentUid: string) {
+    async function deleteIncindent(incUid: string) {
         TurtleApp.Lock()
-        await DocumentsApi.Delete(documentUid)
+        await AgentIncidentsApi.Delete(incUid)
         TurtleApp.Unlock()
         refresh()
     }
 
     async function refresh() {
-        setData(createHierarchy(await DocumentsApi.ListDocuments()))
+        setData(createHierarchy(await AgentIncidentsApi.List()))
     }
 
     React.useEffect(() => {
