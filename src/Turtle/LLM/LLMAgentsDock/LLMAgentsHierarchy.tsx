@@ -15,7 +15,7 @@ import LLMAgentApi from "@Turtle/LLM/Api/LLMAgentApi";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import CreateLLMAgentModal from "@Turtle/LLM/LLMAgentsDock/CreateLLMAgentView";
 import TestLLMAgentView from "@Turtle/LLM/LLMAgentsDock/TestLLMAgentView";
-import {ShoppingCartOutlined} from "@ant-design/icons";
+import {InfoCircleOutlined, ShoppingCartOutlined} from "@ant-design/icons";
 import LLMAgentsShop from "@Turtle/LLM/LLMAgentsShop/LLMAgentsShop";
 
 export default function LLMAgentsHierarchy({}) {
@@ -37,6 +37,12 @@ export default function LLMAgentsHierarchy({}) {
                         {t("llm.agents")} ({agents.length})
                         <HierarchyRightFlex>
                             <HierarchyAddButton onClick={createAgentPressed}/>
+
+
+                            <HierarchyCustomIcon
+                                icon={<InfoCircleOutlined/>}
+                                onClick={showMergedPrompt}/>
+
 
                             <HierarchyCustomIcon
                                 icon={<ShoppingCartOutlined/>}
@@ -86,6 +92,23 @@ export default function LLMAgentsHierarchy({}) {
         ]
     }
 
+    async function showMergedPrompt() {
+
+        TurtleApp.Lock()
+        const prompt = await LLMAgentApi.GetAllAgentsPrompt()
+        let lines = prompt.replaceAll("\n", "<br/>");
+        activate({
+            title: t("merge.prompt"),
+            closable: true,
+            width: 800,
+            content: (
+                <div
+                    dangerouslySetInnerHTML={{__html: lines}}
+                />
+            )
+        })
+        TurtleApp.Unlock()
+    }
 
     function showAgentsShopPressed() {
         activate({

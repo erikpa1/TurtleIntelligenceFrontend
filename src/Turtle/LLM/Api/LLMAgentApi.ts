@@ -12,6 +12,12 @@ export default class LLMAgentApi {
         await Turxios.post("/api/llm/agent", data)
     }
 
+
+    static async GetAllAgentsPrompt(): Promise<string> {
+        return (await Turxios.get("/api/llm/agent/all/prompt")).data
+
+    }
+
     static async ListAgents(): Promise<Array<LLMAgent>> {
         return (await Turxios.get("/api/llm/agents")).data.map((item) => {
             const tmp = new LLMAgent()
