@@ -5,11 +5,12 @@ import {LangChainStreamer, StreamCallbacks} from "@Turtle/LLM/Api/LangChainStrea
 
 export default class AIChatApi {
 
-    static async Ask(modelUid: string, chatUid: string, text: string) {
+    static async Ask(modelUid: string, chatUid: string, text: string, isAgentChat) {
         const data = new FormData()
         data.set("modelUid", modelUid)
         data.set("chatUid", chatUid)
         data.set("text", text)
+        data.set("isAgentChat", JSON.stringify(isAgentChat));
 
         await Turxios.post("/api/llm/chat-ask", data)
     }

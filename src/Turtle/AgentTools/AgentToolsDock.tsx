@@ -8,8 +8,6 @@ export default function AgentToolsDock() {
 
     const {bigPadding} = useTurtleTheme()
 
-
-
     return (
         <div>
             <AgentsToolsTopBar/>

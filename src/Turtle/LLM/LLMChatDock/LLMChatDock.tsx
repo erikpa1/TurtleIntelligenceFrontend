@@ -9,7 +9,7 @@ import LLMChatTopBar from "@Turtle/LLM/LLMChatDock/LLMChatTopBar"
 import LLMChatView from "@Turtle/LLM/LLMChatDock/LLMChatView"
 import LLMChatHierarchy from "@Turtle/LLM/LLMChatDock/LLMChatHierarchy"
 
-export default function LLMChatDock() {
+export default function LLMChatDock({isAgentChat = false}) {
 
     const {bigPadding} = useTurtleTheme()
 
@@ -42,7 +42,10 @@ export default function LLMChatDock() {
 
                     }}
                 >
-                    <LLMChatView chatUid={chatUid ?? "new"}/>
+                    <LLMChatView
+                        chatUid={chatUid ?? "new"}
+                        isAgentChat={isAgentChat}
+                    />
 
 
                 </Splitter.Panel>

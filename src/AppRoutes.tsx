@@ -3,8 +3,9 @@ import React from "react"
 import {Route, Routes} from "react-router-dom"
 
 
-const AgentIncidentsDock = React.lazy(() => import( "@Turtle/AgentIncidents/AgentIncidentsDock"))
-const KnowledgeGuidanceDock = React.lazy(() => import( "@Turtle/Guidance/GuidanceDock"))
+const LLMAgentChatDock = React.lazy(() => import("@Turtle/LLM/LLMChatDock/LLMAgentChatDock"))
+const AgentIncidentsDock = React.lazy(() => import("@Turtle/AgentIncidents/AgentIncidentsDock"))
+const KnowledgeGuidanceDock = React.lazy(() => import("@Turtle/Guidance/GuidanceDock"))
 const AgentToolsDock = React.lazy(() => import("@Turtle/AgentTools/AgentToolsDock"))
 const FunctionsDock = React.lazy(() => import("@Turtle/Functions/FunctionsDock"))
 const KHDock = React.lazy(() => import("@Turtle/Knowledge/KnowledgeDock"))
@@ -32,6 +33,7 @@ export default function AppRoutes({}) {
             <Route path={"/documentation/:topic/:document"} element={<DocumentationDock/>}/>
             <Route path={"/actors"} element={<ActorsDock/>}/>
             <Route path={"/llm-chat"} element={<LLMChatDock/>}/>
+            <Route path={"/llm-agent-chat/:chatUid"} element={<LLMAgentChatDock/>}/>
             <Route path={"/llm-chat/:chatUid"} element={<LLMChatDock/>}/>
             <Route path={"/llm-clusters"} element={<LLMClusterDock/>}/>
             <Route path={"/llm-clusters/:clusterUid"} element={<LLMClusterDock/>}/>

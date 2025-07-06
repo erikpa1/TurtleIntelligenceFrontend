@@ -9,11 +9,15 @@ export default class AgentToolsApi {
 
         const response = (await Turxios.get<Array<any>>("/api/agent-tools")).data
 
-        return response.map((val) => {
+        const data = response.map((val) => {
             const tmp = new AgentTool()
             tmp.FromJson(val)
             return tmp
         })
+
+        console.log(data)
+
+        return data
     }
 
 

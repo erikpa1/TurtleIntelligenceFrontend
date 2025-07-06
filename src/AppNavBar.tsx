@@ -85,6 +85,13 @@ export default function AppNavBar() {
                         />
 
                         <MyNavbarItem
+                            icon={"/icons/chat.svg"}
+                            link={"/llm-agent-chat"}
+                            lang={"agent.chat"}
+                            iconStyle={ICON_STYLE}
+                        />
+
+                        <MyNavbarItem
                             icon={"/icons/article_person.svg"}
                             link={"/doc-int"}
                             lang={"document.intelligence"}

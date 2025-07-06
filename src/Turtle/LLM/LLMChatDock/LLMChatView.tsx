@@ -21,10 +21,11 @@ import useLocalStorage from "@Turtle/Hooks/useLocalStorage";
 
 interface LLMChatViewProps {
     chatUid: string
+    isAgentChat: boolean
 }
 
 
-export default function LLMChatView({chatUid}) {
+export default function LLMChatView({chatUid, isAgentChat}: LLMChatViewProps) {
 
     const navigate = useNavigate()
 
@@ -32,10 +33,7 @@ export default function LLMChatView({chatUid}) {
 
     const [isAnswerLoading, setIsAnswerLoading] = React.useState(false)
 
-
     const [selectedModel, setSelectedModel] = useLocalStorage("chat-llm", "")
-
-    const context = React.useMemo(() => new LLMChatContext(), [])
 
     const [isProcessing, setIsProcessing] = React.useState(false)
 
@@ -49,13 +47,13 @@ export default function LLMChatView({chatUid}) {
             navigate(`/llm-chat/${chatUid}`)
 
             setIsAnswerLoading(true)
-            await AIChatApi.Ask(selectedModel, chatUid, chatText)
+            await AIChatApi.Ask(selectedModel, chatUid, chatText, isAgentChat)
             setIsAnswerLoading(false)
             aee.emit("ChatsChange", null)
             refresh()
         } else {
             setIsAnswerLoading(true)
-            await AIChatApi.Ask(selectedModel, chatUid, chatText)
+            await AIChatApi.Ask(selectedModel, chatUid, chatText, false)
             setIsAnswerLoading(false)
             refresh()
         }
