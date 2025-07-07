@@ -251,6 +251,16 @@ function _WidgetsView({onRereoute}) {
                             iconStyle={ICON_STYLE}
                         />
                     </Col>
+
+                    <Col className="gutter-row" span={6}>
+                        <MyNavbarItem
+                            lang={"flows"}
+                            link={"/flows"}
+                            icon={"/icons/flowsheet.svg"}
+                            onRerouted={onRereoute}
+                            iconStyle={ICON_STYLE}
+                        />
+                    </Col>
                 </Row>
 
 

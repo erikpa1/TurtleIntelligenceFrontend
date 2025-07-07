@@ -119,5 +119,8 @@
     "create.step": "Create step",
     "edit.document": "Edit document",
     "agents.incidents": "Agents incidents",
-    "tools": "Tools"
+    "tools": "Tools",
+    "flows": "Flows",
+    "create.flow": "Create flow",
+    "edit.flow": "Edit flow"
 }

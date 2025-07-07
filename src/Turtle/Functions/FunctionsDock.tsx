@@ -38,7 +38,7 @@ export default function FunctionsDock() {
 
                     }}
                 >
-                    
+
 
                 </Splitter.Panel>
 

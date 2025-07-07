@@ -1,68 +1,66 @@
-import {Flex, Tree, TreeDataNode} from "antd"
 import React from "react"
 import {useTranslation} from "react-i18next"
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal"
 import {useNavigate} from "react-router-dom"
-
+import {Flex, Tree, TreeDataNode} from "antd"
+import {Knowledge, KnowledgeType} from "@Turtle/Knowledge/Data/Knowledge"
 import {
-    HierarchyAddButton,
-    HierarchyDeleteButton, HierarchyEditButton,
+    HierarchyAddButton, HierarchyDeleteButton,
+    HierarchyEditButton,
     HierarchyFlex,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents"
 
-import {Knowledge, KnowledgeType} from "@Turtle/Knowledge/Data/Knowledge"
-import COUKnowledgeView from "@Turtle/Knowledge/COUKnowledgeView";
-import TurtleApp from "@TurtleApp/TurtleApp";
-import KnowledgeApi from "@Turtle/Knowledge/Api/KnowledgeApi";
+import TurtleApp from "@TurtleApp/TurtleApp"
+import {Flow, FlowLight} from "@Turtle/Flows/Flow";
+import FlowsApi from "@Turtle/Flows/FlowsApi";
+import COUFlowView from "@Turtle/Flows/COUFlowView";
 
-export default function KnowledgeHierarchy() {
+export default function FlowsHierarchy() {
     const [t] = useTranslation()
 
     const {activate, deactivate} = useTurtleModal()
 
     const navigate = useNavigate()
 
-
     const [data, setData] = React.useState<Array<TreeDataNode>>(createHierarchy([]))
 
 
-    function createHierarchy(documents: Array<Knowledge>) {
+    function createHierarchy(flows: Array<FlowLight>) {
         return [
             {
-                key: "knowledge",
+                key: "flows",
                 title: (
                     <Flex>
-                        {t("knowledge")} ({documents.length})
+                        {t("flows")} ({flows.length})
 
                         <HierarchyRightFlex>
                             <HierarchyAddButton
-                                onClick={createDocument}
+                                onClick={createFlow}
                             />
                         </HierarchyRightFlex>
                     </Flex>
                 ),
 
-                children: documents.map((val) => {
+                children: flows.map((val) => {
                     return {
                         key: val.uid,
                         title: (
                             <HierarchyFlex onClick={() => {
-                                navigate(`/knowledge-hub/${val.uid}`)
+                                navigate(`/flows/${val.uid}`)
                             }}>
 
                                 {val.name}
 
                                 <HierarchyRightFlex>
-
                                     <HierarchyEditButton
                                         onClick={() => {
-                                            editKnowledge(val)
+                                            editFlow(val)
                                         }}
                                     />
                                     <HierarchyDeleteButton
                                         onClick={() => {
-                                            deleteKnowledge(val.uid)
+                                            deleteFlow(val.uid)
                                         }}
                                     />
                                 </HierarchyRightFlex>
@@ -75,37 +73,34 @@ export default function KnowledgeHierarchy() {
     }
 
 
-    function editKnowledge(kn: Knowledge) {
+    function editFlow(flow: FlowLight) {
 
-        if (kn.type === KnowledgeType.PLAIN_TEXT) {
-            activate({
-                title: t("edit.knowledge"),
-                closable: true,
-                content: (
-                    <COUKnowledgeView
-                        knowledge={kn}
-                        onBeforeSubmit={deactivate}
-                        onAfterSubmit={refresh}
+        activate({
+            title: t("edit.flow"),
+            closable: true,
+            content: (
+                <COUFlowView
+                    flow={flow}
+                    onBeforeSubmit={deactivate}
+                    onAfterSubmit={refresh}
 
-                    />
-                )
-            })
-        } else {
-            navigate(`/guidance-edit/${kn.uid}`)
-        }
+                />
+            )
+        })
+
 
     }
 
-    function createDocument() {
+    function createFlow() {
 
-        const knowledge = new Knowledge()
+        const flow = new Flow()
 
         activate({
-            title: t("create.knowledge"),
+            title: t("create.flow"),
             closable: true,
             content: (
-                <COUKnowledgeView
-                    knowledge={knowledge}
+                <COUFlowView
+                    flow={flow}
                     onBeforeSubmit={deactivate}
                     onAfterSubmit={refresh}
 
@@ -114,17 +109,17 @@ export default function KnowledgeHierarchy() {
         })
     }
 
-    async function deleteKnowledge(knowledgeUid: string) {
+    async function deleteFlow(flowUid: string) {
 
         TurtleApp.Lock()
-        await KnowledgeApi.Delete(knowledgeUid)
+        await FlowsApi.Delete(flowUid)
         TurtleApp.Unlock()
         refresh()
 
     }
 
     async function refresh() {
-        const knowledge = await KnowledgeApi.List()
+        const knowledge = await FlowsApi.List()
         setData(createHierarchy(knowledge))
     }
 
