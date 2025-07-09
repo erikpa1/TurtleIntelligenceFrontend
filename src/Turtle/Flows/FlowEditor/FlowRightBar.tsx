@@ -1,5 +1,5 @@
 import React from "react"
-import {Flex, Tabs, Tree, TreeDataNode} from "antd";
+import {ColorPicker, Flex, Form, Select, Space, Tabs, Tree, TreeDataNode} from "antd";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import {useTranslation} from "react-i18next";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
@@ -12,6 +12,11 @@ import {
 } from "@Turtle/Components/HierarchyComponents";
 import COUFlowView from "@Turtle/Flows/COUFlowView";
 import TurtleApp from "@TurtleApp/TurtleApp";
+import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
+import SelectItem, {SelectItemRaw} from "@Turtle/ReflectiveUI/SelectItem";
+import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
+import IconColor from "@Turtle/Icons/IconColor";
+import ColorConstants from "@Turtle/Constants/ColorConstants";
 
 interface FlowRightBarProps {
     flow: Flow
@@ -42,9 +47,6 @@ export default function FlowRightBar({flow}: FlowRightBarProps) {
 
             <Flex
                 vertical
-                style={{
-                    padding: bigPadding
-                }}
             >
                 <_StatesHierarchy flow={flow}/>
             </Flex>
@@ -58,7 +60,6 @@ function _StatesHierarchy({flow}: FlowRightBarProps) {
     const [t] = useTranslation()
 
     const {activate, deactivate} = useTurtleModal()
-
 
     const [data, setData] = React.useState<Array<TreeDataNode>>(createHierarchy())
 
@@ -102,26 +103,85 @@ function _StatesHierarchy({flow}: FlowRightBarProps) {
 
     function createFlowState() {
 
-        const flow = new Flow()
+        const creation = {
+            name: "NewState",
+            valData: {
+                type: "string"
+            }
+        }
 
         activate({
             title: t("create.flow.state"),
             closable: true,
             content: (
-                <COUFlowView
-                    flow={flow}
-                    onBeforeSubmit={deactivate}
-                    onAfterSubmit={refresh}
+                <Form layout={"vertical"}>
 
-                />
+                    <Flex vertical gap={15}>
+                        <StringAttributeView entity={creation} attribute={"name"}/>
+
+                        <SelectItemRaw
+                            entity={creation.valData}
+                            attribute={"type"}
+                            size={"middle"}
+                        >
+                            <Select.Option
+                                value={"string"}
+                            >
+                                <Space>
+
+                                    <IconColor
+                                        color={ColorConstants.AZURE_BLUE}
+                                        width="20px"
+                                    />
+
+                                    <div>String</div>
+                                </Space>
+
+
+                            </Select.Option>
+
+                            <Select.Option
+                                value={"float32"}
+                            >
+                                <Space>
+                                    <IconColor
+                                        color={ColorConstants.GREEN}
+                                        width="20px"
+                                    />
+
+                                    <div>Float64</div>
+                                </Space>
+
+                            </Select.Option>
+
+                            <Select.Option
+                                value={"boolean"}
+                            >
+                                <Space>
+                                    <IconColor
+                                        color={ColorConstants.RED}
+                                        width="20px"
+                                    />
+
+                                    <div>Boolean (true/false)</div>
+                                </Space>
+                            </Select.Option>
+
+                        </SelectItemRaw>
+
+                        <RightSubmitButton onClick={() => {
+                            flow.states.set(creation.name, creation.valData.type)
+                        }}/>
+                    </Flex>
+
+                </Form>
             )
         })
     }
 
-    async function deleteState(flowUid: string) {
-
+    async function deleteState(stateUid: string) {
         TurtleApp.Lock()
-        console.log("Unimplemented")
+        flow.states.delete(stateUid)
         TurtleApp.Unlock()
         refresh()
 
@@ -138,7 +198,7 @@ function _StatesHierarchy({flow}: FlowRightBarProps) {
 
     return (
         <Tree
-            key={data[0]?.children?.length}
+            key={flow.states.size}
             blockNode
             virtual
             showLine

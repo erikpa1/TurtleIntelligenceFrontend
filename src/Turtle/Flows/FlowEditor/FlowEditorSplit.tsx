@@ -56,30 +56,7 @@ export default function FlowEditorSplit(flowUid: string) {
 
         if (flow) {
             return [
-                (
-                    <Splitter.Panel
-                        key={flowUid}
-                        defaultSize="60%"
-                        style={{
-                            height: "95vh",
 
-                        }}
-                    >
-                        <FlowEditor/>
-                    </Splitter.Panel>
-                ),
-                (
-                    <Splitter.Panel
-                        key={flowUid}
-                        defaultSize="20%"
-                        style={{
-                            backgroundColor: "white",
-
-                        }}
-                    >
-                        <FlowRightBar flow={flow}/>
-                    </Splitter.Panel>
-                )
             ]
         } else {
             return [

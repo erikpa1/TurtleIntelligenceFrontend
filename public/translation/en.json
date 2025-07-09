@@ -122,5 +122,7 @@
     "tools": "Tools",
     "flows": "Flows",
     "create.flow": "Create flow",
-    "edit.flow": "Edit flow"
+    "edit.flow": "Edit flow",
+    "create.flow.state": "Create flow state",
+    "states": "States"
 }

@@ -8,6 +8,11 @@ import FlowsHierarchy from "@Turtle/Flows/FlowsHierarchy";
 import FlowEditor from "@Turtle/Flows/FlowEditor/FlowEditor";
 import {useParams} from "react-router-dom";
 import FlowEditorSplit from "@Turtle/Flows/FlowEditor/FlowEditorSplit";
+import {Flow} from "@Turtle/Flows/Flow";
+import FlowsApi from "@Turtle/Flows/FlowsApi";
+import FlowRightBar from "@Turtle/Flows/FlowEditor/FlowRightBar";
+import {CenterSpinner} from "@Turtle/Components/Loadings";
+import {useActiveFlowEditor} from "@Turtle/Flows/flowEditorZus";
 
 export default function FlowsDock({}: any) {
 
@@ -15,7 +20,25 @@ export default function FlowsDock({}: any) {
 
     const {flowUid} = useParams()
 
-    console.log(flowUid)
+    const [isLoading, setIsLoading] = React.useState(false)
+    const [flow, setFlow] = React.useState<Flow | null>(null)
+
+
+    async function refresh() {
+        if (flowUid) {
+            setIsLoading(true)
+            const flow = await FlowsApi.Get(flowUid)
+            setFlow(flow)
+            setIsLoading(false)
+        } else {
+            setFlow(null)
+        }
+    }
+
+    React.useEffect(() => {
+        refresh()
+    }, [flowUid])
+
 
     return (
         <div>
@@ -39,11 +62,45 @@ export default function FlowsDock({}: any) {
                 </Splitter.Panel>
 
 
-                {
-                    flowUid && (
-                        React.Children.toArray(FlowEditorSplit(flowUid))
-                    )
-                }
+                <Splitter.Panel
+                    key={flowUid}
+                    defaultSize="60%"
+                    style={{
+                        height: "95vh",
+
+                    }}
+                >
+                    {
+                        isLoading && (
+                            <CenterSpinner/>
+                        )
+                    }
+
+                    {
+                        flow && (
+                            <FlowEditor flow={flow}/>
+                        )
+                    }
+
+                </Splitter.Panel>
+
+
+                <Splitter.Panel
+                    key={flowUid}
+                    defaultSize="20%"
+                    style={{
+                        backgroundColor: "white",
+
+                    }}
+                >
+
+
+                    {
+                        flow && (
+                            <FlowRightBar flow={flow}/>
+                        )
+                    }
+                </Splitter.Panel>
 
 
             </Splitter>
