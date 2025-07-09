@@ -7,7 +7,7 @@ import {Knowledge, KnowledgeType} from "@Turtle/Knowledge/Data/Knowledge"
 import {
     HierarchyAddButton, HierarchyDeleteButton,
     HierarchyEditButton,
-    HierarchyFlex,
+    HierarchyFlex, HierarchyPlayButton,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents"
 
@@ -35,6 +35,7 @@ export default function FlowsHierarchy() {
                         {t("flows")} ({flows.length})
 
                         <HierarchyRightFlex>
+
                             <HierarchyAddButton
                                 onClick={createFlow}
                             />
@@ -53,6 +54,13 @@ export default function FlowsHierarchy() {
                                 {val.name}
 
                                 <HierarchyRightFlex>
+
+                                    <HierarchyPlayButton
+                                        onClick={() => {
+                                            playFlow(val)
+                                        }}
+                                    />
+
                                     <HierarchyEditButton
                                         onClick={() => {
                                             editFlow(val)
@@ -70,6 +78,21 @@ export default function FlowsHierarchy() {
                 })
             }
         ]
+    }
+
+    async function playFlow(flow: FlowLight) {
+
+
+        activate({
+            title: t("play.flow"),
+            closable: true,
+            content: (
+                <div>
+                    Unimplemented
+                </div>
+            )
+        })
+
     }
 
 
