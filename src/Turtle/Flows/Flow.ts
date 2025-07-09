@@ -1,3 +1,5 @@
+import ColorConstants from "@Turtle/Constants/ColorConstants";
+
 export class FlowLight {
 
     uid = ""
@@ -26,21 +28,29 @@ export class Flow extends FlowLight {
     ToJson(): any {
         return {
             ...super.ToJson(),
-            states: this.states
+            states: Object.fromEntries(this.states)
         }
     }
 
     FromJson(jObject: any) {
         super.FromJson(jObject)
-        this.states = new Map<string, any>(Object.entries(this.ToJson()))
+
+        this.states = new Map<string, any>(Object.entries(jObject.states))
     }
 
 }
 
 
-export class FlowItem {
-    uid = ""
-    name = ""
+export class FlowTypes {
+    static COLOR_MAPS = new Map<string, string>([
+        ["string", ColorConstants.AZURE_BLUE],
+        ["float64", ColorConstants.GREEN],
+        ["boolean", ColorConstants.RED],
+    ])
 
+    static GetVariableColor(varType: string): string {
+        return FlowTypes.COLOR_MAPS.get(varType) ?? "#000000"
+
+    }
 }
 

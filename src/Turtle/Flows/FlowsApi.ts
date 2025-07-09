@@ -15,7 +15,7 @@ export default class FlowsApi {
         })
     }
 
-    static async COU(flow: FlowLight) {
+    static async COU(flow: Flow) {
         const tmp = new FormData()
         tmp.set("data", JSON.stringify(flow.ToJson()))
         await Turxios.post<string>("/api/flow", tmp)

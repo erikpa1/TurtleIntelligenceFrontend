@@ -1,18 +1,16 @@
 import React from "react"
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
 
-import {Splitter} from "antd";
-import FunctionsHierarchy from "@Turtle/Functions/FunctionsHierarchy"
+import {Splitter} from "antd"
 import FlowsTopBar from "@Turtle/Flows/FlowsTopBar"
-import FlowsHierarchy from "@Turtle/Flows/FlowsHierarchy";
-import FlowEditor from "@Turtle/Flows/FlowEditor/FlowEditor";
-import {useParams} from "react-router-dom";
-import FlowEditorSplit from "@Turtle/Flows/FlowEditor/FlowEditorSplit";
-import {Flow} from "@Turtle/Flows/Flow";
-import FlowsApi from "@Turtle/Flows/FlowsApi";
-import FlowRightBar from "@Turtle/Flows/FlowEditor/FlowRightBar";
-import {CenterSpinner} from "@Turtle/Components/Loadings";
-import {useActiveFlowEditor} from "@Turtle/Flows/flowEditorZus";
+import FlowsHierarchy from "@Turtle/Flows/FlowsHierarchy"
+import FlowEditor from "@Turtle/Flows/FlowEditor/FlowEditor"
+import {useParams} from "react-router-dom"
+import {Flow} from "@Turtle/Flows/Flow"
+import FlowsApi from "@Turtle/Flows/FlowsApi"
+import FlowRightBar from "@Turtle/Flows/FlowEditor/FlowRightBar"
+import {CenterSpinner} from "@Turtle/Components/Loadings"
+
 
 export default function FlowsDock({}: any) {
 
@@ -43,7 +41,7 @@ export default function FlowsDock({}: any) {
     return (
         <div>
 
-            <FlowsTopBar/>
+            <FlowsTopBar flow={flow}/>
 
             <Splitter style={{
                 height: "100%",
