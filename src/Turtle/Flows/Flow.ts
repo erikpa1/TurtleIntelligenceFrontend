@@ -24,11 +24,15 @@ export class FlowLight {
 export class Flow extends FlowLight {
 
     states = new Map<string, any>()
+    stages: FlowStage[] = []
 
     ToJson(): any {
         return {
             ...super.ToJson(),
-            states: Object.fromEntries(this.states)
+            states: Object.fromEntries(this.states),
+            stages: this.stages.map((val) => {
+                val.ToJson()
+            })
         }
     }
 
@@ -36,6 +40,12 @@ export class Flow extends FlowLight {
         super.FromJson(jObject)
 
         this.states = new Map<string, any>(Object.entries(jObject.states))
+
+        this.stages = (jObject.stages ?? []).map((val) => {
+            const tmp = new FlowStage()
+            tmp.FromJson(val)
+            return tmp
+        })
     }
 
 }
@@ -54,3 +64,29 @@ export class FlowTypes {
     }
 }
 
+
+export class FlowStage {
+    uid = ""
+
+    name = ""
+    type = ""
+
+    ToJson(): any {
+        return {
+            //Do not serialize UID, no reason to do so
+            name: this.name,
+            type: this.type,
+        }
+    }
+
+    FromJson(jObj: any) {
+        this.name = jObj.name ?? ""
+        this.type = jObj.type ?? ""
+    }
+
+    StateRemoved(stateUid: string) {
+
+    }
+
+
+}
