@@ -27,13 +27,18 @@ export class Flow extends FlowLight {
     stages: FlowStage[] = []
 
     ToJson(): any {
-        return {
+
+
+        const finalObject = {
             ...super.ToJson(),
             states: Object.fromEntries(this.states),
             stages: this.stages.map((val) => {
-                val.ToJson()
+                return val.ToJson()
+
             })
         }
+
+        return finalObject
     }
 
     FromJson(jObject: any) {

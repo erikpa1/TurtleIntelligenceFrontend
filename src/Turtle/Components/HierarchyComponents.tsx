@@ -2,12 +2,12 @@ import React from "react"
 import {Button, Flex, Popconfirm} from "antd";
 import {
     DeleteRowOutlined,
-    DeleteTwoTone, EditOutlined,
+    DeleteTwoTone, DownOutlined, EditOutlined,
     EyeOutlined, InfoOutlined,
     PauseOutlined,
     PlusOutlined, SettingOutlined,
     StepForwardOutlined,
-    StopOutlined, WechatWorkOutlined
+    StopOutlined, UpOutlined, WechatWorkOutlined
 } from "@ant-design/icons";
 
 
@@ -187,6 +187,27 @@ export function HierarchyCustomIcon({onClick, icon}: HierarchyCustomIconProps) {
                     }}
                 /> : icon
             }
+        />
+    )
+}
+
+
+export function HierarchyUpButton({onClick}) {
+
+    return (
+        <HierarchyCustomIcon
+            onClick={onClick}
+            icon={<UpOutlined/>}
+        />
+    )
+}
+
+export function HierarchyDownButton({onClick}) {
+
+    return (
+        <HierarchyCustomIcon
+            onClick={onClick}
+            icon={<DownOutlined/>}
         />
     )
 }

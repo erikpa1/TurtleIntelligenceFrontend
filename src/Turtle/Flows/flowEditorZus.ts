@@ -7,6 +7,6 @@ interface FlowEditorZus {
 }
 
 export const useActiveFlowEditor = create<FlowEditorZus>((set) => ({
-    viewType: 0,
+    viewType: 1,
     setViewType: (newType) => set(() => ({viewType: newType})),
 }))

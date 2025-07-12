@@ -124,5 +124,6 @@
     "create.flow": "Create flow",
     "edit.flow": "Edit flow",
     "create.flow.state": "Create flow state",
-    "states": "States"
+    "states": "States",
+    "actions": "Actions"
 }

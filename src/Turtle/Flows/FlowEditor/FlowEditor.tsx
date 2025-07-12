@@ -11,13 +11,19 @@ import ReactFlow, {
 
 import 'reactflow/dist/style.css';
 import {useActiveFlowEditor} from "@Turtle/Flows/flowEditorZus";
-import {Flex, Table, TableProps} from "antd";
+import {Flex, Space, Table, TableProps} from "antd";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import {Flow, FlowStage} from "@Turtle/Flows/Flow";
 import {useTranslation} from "react-i18next";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import COUFlowStageView from "@Turtle/Flows/FlowEditor/COUFlowStageView";
+import {
+    HierarchyDeleteButton,
+    HierarchyDownButton,
+    HierarchyEditButton,
+    HierarchyUpButton
+} from "@Turtle/Components/HierarchyComponents";
 
 const initialNodes = [
     {id: '1', position: {x: 0, y: 0}, data: {label: '1'}},
@@ -111,6 +117,22 @@ function _TableFlowEditor({flow}: _TableFlowEditorProps) {
         })
     }
 
+    function moveUp() {
+        //pass
+    }
+
+    function moveDown() {
+        //pass
+    }
+
+    function editItem() {
+        //pass
+    }
+
+    function deleteItem() {
+        //pass
+    }
+
 
     const columns: TableProps<FlowStage>['columns'] = React.useMemo(() => ([
         {
@@ -128,14 +150,24 @@ function _TableFlowEditor({flow}: _TableFlowEditorProps) {
             key: 'name',
         },
         {
-            title: 'Age',
-            dataIndex: 'age',
-            key: 'age',
+            title: t("type"),
+            dataIndex: 'type',
+            key: 'type'
         },
         {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
+            title: t("actions"),
+            dataIndex: 'actions',
+            key: 'actions',
+            render: (y) => {
+                return (
+                    <Space>
+                        <HierarchyDownButton onClick={moveDown}/>
+                        <HierarchyUpButton onClick={moveUp}/>
+                        <HierarchyEditButton onClick={editItem}/>
+                        <HierarchyDeleteButton onClick={deleteItem}/>
+                    </Space>
+                )
+            }
         },
     ]), [])
 
