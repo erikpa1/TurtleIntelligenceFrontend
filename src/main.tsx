@@ -14,24 +14,28 @@ import {ConfigProvider} from "antd";
 
 import {TurxiosProvider} from "@Turtle/Api/Turxios";
 import {TurtleTheme} from "./mainTheme";
+import {QueryClientProvider} from "react-query";
+import {TurtleQueryClient} from "@Turtle/TanStack";
 
 const root = createRoot(document.getElementById('root') as any);
 
 
 root.render(
-    <ConfigProvider
-        theme={TurtleTheme}
-    >
-        <Suspense fallback={""}>
-            <HashRouter
-                future={{
-                    v7_relativeSplatPath: true,
-                    v7_startTransition: true,
-                }}
-            >
-                <TurxiosProvider/>
-                <App/>
-            </HashRouter>
-        </Suspense>
-    </ConfigProvider>
+    <QueryClientProvider client={TurtleQueryClient}>
+        <ConfigProvider
+            theme={TurtleTheme}
+        >
+            <Suspense fallback={""}>
+                <HashRouter
+                    future={{
+                        v7_relativeSplatPath: true,
+                        v7_startTransition: true,
+                    }}
+                >
+                    <TurxiosProvider/>
+                    <App/>
+                </HashRouter>
+            </Suspense>
+        </ConfigProvider>
+    </QueryClientProvider>
 );

@@ -39,6 +39,7 @@
         "react-apexcharts": "^1.7.0",
         "react-dom": "^18.2.0",
         "react-i18next": "^11.15.3",
+        "react-query": "^3.39.3",
         "react-router-dom": "^6.3.0",
         "react-switch-case": "^1.5.1",
         "react-use-cookie": "^1.4.0",
