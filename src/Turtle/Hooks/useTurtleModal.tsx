@@ -3,6 +3,8 @@ import React from "react"
 import {useTranslation} from "react-i18next";
 import ErrorBoundary from "@Turtle/Components/ErrorBoundary";
 import {TurtleTheme} from "../../mainTheme";
+import {TurtleQueryClient} from "@Turtle/TanStack";
+import {QueryClientProvider} from "react-query";
 
 
 export function useTurtleModal() {
@@ -17,7 +19,6 @@ export function useTurtleModal() {
                       }: ModalFuncProps) {
 
 
-
         guard.current = Modal.info({
             ...props,
             title: t(props.title as any ?? ""),
@@ -26,9 +27,12 @@ export function useTurtleModal() {
             closable: true,
             content: (
                 <ConfigProvider
-                    theme={TurtleTheme}>
+                    theme={TurtleTheme}
+                >
                     <ErrorBoundary>
-                        {content}
+                        <QueryClientProvider client={TurtleQueryClient}>
+                            {content}
+                        </QueryClientProvider>
                     </ErrorBoundary>
                 </ConfigProvider>
 

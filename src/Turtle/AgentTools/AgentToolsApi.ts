@@ -15,15 +15,13 @@ export default class AgentToolsApi {
             return tmp
         })
 
-        console.log(data)
-
         return data
     }
 
 
     static async ListAllAvailableTools(): Promise<Array<AgentTool>> {
 
-        const response = (await Turxios.get<Array<any>>("/api/agent-tools/store")).data
+        const response = (await Turxios.get<Array<any>>("/api/agent-tools")).data
 
         return response.map((val) => {
             const tmp = new AgentTool()

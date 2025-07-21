@@ -195,18 +195,22 @@ export default function CreateLLMAgentModal({
 
                     {
                         activeTimeLine === "tools" && (
-                            <LLMAgentToolsSelectionView/>
+                            <LLMAgentToolsSelectionView agent={agent}/>
                         )
                     }
 
                 </Col>
             </Row>
+5
 
+            <div style={{
+                marginTop: "15px"
+            }}>
+                <RightSubmitButton
+                    onClick={onSubmit}
+                />
 
-            <RightSubmitButton
-                onClick={onSubmit}
-            />
-
+            </div>
         </Form>
     )
 }

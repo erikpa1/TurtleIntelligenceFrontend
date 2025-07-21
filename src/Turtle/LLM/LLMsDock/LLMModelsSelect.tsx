@@ -6,10 +6,35 @@ import LLMApi from "@Turtle/LLM/Api/LLMApi";
 
 export default function LLModelSelect({defaultValue, modelChanged}) {
 
+
+    const [selectedOne, setSelectedOne] = React.useState(defaultValue)
+
     const [models, setModels] = React.useState<Array<LLM>>([])
 
+
+    function changed(modelUid: string) {
+        setSelectedOne(modelUid)
+        modelChanged(modelUid)
+    }
+
     async function refresh() {
-        setModels(await LLMApi.ListLLMS())
+
+        const tmp = await LLMApi.ListLLMS()
+
+        if (selectedOne === "") {
+            const agentic = tmp.filter((item) => item.isAgentic)
+            if (agentic.length > 0) {
+                setSelectedOne(agentic[0].uid)
+                console.log("Choosing default agentic model")
+            } else {
+                if (tmp.length > 0) {
+                    setSelectedOne(tmp[0].uid)
+                }
+            }
+        }
+
+
+        setModels(tmp)
     }
 
     React.useEffect(() => {
@@ -20,8 +45,8 @@ export default function LLModelSelect({defaultValue, modelChanged}) {
     return (
         <Form.Item label={"LLM"}>
             <Select
-                defaultValue={defaultValue}
-                onChange={modelChanged}
+                value={selectedOne}
+                onChange={changed}
             >
                 <Select.Option
                     key={""}

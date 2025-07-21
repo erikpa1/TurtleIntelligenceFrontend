@@ -61,6 +61,8 @@ export class LLMAgent {
 
     methodType = LLMAgentMethodType.GET
 
+    tools = new Set<string>()
+
     FromJson(jObj: any) {
 
         this.uid = jObj.uid ?? ""
@@ -70,16 +72,20 @@ export class LLMAgent {
         this.description = jObj.description ?? ""
         this.specialization = jObj.specialization ?? ""
         this.useModel = jObj.useModel ?? ""
-        this.createdAt = jObj.createdAt ?? ""
-        this.updatedAt = jObj.updatedAt ?? ""
-        this.createdBy = jObj.createdAt ?? ""
-        this.updatedBy = jObj.updatedAt ?? ""
+        this.createdAt = jObj.createdAt ?? 0
+        this.updatedAt = jObj.updatedAt ?? 0
+        this.createdBy = jObj.createdBy ?? ""
+        this.updatedBy = jObj.updatedBy ?? ""
         this.url = jObj.url ?? ""
         this.xApiKey = jObj.xApiKey ?? ""
         this.args = []
         this.methodType = jObj.methodType ?? LLMAgentMethodType.GET
         this.commandExample = jObj.commandExample ?? ""
         this.agentsProps.FromJson(jObj.agentsProps ?? {})
+
+        this.tools = new Set(jObj.tools ?? [])
+
+        console.log(jObj.tools)
 
     }
 
@@ -101,7 +107,8 @@ export class LLMAgent {
             args: this.args,
             methodType: this.methodType,
             commandExample: this.commandExample,
-            agentsProps: this.agentsProps.ToJson()
+            agentsProps: this.agentsProps.ToJson(),
+            tools: Array.from(this.tools.values())
         }
     }
 
