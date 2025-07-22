@@ -107,22 +107,36 @@ export default function TestLLMAgentView({agent}: TestLLMAgentViewProps) {
 
                                     children: (
                                         <Flex vertical gap={10}>
-                                            {t("parameters")}
-                                            <Timeline
-                                                items={[
-                                                    {
-                                                        color: "red",
-                                                        children: `$name="Some name"`
-                                                    },
-                                                    {
-                                                        color: "red",
-                                                        children: `date="07.06.1997"`
-                                                    },
-                                                ]}
-                                                style={{
-                                                    paddingBottom: 0
-                                                }}
-                                            />
+                                            {t("tools")}
+
+                                            {
+                                                testResponse.agentToolUsage.map((val, index) => {
+                                                    return (
+                                                        <Timeline
+                                                            key={index}
+                                                            // items={Object.entries(val).map(([key, value]) => {
+                                                            //     return {
+                                                            //
+                                                            //     }
+                                                            // })}
+                                                            items={[
+                                                                {
+                                                                    color: "red",
+                                                                    children: `$name="Some name"`
+                                                                },
+                                                                {
+                                                                    color: "red",
+                                                                    children: `date="07.06.1997"`
+                                                                },
+                                                            ]}
+                                                            style={{
+                                                                paddingBottom: 0
+                                                            }}
+                                                        />
+                                                    )
+                                                })
+                                            }
+
                                         </Flex>
                                     )
                                 },

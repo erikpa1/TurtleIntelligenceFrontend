@@ -136,16 +136,23 @@ export class LLMAgentTestResponse {
     result = new Mistral7bResponse()
     error = ""
     text = ""
+    agentToolUsage: AgentToolUsage[] = []
 
     FromJson(jObj: any) {
-        console.log(jObj)
         this.uid = jObj.uid ?? ""
         this.agentUid = jObj.agentUid ?? ""
         this.at = jObj.at ?? 0
         this.result.FromJson(jObj.result)
         this.error = jObj.error ?? ""
         this.text = jObj.text ?? ""
+        this.agentToolUsage = jObj.agentToolUsage ?? []
     }
 
 }
 
+export interface AgentToolUsage {
+    uid: string
+    name: string
+    parameters: any
+    toolsResult: string
+}
