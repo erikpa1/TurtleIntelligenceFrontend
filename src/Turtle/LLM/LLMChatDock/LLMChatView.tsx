@@ -35,48 +35,55 @@ export default function LLMChatView({chatUid, isAgentChat}: LLMChatViewProps) {
 
     const [selectedModel, setSelectedModel] = useLocalStorage("chat-llm", "")
 
-    const [isProcessing, setIsProcessing] = React.useState(false)
-
     const [chatHistory, setChatHistory] = React.useState<Array<ConversationSegment>>([])
 
     async function onChatResponse(chatText: string) {
-        setIsProcessing(true)
+        setIsAnswerLoading(true)
 
         if (chatUid === "new") {
             const chatUid = await AIChatApi.CreateNewChat(chatText)
-            navigate(`/llm-chat/${chatUid}`)
 
-            setIsAnswerLoading(true)
             await AIChatApi.Ask(selectedModel, chatUid, chatText, isAgentChat)
+
+            const segment = new ConversationSegment()
+            segment.text = chatText
+            segment.isUser = true
+            segment.at = 0
+
+            setChatHistory([segment])
+
             setIsAnswerLoading(false)
-            aee.emit("ChatsChange", null)
+            navigate(`/llm-chat/${chatUid}`)
             refresh()
         } else {
-            setIsAnswerLoading(true)
             await AIChatApi.Ask(selectedModel, chatUid, chatText, false)
-            setIsAnswerLoading(false)
+            aee.emit("ChatsChange", null)
             refresh()
         }
-
-        setIsProcessing(false)
+        setIsAnswerLoading(false)
     }
 
     async function refresh() {
-        if (chatUid === "new") {
-            setChatHistory([])
-            setIsLoading(false)
-            setIsAnswerLoading(false)
-        } else {
+
+
+        if (isAnswerLoading === false) {
+
             setIsLoading(true)
-            const history = await AIChatApi.GetChat(chatUid)
-            setChatHistory(history.conversation)
+            if (chatUid === "new") {
+                setChatHistory([])
+            } else {
+                setIsLoading(true)
+                const history = await AIChatApi.GetChat(chatUid)
+                setChatHistory(history.conversation)
+                setIsLoading(false)
+            }
             setIsLoading(false)
         }
+
     }
 
     React.useEffect(() => {
         refresh()
-        setIsProcessing(false)
     }, [chatUid])
 
 
@@ -116,7 +123,12 @@ export default function LLMChatView({chatUid, isAgentChat}: LLMChatViewProps) {
                         {
                             isAnswerLoading && (
                                 <Skeleton
-                                    style={{height: "100%", width: "100%"}}/>
+                                    style={{
+                                        height: "50px",
+                                        width: "100%",
+                                        padding: "15px"
+                                    }}
+                                />
                             )
                         }
                     </React.Fragment>
@@ -125,7 +137,7 @@ export default function LLMChatView({chatUid, isAgentChat}: LLMChatViewProps) {
 
             <LLMChatInput
                 onChat={onChatResponse}
-                isBlocked={isProcessing}
+                isBlocked={isAnswerLoading}
             />
 
         </Flex>
