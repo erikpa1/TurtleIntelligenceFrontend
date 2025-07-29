@@ -154,5 +154,11 @@ export interface AgentToolUsage {
     uid: string
     name: string
     parameters: any
-    toolsResult: string
+    toolsResult: AgentToolResult
+}
+
+export interface AgentToolResult {
+    textRaw: string
+    textInfo: string
+    isOk: boolean
 }

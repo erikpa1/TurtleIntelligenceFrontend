@@ -125,5 +125,9 @@
     "edit.flow": "Edit flow",
     "create.flow.state": "Create flow state",
     "states": "States",
-    "actions": "Actions"
+    "actions": "Actions",
+    "basic": "Basic",
+    "app.specific": "App specific",
+    "external": "External",
+    "tools.used": "Tools used"
 }

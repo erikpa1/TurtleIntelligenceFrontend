@@ -1,6 +1,6 @@
 import React from "react"
 import {LLMAgent, LLMAgentTestResponse} from "@Turtle/LLM/Data/LLMAgent";
-import {Flex, Form, Spin, Timeline, Typography} from "antd";
+import {Flex, Form, Space, Spin, Timeline, Tree, Typography} from "antd";
 import TextArea from "antd/es/input/TextArea";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import LLMAgentApi from "@Turtle/LLM/Api/LLMAgentApi";
@@ -8,6 +8,7 @@ import {Simulate} from "react-dom/test-utils";
 import reset = Simulate.reset;
 import {useTranslation} from "react-i18next";
 import LLModelSelect from "@Turtle/LLM/LLMsDock/LLMModelsSelect";
+import {CheckCircleTwoTone} from "@ant-design/icons";
 
 
 interface TestLLMAgentViewProps {
@@ -59,6 +60,7 @@ export default function TestLLMAgentView({agent}: TestLLMAgentViewProps) {
             <LLModelSelect
                 defaultValue={activeModel}
                 modelChanged={setActiveModel}
+                isDisabled={progressState !== ProgressStates.START}
             />
 
             {
@@ -103,35 +105,56 @@ export default function TestLLMAgentView({agent}: TestLLMAgentViewProps) {
                                     children: t("agent.selected")
                                 },
                                 {
-                                    color: "gray",
-
+                                    color: "green",
                                     children: (
                                         <Flex vertical gap={10}>
-                                            {t("tools")}
+                                            {t("tools.used")}
 
                                             {
                                                 testResponse.agentToolUsage.map((val, index) => {
                                                     return (
-                                                        <Timeline
-                                                            key={index}
-                                                            // items={Object.entries(val).map(([key, value]) => {
-                                                            //     return {
-                                                            //
-                                                            //     }
-                                                            // })}
-                                                            items={[
+                                                        <Tree
+                                                            key={val.uid}
+                                                            blockNode
+                                                            virtual
+                                                            showLine
+                                                            defaultExpandAll={true}
+                                                            treeData={[
                                                                 {
-                                                                    color: "red",
-                                                                    children: `$name="Some name"`
-                                                                },
-                                                                {
-                                                                    color: "red",
-                                                                    children: `date="07.06.1997"`
-                                                                },
+                                                                    key: val.uid,
+                                                                    title: (
+                                                                        <Space>
+                                                                            <CheckCircleTwoTone twoToneColor="#52c41a"/>
+                                                                            {val.name}
+                                                                        </Space>
+                                                                    ),
+
+                                                                    children: [
+                                                                        {
+                                                                            key: "parameters",
+                                                                            title: t("parameters"),
+                                                                            children: Object.entries(val.parameters).map(([paramName, paramValue]) => {
+                                                                                return {
+                                                                                    key: paramName,
+                                                                                    title: (
+                                                                                        <Flex gap={15}>
+                                                                                            <b>{paramName}:</b>
+                                                                                            "{paramValue}"
+                                                                                        </Flex>
+                                                                                    ),
+
+                                                                                }
+                                                                            })
+                                                                        },
+                                                                        {
+                                                                            key: "result",
+                                                                            title: t("result"),
+                                                                        }
+
+                                                                    ]
+
+                                                                }
                                                             ]}
-                                                            style={{
-                                                                paddingBottom: 0
-                                                            }}
                                                         />
                                                     )
                                                 })
@@ -141,17 +164,13 @@ export default function TestLLMAgentView({agent}: TestLLMAgentViewProps) {
                                     )
                                 },
                                 {
-                                    color: "gray",
+                                    color: "green",
                                     children: t("agent.called")
                                 },
-                                {
-                                    color: "gray",
-                                    children: t("agent.response.status")
-                                }
                             ]}
                         />
 
-                        <div>{testResponse.uid}</div>
+                        <div>{testResponse.agentUid}</div>
                         <div>{testResponse.text}</div>
                         <div>{testResponse.error}</div>
 

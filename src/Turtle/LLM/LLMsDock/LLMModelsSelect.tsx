@@ -4,7 +4,13 @@ import {Form, Select} from "antd";
 import LLMApi from "@Turtle/LLM/Api/LLMApi";
 
 
-export default function LLModelSelect({defaultValue, modelChanged}) {
+interface LLModelSelectProps {
+    defaultValue: string
+    isDisabled?: boolean
+    modelChanged: any
+}
+
+export default function LLModelSelect({defaultValue, isDisabled, modelChanged}: LLModelSelectProps) {
 
 
     const [selectedOne, setSelectedOne] = React.useState(defaultValue)
@@ -43,10 +49,11 @@ export default function LLModelSelect({defaultValue, modelChanged}) {
 
 
     return (
-        <Form.Item label={"LLM"}>
+        <Form.Item label={"LLM:"}>
             <Select
                 value={selectedOne}
                 onChange={changed}
+                disabled={isDisabled}
             >
                 <Select.Option
                     key={""}

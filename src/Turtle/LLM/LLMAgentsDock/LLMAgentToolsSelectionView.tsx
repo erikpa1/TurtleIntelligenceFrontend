@@ -1,4 +1,4 @@
-import {Flex, Tree, TreeDataNode} from "antd";
+import {Flex, Tabs, Tree, TreeDataNode} from "antd";
 import {useTranslation} from "react-i18next";
 import React from "react";
 import Search from "antd/es/input/Search";
@@ -34,6 +34,8 @@ export default function LLMAgentToolsSelectionView({agent}: LLMAgentToolsSelecti
     })
 
     const [searchText, setSearchText] = React.useState("")
+
+    const [category, setCategory] = React.useState("basic")
 
     function createTree(tools: Array<AgentTool>): Array<TreeDataNode> {
 
@@ -78,6 +80,7 @@ export default function LLMAgentToolsSelectionView({agent}: LLMAgentToolsSelecti
         agent.tools = tmp
     }
 
+
     if (isFetching) {
         return (
             <CenterSpinner/>
@@ -107,6 +110,30 @@ export default function LLMAgentToolsSelectionView({agent}: LLMAgentToolsSelecti
                     />
                 </div>
 
+                <Tabs
+                    defaultActiveKey="basic"
+                    centered
+                    size={"small"}
+                    onChange={setCategory}
+                    items={[
+                        {
+                            label: t("basic"),
+                            key: "basic",
+                        },
+                        {
+                            label: t("app.specific"),
+                            key: "app_specific",
+                        },
+                        {
+                            label: t("external"),
+                            key: "external",
+                        },
+                        {
+                            label: t("all"),
+                            key: "all",
+                        },
+                    ]}
+                />
 
                 <Tree
                     key={data ? data.length : "0"}
