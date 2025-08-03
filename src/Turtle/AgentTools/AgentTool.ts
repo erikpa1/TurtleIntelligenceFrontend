@@ -3,6 +3,9 @@ export default class AgentTool {
     name = ""
     description = ""
     icon = ""
+    category = ""
+    provider = ""
+    type = ""
 
     ToJson(): any {
         return {
@@ -10,6 +13,9 @@ export default class AgentTool {
             name: this.name,
             description: this.description,
             icon: this.icon,
+            category: this.category,
+            provider: this.provider,
+            type: this.type,
         }
     }
 
@@ -18,6 +24,9 @@ export default class AgentTool {
         this.name = jObj.name ?? ""
         this.description = jObj.description ?? ""
         this.icon = jObj.icon ?? ""
+        this.category = jObj.category ?? ""
+        this.provider = jObj.provider ?? ""
+        this.type = jObj.type ?? ""
     }
 
 }

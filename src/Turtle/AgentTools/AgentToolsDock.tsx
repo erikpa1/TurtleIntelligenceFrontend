@@ -21,7 +21,8 @@ export default function AgentToolsDock() {
                     defaultSize="20%"
                     style={{
                         backgroundColor: "white",
-                        padding: bigPadding
+                        padding: bigPadding,
+                        paddingLeft: "0px"
                     }}
                 >
                     <AgentToolsHierarchy/>

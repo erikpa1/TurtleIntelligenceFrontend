@@ -129,5 +129,6 @@
     "basic": "Basic",
     "app.specific": "App specific",
     "external": "External",
-    "tools.used": "Tools used"
+    "tools.used": "Tools used",
+    "agent.chat": "Agent chat"
 }

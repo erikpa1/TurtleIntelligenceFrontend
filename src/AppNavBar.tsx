@@ -25,8 +25,8 @@ export default function AppNavBar() {
         <div>
             <Layout.Sider
                 collapsed={true}
-                collapsedWidth={80}
-                width={80}
+                collapsedWidth={70}
+                width={70}
                 style={{
                     backgroundColor: "#FFFFFF",
                     height: "100dvh",

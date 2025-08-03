@@ -4,7 +4,12 @@ import AgentTool from "@Turtle/AgentTools/AgentTool"
 import {useTranslation} from "react-i18next"
 import AgentToolsApi from "@Turtle/AgentTools/AgentToolsApi"
 import {useNavigate} from "react-router-dom"
-import {HierarchyCustomIcon, HierarchyRightFlex, HierarchyViewButton} from "@Turtle/Components/HierarchyComponents";
+import {
+    HierarchyAddButton,
+    HierarchyCustomIcon,
+    HierarchyRightFlex,
+    HierarchyViewButton
+} from "@Turtle/Components/HierarchyComponents";
 import AgentToolView from "@Turtle/AgentTools/AgentToolView";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 
@@ -18,42 +23,77 @@ export default function AgentToolsHierarchy({}) {
 
     const navigate = useNavigate()
 
+    const filter = "category"
+
     function createHierarchy(tools: Array<AgentTool>): Array<TreeDataNode> {
+
+        const filterMap = new Map<string, Array<AgentTool>>()
+
+        tools.forEach((val) => {
+            const existingArray = filterMap.get(val[filter])
+
+            if (existingArray) {
+                existingArray.push(val)
+            } else {
+                filterMap.set(val[filter], [val])
+            }
+        })
 
         return [
             {
-                key: "documents",
+                key: "tools",
                 title: (
                     <Flex>
                         {t("tools")} ({tools.length})
+
+                        <HierarchyRightFlex>
+                            <HierarchyAddButton
+                                onClick={createTool}
+                            />
+                        </HierarchyRightFlex>
                     </Flex>
                 ),
-                children: tools.map((val) => {
-
-                    return {
-                        key: val.uid,
-                        title: (
-                            <Flex>
-
-                                <HierarchyCustomIcon icon={`/icons/${val.icon}`}/>
-
-                                {val.name}
-
-
-                                <HierarchyRightFlex>
-                                    <HierarchyViewButton
-                                        onClick={() => {
-                                            viewToolPressed(val)
-                                        }}
-                                    />
-                                </HierarchyRightFlex>
-                            </Flex>
-                        )
-                    }
+                children: Object.entries(filterMap).map(([filterName, filterValues]) => {
+                    return [
+                        {
+                            key: filterName,
+                            title: filterName,
+                            children: filterValues.map((tool) => {
+                                return {
+                                    key: tool.uid,
+                                    title: (
+                                        <Flex>
+                                            <HierarchyCustomIcon icon={`/icons/${tool.icon}`}/>
+                                            {tool.name}
+                                            <HierarchyRightFlex>
+                                                <HierarchyViewButton
+                                                    onClick={() => {
+                                                        viewToolPressed(tool)
+                                                    }}
+                                                />
+                                            </HierarchyRightFlex>
+                                        </Flex>
+                                    )
+                                }
+                            })
+                        }
+                    ]
                 })
             }
         ]
 
+    }
+
+    function createTool() {
+        activate({
+            title: t("create.tools"),
+            closable: true,
+            content: (
+                <div>
+
+                </div>
+            )
+        })
     }
 
     function viewToolPressed(tool: AgentTool) {

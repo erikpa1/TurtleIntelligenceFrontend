@@ -38,7 +38,7 @@ function App() {
         return (
             <div>
                 <Layout hasSider>
-                    <Sider width={65}>
+                    <Sider width={70}>
                         <AppNavBar/>
                     </Sider>
 
