@@ -3,6 +3,7 @@ import React from "react"
 import {Route, Routes} from "react-router-dom"
 
 
+const ThemeDock = React.lazy(() => import("@Turtle/Theme/ThemeDock"))
 const FlowsDock = React.lazy(() => import("@Turtle/Flows/FlowsDock"))
 const LLMAgentChatDock = React.lazy(() => import("@Turtle/LLM/LLMChatDock/LLMAgentChatDock"))
 const AgentIncidentsDock = React.lazy(() => import("@Turtle/AgentIncidents/AgentIncidentsDock"))
@@ -56,7 +57,10 @@ export default function AppRoutes({}) {
             <Route path={"/agents-incidents/:incUid"} element={<AgentIncidentsDock/>}/>
 
             <Route path={"/flows"} element={<FlowsDock/>}/>
+
             <Route path={"/flows/:flowUid"} element={<FlowsDock/>}/>
+
+            <Route path={"/theme/:themeUid"} element={<ThemeDock/>}/>
 
         </Routes>
     );

@@ -2,6 +2,7 @@ import React from "react"
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
 import {useParams} from "react-router-dom"
 import {Splitter} from "antd"
+import ThemeHierarchy from "@Turtle/Theme/ThemeHierarchy";
 
 export default function ThemeDock({}) {
 
@@ -11,7 +12,6 @@ export default function ThemeDock({}) {
 
     return (
         <div>
-
             <Splitter style={{
                 height: "100%",
                 // backgroundColor: "#212124"
@@ -24,7 +24,7 @@ export default function ThemeDock({}) {
                         padding: bigPadding
                     }}
                 >
-
+                    <ThemeHierarchy/>
                 </Splitter.Panel>
 
                 <Splitter.Panel

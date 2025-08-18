@@ -300,6 +300,17 @@ function _WidgetsView({onRereoute}) {
                     </Col>
 
 
+                    <Col className="gutter-row" span={6}>
+                        <MyNavbarItem
+                            lang={"theme"}
+                            link={"/theme"}
+                            icon={"/icons/graph_3.svg"}
+                            onRerouted={onRereoute}
+                            iconStyle={ICON_STYLE}
+                        />
+                    </Col>
+
+
                 </Row>
 
             </Flex>
