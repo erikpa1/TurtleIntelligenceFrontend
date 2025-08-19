@@ -15,7 +15,7 @@ import TurtleApp from "@TurtleApp/TurtleApp"
 import TurtleTheme, {TurtleThemeLight} from "@Turtle/Theme/theme";
 import ThemeApi from "@Turtle/Theme/ThemeApi";
 
-export default function ThemeHierarchy() {
+export default function ScenesHierarchy() {
 
     const [t] = useTranslation()
 
@@ -30,10 +30,10 @@ export default function ThemeHierarchy() {
     function createHierarchy(themes: Array<TurtleThemeLight>) {
         return [
             {
-                key: "themes",
+                key: "scenes",
                 title: (
                     <Flex>
-                        {t("themes")} ({themes.length})
+                        {t("scenes")} ({themes.length})
 
                         <HierarchyRightFlex>
                             <HierarchyAddButton
@@ -48,7 +48,7 @@ export default function ThemeHierarchy() {
                         key: val.uid,
                         title: (
                             <HierarchyFlex onClick={() => {
-                                navigate(`/themes/${val.uid}`)
+                                navigate(`/scenes/${val.uid}`)
                             }}>
 
                                 {val.name}
@@ -56,7 +56,7 @@ export default function ThemeHierarchy() {
                                 <HierarchyRightFlex>
                                     <HierarchyDeleteButton
                                         onClick={() => {
-                                            deleteTheme(val.uid)
+                                            deleteKnowledge(val.uid)
                                         }}
                                     />
                                 </HierarchyRightFlex>
@@ -84,11 +84,13 @@ export default function ThemeHierarchy() {
         })
     }
 
-    async function deleteTheme(knowledgeUid: string) {
+    async function deleteKnowledge(knowledgeUid: string) {
+
         TurtleApp.Lock()
         await ThemeApi.Delete(knowledgeUid)
         TurtleApp.Unlock()
         refresh()
+
     }
 
     async function refresh() {

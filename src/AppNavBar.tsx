@@ -265,6 +265,22 @@ function _WidgetsView({onRereoute}) {
 
 
                 <Divider orientation={"left"}>
+                    3D:
+                </Divider>
+
+                <Row gutter={16}>
+                    <Col className="gutter-row" span={6}>
+                        <MyNavbarItem
+                            lang={"scenes"}
+                            link={"/scenes"}
+                            icon={"/icons/article.svg"}
+                            onRerouted={onRereoute}
+                            iconStyle={ICON_STYLE}
+                        />
+                    </Col>
+                </Row>
+
+                <Divider orientation={"left"}>
                     {t("other")}:
                 </Divider>
 
@@ -302,8 +318,8 @@ function _WidgetsView({onRereoute}) {
 
                     <Col className="gutter-row" span={6}>
                         <MyNavbarItem
-                            lang={"theme"}
-                            link={"/theme"}
+                            lang={"themes"}
+                            link={"/themes"}
                             icon={"/icons/graph_3.svg"}
                             onRerouted={onRereoute}
                             iconStyle={ICON_STYLE}

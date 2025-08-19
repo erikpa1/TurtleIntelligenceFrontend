@@ -1,8 +1,10 @@
 import React from "react"
 
 import {Route, Routes} from "react-router-dom"
+import SceneEditDock from "@Turtle/Scene/SceneEditDock";
 
 
+const ScenesDock = React.lazy(() => import("@Turtle/Scenes/ScenesDock"))
 const ThemeDock = React.lazy(() => import("@Turtle/Theme/ThemeDock"))
 const FlowsDock = React.lazy(() => import("@Turtle/Flows/FlowsDock"))
 const LLMAgentChatDock = React.lazy(() => import("@Turtle/LLM/LLMChatDock/LLMAgentChatDock"))
@@ -60,7 +62,14 @@ export default function AppRoutes({}) {
 
             <Route path={"/flows/:flowUid"} element={<FlowsDock/>}/>
 
-            <Route path={"/theme/:themeUid"} element={<ThemeDock/>}/>
+            <Route path={"/themes"} element={<ThemeDock/>}/>
+            <Route path={"/themes/:themeUid"} element={<ThemeDock/>}/>
+
+            <Route path={"/scenes"} element={<ScenesDock/>}/>
+            <Route path={"/scenes/:sceneUid"} element={<ScenesDock/>}/>
+
+            <Route path={"/scene"} element={<SceneEditDock/>}/>
+            <Route path={"/scene/:sceneUid"} element={<SceneEditDock/>}/>
 
         </Routes>
     );

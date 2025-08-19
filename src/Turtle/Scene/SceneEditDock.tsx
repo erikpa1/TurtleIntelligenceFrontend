@@ -1,15 +1,14 @@
 import React from "react"
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
-import {useParams} from "react-router-dom"
 import {Splitter} from "antd"
-import ThemeHierarchy from "@Turtle/Theme/ThemeHierarchy";
-import ThemeEditView from "@Turtle/Theme/ThemeEditView";
+import SceneHierarchy from "@Turtle/Scene/SceneHierarchy";
+import {useParams} from "react-router-dom";
 
-export default function ThemeDock({}) {
 
+export default function SceneEditDock() {
     const {bigPadding} = useTurtleTheme()
 
-    const {themeUid} = useParams()
+    const {sceneUid} = useParams()
 
     return (
         <div>
@@ -25,21 +24,17 @@ export default function ThemeDock({}) {
                         padding: bigPadding
                     }}
                 >
-                    <ThemeHierarchy/>
+                    <SceneHierarchy/>
                 </Splitter.Panel>
 
                 <Splitter.Panel
                     defaultSize="80%"
                     style={{
                         height: "100vh",
+
                     }}
                 >
-                    {
-                        themeUid && (
-                            <ThemeEditView/>
-                        )
-                    }
-                    <ThemeEditView/>
+
                 </Splitter.Panel>
 
             </Splitter>
