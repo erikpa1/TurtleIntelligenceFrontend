@@ -1,7 +1,7 @@
 import React from "react"
 import Entity from "@Turtle/Data/Entity"
 
-import {ActorsSelect} from "@TurtleApp/Routes/WorldDock/BehProps/ActorSelect";
+import {ActorsSelect} from "@TurtleApp/Routes/SimModelWorldDock/BehProps/ActorSelect";
 import TimeExrItem from "@Turtle/ReflectiveUI/TimeExprItem";
 
 interface ProcessEntityPropertiesProps {

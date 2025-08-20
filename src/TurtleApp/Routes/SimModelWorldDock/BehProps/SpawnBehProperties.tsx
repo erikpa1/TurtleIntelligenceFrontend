@@ -3,7 +3,7 @@ import IntItem from "@Turtle/ReflectiveUI/NumberItem"
 import {Flex} from "antd"
 import Entity from "@Turtle/Data/Entity"
 
-import {ActorsSelect} from "@TurtleApp/Routes/WorldDock/BehProps/ActorSelect";
+import {ActorsSelect} from "@TurtleApp/Routes/SimModelWorldDock/BehProps/ActorSelect";
 
 interface SpawnEntityPropertiesProps {
     entity: Entity

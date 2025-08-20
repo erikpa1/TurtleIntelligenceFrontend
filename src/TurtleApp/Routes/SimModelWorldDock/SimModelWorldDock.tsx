@@ -3,20 +3,20 @@ import React from "react"
 import {Button, Divider, Flex, Spin, Splitter, Tabs} from "antd";
 
 import WorldFiber from "./WorldFiber";
-import WorldHierarchy from "@TurtleApp/Routes/WorldDock/WorldHierarchy";
+import WorldHierarchy from "@TurtleApp/Routes/SimModelWorldDock/WorldHierarchy";
 import {useParams} from "react-router-dom";
 
-import WorldControllers from "@TurtleApp/Routes/WorldDock/WorldControllers";
+import WorldControllers from "@TurtleApp/Routes/SimModelWorldDock/WorldControllers";
 import WorldApi from "@TurtleApp/Api/WorldApi";
 import World, {WorldSingleton} from "@TurtleApp/Data/World";
-import WorldTopBar from "@TurtleApp/Routes/WorldDock/WorldTopBar";
-import WorldRightBar from "@TurtleApp/Routes/WorldDock/WorldRightBar";
-import InitWorldFactory from "@TurtleApp/Routes/WorldDock/WorldInit";
+import WorldTopBar from "@TurtleApp/Routes/SimModelWorldDock/WorldTopBar";
+import WorldRightBar from "@TurtleApp/Routes/SimModelWorldDock/WorldRightBar";
+import InitWorldFactory from "@TurtleApp/Routes/SimModelWorldDock/WorldInit";
 
 
 InitWorldFactory()
 
-export default function WorldDock({}) {
+export default function SimModelWorldDock({}) {
 
     const {modelUid} = useParams()
 

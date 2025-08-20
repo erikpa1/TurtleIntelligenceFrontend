@@ -1,6 +1,6 @@
 import React from "react"
 import Entity from "@Turtle/Data/Entity";
-import {ConnectionSelect} from "@TurtleApp/Routes/WorldDock/BehProps/ConnectionSelect";
+import {ConnectionSelect} from "@TurtleApp/Routes/SimModelWorldDock/BehProps/ConnectionSelect";
 import {Divider, Flex, Form, Select, Tabs} from "antd";
 import {useTranslation} from "react-i18next";
 import {WorldSingleton} from "@TurtleApp/Data/World";

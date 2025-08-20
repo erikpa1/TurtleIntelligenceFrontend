@@ -13,12 +13,12 @@ import TransformControlsFiber, {useTransformControls} from "@Turtle/Fibers/Trans
 import Gizmo3DFlag from "../../Fibers/Gizmo3D";
 
 import {useParams} from "react-router-dom";
-import PickEntityFiber from "@TurtleApp/Routes/WorldDock/Submodules/PickEntityFiber";
-import EntitiesFiber from "@TurtleApp/Routes/WorldDock/EntitiesFiber";
+import PickEntityFiber from "@TurtleApp/Routes/SimModelWorldDock/Submodules/PickEntityFiber";
+import EntitiesFiber from "@TurtleApp/Routes/SimModelWorldDock/EntitiesFiber";
 import {WorldSingleton} from "@TurtleApp/Data/World";
-import {WorldRuntimeEntitiesFiber} from "@TurtleApp/Routes/WorldDock/WorldRuntimeEntitiesFiber";
-import ConnectionsFiber from "@TurtleApp/Routes/WorldDock/Submodules/ConnectionsFiber";
-import RuntimeActorsFiber from "@TurtleApp/Routes/WorldDock/Submodules/RuntimeActorsFiber";
+import {WorldRuntimeEntitiesFiber} from "@TurtleApp/Routes/SimModelWorldDock/WorldRuntimeEntitiesFiber";
+import ConnectionsFiber from "@TurtleApp/Routes/SimModelWorldDock/Submodules/ConnectionsFiber";
+import RuntimeActorsFiber from "@TurtleApp/Routes/SimModelWorldDock/Submodules/RuntimeActorsFiber";
 
 
 export default function WorldFiber({world}) {

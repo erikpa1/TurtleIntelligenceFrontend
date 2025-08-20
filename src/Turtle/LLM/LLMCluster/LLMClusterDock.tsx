@@ -1,7 +1,7 @@
 import {Splitter} from "antd"
 import React from "react"
 
-import WorldControllers from "@TurtleApp/Routes/WorldDock/WorldControllers"
+import WorldControllers from "@TurtleApp/Routes/SimModelWorldDock/WorldControllers"
 
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
 import LLMClusterHierarchy from "@Turtle/LLM/LLMCluster/LLMClusterHierarchy";

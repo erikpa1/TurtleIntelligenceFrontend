@@ -15,9 +15,9 @@ import {
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import Myio from "@Turtle/Data/myio";
 import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
-import {useActiveSimulation} from "@TurtleApp/Routes/WorldDock/Controllers/RunningSimulationController";
+import {useActiveSimulation} from "@TurtleApp/Routes/SimModelWorldDock/Controllers/RunningSimulationController";
 import TurtleApp from "@TurtleApp/TurtleApp";
-import SimConfigSettingsButton from "@TurtleApp/Routes/WorldDock/Components/SimConfig";
+import SimConfigSettingsButton from "@TurtleApp/Routes/SimModelWorldDock/Components/SimConfig";
 
 
 export default function WorldTopBar({}) {

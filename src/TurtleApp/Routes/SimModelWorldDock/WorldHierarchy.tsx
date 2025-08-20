@@ -2,8 +2,8 @@ import React from "react"
 import {useTranslation} from "react-i18next"
 import {Button, Flex, Tabs} from "antd"
 
-import SimEntitiesLibrary from "@TurtleApp/Routes/WorldDock/SimEntitiesLibrary"
-import WorldEntitiesHierarchy from "@TurtleApp/Routes/WorldDock/WorldEntitiesHierarchy"
+import SimEntitiesLibrary from "@TurtleApp/Routes/SimModelWorldDock/SimEntitiesLibrary"
+import WorldEntitiesHierarchy from "@TurtleApp/Routes/SimModelWorldDock/WorldEntitiesHierarchy"
 import {SettingOutlined} from "@ant-design/icons";
 
 

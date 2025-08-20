@@ -2,16 +2,24 @@ import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
 import Entity from "@Turtle/Data/Entity";
 import React from "react";
-import {Empty, Form} from "antd";
+import {Empty, Flex, Form, Tabs} from "antd";
 
-import {EntityNameProperty, EntityTypeProperty} from "@TurtleApp/Routes/WorldDock/BehProps/Common";
+import {EntityNameProperty, EntityTypeProperty} from "@TurtleApp/Routes/SimModelWorldDock/BehProps/Common";
 import EntitiesFactory from "@TurtleApp/Factories/EntitiesFactory";
 import ErrorBoundary, {CompactErrorView} from "@Turtle/Components/ErrorBoundary";
+import {useTranslation} from "react-i18next";
+import RunningSimTab from "@TurtleApp/Routes/SimModelWorldDock/RunningSimTab";
+import TurtleEmpty from "@Turtle/Components/TurtleEmpty";
 
 
 export default function WorldRightBar() {
 
+    const [t] = useTranslation()
+
+    const [activeTab, setActiveTab] = React.useState("config")
+
     const [entity, setEntity] = React.useState<Entity | null>(null)
+
 
     function entityPicked(entity: Entity) {
         setEntity(entity)
@@ -23,18 +31,57 @@ export default function WorldRightBar() {
             WorldEntityClicked={entityPicked}
             SelectEntityFromWorld={entityPicked}
         >
+
+            <Flex vertical>
+
+                <Tabs
+                    centered
+                    size={"middle"}
+                    defaultValue={"config"}
+                    onChange={setActiveTab}
+                    items={[
+                        {
+                            label: t("config"),
+                            key: "config"
+                        },
+                        {
+                            label: t("simulation"),
+                            key: "simulation"
+                        }
+                    ]}
+                />
+
+
+            </Flex>
+
+
             {
-                entity ? <_EntityEditProps entity={entity}/> : (
-                    <div style={{
-                        marginTop: "30vh"
-                    }}>
-                        <Empty/>
-                    </div>
+                activeTab === "config" && (
+                    entity ? <_EntityEditProps entity={entity}/> : (
+                        <div style={{
+                            marginTop: "30vh"
+                        }}>
+                            <Empty/>
+                        </div>
+                    )
+                )
+            }
+
+            {
+                activeTab === "simulation" && (
+                    entity ? <RunningSimTab/> : (
+                        <div style={{
+                            marginTop: "30vh"
+                        }}>
+                            <TurtleEmpty/>
+                        </div>
+                    )
                 )
             }
         </AeeWrapper>
     )
 }
+
 
 interface _EntityEditPropsProps {
     entity: Entity

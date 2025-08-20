@@ -1,10 +1,10 @@
 import EntitiesFactory from "@TurtleApp/Factories/EntitiesFactory"
 
-import BufferBehProperties from "@TurtleApp/Routes/WorldDock/BehProps/BufferBehProperties"
-import SpawnEntitiyProperties from "@TurtleApp/Routes/WorldDock/BehProps/SpawnBehProperties"
-import ProcessBehProperties from "@TurtleApp/Routes/WorldDock/BehProps/ProcessBehProperties"
-import SwitchBehProperties from "@TurtleApp/Routes/WorldDock/BehProps/SwitchBehProperties"
-import SplitBehProperties from "@TurtleApp/Routes/WorldDock/BehProps/SplitBehProperties";
+import BufferBehProperties from "@TurtleApp/Routes/SimModelWorldDock/BehProps/BufferBehProperties"
+import SpawnEntitiyProperties from "@TurtleApp/Routes/SimModelWorldDock/BehProps/SpawnBehProperties"
+import ProcessBehProperties from "@TurtleApp/Routes/SimModelWorldDock/BehProps/ProcessBehProperties"
+import SwitchBehProperties from "@TurtleApp/Routes/SimModelWorldDock/BehProps/SwitchBehProperties"
+import SplitBehProperties from "@TurtleApp/Routes/SimModelWorldDock/BehProps/SplitBehProperties";
 
 
 export default function InitWorldFactory() {

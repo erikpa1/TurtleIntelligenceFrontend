@@ -3,7 +3,7 @@ import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
 import Entity from "@Turtle/Data/Entity";
 import RuntimeEntity from "@Turtle/Data/RuntimeEntity";
-import RuntimeEntityFiber from "@TurtleApp/Routes/WorldDock/Submodules/RuntimeEntityFiber";
+import RuntimeEntityFiber from "@TurtleApp/Routes/SimModelWorldDock/Submodules/RuntimeEntityFiber";
 
 
 export function WorldRuntimeEntitiesFiber({world}) {

@@ -21,7 +21,7 @@ const LLMChatDock = React.lazy(() => import("@Turtle/LLM/LLMChatDock/LLMChatDock
 const ActorsDock = React.lazy(() => import("@TurtleApp/Routes/Actors/ActorsDock"))
 const DocumentationDock = React.lazy(() => import("@TurtleApp/Routes/Documentation/DocumentationDock"))
 const ContainersDock = React.lazy(() => import("@TurtleApp/Routes/ContainersDock/ContainersDock"))
-const SimWorldDock = React.lazy(() => import("@TurtleApp/Routes/WorldDock/WorldDock"))
+const SimWorldDock = React.lazy(() => import("@TurtleApp/Routes/SimModelWorldDock/SimModelWorldDock"))
 const SimModelsDock = React.lazy(() => import( "@TurtleApp/Routes/SimModelsDock/SimModelsDock"))
 const NNDock = React.lazy(() => import("@TurtleApp/Routes/NN/NNDock"))
 

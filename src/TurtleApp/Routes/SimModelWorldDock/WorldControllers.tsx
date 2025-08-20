@@ -5,7 +5,7 @@ import aee, {AnyEventEmmiter} from "@Turtle/Data/Aee";
 import WorldApi from "@TurtleApp/Api/WorldApi";
 import Entity from "@Turtle/Data/Entity";
 import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
-import {runningSimulationController} from "@TurtleApp/Routes/WorldDock/Controllers/RunningSimulationController";
+import {runningSimulationController} from "@TurtleApp/Routes/SimModelWorldDock/Controllers/RunningSimulationController";
 
 export default function WorldControllers({}) {
 
