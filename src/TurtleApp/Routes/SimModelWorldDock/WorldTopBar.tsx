@@ -28,7 +28,8 @@ export default function WorldTopBar({}) {
             height: "45px",
             backgroundColor: "white",
             position: "relative",
-            paddingLeft: "10px"
+            paddingLeft: "10px",
+            width: "100%",
         }}>
 
             <Flex
@@ -215,16 +216,13 @@ function _SimulationSection({}) {
         )
     } else {
         return (
-
             <Flex>
                 <SimConfigSettingsButton/>
 
                 <Button
                     onClick={simulatePressed}
                     type={"primary"}
-
                 >
-
 
                     {t("simulate")}
                     <PlayCircleOutlined/>

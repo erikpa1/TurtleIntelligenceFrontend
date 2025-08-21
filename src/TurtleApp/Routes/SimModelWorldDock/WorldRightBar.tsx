@@ -69,13 +69,7 @@ export default function WorldRightBar() {
 
             {
                 activeTab === "simulation" && (
-                    entity ? <RunningSimTab/> : (
-                        <div style={{
-                            marginTop: "30vh"
-                        }}>
-                            <TurtleEmpty/>
-                        </div>
-                    )
+                    <RunningSimTab/>
                 )
             }
         </AeeWrapper>
