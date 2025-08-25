@@ -121,8 +121,8 @@ export default function AppNavBar() {
 const ICON_STYLE = {
     width: "25px",
     height: "25px",
-    marginTop: "2px",
-    marginBottom: "2px"
+    marginTop: "1px",
+    marginBottom: "1px"
 }
 
 
@@ -366,11 +366,11 @@ function MyNavbarItem({lang, icon, link, onClick, onRerouted, iconStyle}: MyNavb
                 }
             }}
             style={{
-                paddingTop: "15px",
+                paddingTop: "5px",
                 paddingBottom: "2.5px",
             }}
         >
-            <div className={"vstack"}>
+            <div>
 
                 {(typeof icon === "string") ? (
                     <Flex
@@ -380,8 +380,8 @@ function MyNavbarItem({lang, icon, link, onClick, onRerouted, iconStyle}: MyNavb
                         <img
                             src={icon}
                             style={{
-                                width: "30px",
-                                height: "30px",
+                                width: "25px",
+                                height: "25px",
                                 ...(iconStyle ?? {})
                             }}
                             alt="icon"
@@ -398,7 +398,7 @@ function MyNavbarItem({lang, icon, link, onClick, onRerouted, iconStyle}: MyNavb
 
                 <div style={{
                     textAlign: "center",
-                    fontSize: "10px",
+                    fontSize: "8px",
                     display: "block",
                     whiteSpace: "pre-wrap"
                 }}>
