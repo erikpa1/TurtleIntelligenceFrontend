@@ -30,10 +30,10 @@ export function useThemeInit(): () => void {
     const {setTheme} = useTurtleTheme()
 
     function init() {
-        const redOne = new TurtleTheme()
-        redOne.iconPrimaryColor = ColorConstants.RED
-        redOne.iconSecondaryColor = ColorConstants.GRAY
-        setTheme(redOne)
+        // const redOne = new TurtleTheme()
+        // redOne.iconPrimaryColor = ColorConstants.RED
+        // redOne.iconSecondaryColor = ColorConstants.GRAY
+        // setTheme(redOne)
     }
 
 

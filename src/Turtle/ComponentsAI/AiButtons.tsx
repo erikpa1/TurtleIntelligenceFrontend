@@ -14,7 +14,24 @@ export function CopilotButton({}) {
         >
             <Space>
                 <IconNetworkIntelNode/>
-                {"copilot"}
+                {t("copilot")}
+            </Space>
+        </Button>
+    )
+}
+
+
+export function CopilotPlusVSearch({}) {
+
+    const [t] = useTranslation()
+
+    return (
+        <Button
+            type={"text"}
+        >
+            <Space>
+                <IconNetworkIntelNode/>
+                {t("copilot")} + {t("vsearch")}
             </Space>
         </Button>
     )

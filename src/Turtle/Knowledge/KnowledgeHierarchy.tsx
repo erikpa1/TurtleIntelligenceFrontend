@@ -1,4 +1,4 @@
-import {Flex, Tree, TreeDataNode} from "antd"
+import {Flex, Space, Tree, TreeDataNode} from "antd"
 import React from "react"
 import {useTranslation} from "react-i18next"
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal"
@@ -15,6 +15,7 @@ import {Knowledge, KnowledgeType} from "@Turtle/Knowledge/Data/Knowledge"
 import COUKnowledgeView from "@Turtle/Knowledge/COUKnowledgeView";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import KnowledgeApi from "@Turtle/Knowledge/Api/KnowledgeApi";
+import IconDatabaseSearch from "@Turtle/Icons/IconDatabaseSearch";
 
 export default function KnowledgeHierarchy() {
     const [t] = useTranslation()
@@ -51,7 +52,11 @@ export default function KnowledgeHierarchy() {
                                 navigate(`/knowledge-hub/${val.uid}`)
                             }}>
 
-                                {val.name}
+                                <Space>
+                                    <IconDatabaseSearch/>
+                                    {val.name}
+                                </Space>
+
 
                                 <HierarchyRightFlex>
 

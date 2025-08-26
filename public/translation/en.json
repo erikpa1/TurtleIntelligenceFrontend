@@ -130,5 +130,6 @@
     "app.specific": "App specific",
     "external": "External",
     "tools.used": "Tools used",
-    "agent.chat": "Agent chat"
+    "agent.chat": "Agent chat",
+    "copilot": "Copilot"
 }
