@@ -231,9 +231,7 @@ function _LLMAgentEditType({agent}: { agent: LLMAgent }) {
                 defaultActiveKey="url"
                 centered
                 size={"small"}
-                onChange={(newType) => {
-                    setAgentType(newType)
-                }}
+                onChange={setAgentType}
                 items={[
                     {
                         label: "URL",

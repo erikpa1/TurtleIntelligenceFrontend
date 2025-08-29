@@ -3,6 +3,9 @@ import TurtleEmpty from "@Turtle/Components/TurtleEmpty"
 import DocumentsApi from "@Turtle/DocInt/Api/DocumentsApi"
 import {FileDocument} from "@Turtle/DocInt/Data/Document"
 import {CenterSpinner} from "@Turtle/Components/Loadings"
+import {Flex, Space} from "antd";
+import TopBarWrapper from "@Turtle/Components/TopBarWrapper";
+import DocPreviewTopBar from "@Turtle/DocInt/Dock/DocPreviewTopBar";
 
 
 export default function DocumentPreview({documentUid}) {
@@ -34,14 +37,20 @@ export default function DocumentPreview({documentUid}) {
 
             if (doc.extension == "pdf") {
                 return (
-                    <embed
-                        src={DocumentsApi.DocFilePath(doc.uid)}
-                        style={{
-                            width: "100%",
-                            height: "100%"
-                        }}
-                        type="application/pdf"
-                    />
+                    <div style={{
+                        width: "100%",
+                        height: "100%"
+                    }}>
+                        <DocPreviewTopBar doc={doc}/>
+                        <embed
+                            src={DocumentsApi.DocFilePath(doc.uid)}
+                            style={{
+                                width: "100%",
+                                height: "calc(100% - 52px)"
+                            }}
+                            type="application/pdf"
+                        />
+                    </div>
                 )
             } else {
                 return (

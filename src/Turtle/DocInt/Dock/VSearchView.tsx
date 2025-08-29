@@ -68,10 +68,8 @@ export default function VSearchView() {
         <Flex
             vertical
             gap={15}
-
         >
-
-            <div style={{display: 'flex', justifyContent: 'center'}}>
+            <Flex justify={"center"}>
                 <Search
                     defaultValue={searchText}
                     onChange={(e) => {
@@ -85,7 +83,7 @@ export default function VSearchView() {
                         borderRadius: 0
                     }}
                 />
-            </div>
+            </Flex>
 
             {
                 (isSearchTyping || isSearching) && (

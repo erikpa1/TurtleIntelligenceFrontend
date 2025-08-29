@@ -1,5 +1,5 @@
 import React from "react"
-import {Col, Form, Input, message, Row, Upload, UploadFile, UploadProps} from "antd"
+import {Col, Flex, Form, Input, message, Row, Tabs, Upload, UploadFile, UploadProps} from "antd"
 import {useTranslation} from "react-i18next"
 import {FilePdfOutlined, InboxOutlined} from "@ant-design/icons"
 import {UploadDocumentFileParams} from "@Turtle/DocInt/Api/Params"
@@ -15,6 +15,74 @@ export default function CreateDocumentView({
                                                beforeUpdate,
                                                afterUpdate,
                                            }) {
+
+
+    const [t] = useTranslation()
+
+    const [activateTab, setActivateTab] = React.useState("upload")
+
+
+    return (
+        <Flex vertical={true}>
+
+            <Tabs
+                defaultActiveKey="url"
+                centered
+                size={"small"}
+                onChange={setActivateTab}
+                items={[
+                    {
+                        label: t("upload"),
+                        key: "upload",
+                    },
+                    {
+                        label: t("generate"),
+                        key: "generate",
+                    }
+                ]}
+            />
+
+
+            {
+                activateTab === "upload" && (
+                    <_UploadDocumentView
+                        beforeUpdate={beforeUpdate}
+                        afterUpdate={afterUpdate}
+                    />
+                )
+            }
+
+            {
+                activateTab === "generate" && (
+                    <_GenerateDocumentView
+                        beforeUpdate={beforeUpdate}
+                        afterUpdate={afterUpdate}
+                    />
+                )
+            }
+
+
+        </Flex>
+    )
+}
+
+function _GenerateDocumentView({
+                                   beforeUpdate,
+                                   afterUpdate,
+                               }) {
+
+    return (
+        <div>
+
+        </div>
+    )
+
+}
+
+function _UploadDocumentView({
+                                 beforeUpdate,
+                                 afterUpdate,
+                             }) {
 
     const [t] = useTranslation()
 
@@ -35,7 +103,6 @@ export default function CreateDocumentView({
         }
 
     }
-
 
     return (
         <Form layout={"vertical"}>
@@ -107,8 +174,8 @@ export default function CreateDocumentView({
                 onClick={submitClicked}
             />
         </Form>
-    )
 
+    )
 }
 
 interface EditDocumentViewProps {

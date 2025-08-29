@@ -1,18 +1,31 @@
 import React from "react"
 import TopBarWrapper from "@Turtle/Components/TopBarWrapper";
-import {Button, Space} from "antd";
-import {FileSearchOutlined, SearchOutlined} from "@ant-design/icons";
+import {Button, Flex, Space} from "antd";
+import {FileSearchOutlined, SearchOutlined, TagOutlined} from "@ant-design/icons";
 import {useTranslation} from "react-i18next";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import VSearchView from "@Turtle/DocInt/Dock/VSearchView";
 import {CopilotButton, CopilotPlusVSearch} from "@Turtle/ComponentsAI/AiButtons";
+import IconSearchInsight from "@Turtle/Icons/IconSearchInsight";
+import DocumentTags from "@Turtle/DocInt/Dock/DocumentTags";
+import {SelectTagsTree} from "@Turtle/Tags/SelectTagsTree";
+import Tag from "@Turtle/Tags/Tag";
 
 export default function DocIntTopBar() {
     return (
         <TopBarWrapper>
-            <_SearchAll/>
 
-            <CopilotPlusVSearch/>
+            <_FilterDocumentsButton/>
+            <_EditFilters/>
+
+            <Flex
+                style={{
+                    marginLeft: "auto"
+                }}
+            >
+                <_SearchAll/>
+                <CopilotPlusVSearch/>
+            </Flex>
         </TopBarWrapper>
     )
 }
@@ -38,11 +51,98 @@ function _SearchAll({}) {
         <Button
             type={"text"}
             onClick={activateSearch}
+            icon={<SearchOutlined/>}
         >
-            <Space>
-                <SearchOutlined/>
-                {t("vsearch")}
-            </Space>
+            {t("vsearch")}
+        </Button>
+    )
+}
+
+function _FilterDocumentsButton({}) {
+
+    const [t] = useTranslation()
+
+    const {activate} = useTurtleModal()
+
+    const [selectedFilters, setSelectedFilters] = React.useState<Set<string>>(new Set())
+
+    function filterPressed() {
+
+
+        const tags: Array<Tag> = []
+
+        const tmp1 = new Tag()
+        tmp1.id = "1"
+        tmp1.uid = "1"
+        tmp1.name = "faktury"
+
+        const tmp2 = new Tag()
+        tmp2.id = "2"
+        tmp2.uid = "2"
+        tmp2.name = "smernice"
+
+        const tmp3 = new Tag()
+        tmp3.id = "3"
+        tmp3.uid = "3"
+        tmp3.name = "smernice"
+
+
+        tags.push(tmp1)
+        tags.push(tmp2)
+        tags.push(tmp3)
+
+        activate({
+            title: `${t("document.tags")}:`,
+            closable: true,
+            content: (
+                <SelectTagsTree
+                    avlTags={tags}
+                    tags={new Set()}
+                />
+            )
+        })
+
+    }
+
+    return (
+        <Button
+            type={"text"}
+            onClick={filterPressed}
+            icon={<IconSearchInsight/>}
+        >
+            {t("filter")}
+        </Button>
+    )
+}
+
+
+function _EditFilters({}) {
+
+    const [t] = useTranslation()
+
+    const {activate} = useTurtleModal()
+
+    const [selectedFilters, setSelectedFilters] = React.useState<Set<string>>(new Set())
+
+    function filterPressed() {
+
+        activate({
+            title: `${t("edit.tags")}:`,
+            closable: true,
+            width: "80%",
+            content: (
+                <DocumentTags/>
+            )
+        })
+    }
+
+    return (
+        <Button
+            type={"text"}
+            onClick={filterPressed}
+            icon={<TagOutlined/>}
+        >
+            {t("edit.tags")}
         </Button>
     )
 }

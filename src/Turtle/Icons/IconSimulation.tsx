@@ -1,12 +1,7 @@
-import ColorConstants from "@Turtle/Constants/ColorConstants";
-import TurtleIcon, {TurtleExperimentalIcon} from "@Turtle/Icons/A";
-import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 
+import {TurtleExperimentalIcon} from "@Turtle/Icons/A";
 
 export default function IconSimulation(props: any = {}) {
-
-
-    const {theme} = useTurtleTheme()
 
 
     return (

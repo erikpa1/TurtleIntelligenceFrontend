@@ -28,11 +28,9 @@ export function CopilotPlusVSearch({}) {
     return (
         <Button
             type={"text"}
+            icon={<IconNetworkIntelNode/>}
         >
-            <Space>
-                <IconNetworkIntelNode/>
-                {t("copilot")} + {t("vsearch")}
-            </Space>
+            {t("copilot")} + Vsearch
         </Button>
     )
 }
