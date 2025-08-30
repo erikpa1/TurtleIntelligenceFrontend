@@ -1,22 +1,27 @@
 import React from "react"
-import TopBarWrapper from "@Turtle/Components/TopBarWrapper";
-import {Button, Flex, Space} from "antd";
-import {FileSearchOutlined, SearchOutlined, TagOutlined} from "@ant-design/icons";
-import {useTranslation} from "react-i18next";
-import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
-import VSearchView from "@Turtle/DocInt/Dock/VSearchView";
-import {CopilotButton, CopilotPlusVSearch} from "@Turtle/ComponentsAI/AiButtons";
-import IconSearchInsight from "@Turtle/Icons/IconSearchInsight";
-import DocumentTags from "@Turtle/DocInt/Dock/DocumentTags";
-import {SelectTagsTree} from "@Turtle/Tags/SelectTagsTree";
-import Tag from "@Turtle/Tags/Tag";
+import {Button, Flex, Space} from "antd"
+import TopBarWrapper from "@Turtle/Components/TopBarWrapper"
+
+import {ContainerOutlined, SearchOutlined, TagOutlined} from "@ant-design/icons"
+import {useTranslation} from "react-i18next"
+import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal"
+import VSearchView from "@Turtle/DocInt/Components/VSearchView"
+import {CopilotButton, CopilotPlusVSearch} from "@Turtle/ComponentsAI/AiButtons"
+import IconSearchInsight from "@Turtle/Icons/IconSearchInsight"
+import DocumentTags from "@Turtle/DocInt/Components/DocumentTags"
+import {SelectTagsTree} from "@Turtle/Tags/SelectTagsTree"
+import Tag from "@Turtle/Tags/Tag"
+import CreateDocCollection from "@Turtle/DocInt/Components/CreateDocCollection"
 
 export default function DocIntTopBar() {
     return (
         <TopBarWrapper>
 
             <_FilterDocumentsButton/>
+
             <_EditFilters/>
+
+            <_CreateCollection/>
 
             <Flex
                 style={{
@@ -143,6 +148,36 @@ function _EditFilters({}) {
             icon={<TagOutlined/>}
         >
             {t("edit.tags")}
+        </Button>
+    )
+}
+
+function _CreateCollection({}) {
+
+    const [t] = useTranslation()
+
+    const {activate} = useTurtleModal()
+
+    const [selectedFilters, setSelectedFilters] = React.useState<Set<string>>(new Set())
+
+    function filterPressed() {
+
+        activate({
+            title: `${t("create.collection")}:`,
+            closable: true,
+            content: (
+                <CreateDocCollection/>
+            )
+        })
+    }
+
+    return (
+        <Button
+            type={"text"}
+            onClick={filterPressed}
+            icon={<ContainerOutlined/>}
+        >
+            {t("create.collection")}
         </Button>
     )
 }

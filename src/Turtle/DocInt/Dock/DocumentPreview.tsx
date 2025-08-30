@@ -6,9 +6,12 @@ import {CenterSpinner} from "@Turtle/Components/Loadings"
 import {Flex, Space} from "antd";
 import TopBarWrapper from "@Turtle/Components/TopBarWrapper";
 import DocPreviewTopBar from "@Turtle/DocInt/Dock/DocPreviewTopBar";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 
 
 export default function DocumentPreview({documentUid}) {
+
+    const {theme} = useTurtleTheme()
 
     const [isLoading, setIsLoading] = React.useState(true)
 
@@ -46,7 +49,7 @@ export default function DocumentPreview({documentUid}) {
                             src={DocumentsApi.DocFilePath(doc.uid)}
                             style={{
                                 width: "100%",
-                                height: "calc(100% - 52px)"
+                                height: `calc(100% - ${theme.topBarHeightBig} - 7px)`
                             }}
                             type="application/pdf"
                         />

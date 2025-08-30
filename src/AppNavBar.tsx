@@ -68,7 +68,9 @@ export default function AppNavBar() {
                             lang={"widgets"}
                         />
 
-                        <hr/>
+                        <hr style={{
+                            width: "10px"
+                        }}/>
 
                         <MyNavbarItem
                             icon={<IconSimulation width={"30px"} height={"30px"}/>}

@@ -3,9 +3,18 @@ import ColorConstants from "@Turtle/Constants/ColorConstants";
 
 
 class TurtleTheme {
+    topBarHeightBig = "45px"
     bigPadding = "15px"
     iconPrimaryColor = ColorConstants.AZURE_BLUE
     iconSecondaryColor = ColorConstants.GRAY
+
+    GetSplitterBigHeight(): string {
+        return `calc(100vh - ${this.topBarHeightBig})`
+    }
+
+    GetSpliterContentHeight(): string {
+        return `calc(100% - ${this.topBarHeightBig})`
+    }
 
 }
 

@@ -32,7 +32,7 @@ export function RightSubmitButton({
     )
 }
 
-export function RightSubmitHtmlButton({onClick}) {
+export function RightSubmitHtmlButton({}) {
 
     const [t] = useTranslation()
 
@@ -42,7 +42,6 @@ export function RightSubmitHtmlButton({onClick}) {
             flex={1}
         >
             <Button
-                onClick={onClick}
                 type={"primary"}
                 htmlType={"button"}
             >

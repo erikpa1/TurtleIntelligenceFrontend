@@ -10,10 +10,8 @@ import {
     HierarchyFlex,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents"
-import CreateDocumentView, {EditDocumentView} from "@Turtle/DocInt/Dock/CreateDocumentView"
-import AskInDocumentView from "@Turtle/DocInt/Dock/AskInDocumentView"
+import CreateDocumentView from "@Turtle/DocInt/Dock/CreateDocumentView"
 import TurtleApp from "@TurtleApp/TurtleApp"
-import DocumentsApi from "@Turtle/DocInt/Api/DocumentsApi"
 import AgentIncident from "@Turtle/AgentIncidents/AgentIncident";
 import AgentIncidentsApi from "@Turtle/AgentIncidents/AgentIncidentsApi";
 

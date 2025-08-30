@@ -1,18 +1,24 @@
 import React from "react"
-import {Splitter} from "antd"
+import {Splitter, Tabs} from "antd"
 
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
 import DocIntTopBar from "@Turtle/DocInt/Dock/DocIntTopBar";
-import DocIntHierarchy from "@Turtle/DocInt/Dock/DocIntHierarchy";
+import {DocIntHierarchy} from "@Turtle/DocInt/Dock/DocIntHierarchy";
 import {useParams} from "react-router-dom";
 import DocumentPreview from "@Turtle/DocInt/Dock/DocumentPreview";
+import DockDocIntCollectionsHierarchy from "@Turtle/DocInt/Dock/DocIntCollectionsHierarchy";
+import {useTranslation} from "react-i18next";
 
 
 export default function DocIntDock({}) {
 
-    const {bigPadding} = useTurtleTheme()
+    const [t] = useTranslation()
+
+    const {bigPadding, theme} = useTurtleTheme()
 
     const {documentUid} = useParams()
+
+    const [leftSwitch, setLeftSwitch] = React.useState("documents")
 
 
     return (
@@ -26,25 +32,58 @@ export default function DocIntDock({}) {
             }}>
 
                 <Splitter.Panel
-                    defaultSize="20%"
+                    defaultSize="25%"
                     style={{
                         backgroundColor: "white",
-                        padding: bigPadding
                     }}
                 >
-                    <DocIntHierarchy/>
+
+                    <Tabs
+                        defaultActiveKey={leftSwitch}
+                        centered
+                        onChange={setLeftSwitch}
+                        size={"small"}
+                        items={[
+                            {
+                                label: t("documents"),
+                                key: "documents",
+                            },
+                            {
+                                label: t("collections"),
+                                key: "collections",
+                            }
+                        ]}
+
+
+                    />
+
+                    <div style={{
+                        padding: bigPadding
+                    }}>
+                        {
+                            leftSwitch === "documents" && (
+                                <DocIntHierarchy/>
+                            )
+                        }
+
+                        {
+                            leftSwitch === "collections" && (
+                                <DockDocIntCollectionsHierarchy/>
+                            )
+                        }
+                    </div>
+
                 </Splitter.Panel>
 
                 <Splitter.Panel
-                    defaultSize="80%"
+                    defaultSize="75%"
                     style={{
-                        height: "95vh",
-
+                        height: theme.GetSplitterBigHeight(),
                     }}
                 >
                     {
                         documentUid && (
-                            <DocumentPreview documentUid={documentUid} />
+                            <DocumentPreview documentUid={documentUid}/>
                         )
                     }
                 </Splitter.Panel>

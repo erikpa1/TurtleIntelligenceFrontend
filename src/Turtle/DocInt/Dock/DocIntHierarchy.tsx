@@ -16,9 +16,12 @@ import {FileDocument} from "@Turtle/DocInt/Data/Document";
 import CreateDocumentView, {EditDocumentView} from "@Turtle/DocInt/Dock/CreateDocumentView";
 import {FileDropExample1} from "@Turtle/Examples/FileDropExample";
 import TurtleApp from "@TurtleApp/TurtleApp";
-import AskInDocumentView from "@Turtle/DocInt/Dock/AskInDocumentView";
+import AskInDocumentView from "@Turtle/DocInt/Components/AskInDocumentView";
 
-export default function DocIntHierarchy({}) {
+
+
+
+export function DocIntHierarchy({}) {
 
     const [t] = useTranslation()
 
