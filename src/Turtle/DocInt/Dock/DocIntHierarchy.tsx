@@ -19,8 +19,6 @@ import TurtleApp from "@TurtleApp/TurtleApp";
 import AskInDocumentView from "@Turtle/DocInt/Components/AskInDocumentView";
 
 
-
-
 export function DocIntHierarchy({}) {
 
     const [t] = useTranslation()
@@ -33,9 +31,6 @@ export function DocIntHierarchy({}) {
 
 
     function createHierarchy(documents: Array<FileDocument>) {
-
-        console.log(documents)
-
         return [
             {
                 key: "documents",
@@ -56,7 +51,7 @@ export function DocIntHierarchy({}) {
                         key: val.uid,
                         title: (
                             <HierarchyFlex onClick={() => {
-                                navigate(`/doc-int/${val.uid}`)
+                                navigate(val.GetDocIntPath())
                             }}>
 
                                 {val.name}

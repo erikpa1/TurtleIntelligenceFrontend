@@ -20,5 +20,9 @@ export class FileDocument {
         this.description = jObj.description ?? ""
     }
 
+    GetDocIntPath(): string {
+        return `/doc-int/doc/${this.uid}`
+    }
+
 
 }

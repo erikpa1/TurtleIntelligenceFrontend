@@ -142,5 +142,8 @@
     "edit.tags": "Edit tags",
     "create.collection": "Create collection",
     "docCollection.example1": "Final price is bigger than 1000$",
-    "collections": "Collections"
+    "collections": "Collections",
+    "extension": "Extension",
+    "recalculate": "Recalculate",
+    "clear": "Clear"
 }

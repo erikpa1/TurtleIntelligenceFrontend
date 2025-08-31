@@ -1,21 +1,17 @@
 import React from "react"
-import {useTranslation} from "react-i18next";
-import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
-import {useNavigate} from "react-router-dom";
-import {Flex, Tree, TreeDataNode} from "antd";
-import {FileDocument} from "@Turtle/DocInt/Data/Document";
+import {useTranslation} from "react-i18next"
+import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal"
+import {useNavigate} from "react-router-dom"
+import {Tree, TreeDataNode} from "antd"
 import {
-    HierarchyAddButton, HierarchyChatButton, HierarchyDeleteButton,
+    HierarchyDeleteButton,
     HierarchyEditButton,
     HierarchyFlex,
     HierarchyRightFlex
-} from "@Turtle/Components/HierarchyComponents";
-import CreateDocumentView, {EditDocumentView} from "@Turtle/DocInt/Dock/CreateDocumentView";
-import AskInDocumentView from "@Turtle/DocInt/Components/AskInDocumentView";
-import TurtleApp from "@TurtleApp/TurtleApp";
-import DocumentsApi from "@Turtle/DocInt/Api/DocumentsApi";
-import {DocumentsCollection} from "@Turtle/DocInt/Data/DocumentsCollection";
-import DocColApi from "@Turtle/DocInt/Api/DocColApi";
+} from "@Turtle/Components/HierarchyComponents"
+import TurtleApp from "@TurtleApp/TurtleApp"
+import {DocumentsCollection} from "@Turtle/DocInt/Data/DocumentsCollection"
+import DocColApi from "@Turtle/DocInt/Api/DocColApi"
 
 export default function DockDocIntCollectionsHierarchy({}) {
 
@@ -34,7 +30,9 @@ export default function DockDocIntCollectionsHierarchy({}) {
             return {
                 key: val.uid,
                 title: (
-                    <HierarchyFlex>
+                    <HierarchyFlex onClick={() => {
+                        navigate(`/doc-int/col/${val.uid}`)
+                    }}>
 
                         {val.name}
 

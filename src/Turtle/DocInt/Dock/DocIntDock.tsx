@@ -8,6 +8,8 @@ import {useParams} from "react-router-dom";
 import DocumentPreview from "@Turtle/DocInt/Dock/DocumentPreview";
 import DockDocIntCollectionsHierarchy from "@Turtle/DocInt/Dock/DocIntCollectionsHierarchy";
 import {useTranslation} from "react-i18next";
+import TurtleEmpty from "@Turtle/Components/TurtleEmpty";
+import {CollectionDocumentsList} from "@Turtle/DocInt/Dock/CollectionDocumentsList";
 
 
 export default function DocIntDock({}) {
@@ -16,7 +18,7 @@ export default function DocIntDock({}) {
 
     const {bigPadding, theme} = useTurtleTheme()
 
-    const {documentUid} = useParams()
+    const {viewMethod, documentUid} = useParams()
 
     const [leftSwitch, setLeftSwitch] = React.useState("documents")
 
@@ -81,16 +83,40 @@ export default function DocIntDock({}) {
                         height: theme.GetSplitterBigHeight(),
                     }}
                 >
-                    {
-                        documentUid && (
-                            <DocumentPreview documentUid={documentUid}/>
-                        )
-                    }
+                    <_ViewDispatcher
+                        viewMethod={viewMethod}
+                        documentUid={documentUid}
+                    />
+
                 </Splitter.Panel>
 
             </Splitter>
 
         </div>
     )
+
+}
+
+interface _ViewDispatcherProps {
+    viewMethod?: string
+    documentUid?: string
+}
+
+function _ViewDispatcher({viewMethod, documentUid}: _ViewDispatcherProps) {
+
+    if (viewMethod === "col" && documentUid) {
+        return (
+            <CollectionDocumentsList colUid={documentUid}/>
+        )
+    } else if (viewMethod === "doc" && documentUid) {
+        return (
+            <DocumentPreview documentUid={documentUid}/>
+        )
+    } else {
+        return (
+            <TurtleEmpty/>
+        )
+    }
+
 
 }
