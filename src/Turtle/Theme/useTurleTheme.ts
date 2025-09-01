@@ -7,6 +7,8 @@ class TurtleTheme {
     bigPadding = "15px"
     iconPrimaryColor = ColorConstants.AZURE_BLUE
     iconSecondaryColor = ColorConstants.GRAY
+    borderColor = ColorConstants.AZURE_BLUE
+    borderHoverColor = ColorConstants.AZURE_BLUE_HOVER
 
     GetSplitterBigHeight(): string {
         return `calc(100vh - ${this.topBarHeightBig})`
@@ -39,10 +41,12 @@ export function useThemeInit(): () => void {
     const {setTheme} = useTurtleTheme()
 
     function init() {
-        // const redOne = new TurtleTheme()
-        // redOne.iconPrimaryColor = ColorConstants.RED
-        // redOne.iconSecondaryColor = ColorConstants.GRAY
-        // setTheme(redOne)
+        const redOne = new TurtleTheme()
+        redOne.iconPrimaryColor = ColorConstants.RED
+        redOne.iconSecondaryColor = ColorConstants.GRAY
+        redOne.borderColor = ColorConstants.RED
+        redOne.borderHoverColor = ColorConstants.RED
+        setTheme(redOne)
     }
 
 

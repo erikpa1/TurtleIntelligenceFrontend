@@ -5,6 +5,7 @@ import KnowledgeApi from "@Turtle/Knowledge/Api/KnowledgeApi";
 import {CenterSpinner} from "@Turtle/Components/Loadings";
 import TurtleEmpty from "@Turtle/Components/TurtleEmpty";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
+import {MarkdownParser} from "@Turtle/Knowledge/KHMarkDown";
 
 export default function KnowledgeEditView({knUid}) {
 
@@ -52,6 +53,15 @@ function _KnowledgeTypeDispatcher({knowledge}: _KnowledgeTypeDispatcherProps) {
 
     const {bigPadding} = useTurtleTheme()
 
+
+    const toSee = React.useMemo(() => {
+        const parser = new MarkdownParser()
+        const parsed = parser.parseMarkdown(knowledge.typeData["2text"])
+        const htmlOutput = parser.toHtml(parsed)
+        return htmlOutput
+    }, [knowledge])
+
+
     if (knowledge.type === KnowledgeType.PLAIN_TEXT) {
         return (
             <Flex
@@ -64,7 +74,11 @@ function _KnowledgeTypeDispatcher({knowledge}: _KnowledgeTypeDispatcherProps) {
 
                 <h4>{knowledge.description}</h4>
 
-                <div>{knowledge.typeData["text"]}</div>
+
+                <div
+                    dangerouslySetInnerHTML={{__html: toSee}}
+                />
+                <div>{}</div>
             </Flex>
         )
     }

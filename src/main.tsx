@@ -10,21 +10,19 @@ import App from './App';
 import "./i18n"
 import {HashRouter} from "react-router-dom";
 
-import {ConfigProvider} from "antd";
-
 import {TurxiosProvider} from "@Turtle/Api/Turxios";
-import {TurtleTheme} from "./mainTheme";
+
 import {QueryClientProvider} from "react-query";
 import {TurtleQueryClient} from "@Turtle/TanStack";
+import TurtleThemeProvider from "../TurtleThemeProvider";
 
 const root = createRoot(document.getElementById('root') as any);
 
 
 root.render(
     <QueryClientProvider client={TurtleQueryClient}>
-        <ConfigProvider
-            theme={TurtleTheme}
-        >
+
+        <TurtleThemeProvider>
             <Suspense fallback={""}>
                 <HashRouter
                     future={{
@@ -36,6 +34,7 @@ root.render(
                     <App/>
                 </HashRouter>
             </Suspense>
-        </ConfigProvider>
+        </TurtleThemeProvider>
+
     </QueryClientProvider>
 );
