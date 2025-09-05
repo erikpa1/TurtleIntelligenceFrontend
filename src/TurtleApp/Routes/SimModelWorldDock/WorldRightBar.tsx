@@ -10,6 +10,7 @@ import ErrorBoundary, {CompactErrorView} from "@Turtle/Components/ErrorBoundary"
 import {useTranslation} from "react-i18next";
 import RunningSimTab from "@TurtleApp/Routes/SimModelWorldDock/RunningSimTab";
 import TurtleEmpty from "@Turtle/Components/TurtleEmpty";
+import AIDescriptionItem from "@Turtle/ReflectiveUI/AIDescItem";
 
 
 export default function WorldRightBar() {
@@ -92,6 +93,8 @@ function _EntityEditProps({entity}: _EntityEditPropsProps) {
             wrapperCol={{span: 15}}
         >
             <EntityNameProperty entity={entity}/>
+
+            <AIDescriptionItem entity={entity} attribute={"aiDescription"}/>
 
             <EntityTypeProperty entity={entity}/>
 

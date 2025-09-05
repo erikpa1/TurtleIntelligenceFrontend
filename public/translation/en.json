@@ -145,5 +145,6 @@
     "collections": "Collections",
     "extension": "Extension",
     "recalculate": "Recalculate",
-    "clear": "Clear"
+    "clear": "Clear",
+    "aiDescription": "AI description"
 }

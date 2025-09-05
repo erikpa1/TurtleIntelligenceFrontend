@@ -14,6 +14,8 @@ export default class Entity {
     mesh = ""
     model = ""
 
+    aiDescription = ""
+
     modified = false
     created = false
 
@@ -24,10 +26,12 @@ export default class Entity {
             uid: this.uid,
             name: this.name,
             type: this.type,
+            aiDescription: this.aiDescription,
             position: this.position,
             model: this.model,
             dependencies: this.dependencies,
             typeData: this.typeData,
+
         }
     }
 
@@ -35,6 +39,7 @@ export default class Entity {
         this.uid = jObj.uid ?? ""
         this.type = jObj.type ?? this.type
         this.name = jObj.name ?? this.name
+        this.aiDescription = jObj.aiDescription ?? this.aiDescription
         this.position = jObj.position ?? this.position
         this.model = jObj.model ?? ""
         this.dependencies = jObj.dependencies ?? {}
