@@ -21,6 +21,9 @@ export default class Entity {
 
     typeData: TypeData = {}
 
+
+    runtimeId = 0
+
     ToJson(): any {
         return {
             uid: this.uid,

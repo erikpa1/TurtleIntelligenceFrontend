@@ -2,6 +2,7 @@ import React from "react"
 
 import {Route, Routes} from "react-router-dom"
 import SceneEditDock from "@Turtle/Scene/SceneEditDock";
+import ForecastingDock from "@TurtleApp/Forecasting/ForecastingDock";
 
 
 const ScenesDock = React.lazy(() => import("@Turtle/Scenes/ScenesDock"))
@@ -71,6 +72,9 @@ export default function AppRoutes({}) {
 
             <Route path={"/scene"} element={<SceneEditDock/>}/>
             <Route path={"/scene/:sceneUid"} element={<SceneEditDock/>}/>
+
+            <Route path={"/forecasting"} element={<ForecastingDock/>}/>
+            <Route path={"/forecasting/:forecast"} element={<ForecastingDock/>}/>
 
         </Routes>
     );

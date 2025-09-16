@@ -18,10 +18,12 @@ import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
 import {useActiveSimulation} from "@TurtleApp/Routes/SimModelWorldDock/Controllers/RunningSimulationController";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import SimConfigSettingsButton from "@TurtleApp/Routes/SimModelWorldDock/Components/SimConfig";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 
 
 export default function WorldTopBar({}) {
 
+    const {bigPadding} = useTurtleTheme()
 
     return (
         <div style={{
@@ -47,6 +49,9 @@ export default function WorldTopBar({}) {
                 <Flex
                     justify={"end"}
                     flex={1}
+                    style={{
+                        paddingRight: bigPadding
+                    }}
                 >
                     <_SimulationSection/>
                 </Flex>
@@ -175,8 +180,15 @@ function _SimulationSection({}) {
 
     async function simulatePressed() {
         TurtleApp.Lock()
-        const simUid = await WorldApi.Simulate(WorldSingleton.I.uid)
-        setIsRunning(simUid)
+        const simStates = await WorldApi.Simulate(WorldSingleton.I.uid)
+        Object.entries(simStates).forEach(([key, value]) => {
+            const entity = WorldSingleton.I.entities.get(key)
+            console.log(key, value)
+            if (entity) {
+                entity.runtimeId = value
+            }
+        })
+        setIsRunning(simStates.runUid)
         TurtleApp.Unlock()
     }
 

@@ -146,5 +146,7 @@
     "extension": "Extension",
     "recalculate": "Recalculate",
     "clear": "Clear",
-    "aiDescription": "AI description"
+    "aiDescription": "AI description",
+    "resources": "Resources",
+    "workerPool": "Worker pool"
 }

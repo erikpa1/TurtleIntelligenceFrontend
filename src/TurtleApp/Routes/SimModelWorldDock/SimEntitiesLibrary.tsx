@@ -71,6 +71,13 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
         ]
     }, [])
 
+    const resources = React.useMemo(() => {
+        return [
+            {title: t(EntitiesFactory.TYPE_WORKER_POOL), key: EntitiesFactory.TYPE_WORKER_POOL},
+
+        ]
+    }, [])
+
     const actors = React.useMemo(() => {
         return [
             {title: t("human"), key: "human", icon: "/icons/flag_check.svg"},
@@ -86,6 +93,25 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
                 title: t("process.modeling"),
                 key: "process_modeling",
                 children: basicEntities.map((val) => ({
+                    key: val.key,
+                    title: (
+                        <Flex
+                            gap={10}
+                            flex={1}
+                            onClick={() => {
+                                elementClicked(val.key)
+                            }}
+                        >
+                            <HierarchyCustomIcon icon={EntitiesFactory.GetIconSvg(val.key)}/>
+                            {val.title}
+                        </Flex>
+                    ),
+                }))
+            },
+            {
+                title: t("resources"),
+                key: "resources",
+                children: resources.map((val) => ({
                     key: val.key,
                     title: (
                         <Flex

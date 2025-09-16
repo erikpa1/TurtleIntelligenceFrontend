@@ -7,7 +7,7 @@ import axios from "axios";
 export default class WorldApi {
 
 
-    static async Simulate(worldUid: string): Promise<string> {
+    static async Simulate(worldUid: string): Promise<IRunningWorld> {
         return (await axios.post("/api/w/simulate", null, {
             params: {
                 uid: worldUid
@@ -66,4 +66,11 @@ export default class WorldApi {
     }
 
 
+}
+
+interface IRunningWorld {
+    runUid: string
+    runStates: {
+        runtimeIds: {}
+    }
 }
