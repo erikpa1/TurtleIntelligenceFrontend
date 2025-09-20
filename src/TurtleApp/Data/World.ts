@@ -8,12 +8,15 @@ export default class World {
     name = ""
     uid = ""
     entities: Map<string, Entity> = new Map<string, Entity>()
+    entitiesById: Map<number, Entity> = new Map<number, Entity>()
     deletedEntities = new Set<string>()
 
     connections = new Map<string, Set<string>>()
 
     createdConnections = new Map<string, Set<string>>()
     deletedConnections = new Map<string, Set<string>>()
+
+    activeSecond = 0
 
     ToJsonModified(): any {
 
@@ -174,6 +177,11 @@ export default class World {
 
     EmitConnectionsChanged() {
         aee.emit("WorldConnectionsChanged", null)
+    }
+
+    SimStarted() {
+        WorldSingleton.I.entitiesById.clear()
+        WorldSingleton.I.activeSecond = 0
     }
 
 

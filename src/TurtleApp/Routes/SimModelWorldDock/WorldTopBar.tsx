@@ -181,13 +181,18 @@ function _SimulationSection({}) {
     async function simulatePressed() {
         TurtleApp.Lock()
         const simStates = await WorldApi.Simulate(WorldSingleton.I.uid)
-        Object.entries(simStates).forEach(([key, value]) => {
+
+        WorldSingleton.I.SimStarted()
+
+        Object.entries(simStates.runStates.runtimeIds).forEach(([key, value]: any) => {
             const entity = WorldSingleton.I.entities.get(key)
-            console.log(key, value)
+
             if (entity) {
-                entity.runtimeId = value
+                WorldSingleton.I.entitiesById.set(value, entity)
             }
+
         })
+
         setIsRunning(simStates.runUid)
         TurtleApp.Unlock()
     }
@@ -196,10 +201,10 @@ function _SimulationSection({}) {
     async function pausePressed() {
         if (isPaused) {
             setIsPaused(false)
-            await WorldApi.PauseSimulation(isRunning)
+            await WorldApi.ResumeSimulation(isRunning)
         } else {
             setIsPaused(true)
-            await WorldApi.ResumeSimulation(isRunning)
+            await WorldApi.PauseSimulation(isRunning)
         }
     }
 
@@ -210,8 +215,9 @@ function _SimulationSection({}) {
 
 
     if (isRunning !== "") {
+
         return (
-            <Flex gap={5}>
+            <Space>
 
                 <span>{second} (s) / 100 (s)</span>
 
@@ -224,27 +230,39 @@ function _SimulationSection({}) {
                 }
 
                 <HierarchyStopButton onClick={stopPressed}/>
-            </Flex>
+            </Space>
         )
     } else {
         return (
             <Flex>
-                <SimConfigSettingsButton/>
-
                 <Button
                     onClick={simulatePressed}
                     type={"primary"}
+                    icon={<PlayCircleOutlined/>}
                 >
-
                     {t("simulate")}
-                    <PlayCircleOutlined/>
                 </Button>
+                <SimConfigSettingsButton/>
             </Flex>
         )
     }
 
 }
 
+function _BreakPoint({}) {
+
+    const [t] = useTranslation()
+
+    return (
+        <Flex>
+            <Button
+                type={"text"}
+            >
+                {t("break.point")}
+            </Button>
+        </Flex>
+    )
+}
 
 function _SimHudEditView({}) {
 

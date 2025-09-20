@@ -58,7 +58,11 @@ export default function WorldRightBar() {
 
             {
                 activeTab === "config" && (
-                    entity ? <_EntityEditProps entity={entity}/> : (
+                    entity ? (
+                        <ErrorBoundary>
+                            <_EntityEditProps entity={entity}/>
+                        </ErrorBoundary>
+                    ) : (
                         <div style={{
                             marginTop: "30vh"
                         }}>
@@ -70,7 +74,9 @@ export default function WorldRightBar() {
 
             {
                 activeTab === "simulation" && (
-                    <RunningSimTab/>
+                    <ErrorBoundary>
+                        <RunningSimTab/>
+                    </ErrorBoundary>
                 )
             }
         </AeeWrapper>

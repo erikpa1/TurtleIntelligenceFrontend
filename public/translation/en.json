@@ -148,5 +148,7 @@
     "clear": "Clear",
     "aiDescription": "AI description",
     "resources": "Resources",
-    "workerPool": "Worker pool"
+    "workerPool": "Worker pool",
+    "config": "Config",
+    "finish": "Finish"
 }

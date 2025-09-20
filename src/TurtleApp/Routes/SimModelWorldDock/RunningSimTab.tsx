@@ -1,230 +1,152 @@
 import React from "react"
-import TurtleEmpty from "@Turtle/Components/TurtleEmpty";
-import {SimEvent} from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEvent";
+import TurtleEmpty, {TurtleWaitForData} from "@Turtle/Components/TurtleEmpty";
+import {SimUpcomingEvent} from "@TurtleApp/Routes/SimModelWorldDock/Data/SimUpcomingEvent";
 
 import {Card, Tag, Space, Typography, Empty} from 'antd';
-import {PlayCircleOutlined, StopOutlined, CheckCircleOutlined, ClockCircleOutlined} from '@ant-design/icons';
-
-const {Text, Title} = Typography;
+import Icon, {PlayCircleOutlined, StopOutlined, CheckCircleOutlined, ClockCircleOutlined} from '@ant-design/icons';
+import aee from "@Turtle/Data/Aee";
+import {SimSecondUpdate} from "@TurtleApp/Data/SimulationResponse";
+import {IconSimulation} from "@Turtle/Icons";
+import {WorldSingleton} from "@TurtleApp/Data/World";
+import EntitiesFactory from "@TurtleApp/Factories/EntitiesFactory";
+import {useTranslation} from "react-i18next";
+import SimEntitiesLibrary from "@TurtleApp/Routes/SimModelWorldDock/SimEntitiesLibrary";
 
 export default function RunningSimTab() {
 
-    const event1 = new SimEvent()
-
 
     return (
         <div>
-
             <EventsList/>
-            <TurtleEmpty/>
-        </div>
-    )
-}
-
-interface _EventViewProps {
-    event: SimEvent
-}
-
-function _EventView({event}: _EventViewProps) {
-    return (
-        <div>
-            {
-                event.id
-            }
-            {
-                event.type
-            }
         </div>
     )
 }
 
 
-type EventType = "spawn" | "unspawn" | "finish";
+export function EventsList() {
 
-interface Event {
-    id: string;
-    type: EventType;
-    name: string;
-    timestamp: Date;
-    duration?: number;
-}
+    const [t] = useTranslation()
 
-const eventIcons = {
-    spawn: PlayCircleOutlined,
-    unspawn: StopOutlined,
-    finish: CheckCircleOutlined,
-};
+    const [simEvents, setSimEvents] = React.useState<SimUpcomingEvent[]>([])
 
-const eventColors = {
-    spawn: 'success',
-    unspawn: 'error',
-    finish: 'processing',
-};
+    function receivedNewEvents(stepState: SimSecondUpdate) {
 
-// Mock data generator
-const generateMockEvents = (): Event[] => {
-    const eventTypes: EventType[] = ["spawn", "unspawn", "finish"];
-    const eventNames = [
-        "Database Connection",
-        "User Authentication",
-        "File Processing",
-        "Email Service",
-        "Cache Update",
-        "API Request",
-        "Background Job",
-        "Data Sync",
-    ];
+        const stayingEvenets = simEvents.filter((event) => {
 
-    return Array.from({length: 12}, (_, i) => ({
-        id: `event-${i + 1}`,
-        type: eventTypes[Math.floor(Math.random() * eventTypes.length)],
-        name: eventNames[Math.floor(Math.random() * eventNames.length)],
-        timestamp: new Date(Date.now() - Math.random() * 3600000), // Random time within last hour
-        duration: Math.random() > 0.5 ? Math.floor(Math.random() * 5000) + 1000 : undefined,
-    }));
-};
+            console.log(event.second, stepState.second)
 
-function formatDuration(ms: number): string {
-    if (ms < 1000) return `${ms}ms`;
-    if (ms < 60000) return `${(ms / 1000).toFixed(1)}s`;
-    return `${(ms / 60000).toFixed(1)}m`;
-}
+            return event.second <= stepState.second
+        })
 
-function formatTimestamp(date: Date): string {
-    const now = new Date();
-    const diff = now.getTime() - date.getTime();
 
-    if (diff < 60000) return "Just now";
-    if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
-    if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
-    return date.toLocaleDateString();
-}
-
-export  function EventsList() {
-    const [events, setEvents] = React.useState<Event[]>([]);
-    const [currentTime, setCurrentTime] = React.useState(new Date());
+        setSimEvents([...stayingEvenets, ...stepState.events])
+    }
 
     React.useEffect(() => {
-        // Initialize with mock data
-        setEvents(generateMockEvents().sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime()));
-
-        // Update current time every second for relative timestamps
-        const timer = setInterval(() => {
-            setCurrentTime(new Date());
-        }, 1000);
-
-        // Simulate new events coming in
-        const eventTimer = setInterval(() => {
-            const newEvent: Event = {
-                id: `event-${Date.now()}`,
-                type: ["spawn", "unspawn", "finish"][Math.floor(Math.random() * 3)] as EventType,
-                name: [
-                    "Database Connection",
-                    "User Authentication",
-                    "File Processing",
-                    "Email Service",
-                    "Cache Update",
-                    "API Request",
-                ][Math.floor(Math.random() * 6)],
-                timestamp: new Date(),
-                duration: Math.random() > 0.5 ? Math.floor(Math.random() * 5000) + 1000 : undefined,
-            };
-
-            setEvents((prev) => [newEvent, ...prev].slice(0, 20)); // Keep only latest 20 events
-        }, 3000);
-
+        aee.on("SimSecond", receivedNewEvents)
         return () => {
-            clearInterval(timer);
-            clearInterval(eventTimer);
-        };
-    }, []);
+            aee.off("SimSecond", receivedNewEvents)
+        }
+    }, [])
 
     return (
         <div style={{padding: '16px'}}>
-            <Space align="center" style={{marginBottom: '16px', color: '#8c8c8c'}}>
-                <ClockCircleOutlined/>
-                <Text type="secondary">Live event stream - Updates every 3 seconds</Text>
-            </Space>
 
             <Space direction="vertical" size="middle" style={{width: '100%'}}>
-                {events.map((event) => {
-                    const IconComponent = eventIcons[event.type];
-                    const color = eventColors[event.type];
+                {simEvents.map((event, index) => {
 
-                    return (
-                        <Card
-                            key={event.id}
-                            hoverable
-                            style={{
-                                transition: 'all 0.2s',
-                                borderRadius: '8px',
-                            }}
-                            bodyStyle={{padding: '16px'}}
-                        >
-                            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                                <Space align="center" size="middle">
-                                    <div
-                                        style={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            width: '32px',
-                                            height: '32px',
-                                            borderRadius: '50%',
-                                            backgroundColor: '#f5f5f5',
-                                        }}
-                                    >
-                                        <IconComponent style={{fontSize: '16px'}}/>
-                                    </div>
+                    const entity = WorldSingleton.I.entitiesById.get(event.id)
 
-                                    <div>
-                                        <Space align="center" size="small" style={{marginBottom: '4px'}}>
-                                            <Text strong>{event.name}</Text>
-                                            <Tag color={color} style={{textTransform: 'capitalize'}}>
-                                                {event.type}
-                                            </Tag>
-                                        </Space>
+                    if (entity) {
+                        const color = "red"
+
+                        return (
+                            <Card
+                                key={`${index}-${event.id}`}
+                                hoverable
+                                style={{
+                                    transition: 'all 0.2s',
+                                    borderRadius: '8px',
+                                }}
+                                styles={{
+                                    body: {padding: '16px'}
+                                }}
+                            >
+                                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                                    <Space align="center" size="middle">
+                                        <div
+                                            style={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                width: '32px',
+                                                height: '32px',
+                                                borderRadius: '50%',
+                                                backgroundColor: '#f5f5f5',
+                                            }}
+                                        >
+                                            {
+                                                React.createElement(EntitiesFactory.GetIconComponent(entity.type))
+                                            }
+                                        </div>
+
                                         <div>
-                                            <Text type="secondary" style={{fontSize: '12px'}}>
-                                                {formatTimestamp(event.timestamp)}
-                                            </Text>
-                                        </div>
-                                    </div>
-                                </Space>
+                                            <Space align="center" size="small" style={{marginBottom: '4px'}}>
 
-                                <div style={{textAlign: 'right'}}>
-                                    {event.duration && (
-                                        <div style={{marginBottom: '4px'}}>
-                                            <Text
-                                                type="secondary"
-                                                style={{
-                                                    fontSize: '12px',
-                                                    fontFamily: 'monospace',
-                                                }}
-                                            >
-                                                {formatDuration(event.duration)}
-                                            </Text>
+                                                <Typography.Text strong>
+                                                    {entity.name}
+                                                </Typography.Text>
+                                            </Space>
+
+                                            <div>
+                                                <Typography.Text type="secondary" style={{fontSize: '12px'}}>
+                                                    {event.second - WorldSingleton.I.activeSecond}
+                                                </Typography.Text>
+                                            </div>
                                         </div>
-                                    )}
-                                    <Text type="secondary" style={{fontSize: '11px'}}>
-                                        {event.timestamp.toLocaleTimeString()}
-                                    </Text>
+                                    </Space>
+
+                                    <div style={{marginBottom: '4px'}}>
+                                        <Typography.Text
+                                            type="secondary"
+                                            style={{
+                                                fontSize: '12px',
+                                                fontFamily: 'monospace',
+                                            }}
+                                        >
+                                            <Tag color={event.GetTypeColor()}>
+                                                {t(event.GetTypeName())}
+                                            </Tag>
+                                        </Typography.Text>
+                                    </div>
                                 </div>
-                            </div>
-                        </Card>
-                    );
+
+                            </Card>
+                        );
+                    } else {
+                        return (
+                            <Card
+                                key={`${index}-${event.id}`}
+                                hoverable
+                                style={{
+                                    transition: 'all 0.2s',
+                                    borderRadius: '8px',
+                                }}
+                                styles={{
+                                    body: {padding: '16px'}
+                                }}
+                            >
+                                Invalid entity
+                            </Card>
+                        )
+                    }
+
+
                 })}
             </Space>
 
-            {events.length === 0 && (
-                <Card style={{textAlign: 'center', padding: '32px'}}>
-                    <Empty
-                        image={<ClockCircleOutlined style={{fontSize: '48px', color: '#d9d9d9'}}/>}
-                        description={
-                            <Text type="secondary">No events yet. Waiting for activity...</Text>
-                        }
-                    />
-                </Card>
+            {simEvents.length === 0 && (
+                <TurtleWaitForData/>
             )}
         </div>
     );

@@ -46,8 +46,10 @@ export default function SimEntitiesLibrary() {
     return (
         <Tree
             treeData={data}
-            defaultExpandAll={true}
+            blockNode
             virtual
+            showLine
+            defaultExpandAll={true}
         />
     )
 

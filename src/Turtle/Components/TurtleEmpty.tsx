@@ -2,7 +2,9 @@
 
 
 import {useTranslation} from "react-i18next";
-import {Empty} from "antd";
+import {Card, Empty, Typography} from "antd";
+import {ClockCircleOutlined} from "@ant-design/icons";
+import React from "react";
 
 export default function TurtleEmpty() {
 
@@ -17,5 +19,21 @@ export default function TurtleEmpty() {
         }}>
             <Empty description={t("no.data")}/>
         </div>
+    )
+}
+
+export function TurtleWaitForData() {
+
+    const [t] = useTranslation()
+
+    return (
+        <Card style={{textAlign: 'center', padding: '32px'}}>
+            <Empty
+                image={<ClockCircleOutlined style={{fontSize: '48px', color: '#d9d9d9'}}/>}
+                description={
+                    <Typography.Text type="secondary">No data yet. Waiting for activity...</Typography.Text>
+                }
+            />
+        </Card>
     )
 }

@@ -4,6 +4,8 @@ import Myio from "@Turtle/Data/myio";
 import {SimSecondUpdate} from "@TurtleApp/Data/SimulationResponse";
 import aee from "@Turtle/Data/Aee";
 import {RuntimeActor} from "@TurtleApp/Data/Actor";
+import {WorldSingleton} from "@TurtleApp/Data/World";
+import {SimUpcomingEvent} from "@TurtleApp/Routes/SimModelWorldDock/Data/SimUpcomingEvent";
 
 
 interface RunningSimulationController {
@@ -28,6 +30,7 @@ export const useActiveSimulation = create<RunningSimulationController>((set) => 
     setIsRunning: (state: string) => set((newState) => ({isRunning: state})),
     second: 0,
     endSecond: 100,
+    events: [],
     setSecond: (second: number) => set((newState) => ({second: second})),
     setEndSecond: (second: number) => set((newState) => ({endSecond: second})),
 }))
@@ -44,7 +47,16 @@ export function runningSimulationController() {
 
 
     function simStepReceived(stepData: SimSecondUpdate) {
+
+        stepData.events = stepData.events.map((val) => {
+            const tmp = new SimUpcomingEvent()
+            tmp.FromJson(val)
+            return tmp
+        })
+
         setSecond(stepData.second)
+
+        WorldSingleton.I.activeSecond = stepData.second
 
         const spawned = Object.values(stepData.spawned)
 
@@ -54,7 +66,6 @@ export function runningSimulationController() {
                 tmp.FromJson(val)
                 return tmp
             })
-
             aee.emit("SimRunActorSpawned", spawnedOnes)
         }
 
@@ -70,6 +81,17 @@ export function runningSimulationController() {
                 aee.emit(`a-${key}`, val)
             })
         }
+
+        const events = Object.entries(stepData.events)
+
+        if (events.length > 0) {
+            events.forEach(([key, val]) => {
+                aee.emit(`a-${key}`, val)
+            })
+        }
+
+
+        aee.emit("SimSecond", stepData)
     }
 
     React.useEffect(() => {
