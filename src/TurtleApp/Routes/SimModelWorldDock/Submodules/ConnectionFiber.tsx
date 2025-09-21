@@ -6,6 +6,7 @@ import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
 import {CloseOutlined} from "@ant-design/icons";
 import {Button} from "antd";
 import {WorldSingleton} from "@TurtleApp/Data/World";
+import ColorConstants from "@Turtle/Constants/ColorConstants";
 
 
 interface ConnectionFiberProps {
@@ -39,9 +40,10 @@ export default function ConnectionFiber({
                     <Html>
                         <Button
                             type={"primary"}
+                            size={"small"}
                             onClick={disconnectClicked}
                             style={{
-                                backgroundColor: "red"
+                                backgroundColor: ColorConstants.RED
                             }}
                         >
                             <CloseOutlined/>
