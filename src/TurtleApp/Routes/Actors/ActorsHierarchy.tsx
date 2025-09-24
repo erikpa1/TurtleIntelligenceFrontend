@@ -11,11 +11,8 @@ import ActorsApi from "@TurtleApp/Api/ActorsApi";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import Actor from "@TurtleApp/Data/Actor";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
-import SimModel from "@TurtleApp/Data/SimModel";
-import EntityForm from "@Turtle/Components/Forms/EntityForm";
-import SimModelsApi from "@TurtleApp/Api/SimModelsApi";
-import ActorProperties from "@TurtleApp/Data/Actor_Properties";
 import IconColor from "@Turtle/Icons/IconColor";
+import COUSimActor from "@TurtleApp/Routes/Actors/COUActor";
 
 export default function ActorsHierarchy() {
 
@@ -24,21 +21,17 @@ export default function ActorsHierarchy() {
     const {activate, deactivate} = useTurtleModal()
 
     function editActor(actor: Actor) {
-
         activate({
             title: t("edit.actor"),
             content: (
-                <EntityForm
-                    entity={actor}
-                    properties={ActorProperties.Get()}
+                <COUSimActor
+                    actor={actor}
                     onBeforeSubmit={deactivate}
                     onAfterSubmit={refresh}
-                    submitFunction={ActorsApi.SaveActor}
                 />
             )
         })
     }
-
 
     function createActor() {
 
@@ -47,12 +40,10 @@ export default function ActorsHierarchy() {
         activate({
             title: t("create.actor"),
             content: (
-                <EntityForm
-                    entity={actor}
-                    properties={ActorProperties.Get()}
+                <COUSimActor
+                    actor={actor}
                     onBeforeSubmit={deactivate}
                     onAfterSubmit={refresh}
-                    submitFunction={ActorsApi.CreateActor}
                 />
             )
         })

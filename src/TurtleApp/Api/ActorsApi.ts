@@ -27,13 +27,8 @@ export default class ActorsApi {
         })
     }
 
-    static async SaveActor(actor: Actor) {
-        const data = new FormData()
-        data.set("data", JSON.stringify(actor.ToJson()))
-        await turxios.put("/api/actor", data)
-    }
 
-    static async CreateActor(actor: Actor) {
+    static async COUActor(actor: Actor) {
         const data = new FormData()
         data.set("data", JSON.stringify(actor.ToJson()))
         await turxios.post("/api/actor", data)

@@ -3,6 +3,7 @@ import {CreateUid, fetchMongoUid} from "../Utils/Uid";
 
 export type TypeData = {}
 
+
 export default class Entity {
 
     uid = ""
