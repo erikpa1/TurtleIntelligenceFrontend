@@ -19,3 +19,7 @@ export class Forecast {
         }
     }
 }
+
+export class ExponentionalSmoothingForecast {
+    index = 0
+}
