@@ -150,5 +150,6 @@
     "resources": "Resources",
     "workerPool": "Worker pool",
     "config": "Config",
-    "finish": "Finish"
+    "finish": "Finish",
+    "forecasting": "Forecasting"
 }
