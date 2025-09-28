@@ -1,10 +1,11 @@
 import React from 'react'
-import {Flex, Form} from "antd";
+import {Flex, Form, Select} from "antd";
 import {Forecast} from "@TurtleApp/Forecasting/Forecast";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import TurtleApp from "@TurtleApp/TurtleApp";
-import ForecastApi from "@TurtleApp/Forecasting/ForecastsApi";
+import ForecastApi, {ForecastingMethod} from "@TurtleApp/Forecasting/ForecastsApi";
+import {useTranslation} from "react-i18next";
 
 interface _COUForecastProps {
     forecast: Forecast
@@ -12,12 +13,18 @@ interface _COUForecastProps {
     onAfterSubmit?: () => void
 }
 
+
 export default function COUForecast({
 
                                         forecast,
                                         onBeforeSubmit,
                                         onAfterSubmit,
                                     }: _COUForecastProps) {
+
+    const [t] = useTranslation()
+
+    const [fcMethods, setFcMethods] = React.useState<Array<ForecastingMethod>>([])
+
 
     async function submit() {
         onBeforeSubmit && onBeforeSubmit()
@@ -27,6 +34,14 @@ export default function COUForecast({
         onAfterSubmit && onAfterSubmit()
     }
 
+    async function refresh() {
+        setFcMethods(await ForecastApi.ListForecastingMethods())
+    }
+
+    React.useEffect(() => {
+        refresh()
+    }, [])
+
     return (
         <Form layout={"vertical"}>
             <Flex vertical gap={15}>
@@ -35,6 +50,28 @@ export default function COUForecast({
                     entity={forecast}
                     attribute={"name"}
                 />
+
+                <Form.Item label={`${t("type")}:`}>
+                    <Select
+                        defaultValue={`${forecast.type}`}
+                        onChange={(val) => {
+                            forecast.type = Number(val)
+                        }}
+                    >
+                        {
+                            fcMethods.map((val) => {
+                                return (
+                                    <Select.Option
+                                        disabled={!val.enabled}
+                                        value={`${val.type}`}>
+                                        {t(val.name)}
+                                    </Select.Option>
+                                )
+                            })
+                        }
+                    </Select>
+                </Form.Item>
+
 
                 <RightSubmitButton onClick={submit}/>
             </Flex>

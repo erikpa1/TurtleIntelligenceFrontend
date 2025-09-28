@@ -3,13 +3,11 @@ export class Forecast {
     name = ""
     type = 0
 
-
     FromJson(data: any) {
         this.name = data.name ?? ""
         this.uid = data.uid ?? ""
         this.type = data.type ?? ""
     }
-
 
     ToJson(): any {
         return {

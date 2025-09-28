@@ -6,6 +6,7 @@ export default class ForecastApi {
 
     static async ListForecasts() {
         const reposne = (await Turxios.get<any[]>("/api/forecasts")).data
+        console.log(reposne)
         return reposne.map((val) => {
             const tmp = new Forecast()
             tmp.FromJson(val)
@@ -19,6 +20,11 @@ export default class ForecastApi {
         await Turxios.post("/api/forecast", form)
     }
 
+
+    static async ListForecastingMethods(): Promise<Array<ForecastingMethod>> {
+        return (await Turxios.get<Array<ForecastingMethod>>("/api/forecast/methods")).data
+    }
+
     static async DeleteForecast(uid: string) {
         await Turxios.delete("/api/forecast", {
             params: {
@@ -26,4 +32,10 @@ export default class ForecastApi {
             }
         })
     }
+}
+
+export interface ForecastingMethod {
+    name: string
+    type: number
+    enabled: boolean
 }

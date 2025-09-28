@@ -28,6 +28,7 @@ export function TurxiosProvider() {
         } else if (error.response && error.response.status === 404) {
             message.error(t("404 - not found"))
         } else {
+            console.error(error)
             message.error({
                 content: `${error.name}: ${error.message}`,
             })
