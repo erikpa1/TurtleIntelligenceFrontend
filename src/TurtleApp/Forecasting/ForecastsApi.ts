@@ -1,13 +1,18 @@
 import Turxios from "@Turtle/Api/Turxios";
 import {Forecast} from "@TurtleApp/Forecasting/Forecast";
+import {QueryHeader} from "@Turtle/Utils/Http";
 
 
 export default class ForecastApi {
 
-    static async ListForecasts() {
-        const reposne = (await Turxios.get<any[]>("/api/forecasts")).data
-        console.log(reposne)
-        return reposne.map((val) => {
+    static async ListForecasts(query: any = {}) {
+        const response = (await Turxios.get<any[]>("/api/forecasts/query", {
+            headers: {
+                ...QueryHeader(query)
+            }
+        })).data
+
+        return response.map((val) => {
             const tmp = new Forecast()
             tmp.FromJson(val)
             return tmp

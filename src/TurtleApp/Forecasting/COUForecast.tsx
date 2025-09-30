@@ -44,7 +44,7 @@ export default function COUForecast({
 
     return (
         <Form layout={"vertical"}>
-            <Flex vertical gap={15}>
+            <Flex vertical>
 
                 <StringAttributeView
                     entity={forecast}

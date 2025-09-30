@@ -31,12 +31,10 @@ export default function ForecastingHierarchy() {
             {
                 key: "forecasts",
                 title: (
-                    <Flex>
+                    <Flex gap={15}>
+                        <HierarchyCustomIcon icon={<IconSimulation/>}/>
 
-                        <Space>
-                            <HierarchyCustomIcon icon={<IconSimulation/>}/>
-                            {t("forecasts")} ({forecasts.length})
-                        </Space>
+                        <div>{t("forecasts")} ({forecasts.length})</div>
 
                         <HierarchyRightFlex>
                             <HierarchyAddButton
