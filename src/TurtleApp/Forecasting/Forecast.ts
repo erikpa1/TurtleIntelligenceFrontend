@@ -21,3 +21,10 @@ export class Forecast {
 export class ExponentionalSmoothingForecast {
     index = 0
 }
+
+
+export class ForecastData {
+    itemHeaders: Array<string> = []
+    itemDatas: Array<Array<number>> = []
+    periodLabels: Array<string> = []
+}

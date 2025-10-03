@@ -5,6 +5,7 @@ import SceneEditDock from "@Turtle/Scene/SceneEditDock";
 import ForecastingDock from "@TurtleApp/Forecasting/ForecastingDock";
 
 
+const TablesDock = React.lazy(() => import("@Turtle/Tables/TablesDock"))
 const ScenesDock = React.lazy(() => import("@Turtle/Scenes/ScenesDock"))
 const ThemeDock = React.lazy(() => import("@Turtle/Theme/ThemeDock"))
 const FlowsDock = React.lazy(() => import("@Turtle/Flows/FlowsDock"))
@@ -75,6 +76,9 @@ export default function AppRoutes({}) {
 
             <Route path={"/forecasting"} element={<ForecastingDock/>}/>
             <Route path={"/forecasting/:forecast"} element={<ForecastingDock/>}/>
+
+            <Route path={"/tables"} element={<TablesDock/>}/>
+            <Route path={"/tables/:tableUid"} element={<TablesDock/>}/>
 
         </Routes>
     );

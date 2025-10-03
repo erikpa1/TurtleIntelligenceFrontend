@@ -3,6 +3,7 @@ import TopBarWrapper from "@Turtle/Components/TopBarWrapper";
 import {Splitter} from "antd";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import ForecastingHierarchy from "@TurtleApp/Forecasting/ForecastingHierarchy";
+import ForecastView from "@TurtleApp/Forecasting/ForecastView";
 
 export default function ForecastingDock() {
 
@@ -34,9 +35,11 @@ export default function ForecastingDock() {
                 <Splitter.Panel
                     defaultSize="75%"
                     style={{
+                        position: "relative",
                         height: theme.GetSplitterBigHeight(),
                     }}
                 >
+                    <ForecastView/>
 
                 </Splitter.Panel>
             </Splitter>

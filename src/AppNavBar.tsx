@@ -265,6 +265,26 @@ function _WidgetsView({onRereoute}) {
 
                     <Col className="gutter-row" span={6}>
                         <MyNavbarItem
+                            lang={"tables"}
+                            link={"/tables"}
+                            icon={"/icons/flowsheet.svg"}
+                            onRerouted={onRereoute}
+                            iconStyle={ICON_STYLE}
+                        />
+                    </Col>
+
+                    <Col className="gutter-row" span={6}>
+                        <MyNavbarItem
+                            lang={"table.data"}
+                            link={"/table-data"}
+                            icon={"/icons/flowsheet.svg"}
+                            onRerouted={onRereoute}
+                            iconStyle={ICON_STYLE}
+                        />
+                    </Col>
+
+                    <Col className="gutter-row" span={6}>
+                        <MyNavbarItem
                             lang={"forecasting"}
                             link={"/forecasting"}
                             icon={"/icons/flowsheet.svg"}
