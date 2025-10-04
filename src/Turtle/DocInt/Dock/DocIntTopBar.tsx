@@ -18,10 +18,9 @@ export default function DocIntTopBar() {
         <TopBarWrapper>
 
             <_FilterDocumentsButton/>
-
             <_EditFilters/>
-
             <_CreateCollection/>
+            <_TagDocuments/>
 
             <Flex
                 style={{
@@ -161,7 +160,6 @@ function _CreateCollection({}) {
     const [selectedFilters, setSelectedFilters] = React.useState<Set<string>>(new Set())
 
     function filterPressed() {
-
         activate({
             title: `${t("create.collection")}:`,
             closable: true,
@@ -178,6 +176,36 @@ function _CreateCollection({}) {
             icon={<ContainerOutlined/>}
         >
             {t("create.collection")}
+        </Button>
+    )
+}
+
+
+function _TagDocuments({}) {
+
+    const [t] = useTranslation()
+
+    const {activate} = useTurtleModal()
+
+    const [selectedFilters, setSelectedFilters] = React.useState<Set<string>>(new Set())
+
+    function filterPressed() {
+        activate({
+            title: `${t("tag.documents")}:`,
+            closable: true,
+            content: (
+                <CreateDocCollection/>
+            )
+        })
+    }
+
+    return (
+        <Button
+            type={"text"}
+            onClick={filterPressed}
+            icon={<ContainerOutlined/>}
+        >
+            {t("tag.documents")}
         </Button>
     )
 }
