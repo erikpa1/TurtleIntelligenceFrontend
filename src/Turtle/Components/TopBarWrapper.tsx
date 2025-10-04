@@ -9,7 +9,8 @@ export default function TopBarWrapper({children}) {
             height: "45px",
             backgroundColor: "white",
             position: "relative",
-            paddingLeft: "10px"
+            paddingLeft: "15px",
+            paddingRight: "15px"
         }}>
 
             <Flex

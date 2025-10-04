@@ -1,6 +1,8 @@
 import React from 'react'
-import {Card, Col, Empty, Flex, Space, Table, TableProps, Tag, Typography} from "antd";
+import {Card, Col, Empty, Flex, Segmented, Space, Table, TableProps, Tag, Typography} from "antd";
 import TopBarWrapper from "@Turtle/Components/TopBarWrapper";
+import {HierarchyRightFlex} from "@Turtle/Components/HierarchyComponents";
+import {useTranslation} from "react-i18next";
 
 interface MaterialForecastType {
     key: string;
@@ -131,15 +133,16 @@ export default function ForecastView() {
     return (
         <div>
             <TopBarWrapper>
-                <div/>
+                <HierarchyRightFlex>
+                    <_ForecastSegments/>
+                </HierarchyRightFlex>
             </TopBarWrapper>
-
             <Flex
                 vertical
                 gap={15}
                 style={{
                     padding: "15px",
-
+                    position: "relative",
                 }}
             >
 
@@ -174,9 +177,24 @@ export default function ForecastView() {
                 />
             </Flex>
 
-            <div>
-
-            </div>
         </div>
+    )
+}
+
+
+function _ForecastSegments({}) {
+
+    const [t] = useTranslation()
+
+    const [active, setActive] = React.useState('table')
+
+    return (
+        <Segmented<string>
+            value={active}
+            options={[t("table"), t("chart")]}
+            onChange={(value) => {
+                console.log(value); // string
+            }}
+        />
     )
 }
