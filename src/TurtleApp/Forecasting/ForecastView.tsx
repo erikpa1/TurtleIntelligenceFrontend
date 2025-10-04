@@ -1,8 +1,11 @@
 import React from 'react'
-import {Card, Flex, Table, TableProps, Typography} from "antd";
+import {Card, Flex, Segmented, Table, TableProps, Typography} from "antd";
 import TopBarWrapper from "@Turtle/Components/TopBarWrapper";
 import ReactApexChart from 'react-apexcharts';
-import { ApexOptions } from 'apexcharts';
+import {ApexOptions} from 'apexcharts';
+import {useTranslation} from "react-i18next";
+import {HierarchyRightFlex} from "@Turtle/Components/HierarchyComponents";
+import {LineChartOutlined, TableOutlined} from "@ant-design/icons";
 
 interface MaterialForecastType {
     key: string;
@@ -271,24 +274,26 @@ export default function ForecastView() {
     };
 
     // Prepare series data
-    const steelSeries = [{ name: 'Steel (tons)', data: newData.map(item => item.steel) }];
-    const concreteSeries = [{ name: 'Concrete (m³)', data: newData.map(item => item.concrete) }];
-    const timberSeries = [{ name: 'Timber (m³)', data: newData.map(item => item.timber) }];
-    const aluminumSeries = [{ name: 'Aluminum (kg)', data: newData.map(item => item.aluminum) }];
-    const copperSeries = [{ name: 'Copper (kg)', data: newData.map(item => item.copper) }];
+    const steelSeries = [{name: 'Steel (tons)', data: newData.map(item => item.steel)}];
+    const concreteSeries = [{name: 'Concrete (m³)', data: newData.map(item => item.concrete)}];
+    const timberSeries = [{name: 'Timber (m³)', data: newData.map(item => item.timber)}];
+    const aluminumSeries = [{name: 'Aluminum (kg)', data: newData.map(item => item.aluminum)}];
+    const copperSeries = [{name: 'Copper (kg)', data: newData.map(item => item.copper)}];
 
     const combinedSeries = [
-        { name: 'Steel (tons)', data: newData.map(item => item.steel) },
-        { name: 'Concrete (m³)', data: newData.map(item => item.concrete) },
-        { name: 'Timber (m³)', data: newData.map(item => item.timber) },
-        { name: 'Aluminum (kg)', data: newData.map(item => item.aluminum) },
-        { name: 'Copper (kg)', data: newData.map(item => item.copper) }
+        {name: 'Steel (tons)', data: newData.map(item => item.steel)},
+        {name: 'Concrete (m³)', data: newData.map(item => item.concrete)},
+        {name: 'Timber (m³)', data: newData.map(item => item.timber)},
+        {name: 'Aluminum (kg)', data: newData.map(item => item.aluminum)},
+        {name: 'Copper (kg)', data: newData.map(item => item.copper)}
     ];
 
     return (
         <div>
             <TopBarWrapper>
-                <div/>
+                <HierarchyRightFlex>
+                    <_ForecastSegments/>
+                </HierarchyRightFlex>
             </TopBarWrapper>
 
             <Flex
@@ -312,7 +317,7 @@ export default function ForecastView() {
 
                 {/* Individual Material Charts */}
                 <Flex gap={15} wrap="wrap">
-                    <Card style={{ flex: '1 1 calc(50% - 15px)', minWidth: '400px' }}>
+                    <Card style={{flex: '1 1 calc(50% - 15px)', minWidth: '400px'}}>
                         <ReactApexChart
                             options={createMaterialChartOptions('Steel Forecast', '#008FFB')}
                             series={steelSeries}
@@ -321,7 +326,7 @@ export default function ForecastView() {
                         />
                     </Card>
 
-                    <Card style={{ flex: '1 1 calc(50% - 15px)', minWidth: '400px' }}>
+                    <Card style={{flex: '1 1 calc(50% - 15px)', minWidth: '400px'}}>
                         <ReactApexChart
                             options={createMaterialChartOptions('Concrete Forecast', '#00E396')}
                             series={concreteSeries}
@@ -330,7 +335,7 @@ export default function ForecastView() {
                         />
                     </Card>
 
-                    <Card style={{ flex: '1 1 calc(50% - 15px)', minWidth: '400px' }}>
+                    <Card style={{flex: '1 1 calc(50% - 15px)', minWidth: '400px'}}>
                         <ReactApexChart
                             options={createMaterialChartOptions('Timber Forecast', '#FEB019')}
                             series={timberSeries}
@@ -339,7 +344,7 @@ export default function ForecastView() {
                         />
                     </Card>
 
-                    <Card style={{ flex: '1 1 calc(50% - 15px)', minWidth: '400px' }}>
+                    <Card style={{flex: '1 1 calc(50% - 15px)', minWidth: '400px'}}>
                         <ReactApexChart
                             options={createMaterialChartOptions('Aluminum Forecast', '#FF4560')}
                             series={aluminumSeries}
@@ -348,7 +353,7 @@ export default function ForecastView() {
                         />
                     </Card>
 
-                    <Card style={{ flex: '1 1 calc(50% - 15px)', minWidth: '400px' }}>
+                    <Card style={{flex: '1 1 calc(50% - 15px)', minWidth: '400px'}}>
                         <ReactApexChart
                             options={createMaterialChartOptions('Copper Forecast', '#775DD0')}
                             series={copperSeries}
@@ -385,5 +390,32 @@ export default function ForecastView() {
                 />
             </Flex>
         </div>
+    )
+}
+
+function _ForecastSegments({}) {
+
+    const [t] = useTranslation()
+
+    const [active, setActive] = React.useState('table')
+
+    return (
+        <Segmented<string>
+            value={active}
+            onChange={setActive}
+            size={"small"}
+            options={[
+                {
+                    label: t("table"),
+                    value: 'table',
+                    icon: (<TableOutlined/>)
+                },
+                {
+                    label: t("chart"),
+                    value: 'chart',
+                    icon: (<LineChartOutlined/>)
+                }
+            ]}
+        />
     )
 }

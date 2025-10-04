@@ -152,5 +152,7 @@
     "config": "Config",
     "finish": "Finish",
     "forecasting": "Forecasting",
-    "forecasts": "Forecasts"
+    "forecasts": "Forecasts",
+    "table": "Table",
+    "chart": "Chart"
 }

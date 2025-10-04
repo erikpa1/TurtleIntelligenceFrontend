@@ -4,6 +4,7 @@ import {Route, Routes} from "react-router-dom"
 import SceneEditDock from "@Turtle/Scene/SceneEditDock";
 import ForecastingDock from "@TurtleApp/Forecasting/ForecastingDock";
 
+const ResourcesDock = React.lazy(() => import("@TurtleApp/Resources/ResourcesDock"))
 
 const TablesDock = React.lazy(() => import("@Turtle/Tables/TablesDock"))
 const ScenesDock = React.lazy(() => import("@Turtle/Scenes/ScenesDock"))
@@ -79,6 +80,9 @@ export default function AppRoutes({}) {
 
             <Route path={"/tables"} element={<TablesDock/>}/>
             <Route path={"/tables/:tableUid"} element={<TablesDock/>}/>
+
+            <Route path={"/resources"} element={<ResourcesDock/>}/>
+            <Route path={"/resources/:resourceUid"} element={<ResourcesDock/>}/>
 
         </Routes>
     );
