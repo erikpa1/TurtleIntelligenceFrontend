@@ -1,3 +1,4 @@
+
 import {Col, Divider, Flex, Layout, Menu, Modal, Row} from "antd";
 
 import {useNavigate} from "react-router-dom";
@@ -7,6 +8,7 @@ import Search from "antd/es/input/Search";
 import React from "react";
 
 import "./AppNavBar.css"
+import {INavBarItem, MyNavbarItem, MyNavbarItemBigger} from "@Turtle/Components/NavBar";
 
 export default function AppNavBar() {
 
@@ -128,6 +130,127 @@ const ICON_STYLE = {
 }
 
 
+const AI_WIDGETS: INavBarItem[] = [
+    {
+        lang: "neuralnetworks",
+        icon: "/icons/network_intel_node.svg",
+        link: "/nn"
+    },
+    {
+        lang: "llm.models",
+        icon: "/icons/ollama.svg",
+        link: "/llms"
+    },
+    {
+        lang: "agents",
+        icon: "/icons/robot_2.svg",
+        link: "/agents"
+    },
+    {
+        lang: "agents-tools",
+        icon: "/icons/robot_2.svg",
+        link: "/agents-tools"
+    }
+]
+
+const DATA_WIDGETS: INavBarItem[] = [
+    {
+        lang: "functions",
+        icon: "/icons/function.svg",
+        link: "/functions"
+    },
+    {
+        lang: "containers",
+        icon: "/icons/inventory_2.svg",
+        link: "/containers"
+    },
+    {
+        lang: "actors",
+        icon: "/icons/support_agent.svg",
+        link: "/actors"
+    },
+    {
+        lang: "resources",
+        icon: "/icons/support_agent.svg",
+        link: "/resources"
+    },
+    {
+        lang: "flows",
+        icon: "/icons/flowsheet.svg",
+        link: "/flows"
+    },
+    {
+        lang: "tables",
+        icon: "/icons/flowsheet.svg",
+        link: "/tables"
+    },
+    {
+        lang: "table.data",
+        icon: "/icons/flowsheet.svg",
+        link: "/table-data"
+    },
+    {
+        lang: "forecasting",
+        icon: "/icons/flowsheet.svg",
+        link: "/forecasting"
+    }
+]
+
+const THREED_WIDGETS: INavBarItem[] = [
+    {
+        lang: "scenes",
+        icon: "/icons/article.svg",
+        link: "/scenes"
+    }
+]
+
+const OTHER_WIDGETS: INavBarItem[] = [
+    {
+        lang: "documentation",
+        icon: "/icons/article.svg",
+        link: "/documentation"
+    },
+    {
+        lang: "llm.clusters",
+        icon: "/icons/graph_3.svg",
+        link: "/llm-clusters"
+    },
+    {
+        lang: "agents.incidents",
+        icon: "/icons/graph_3.svg",
+        link: "/agents-incidents"
+    },
+    {
+        lang: "themes",
+        icon: "/icons/graph_3.svg",
+        link: "/themes"
+    }
+]
+
+interface IWidgetCategory {
+    titleKey: string
+    items: INavBarItem[]
+}
+
+const WIDGET_CATEGORIES: IWidgetCategory[] = [
+    {
+        titleKey: "AI",
+        items: AI_WIDGETS
+    },
+    {
+        titleKey: "data",
+        items: DATA_WIDGETS
+    },
+    {
+        titleKey: "3D",
+        items: THREED_WIDGETS
+    },
+    {
+        titleKey: "other",
+        items: OTHER_WIDGETS
+    }
+]
+
 function _WidgetsView({onRereoute}) {
 
     const [t] = useTranslation()
@@ -149,7 +272,6 @@ function _WidgetsView({onRereoute}) {
         >
             <Flex vertical>
 
-
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                     <Search
                         defaultValue={searchText}
@@ -166,288 +288,37 @@ function _WidgetsView({onRereoute}) {
                     />
                 </div>
 
-                <Divider orientation={"left"}>
-                    {t("AI")}:
-                </Divider>
+                {
+                    WIDGET_CATEGORIES.map((category) => {
+                        return (
+                            <React.Fragment key={category.titleKey}>
+                                <Divider orientation={"left"}>
+                                    {category.titleKey === "3D" ? category.titleKey : t(category.titleKey)}:
+                                </Divider>
 
-                <Row gutter={16}>
-
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            icon={"/icons/network_intel_node.svg"}
-                            link={"/nn"}
-                            lang={"neuralnetworks"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-
-
-                    <Col className="gutter-row" span={6}>
-
-                        <MyNavbarItem
-                            lang={"llm.models"}
-                            link={"/llms"}
-                            icon={"/icons/ollama.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            lang={"agents"}
-                            link={"/agents"}
-                            icon={"/icons/robot_2.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            lang={"agents-tools"}
-                            link={"/agents-tools"}
-                            icon={"/icons/robot_2.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-
-
-                </Row>
-
-
-                <Divider orientation={"left"}>
-                    {t("data")}:
-                </Divider>
-
-                <Row gutter={16}>
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            lang={"functions"}
-                            link={"/functions"}
-                            icon={"/icons/function.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            lang={"containers"}
-                            link={"/containers"}
-                            icon={"/icons/inventory_2.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            lang={"actors"}
-                            link={"/actors"}
-                            icon={"/icons/support_agent.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            lang={"resources"}
-                            link={"/resources"}
-                            icon={"/icons/support_agent.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            lang={"flows"}
-                            link={"/flows"}
-                            icon={"/icons/flowsheet.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            lang={"tables"}
-                            link={"/tables"}
-                            icon={"/icons/flowsheet.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            lang={"table.data"}
-                            link={"/table-data"}
-                            icon={"/icons/flowsheet.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            lang={"forecasting"}
-                            link={"/forecasting"}
-                            icon={"/icons/flowsheet.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-                </Row>
-
-
-                <Divider orientation={"left"}>
-                    3D:
-                </Divider>
-
-                <Row gutter={16}>
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            lang={"scenes"}
-                            link={"/scenes"}
-                            icon={"/icons/article.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-                </Row>
-
-                <Divider orientation={"left"}>
-                    {t("other")}:
-                </Divider>
-
-                <Row gutter={16}>
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            lang={"documentation"}
-                            link={"/documentation"}
-                            icon={"/icons/article.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            lang={"llm.clusters"}
-                            link={"/llm-clusters"}
-                            icon={"/icons/graph_3.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            lang={"agents.incidents"}
-                            link={"/agents-incidents"}
-                            icon={"/icons/graph_3.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-
-
-                    <Col className="gutter-row" span={6}>
-                        <MyNavbarItem
-                            lang={"themes"}
-                            link={"/themes"}
-                            icon={"/icons/graph_3.svg"}
-                            onRerouted={onRereoute}
-                            iconStyle={ICON_STYLE}
-                        />
-                    </Col>
-
-
-                </Row>
+                                <Row gutter={[16, 16]}>
+                                    {
+                                        category.items.map((item) => {
+                                            return (
+                                                <Col key={item.link} span={6}>
+                                                    <MyNavbarItem
+                                                        lang={item.lang}
+                                                        icon={item.icon}
+                                                        link={item.link}
+                                                        onRerouted={onRereoute}
+                                                        iconStyle={ICON_STYLE}
+                                                    />
+                                                </Col>
+                                            )
+                                        })
+                                    }
+                                </Row>
+                            </React.Fragment>
+                        )
+                    })
+                }
 
             </Flex>
         </Modal>
     )
-}
-
-interface MyNavbarItemProps {
-    lang?: string
-    icon: any
-    link?: string
-    onClick?: () => void
-    onRerouted?: () => void
-    iconStyle?: any
-}
-
-
-function MyNavbarItem({lang, icon, link, onClick, onRerouted, iconStyle}: MyNavbarItemProps) {
-    const navigate = useNavigate();
-
-    const [t] = useTranslation();
-
-    return (
-        <div
-            className={"navbaritem"}
-            onMouseDown={(e) => {
-                if (e.button === 1) {
-                    window.open(`${window.origin}/#${link}`, "_blank")
-                }
-            }}
-            onClick={() => {
-                if (onClick) {
-                    onClick();
-                } else if (link) {
-                    navigate(link);
-                    onRerouted && onRerouted()
-                }
-            }}
-            style={{
-                paddingTop: "5px",
-                paddingBottom: "2.5px",
-            }}
-        >
-            <div>
-
-                {(typeof icon === "string") ? (
-                    <Flex
-                        justify="center"
-                        align="center"
-                    >
-                        <img
-                            src={icon}
-                            style={{
-                                width: "25px",
-                                height: "25px",
-                                ...(iconStyle ?? {})
-                            }}
-                            alt="icon"
-                        />
-                    </Flex>
-                ) : (
-                    <Flex
-                        justify="center"
-                        align="center"
-                    >
-                        {icon}
-                    </Flex>
-                )}
-
-                <div style={{
-                    textAlign: "center",
-                    fontSize: "8px",
-                    display: "block",
-                    whiteSpace: "pre-wrap"
-                }}>
-                    <p dangerouslySetInnerHTML={{__html: t(lang ?? "").split(" ").join("<br>")}}/>
-                </div>
-            </div>
-        </div>
-
-
-    );
 }
