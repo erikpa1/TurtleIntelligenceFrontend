@@ -2,19 +2,21 @@ import {useTranslation} from "react-i18next";
 import React from "react";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {Flex, Tree, TreeDataNode} from "antd";
-import {Forecast} from "@TurtleApp/Forecasting/Forecast";
+
 import {
     HierarchyAddButton,
     HierarchyCustomIcon, HierarchyDeleteButton,
     HierarchyEditButton,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents";
-import {IconSimulation} from "@Turtle/Icons";
+
 import TurtleApp from "@TurtleApp/TurtleApp";
-import ForecastApi from "@TurtleApp/Forecasting/ForecastsApi";
-import COUForecast from "@TurtleApp/Forecasting/COUForecast";
+
 import TimeManager from "@Turtle/Tools/TimeManager";
 import {TableOutlined} from "@ant-design/icons";
+import {TurtleTable} from "@Turtle/Tables/Table";
+import COUTable from "@Turtle/Tables/COUTable";
+import TablesApi from "@Turtle/Tables/TablesApi";
 
 export default function TablesHierarchy() {
 
@@ -24,7 +26,7 @@ export default function TablesHierarchy() {
     const {activate, deactivate} = useTurtleModal()
     const [data, setData] = React.useState<TreeDataNode[]>(createHierarchy([]))
 
-    function createHierarchy(tables: Forecast[]): TreeDataNode[] {
+    function createHierarchy(tables: TurtleTable[]): TreeDataNode[] {
         return [
             {
                 key: "tables",
@@ -36,7 +38,7 @@ export default function TablesHierarchy() {
 
                         <HierarchyRightFlex>
                             <HierarchyAddButton
-                                onClick={createForecast}
+                                onClick={createTable}
                             />
                         </HierarchyRightFlex>
                     </Flex>
@@ -53,12 +55,12 @@ export default function TablesHierarchy() {
 
                                     <HierarchyEditButton
                                         onClick={() => {
-                                            editForecast(val)
+                                            editTable(val)
                                         }}
                                     />
 
                                     <HierarchyDeleteButton onClick={() => {
-                                        deleteForecast(val.uid)
+                                        deleteTable(val.uid)
                                     }}/>
                                 </HierarchyRightFlex>
                             </Flex>
@@ -71,19 +73,21 @@ export default function TablesHierarchy() {
     }
 
 
-    async function deleteForecast(forecastUid: string) {
+    async function deleteTable(forecastUid: string) {
         TurtleApp.Lock()
-        await ForecastApi.DeleteForecast(forecastUid)
+        await TablesApi.Delete(forecastUid)
         TurtleApp.Unlock()
+        refresh()
     }
 
-    function editForecast(forecast: Forecast) {
+    function editTable(table: TurtleTable) {
 
         activate({
             title: `${t("edit.forecast")}:`,
+            width: 600,
             content: (
-                <COUForecast
-                    forecast={forecast}
+                <COUTable
+                    table={table}
                     onBeforeSubmit={deactivate}
                     onAfterSubmit={refresh}
                 />
@@ -93,15 +97,16 @@ export default function TablesHierarchy() {
     }
 
 
-    function createForecast() {
-        const tmp = new Forecast()
-        tmp.name = `Forecast ${TimeManager.GetNowLocalString()}`
+    function createTable() {
+        const tmp = new TurtleTable()
+        tmp.name = `Table ${TimeManager.GetNowLocalString()}`
 
         activate({
-            title: `${t("create.forecast")}:`,
+            title: `${t("create.table")}:`,
+            width: 600,
             content: (
-                <COUForecast
-                    forecast={tmp}
+                <COUTable
+                    table={tmp}
                     onBeforeSubmit={deactivate}
                     onAfterSubmit={refresh}
                 />
@@ -112,7 +117,7 @@ export default function TablesHierarchy() {
 
     async function refresh() {
 
-        const data = await ForecastApi.ListForecasts()
+        const data = await TablesApi.List()
         setData(createHierarchy(data))
         setKey(crypto.randomUUID())
     }

@@ -4,6 +4,8 @@ import {useTranslation} from "react-i18next";
 import {App} from "antd";
 import TurtleApp from "@TurtleApp/TurtleApp";
 
+import {QueryHeader} from "@Turtle/Utils/Http";
+
 // Create a default instance
 const turxios = axios.create();
 
@@ -72,5 +74,37 @@ export async function getWithAbort<T = any>(
         }
     })
 }
+
+
+export async function PostEntity(route: string, data: any, config?: AxiosRequestConfig<any>) {
+    const form = new FormData()
+    form.set("data", JSON.stringify(data.ToJson()))
+    return await turxios.post(route, form, config)
+}
+
+export async function QueryEntities(route: string, query: any, clazz, config?: AxiosRequestConfig<any>): Promise<Array<any>> {
+    const data = (await turxios.get<Array<any>>(route, {
+        headers: {
+            ...QueryHeader(query)
+        }
+    })).data
+
+    return data.map((val) => {
+        const tmp = new clazz()
+        tmp.FromJson(val)
+        return tmp
+    })
+}
+
+
+export async function DeleteEntity(route: string, uid: string, config?: AxiosRequestConfig<any>) {
+    return await turxios.delete(route, {
+        ...config,
+        params: {
+            uid: uid
+        }
+    })
+}
+
 
 export default turxios;
