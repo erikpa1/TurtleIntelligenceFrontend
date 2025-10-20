@@ -18,6 +18,7 @@ function App() {
     const [isLoading, setIsLoading] = React.useState(true)
 
     const initTheme = useThemeInit()
+    
 
     React.useEffect(() => {
         setIsLoading(true)

@@ -1,4 +1,3 @@
-
 import {Col, Divider, Flex, Layout, Menu, Modal, Row} from "antd";
 
 import {useNavigate} from "react-router-dom";
@@ -105,6 +104,13 @@ export default function AppNavBar() {
                         <MyNavbarItem
                             lang={"knowledgehub"}
                             link={"/knowledge-hub"}
+                            icon={"/icons/article_person.svg"}
+                            iconStyle={ICON_STYLE}
+                        />
+
+                        <MyNavbarItem
+                            lang={"login"}
+                            link={"/login"}
                             icon={"/icons/article_person.svg"}
                             iconStyle={ICON_STYLE}
                         />

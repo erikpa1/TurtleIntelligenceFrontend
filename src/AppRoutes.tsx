@@ -3,6 +3,8 @@ import React from "react"
 import {Route, Routes} from "react-router-dom"
 import SceneEditDock from "@Turtle/Scene/SceneEditDock";
 import ForecastingDock from "@TurtleApp/Forecasting/ForecastingDock";
+import LoginForm from "@Turtle/Login/MainLoginForm";
+import RegisterForm from "@Turtle/Login/CreateAccountForm";
 
 const ResourcesDock = React.lazy(() => import("@TurtleApp/Resources/ResourcesDock"))
 
@@ -83,6 +85,9 @@ export default function AppRoutes({}) {
 
             <Route path={"/resources"} element={<ResourcesDock/>}/>
             <Route path={"/resources/:resourceUid"} element={<ResourcesDock/>}/>
+
+            <Route path={"/login"} element={<LoginForm/>}/>
+            <Route path={"/register"} element={<RegisterForm/>}/>
 
         </Routes>
     );
