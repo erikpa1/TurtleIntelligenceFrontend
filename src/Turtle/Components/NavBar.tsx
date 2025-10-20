@@ -67,7 +67,7 @@ export function MyNavbarItem({lang, icon, link, onClick, onRerouted, iconStyle}:
 
                 <div style={{
                     textAlign: "center",
-                    fontSize: "8px",
+                    fontSize: "12px",
                     display: "block",
                     whiteSpace: "pre-wrap"
                 }}>
@@ -118,8 +118,8 @@ export function MyNavbarItemBigger({lang, icon, link, onClick, onRerouted, iconS
                         <img
                             src={icon}
                             style={{
-                                width: "32px",
-                                height: "32px",
+                                width: "45px",
+                                height: "45px",
                                 ...(iconStyle ?? {})
                             }}
                             alt="icon"
@@ -136,7 +136,7 @@ export function MyNavbarItemBigger({lang, icon, link, onClick, onRerouted, iconS
 
                 <div style={{
                     textAlign: "center",
-                    fontSize: "10px",
+                    fontSize: "18px",
                     display: "block",
                     whiteSpace: "pre-wrap"
                 }}>

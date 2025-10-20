@@ -22,13 +22,12 @@ export default function AppNavBar() {
     }
 
 
-
     return (
         <div>
             <Layout.Sider
                 collapsed={true}
-                collapsedWidth={70}
-                width={70}
+                collapsedWidth={80}
+                width={80}
                 style={{
                     backgroundColor: "#FFFFFF",
                     height: "100dvh",
@@ -138,6 +137,11 @@ const ICON_STYLE = {
 
 
 const AI_WIDGETS: INavBarItem[] = [
+    {
+        lang: "AOF",
+        icon: "/icons/network_intel_node.svg",
+        link: "/aof"
+    },
     {
         lang: "neuralnetworks",
         icon: "/icons/network_intel_node.svg",
@@ -308,7 +312,7 @@ function _WidgetsView({onRereoute}) {
                                         category.items.map((item) => {
                                             return (
                                                 <Col key={item.link} span={6}>
-                                                    <MyNavbarItem
+                                                    <MyNavbarItemBigger
                                                         lang={item.lang}
                                                         icon={item.icon}
                                                         link={item.link}

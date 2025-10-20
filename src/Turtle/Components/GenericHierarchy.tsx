@@ -1,21 +1,33 @@
-import React from 'react';
-import {Flex, Space, Tree, TreeDataNode} from "antd";
+import {useTranslation} from "react-i18next";
+import React from "react";
+import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
+import {Flex, Tree, TreeDataNode} from "antd";
 import {Forecast} from "@TurtleApp/Forecasting/Forecast";
 import {
     HierarchyAddButton,
-    HierarchyCustomIcon,
-    HierarchyDeleteButton, HierarchyEditButton,
+    HierarchyCustomIcon, HierarchyDeleteButton,
+    HierarchyEditButton,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents";
-import {useTranslation} from "react-i18next";
-import TimeManager from "@Turtle/Tools/TimeManager";
-import COUForecast from "@TurtleApp/Forecasting/COUForecast";
-import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
-import ForecastApi from "@TurtleApp/Forecasting/ForecastsApi";
-import TurtleApp from "@TurtleApp/TurtleApp";
 import {IconSimulation} from "@Turtle/Icons";
+import TurtleApp from "@TurtleApp/TurtleApp";
+import ForecastApi from "@TurtleApp/Forecasting/ForecastsApi";
+import COUForecast from "@TurtleApp/Forecasting/COUForecast";
+import TimeManager from "@Turtle/Tools/TimeManager";
 
-export default function ForecastingHierarchy() {
+
+interface GenericHierarchyProps {
+    couComponent?: any
+    moduleName: string
+    listFunction: () => Promise<Array<any>>
+    createFunction?: (element: any) => Promise<void>
+    deleteFunction?: (elementUid: string) => Promise<void>
+
+
+}
+
+
+export default function GenericHierarchy(props: GenericHierarchyProps) {
 
 
     const [t] = useTranslation()
@@ -24,7 +36,7 @@ export default function ForecastingHierarchy() {
     const {activate, deactivate} = useTurtleModal()
     const [data, setData] = React.useState<TreeDataNode[]>(createHierarchy([]))
 
-    function createHierarchy(forecasts: Forecast[]): TreeDataNode[] {
+    function createHierarchy(elements: any[]): TreeDataNode[] {
         return [
             {
                 key: "forecasts",
@@ -32,7 +44,7 @@ export default function ForecastingHierarchy() {
                     <Flex gap={15}>
                         <HierarchyCustomIcon icon={<IconSimulation/>}/>
 
-                        <div>{t("forecasts")} ({forecasts.length})</div>
+                        <div>{t(props.moduleName)} ({elements.length})</div>
 
                         <HierarchyRightFlex>
                             <HierarchyAddButton
@@ -42,7 +54,7 @@ export default function ForecastingHierarchy() {
                     </Flex>
                 ),
 
-                children: forecasts.map((val) => {
+                children: elements.map((val) => {
                     return {
                         key: val.name,
                         title: (
@@ -57,9 +69,14 @@ export default function ForecastingHierarchy() {
                                         }}
                                     />
 
-                                    <HierarchyDeleteButton onClick={() => {
-                                        deleteForecast(val.uid)
-                                    }}/>
+                                    {
+                                        props.deleteFunction && (
+                                            <HierarchyDeleteButton onClick={() => {
+                                                deleteForecast(val.uid)
+                                            }}/>
+                                        )
+                                    }
+
                                 </HierarchyRightFlex>
                             </Flex>
                         ),
@@ -72,17 +89,20 @@ export default function ForecastingHierarchy() {
 
 
     async function deleteForecast(forecastUid: string) {
-        TurtleApp.Lock()
-        await ForecastApi.DeleteForecast(forecastUid)
-        TurtleApp.Unlock()
+        if (props.deleteFunction) {
+            TurtleApp.Lock()
+            await props.deleteFunction(forecastUid)
+            TurtleApp.Unlock()
+        }
+
     }
 
     function editForecast(forecast: Forecast) {
 
         activate({
-            title: `${t("edit.forecast")}:`,
+            title: `${t(`edit.${props.moduleName}`)}:`,
             content: (
-                <COUForecast
+                <props.couComponent
                     forecast={forecast}
                     onBeforeSubmit={deactivate}
                     onAfterSubmit={refresh}
@@ -98,9 +118,9 @@ export default function ForecastingHierarchy() {
         tmp.name = `Forecast ${TimeManager.GetNowLocalString()}`
 
         activate({
-            title: `${t("create.forecast")}:`,
+            title: `${t(`create.${props.moduleName}`)}:`,
             content: (
-                <COUForecast
+                <props.couComponent
                     forecast={tmp}
                     onBeforeSubmit={deactivate}
                     onAfterSubmit={refresh}
@@ -112,7 +132,7 @@ export default function ForecastingHierarchy() {
 
     async function refresh() {
 
-        const data = await ForecastApi.ListForecasts()
+        const data = await props.listFunction()
         setData(createHierarchy(data))
         setKey(crypto.randomUUID())
     }

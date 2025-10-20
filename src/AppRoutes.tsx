@@ -6,6 +6,10 @@ import ForecastingDock from "@TurtleApp/Forecasting/ForecastingDock";
 import LoginForm from "@Turtle/Login/MainLoginForm";
 import RegisterForm from "@Turtle/Login/CreateAccountForm";
 
+
+const AofModelsDock = React.lazy(() => import("@TurtleApp/Aof/AofModelsDock"))
+const AofEditModelDock = React.lazy(() => import("@TurtleApp/Aof/AofEditModelDock"))
+
 const ResourcesDock = React.lazy(() => import("@TurtleApp/Resources/ResourcesDock"))
 
 const TablesDock = React.lazy(() => import("@Turtle/Tables/TablesDock"))
@@ -34,6 +38,13 @@ const NNDock = React.lazy(() => import("@TurtleApp/Routes/NN/NNDock"))
 export default function AppRoutes({}) {
     return (
         <Routes>
+
+            {/* User management and login */}
+
+            <Route path={"/login"} element={<LoginForm/>}/>
+            <Route path={"/register"} element={<RegisterForm/>}/>
+
+
             <Route path={"/"} element={<SimModelsDock/>}/>
             <Route path={"/model/:modelUid"} element={<SimWorldDock/>}/>
             <Route path={"/containers"} element={<ContainersDock/>}/>
@@ -86,8 +97,11 @@ export default function AppRoutes({}) {
             <Route path={"/resources"} element={<ResourcesDock/>}/>
             <Route path={"/resources/:resourceUid"} element={<ResourcesDock/>}/>
 
-            <Route path={"/login"} element={<LoginForm/>}/>
-            <Route path={"/register"} element={<RegisterForm/>}/>
+
+            {/*   AOF */}
+            <Route path={"/aof"} element={<AofModelsDock/>}/>
+            <Route path={"/aof/:aofUid"} element={<AofEditModelDock/>}/>
+
 
         </Routes>
     );
