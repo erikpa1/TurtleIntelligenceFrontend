@@ -1,7 +1,9 @@
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
-import {Flex} from "antd";
+import {Divider, Flex} from "antd";
 import React from "react";
+
+import "./NavBar.css"
 
 interface MyNavbarItemProps {
     lang?: string
@@ -155,4 +157,104 @@ export interface INavBarItem {
     icon: any
     link?: string
 
+}
+
+
+// Enhanced Widget Card
+export function EnhancedWidgetCard({item, onRerouted}: { item: INavBarItem; onRerouted: () => void }) {
+    const navigate = useNavigate();
+    const [t] = useTranslation();
+
+    return (
+        <div
+            onClick={() => {
+                if (item.link) {
+                    navigate(item.link);
+                    onRerouted();
+                }
+            }}
+            style={{
+                padding: "16px",
+                borderRadius: "12px",
+                border: "1px solid #e8e8e8",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+                background: "#fff",
+                textAlign: "center",
+                height: "100%",
+            }}
+            className="widget-card"
+        >
+            <Flex vertical align="center" gap={12}>
+                <div
+                    style={{
+                        width: "48px",
+                        height: "48px",
+                        borderRadius: "10px",
+                        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        transition: "all 0.3s ease",
+                    }}
+                    className="widget-icon"
+                >
+                    {typeof item.icon === "string" ? (
+                        <img
+                            src={item.icon}
+                            style={{width: "28px", height: "28px", filter: "brightness(0) invert(1)"}}
+                            alt="icon"
+                        />
+                    ) : (
+                        <div style={{color: "white"}}>{item.icon}</div>
+                    )}
+                </div>
+
+                <div
+                    style={{
+                        fontSize: "13px",
+                        fontWeight: 500,
+                        color: "#333",
+                        lineHeight: 1.4,
+                    }}
+                >
+                    {t(item.lang ?? "")}
+                </div>
+            </Flex>
+
+
+        </div>
+    );
+}
+
+
+export function LogoComponent({}) {
+    return (
+        <div
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                marginBottom: "24px",
+                paddingTop: "8px",
+            }}
+        >
+            <div
+                style={{
+                    width: "48px",
+                    height: "48px",
+                    borderRadius: "12px",
+                    background: "rgba(255, 255, 255, 0.95)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                }}
+                className="navbar-logo"
+            >
+                {/* Logo icon placeholder */}
+            </div>
+        </div>
+    )
 }
