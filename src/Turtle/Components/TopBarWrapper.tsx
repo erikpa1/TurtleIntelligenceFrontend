@@ -2,15 +2,20 @@
 
 import React from "react"
 import {Flex} from "antd";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 
 export default function TopBarWrapper({children}) {
+
+    const {theme} = useTurtleTheme();
+
     return (
         <div style={{
-            height: "45px",
+            height: theme.topBarHeightBig,
             backgroundColor: "white",
             position: "relative",
             paddingLeft: "15px",
             paddingRight: "15px",
+            width: "100%",
         }}>
 
             <Flex

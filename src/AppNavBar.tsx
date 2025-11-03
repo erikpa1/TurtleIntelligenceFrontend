@@ -138,11 +138,6 @@ const ICON_STYLE = {
 
 const AI_WIDGETS: INavBarItem[] = [
     {
-        lang: "AOF",
-        icon: "/icons/network_intel_node.svg",
-        link: "/aof"
-    },
-    {
         lang: "neuralnetworks",
         icon: "/icons/network_intel_node.svg",
         link: "/nn"
@@ -238,6 +233,20 @@ const OTHER_WIDGETS: INavBarItem[] = [
     }
 ]
 
+const AOF_WIDGETS: INavBarItem[] = [
+    {
+        lang: "aof",
+        icon: "/icons/article.svg",
+        link: "/aof"
+    },
+    {
+        lang: "devices",
+        icon: "/icons/article.svg",
+        link: "/devices"
+    }
+]
+
+
 interface IWidgetCategory {
     titleKey: string
     items: INavBarItem[]
@@ -259,6 +268,10 @@ const WIDGET_CATEGORIES: IWidgetCategory[] = [
     {
         titleKey: "other",
         items: OTHER_WIDGETS
+    },
+    {
+        titleKey: "aof",
+        items: AOF_WIDGETS
     }
 ]
 

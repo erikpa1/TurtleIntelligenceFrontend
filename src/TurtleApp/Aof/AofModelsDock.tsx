@@ -2,11 +2,25 @@ import React from "react"
 import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
 import {Splitter} from "antd";
 import GenericHierarchy from "@Turtle/Components/GenericHierarchy";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 
 export default function AofModelsDock() {
+
+
+    const {bigPadding, theme} = useTurtleTheme()
+
+
     return (
         <SplitterWithHeader topbar={<div/>}>
-            <Splitter.Panel>
+            <Splitter.Panel
+                defaultSize={"20%"}
+                style={{
+                    backgroundColor: "white",
+                    padding: bigPadding,
+                    height: theme.GetSplitterBigHeight(),
+
+                }}
+            >
                 <GenericHierarchy
                     moduleName={"aof"}
                     listFunction={async () => []}
@@ -18,7 +32,9 @@ export default function AofModelsDock() {
                 />
             </Splitter.Panel>
 
-            <Splitter.Panel>
+            <Splitter.Panel
+                defaultSize={"80%"}
+            >
 
             </Splitter.Panel>
         </SplitterWithHeader>

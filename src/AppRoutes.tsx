@@ -5,6 +5,7 @@ import SceneEditDock from "@Turtle/Scene/SceneEditDock";
 import ForecastingDock from "@TurtleApp/Forecasting/ForecastingDock";
 import LoginForm from "@Turtle/Login/MainLoginForm";
 import RegisterForm from "@Turtle/Login/CreateAccountForm";
+import TablesDataDock from "@Turtle/TablesData/TablesDataDock";
 
 
 const AofModelsDock = React.lazy(() => import("@TurtleApp/Aof/AofModelsDock"))
@@ -93,6 +94,9 @@ export default function AppRoutes({}) {
 
             <Route path={"/tables"} element={<TablesDock/>}/>
             <Route path={"/tables/:tableUid"} element={<TablesDock/>}/>
+
+            <Route path={"/table-data"} element={<TablesDataDock/>}/>
+            <Route path={"/table-data/:tableUid"} element={<TablesDataDock/>}/>
 
             <Route path={"/resources"} element={<ResourcesDock/>}/>
             <Route path={"/resources/:resourceUid"} element={<ResourcesDock/>}/>
