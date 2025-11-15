@@ -5,6 +5,8 @@ import {Splitter} from "antd";
 import KnowledgeHierarchy from "@Turtle/Knowledge/KnowledgeHierarchy";
 import {useParams} from "react-router-dom";
 import KnowledgeEditView from "@Turtle/Knowledge/KnowledgeEditView";
+import DomainsHierarchy from "@Turtle/Knowledge/DomainsHierarchy";
+import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
 
 
 export default function KnowledgeDock() {
@@ -13,46 +15,46 @@ export default function KnowledgeDock() {
     const {bigPadding} = useTurtleTheme()
     const {knowledgeUid} = useParams()
 
-
     return (
-        <div>
-
-            <DocIntTopBar/>
-
-            <Splitter style={{
-                height: "100%",
-                // backgroundColor: "#212124"
-            }}>
-
-                <Splitter.Panel
-                    defaultSize="20%"
-                    style={{
-                        backgroundColor: "white",
-                        padding: bigPadding
-                    }}
-                >
-                    <KnowledgeHierarchy/>
-                </Splitter.Panel>
-
-                <Splitter.Panel
-                    defaultSize="80%"
-                    style={{
-                        height: "95vh",
-
-                    }}
-                >
+        <SplitterWithHeader topbar={<DocIntTopBar/>}>
+            <Splitter.Panel
+                defaultSize="20%"
+                style={{
+                    backgroundColor: "white",
+                    padding: bigPadding
+                }}
+            >
+                <DomainsHierarchy/>
+            </Splitter.Panel>
 
 
-                    {
-                        knowledgeUid && (
-                            <KnowledgeEditView knUid={knowledgeUid}/>
-                        )
-                    }
-                </Splitter.Panel>
+            <Splitter.Panel
+                defaultSize="20%"
+                style={{
+                    backgroundColor: "white",
+                    padding: bigPadding
+                }}
+            >
+                <KnowledgeHierarchy/>
+            </Splitter.Panel>
 
-            </Splitter>
+            <Splitter.Panel
+                style={{
+                    height: "95vh",
 
-        </div>
+                }}
+            >
+
+
+                {
+                    knowledgeUid && (
+                        <KnowledgeEditView knUid={knowledgeUid}/>
+                    )
+                }
+            </Splitter.Panel>
+
+        </SplitterWithHeader>
     )
+
 
 }

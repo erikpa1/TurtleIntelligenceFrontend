@@ -15,7 +15,7 @@ import CreateDocCollection from "@Turtle/DocInt/Components/CreateDocCollection"
 
 export default function DocIntTopBar() {
     return (
-        <TopBarWrapper>
+        <>
 
             <_FilterDocumentsButton/>
             <_EditFilters/>
@@ -30,7 +30,7 @@ export default function DocIntTopBar() {
                 <_SearchAll/>
                 <CopilotPlusVSearch/>
             </Flex>
-        </TopBarWrapper>
+        </>
     )
 }
 
