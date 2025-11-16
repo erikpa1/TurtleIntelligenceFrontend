@@ -1,5 +1,5 @@
 import React from 'react';
-import {Flex, Splitter} from 'antd';
+import {Alert, Flex, Splitter} from 'antd';
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import TopBarWrapper from "@Turtle/Components/TopBarWrapper";
 
@@ -29,7 +29,11 @@ export function SplitterWithHeader({topbar, children}) {
                 }
             } as any);
         }
-        return child;
+        return (
+            <Alert.ErrorBoundary>
+                {child}
+            </Alert.ErrorBoundary>
+        );
     });
 
     return (

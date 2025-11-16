@@ -10,6 +10,7 @@ import DockDocIntCollectionsHierarchy from "@Turtle/DocInt/Dock/DocIntCollection
 import {useTranslation} from "react-i18next";
 import TurtleEmpty from "@Turtle/Components/TurtleEmpty";
 import {CollectionDocumentsList} from "@Turtle/DocInt/Dock/CollectionDocumentsList";
+import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
 
 
 export default function DocIntDock({}) {
@@ -22,78 +23,67 @@ export default function DocIntDock({}) {
 
     const [leftSwitch, setLeftSwitch] = React.useState("documents")
 
-
     return (
-        <div>
+        <SplitterWithHeader topbar={<DocIntTopBar/>}>
+            <Splitter.Panel
+                defaultSize="25%"
+                style={{
+                    backgroundColor: "white",
+                }}
+            >
 
-            <DocIntTopBar/>
-
-            <Splitter style={{
-                height: "100%",
-                // backgroundColor: "#212124"
-            }}>
-
-                <Splitter.Panel
-                    defaultSize="25%"
-                    style={{
-                        backgroundColor: "white",
-                    }}
-                >
-
-                    <Tabs
-                        defaultActiveKey={leftSwitch}
-                        centered
-                        onChange={setLeftSwitch}
-                        size={"small"}
-                        items={[
-                            {
-                                label: t("documents"),
-                                key: "documents",
-                            },
-                            {
-                                label: t("collections"),
-                                key: "collections",
-                            }
-                        ]}
-
-
-                    />
-
-                    <div style={{
-                        padding: bigPadding
-                    }}>
+                <Tabs
+                    defaultActiveKey={leftSwitch}
+                    centered
+                    onChange={setLeftSwitch}
+                    size={"small"}
+                    items={[
                         {
-                            leftSwitch === "documents" && (
-                                <DocIntHierarchy/>
-                            )
-                        }
-
+                            label: t("documents"),
+                            key: "documents",
+                        },
                         {
-                            leftSwitch === "collections" && (
-                                <DockDocIntCollectionsHierarchy/>
-                            )
+                            label: t("collections"),
+                            key: "collections",
                         }
-                    </div>
+                    ]}
 
-                </Splitter.Panel>
 
-                <Splitter.Panel
-                    defaultSize="75%"
-                    style={{
-                        height: theme.GetSplitterBigHeight(),
-                    }}
-                >
-                    <_ViewDispatcher
-                        viewMethod={viewMethod}
-                        documentUid={documentUid}
-                    />
+                />
 
-                </Splitter.Panel>
+                <div style={{
+                    padding: bigPadding
+                }}>
+                    {
+                        leftSwitch === "documents" && (
+                            <DocIntHierarchy/>
+                        )
+                    }
 
-            </Splitter>
+                    {
+                        leftSwitch === "collections" && (
+                            <DockDocIntCollectionsHierarchy/>
+                        )
+                    }
+                </div>
 
-        </div>
+            </Splitter.Panel>
+
+            <Splitter.Panel
+                defaultSize="75%"
+                style={{
+                    height: theme.GetSplitterBigHeight(),
+                }}
+            >
+                <_ViewDispatcher
+                    viewMethod={viewMethod}
+                    documentUid={documentUid}
+                />
+            </Splitter.Panel>
+
+        </SplitterWithHeader>
     )
+
 
 }
 

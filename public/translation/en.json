@@ -155,5 +155,8 @@
     "forecasts": "Forecasts",
     "table": "Table",
     "chart": "Chart",
-    "domains": "Domains"
+    "domains": "Domains",
+    "domain": "Domain",
+    "edit.domain": "Edit domain",
+    "create.domain": "Create domain"
 }

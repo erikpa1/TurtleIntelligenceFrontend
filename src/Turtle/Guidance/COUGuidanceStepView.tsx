@@ -1,11 +1,11 @@
 import React from "react"
-import {GuidanceStep} from "@Turtle/Knowledge/Data/Guidance";
+
 import {Flex} from "antd";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import TurtleApp from "@TurtleApp/TurtleApp";
-import {Knowledge} from "@Turtle/Knowledge/Data/Knowledge";
-import KnowledgeApi from "@Turtle/Knowledge/Api/KnowledgeApi";
+import KnowledgeApi from "@Turtle/KnowledgeHub/Api/KnowledgeApi";
+import {GuidanceStep} from "@Turtle/KnowledgeHub/Artifacts/Guidance";
 
 
 interface COUGuidanceStepViewProps {

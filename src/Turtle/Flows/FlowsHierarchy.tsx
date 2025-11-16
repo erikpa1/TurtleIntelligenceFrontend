@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next"
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal"
 import {useNavigate} from "react-router-dom"
 import {Flex, Tree, TreeDataNode} from "antd"
-import {Knowledge, KnowledgeType} from "@Turtle/Knowledge/Data/Knowledge"
+import {Knowledge, KnowledgeType} from "@Turtle/KnowledgeHub/Data/Knowledge"
 import {
     HierarchyAddButton, HierarchyDeleteButton,
     HierarchyEditButton,
@@ -96,14 +96,20 @@ export default function FlowsHierarchy() {
     }
 
 
-    function editFlow(flow: FlowLight) {
+    async function editFlow(flow: FlowLight) {
+
+        TurtleApp.Lock()
+
+        const fullFlow = await FlowsApi.Get(flow.uid)
+
+        TurtleApp.Unlock()
 
         activate({
             title: t("edit.flow"),
             closable: true,
             content: (
                 <COUFlowView
-                    flow={flow}
+                    flow={fullFlow}
                     onBeforeSubmit={deactivate}
                     onAfterSubmit={refresh}
 

@@ -1,12 +1,13 @@
 import Turxios from "@Turtle/Api/Turxios";
-import {Knowledge} from "@Turtle/Knowledge/Data/Knowledge";
-import {GuidanceStep} from "@Turtle/Knowledge/Data/Guidance";
+import {Knowledge} from "@Turtle/KnowledgeHub/Data/Knowledge";
+import {GuidanceStep} from "@Turtle/KnowledgeHub/Artifacts/Guidance";
+import {QueryHeader} from "@Turtle/Utils/Http";
 
 export default class KnowledgeApi {
 
 
     static async Get(knUid: string): Promise<Knowledge> {
-        const data = (await Turxios.get("/api/knowledge", {
+        const data = (await Turxios.get("/api/kh/knowledge", {
             params: {
                 uid: knUid
             }
@@ -20,11 +21,11 @@ export default class KnowledgeApi {
     static async COUStep(guidanceStep: GuidanceStep) {
         const data = new FormData()
         data.set("data", JSON.stringify(guidanceStep.ToJson()))
-        await Turxios.post("/api/knowledge/step", data)
+        await Turxios.post("/api/kh/knowledge/step", data)
     }
 
     static async DeleteStep(stepUid: string) {
-        await Turxios.delete("/api/knowledge/step", {
+        await Turxios.delete("/api/kh/knowledge/step", {
             params: {
                 uid: stepUid
             }
@@ -33,7 +34,7 @@ export default class KnowledgeApi {
 
 
     static async Delete(knowledge: string) {
-        await Turxios.delete("/api/knowledge", {
+        await Turxios.delete("/api/kh/knowledge", {
             params: {
                 uid: knowledge
             }
@@ -41,7 +42,13 @@ export default class KnowledgeApi {
     }
 
     static async List(): Promise<Knowledge[]> {
-        const response = (await Turxios.get<Array<any>>("/api/knowledge/list", {})).data
+        return await this.Query({})
+    }
+
+    static async Query(query: any): Promise<Knowledge[]> {
+        const response = (await Turxios.get<Array<any>>("/api/kh/knowledge/query", {
+            headers: QueryHeader(query)
+        })).data
 
         return response.map((val) => {
             const tmp = new Knowledge()
@@ -54,7 +61,7 @@ export default class KnowledgeApi {
     static async COU(knowledge: Knowledge) {
         const data = new FormData()
         data.set("data", JSON.stringify(knowledge.ToJson()))
-        await Turxios.post("/api/knowledge", data)
+        await Turxios.post("/api/kh/knowledge", data)
     }
 
 }

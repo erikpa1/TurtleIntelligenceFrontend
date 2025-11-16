@@ -8,7 +8,7 @@ import TurtleApp from "@TurtleApp/TurtleApp";
 
 
 interface COUFlowViewProps {
-    flow: FlowLight
+    flow: Flow
     onBeforeSubmit: any
     onAfterSubmit: any
 }

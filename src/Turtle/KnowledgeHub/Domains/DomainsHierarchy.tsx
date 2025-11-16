@@ -11,25 +11,27 @@ import {
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents"
 
-import {Knowledge, KnowledgeType} from "@Turtle/Knowledge/Data/Knowledge"
-import COUKnowledgeView from "@Turtle/Knowledge/COUKnowledgeView";
-import TurtleApp from "@TurtleApp/TurtleApp";
-import KnowledgeApi from "@Turtle/Knowledge/Api/KnowledgeApi";
-import IconDatabaseSearch from "@Turtle/Icons/IconDatabaseSearch";
-import KnowledgeDomain from "@Turtle/Knowledge/Data/Domains";
+import TurtleApp from "@TurtleApp/TurtleApp"
 
-export default function DomainsHierarchy() {
+import IconDatabaseSearch from "@Turtle/Icons/IconDatabaseSearch"
+import KhDomain from "@Turtle/KnowledgeHub/Data/Domains"
+import COUDomainView from "@Turtle/KnowledgeHub/Domains/COUDomain"
+import KhDomainApi from "@Turtle/KnowledgeHub/Api/KhDomainApi";
+
+interface DomainsHierarchyProps {
+    activeKey?: string
+}
+
+export default function DomainsHierarchy({activeKey}: DomainsHierarchyProps) {
     const [t] = useTranslation()
 
     const {activate, deactivate} = useTurtleModal()
 
     const navigate = useNavigate()
 
-
     const [data, setData] = React.useState<Array<TreeDataNode>>(createHierarchy([]))
 
-
-    function createHierarchy(domains: Array<KnowledgeDomain>) {
+    function createHierarchy(domains: Array<KhDomain>) {
         return [
             {
                 key: "domains",
@@ -50,7 +52,7 @@ export default function DomainsHierarchy() {
                         key: val.uid,
                         title: (
                             <HierarchyFlex onClick={() => {
-                                navigate(`/knowledge-hub/${val.uid}`)
+                                navigate(`/kh/${val.uid}`)
                             }}>
 
                                 <Space>
@@ -63,12 +65,12 @@ export default function DomainsHierarchy() {
 
                                     <HierarchyEditButton
                                         onClick={() => {
-                                            editKnowledge(val)
+                                            editDomain(val)
                                         }}
                                     />
                                     <HierarchyDeleteButton
                                         onClick={() => {
-                                            deleteKnowledge(val.uid)
+                                            deleteDomain(val.uid)
                                         }}
                                     />
                                 </HierarchyRightFlex>
@@ -81,37 +83,14 @@ export default function DomainsHierarchy() {
     }
 
 
-    function editKnowledge(kn: KnowledgeDomain) {
-
-        if (kn.type === KnowledgeType.PLAIN_TEXT) {
-            activate({
-                title: t("edit.domain"),
-                closable: true,
-                content: (
-                    <COUKnowledgeView
-                        knowledge={kn}
-                        onBeforeSubmit={deactivate}
-                        onAfterSubmit={refresh}
-
-                    />
-                )
-            })
-        } else {
-            navigate(`/knowledge-hub/${kn.uid}`)
-        }
-
-    }
-
-    function createDocument() {
-
-        const knowledge = new Knowledge()
+    function editDomain(domain: KhDomain) {
 
         activate({
-            title: t("create.knowledge"),
+            title: t("edit.domain"),
             closable: true,
             content: (
-                <COUKnowledgeView
-                    knowledge={knowledge}
+                <COUDomainView
+                    domain={domain}
                     onBeforeSubmit={deactivate}
                     onAfterSubmit={refresh}
 
@@ -120,18 +99,36 @@ export default function DomainsHierarchy() {
         })
     }
 
-    async function deleteKnowledge(knowledgeUid: string) {
+    function createDocument() {
+
+        const domain = new KhDomain()
+
+        activate({
+            title: t("create.domain"),
+            closable: true,
+            content: (
+                <COUDomainView
+                    domain={domain}
+                    onBeforeSubmit={deactivate}
+                    onAfterSubmit={refresh}
+
+                />
+            )
+        })
+    }
+
+    async function deleteDomain(knowledgeUid: string) {
 
         TurtleApp.Lock()
-        await KnowledgeApi.Delete(knowledgeUid)
+        await KhDomainApi.Delete(knowledgeUid)
         TurtleApp.Unlock()
         refresh()
 
     }
 
     async function refresh() {
-        const knowledge = await KnowledgeApi.List()
-        setData(createHierarchy(knowledge))
+        const domains = await KhDomainApi.List()
+        setData(createHierarchy(domains))
     }
 
 
@@ -144,6 +141,7 @@ export default function DomainsHierarchy() {
             key={data[0]?.children?.length}
             blockNode
             virtual
+            activeKey={activeKey}
             showLine
             treeData={data}
             defaultExpandAll={true}

@@ -1,19 +1,20 @@
 import React from "react"
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import DocIntTopBar from "@Turtle/DocInt/Dock/DocIntTopBar";
-import {Splitter} from "antd";
-import KnowledgeHierarchy from "@Turtle/Knowledge/KnowledgeHierarchy";
+import {Alert, Splitter} from "antd";
+import KnowledgeHierarchy from "@Turtle/KnowledgeHub/KnowledgeHierarchy";
 import {useParams} from "react-router-dom";
-import KnowledgeEditView from "@Turtle/Knowledge/KnowledgeEditView";
-import DomainsHierarchy from "@Turtle/Knowledge/DomainsHierarchy";
+import KnowledgeEditView from "@Turtle/KnowledgeHub/KnowledgeEditView";
+
 import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
+import DomainsHierarchy from "@Turtle/KnowledgeHub/Domains/DomainsHierarchy";
 
 
 export default function KnowledgeDock() {
 
 
     const {bigPadding} = useTurtleTheme()
-    const {knowledgeUid} = useParams()
+    const {domainUid, knowledgeUid} = useParams()
 
     return (
         <SplitterWithHeader topbar={<DocIntTopBar/>}>
@@ -24,7 +25,7 @@ export default function KnowledgeDock() {
                     padding: bigPadding
                 }}
             >
-                <DomainsHierarchy/>
+                <DomainsHierarchy activeKey={domainUid}/>
             </Splitter.Panel>
 
 
@@ -35,7 +36,14 @@ export default function KnowledgeDock() {
                     padding: bigPadding
                 }}
             >
-                <KnowledgeHierarchy/>
+
+                {
+                    domainUid && (
+                        <KnowledgeHierarchy domain={domainUid}/>
+                    )
+                }
+
+
             </Splitter.Panel>
 
             <Splitter.Panel
@@ -44,13 +52,13 @@ export default function KnowledgeDock() {
 
                 }}
             >
-
-
-                {
-                    knowledgeUid && (
-                        <KnowledgeEditView knUid={knowledgeUid}/>
-                    )
-                }
+                <Alert.ErrorBoundary>
+                    {
+                        knowledgeUid && (
+                            <KnowledgeEditView knUid={knowledgeUid}/>
+                        )
+                    }
+                </Alert.ErrorBoundary>
             </Splitter.Panel>
 
         </SplitterWithHeader>

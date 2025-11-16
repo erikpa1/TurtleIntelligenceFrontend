@@ -6,6 +6,8 @@ import ForecastingDock from "@TurtleApp/Forecasting/ForecastingDock";
 import LoginForm from "@Turtle/Login/MainLoginForm";
 import RegisterForm from "@Turtle/Login/CreateAccountForm";
 import TablesDataDock from "@Turtle/TablesData/TablesDataDock";
+import ErrorBoundary from "@Turtle/Components/ErrorBoundary";
+import {Alert} from "antd";
 
 
 const AofModelsDock = React.lazy(() => import("@TurtleApp/Aof/AofModelsDock"))
@@ -22,7 +24,7 @@ const AgentIncidentsDock = React.lazy(() => import("@Turtle/AgentIncidents/Agent
 const KnowledgeGuidanceDock = React.lazy(() => import("@Turtle/Guidance/GuidanceDock"))
 const AgentToolsDock = React.lazy(() => import("@Turtle/AgentTools/AgentToolsDock"))
 const FunctionsDock = React.lazy(() => import("@Turtle/Functions/FunctionsDock"))
-const KHDock = React.lazy(() => import("@Turtle/Knowledge/KnowledgeDock"))
+const KHDock = React.lazy(() => import("@Turtle/KnowledgeHub/KnowledgeDock"))
 const DocIntDock = React.lazy(() => import("@Turtle/DocInt/Dock/DocIntDock"))
 const LLMClusterDock = React.lazy(() => import("@Turtle/LLM/LLMCluster/LLMClusterDock"))
 const LLMsDock = React.lazy(() => import("@Turtle/LLM/LLMsDock/LLMsDock"))
@@ -38,75 +40,82 @@ const NNDock = React.lazy(() => import("@TurtleApp/Routes/NN/NNDock"))
 
 export default function AppRoutes({}) {
     return (
-        <Routes>
+        <Alert.ErrorBoundary>
+            <Routes>
 
-            {/* User management and login */}
+                {/* User management and login */}
 
-            <Route path={"/login"} element={<LoginForm/>}/>
-            <Route path={"/register"} element={<RegisterForm/>}/>
-
-
-            <Route path={"/"} element={<SimModelsDock/>}/>
-            <Route path={"/model/:modelUid"} element={<SimWorldDock/>}/>
-            <Route path={"/containers"} element={<ContainersDock/>}/>
-            <Route path={"/nn"} element={<NNDock/>}/>
-            <Route path={"/documentation"} element={<DocumentationDock/>}/>
-            <Route path={"/documentation/:topic/:document"} element={<DocumentationDock/>}/>
-            <Route path={"/actors"} element={<ActorsDock/>}/>
-            <Route path={"/llm-chat"} element={<LLMChatDock/>}/>
-            <Route path={"/llm-agent-chat/:chatUid"} element={<LLMAgentChatDock/>}/>
-            <Route path={"/llm-chat/:chatUid"} element={<LLMChatDock/>}/>
-            <Route path={"/llm-clusters"} element={<LLMClusterDock/>}/>
-            <Route path={"/llm-clusters/:clusterUid"} element={<LLMClusterDock/>}/>
-            <Route path={"/llms"} element={<LLMsDock/>}/>
-            <Route path={"/llms/:llmUid"} element={<LLMsDock/>}/>
-            <Route path={"/agents"} element={<LLMAgentsDock/>}/>
-            <Route path={"/agents/:agentUid"} element={<LLMAgentsDock/>}/>
-            <Route path={"/doc-int"} element={<DocIntDock/>}/>
-            <Route path={"/doc-int/:viewMethod"} element={<DocIntDock/>}/>
-            <Route path={"/doc-int/:viewMethod/:documentUid"} element={<DocIntDock/>}/>
-            <Route path={"/knowledge-hub"} element={<KHDock/>}/>
-            <Route path={"/knowledge-hub/:knowledgeUid"} element={<KHDock/>}/>
-            <Route path={"/guidance-edit/:knUid"} element={<KnowledgeGuidanceDock/>}/>
-
-            <Route path={"/functions"} element={<FunctionsDock/>}/>
-            <Route path={"/fn/:fnUid"} element={<FunctionsDock/>}/>
-            <Route path={"/agents-tools"} element={<AgentToolsDock/>}/>
-            <Route path={"/agents-tools/:toolUid"} element={<AgentToolsDock/>}/>
-            <Route path={"/agents-incidents"} element={<AgentIncidentsDock/>}/>
-            <Route path={"/agents-incidents/:incUid"} element={<AgentIncidentsDock/>}/>
-
-            <Route path={"/flows"} element={<FlowsDock/>}/>
-
-            <Route path={"/flows/:flowUid"} element={<FlowsDock/>}/>
-
-            <Route path={"/themes"} element={<ThemeDock/>}/>
-            <Route path={"/themes/:themeUid"} element={<ThemeDock/>}/>
-
-            <Route path={"/scenes"} element={<ScenesDock/>}/>
-            <Route path={"/scenes/:sceneUid"} element={<ScenesDock/>}/>
-
-            <Route path={"/scene"} element={<SceneEditDock/>}/>
-            <Route path={"/scene/:sceneUid"} element={<SceneEditDock/>}/>
-
-            <Route path={"/forecasting"} element={<ForecastingDock/>}/>
-            <Route path={"/forecasting/:forecast"} element={<ForecastingDock/>}/>
-
-            <Route path={"/tables"} element={<TablesDock/>}/>
-            <Route path={"/tables/:tableUid"} element={<TablesDock/>}/>
-
-            <Route path={"/table-data"} element={<TablesDataDock/>}/>
-            <Route path={"/table-data/:tableUid"} element={<TablesDataDock/>}/>
-
-            <Route path={"/resources"} element={<ResourcesDock/>}/>
-            <Route path={"/resources/:resourceUid"} element={<ResourcesDock/>}/>
+                <Route path={"/login"} element={<LoginForm/>}/>
+                <Route path={"/register"} element={<RegisterForm/>}/>
 
 
-            {/*   AOF */}
-            <Route path={"/aof"} element={<AofModelsDock/>}/>
-            <Route path={"/aof/:aofUid"} element={<AofEditModelDock/>}/>
+                <Route path={"/"} element={<SimModelsDock/>}/>
+                <Route path={"/model/:modelUid"} element={<SimWorldDock/>}/>
+                <Route path={"/containers"} element={<ContainersDock/>}/>
+                <Route path={"/nn"} element={<NNDock/>}/>
+                <Route path={"/documentation"} element={<DocumentationDock/>}/>
+                <Route path={"/documentation/:topic/:document"} element={<DocumentationDock/>}/>
+                <Route path={"/actors"} element={<ActorsDock/>}/>
+                <Route path={"/llm-chat"} element={<LLMChatDock/>}/>
+                <Route path={"/llm-agent-chat/:chatUid"} element={<LLMAgentChatDock/>}/>
+                <Route path={"/llm-chat/:chatUid"} element={<LLMChatDock/>}/>
+                <Route path={"/llm-clusters"} element={<LLMClusterDock/>}/>
+                <Route path={"/llm-clusters/:clusterUid"} element={<LLMClusterDock/>}/>
+                <Route path={"/llms"} element={<LLMsDock/>}/>
+                <Route path={"/llms/:llmUid"} element={<LLMsDock/>}/>
+                <Route path={"/agents"} element={<LLMAgentsDock/>}/>
+                <Route path={"/agents/:agentUid"} element={<LLMAgentsDock/>}/>
+                <Route path={"/doc-int"} element={<DocIntDock/>}/>
+                <Route path={"/doc-int/:viewMethod"} element={<DocIntDock/>}/>
+                <Route path={"/doc-int/:viewMethod/:documentUid"} element={<DocIntDock/>}/>
+
+                {/*Knowledge Hub*/}
+                <Route path={"/kh"} element={<KHDock/>}/>
+                <Route path={"/kh/:domainUid"} element={<KHDock/>}/>
+                <Route path={"/kh/:domainUid/:knowledgeUid"} element={<KHDock/>}/>
 
 
-        </Routes>
+                <Route path={"/guidance-edit/:knUid"} element={<KnowledgeGuidanceDock/>}/>
+
+                <Route path={"/functions"} element={<FunctionsDock/>}/>
+                <Route path={"/fn/:fnUid"} element={<FunctionsDock/>}/>
+                <Route path={"/agents-tools"} element={<AgentToolsDock/>}/>
+                <Route path={"/agents-tools/:toolUid"} element={<AgentToolsDock/>}/>
+                <Route path={"/agents-incidents"} element={<AgentIncidentsDock/>}/>
+                <Route path={"/agents-incidents/:incUid"} element={<AgentIncidentsDock/>}/>
+
+                <Route path={"/flows"} element={<FlowsDock/>}/>
+
+                <Route path={"/flows/:flowUid"} element={<FlowsDock/>}/>
+
+                <Route path={"/themes"} element={<ThemeDock/>}/>
+                <Route path={"/themes/:themeUid"} element={<ThemeDock/>}/>
+
+                <Route path={"/scenes"} element={<ScenesDock/>}/>
+                <Route path={"/scenes/:sceneUid"} element={<ScenesDock/>}/>
+
+                <Route path={"/scene"} element={<SceneEditDock/>}/>
+                <Route path={"/scene/:sceneUid"} element={<SceneEditDock/>}/>
+
+                <Route path={"/forecasting"} element={<ForecastingDock/>}/>
+                <Route path={"/forecasting/:forecast"} element={<ForecastingDock/>}/>
+
+                <Route path={"/tables"} element={<TablesDock/>}/>
+                <Route path={"/tables/:tableUid"} element={<TablesDock/>}/>
+
+                <Route path={"/table-data"} element={<TablesDataDock/>}/>
+                <Route path={"/table-data/:tableUid"} element={<TablesDataDock/>}/>
+
+                <Route path={"/resources"} element={<ResourcesDock/>}/>
+                <Route path={"/resources/:resourceUid"} element={<ResourcesDock/>}/>
+
+
+                {/*   AOF */}
+                <Route path={"/aof"} element={<AofModelsDock/>}/>
+                <Route path={"/aof/:aofUid"} element={<AofEditModelDock/>}/>
+
+
+            </Routes>
+        </Alert.ErrorBoundary>
     );
 }

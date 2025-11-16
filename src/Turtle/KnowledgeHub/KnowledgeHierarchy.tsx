@@ -11,13 +11,18 @@ import {
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents"
 
-import {Knowledge, KnowledgeType} from "@Turtle/Knowledge/Data/Knowledge"
-import COUKnowledgeView from "@Turtle/Knowledge/COUKnowledgeView";
+import {Knowledge, KnowledgeType} from "@Turtle/KnowledgeHub/Data/Knowledge"
+import COUKnowledgeView from "@Turtle/KnowledgeHub/COUKnowledgeView";
 import TurtleApp from "@TurtleApp/TurtleApp";
-import KnowledgeApi from "@Turtle/Knowledge/Api/KnowledgeApi";
+import KnowledgeApi from "@Turtle/KnowledgeHub/Api/KnowledgeApi";
 import IconDatabaseSearch from "@Turtle/Icons/IconDatabaseSearch";
 
-export default function KnowledgeHierarchy() {
+
+interface KnowledgeHierarchyProps {
+    domain?: string
+}
+
+export default function KnowledgeHierarchy({domain}: KnowledgeHierarchyProps) {
     const [t] = useTranslation()
 
     const {activate, deactivate} = useTurtleModal()
@@ -49,7 +54,7 @@ export default function KnowledgeHierarchy() {
                         key: val.uid,
                         title: (
                             <HierarchyFlex onClick={() => {
-                                navigate(`/knowledge-hub/${val.uid}`)
+                                navigate(`/kh/${domain ?? "*"}/${val.uid}`)
                             }}>
 
                                 <Space>
@@ -79,7 +84,6 @@ export default function KnowledgeHierarchy() {
         ]
     }
 
-
     function editKnowledge(kn: Knowledge) {
 
         if (kn.type === KnowledgeType.PLAIN_TEXT) {
@@ -98,7 +102,6 @@ export default function KnowledgeHierarchy() {
         } else {
             navigate(`/guidance-edit/${kn.uid}`)
         }
-
     }
 
     function createDocument() {
@@ -129,14 +132,24 @@ export default function KnowledgeHierarchy() {
     }
 
     async function refresh() {
-        const knowledge = await KnowledgeApi.List()
+
+        var knowledge: Knowledge[] = []
+
+        if (domain) {
+            knowledge = await KnowledgeApi.Query({
+                domain: {"$oid": domain},
+            })
+        } else {
+            knowledge = await KnowledgeApi.List()
+        }
+
         setData(createHierarchy(knowledge))
     }
 
 
     React.useEffect(() => {
         refresh()
-    }, [])
+    }, [domain])
 
     return (
         <Tree

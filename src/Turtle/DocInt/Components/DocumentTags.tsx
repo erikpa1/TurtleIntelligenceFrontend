@@ -55,9 +55,9 @@ export function CreateCategoryView({}) {
                     attribute={"name"}
                 />
 
-                <RightSubmitHtmlButton
+                <RightSubmitButton
                     onClick={() => {
-
+                        //pass
                     }}
                 />
             </Flex>

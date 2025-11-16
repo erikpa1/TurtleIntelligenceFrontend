@@ -1,5 +1,4 @@
 import {Form, Input} from "antd";
-import EntityForm from "@Turtle/Components/Forms/EntityForm";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import {ContainersApi} from "@TurtleApp/Api/ContainersApi";
 import Container from "@TurtleApp/Data/Container";

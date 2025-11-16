@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {useNavigate} from "react-router-dom";
 import {Flex, Tree, TreeDataNode} from "antd";
-import {Knowledge, KnowledgeType} from "@Turtle/Knowledge/Data/Knowledge";
+import {Knowledge, KnowledgeType} from "@Turtle/KnowledgeHub/Data/Knowledge";
 import {
     HierarchyAddButton, HierarchyDeleteButton,
     HierarchyEditButton,

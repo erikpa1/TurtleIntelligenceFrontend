@@ -1,11 +1,11 @@
 import React from "react"
 import {Flex} from "antd";
-import {Knowledge, KnowledgeType} from "@Turtle/Knowledge/Data/Knowledge";
-import KnowledgeApi from "@Turtle/Knowledge/Api/KnowledgeApi";
+import {Knowledge, KnowledgeType} from "@Turtle/KnowledgeHub/Data/Knowledge";
+import KnowledgeApi from "@Turtle/KnowledgeHub/Api/KnowledgeApi";
 import {CenterSpinner} from "@Turtle/Components/Loadings";
 import TurtleEmpty from "@Turtle/Components/TurtleEmpty";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
-import {MarkdownParser} from "@Turtle/Knowledge/KHMarkDown";
+import {MarkdownParser} from "@Turtle/KnowledgeHub/KHMarkDown";
 
 export default function KnowledgeEditView({knUid}) {
 
@@ -56,7 +56,8 @@ function _KnowledgeTypeDispatcher({knowledge}: _KnowledgeTypeDispatcherProps) {
 
     const toSee = React.useMemo(() => {
         const parser = new MarkdownParser()
-        const parsed = parser.parseMarkdown(knowledge.typeData["2text"])
+        const text = knowledge.typeData["text"] ?? ""
+        const parsed = parser.parseMarkdown(text)
         const htmlOutput = parser.toHtml(parsed)
         return htmlOutput
     }, [knowledge])

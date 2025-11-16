@@ -1,7 +1,7 @@
 import React from "react";
 import axios, {Axios, Axios as BigAxios, AxiosError, AxiosRequestConfig, AxiosResponse} from "axios";
 import {useTranslation} from "react-i18next";
-import {App} from "antd";
+import { message} from "antd";
 import TurtleApp from "@TurtleApp/TurtleApp";
 
 import {QueryHeader} from "@Turtle/Utils/Http";
@@ -12,7 +12,7 @@ const turxios = axios.create();
 
 export function TurxiosProvider() {
 
-    const {message} = App.useApp()
+    const [messageApi] = message.useMessage()
 
     const [t] = useTranslation()
 
@@ -25,13 +25,14 @@ export function TurxiosProvider() {
         console.log(error)
 
         if (error.response && error.response.status === 401) {
-            message.error(t("Unauthorized"))
+            messageApi.error(t("Unauthorized"))
             // setActiveUser(null)
         } else if (error.response && error.response.status === 404) {
-            message.error(t("404 - not found"))
+            messageApi.error(t("404 - not found"))
         } else {
             console.error(error)
-            message.error({
+
+            messageApi.error({
                 content: `${error.name}: ${error.message}`,
             })
         }
@@ -56,7 +57,7 @@ export function TurxiosProvider() {
         };
     }, []);
 
-    return <></>;
+    return (<></>)
 };
 
 

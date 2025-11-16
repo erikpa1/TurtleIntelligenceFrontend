@@ -81,9 +81,9 @@ export default function TagsList({type}: TagsListProps) {
     const [searchQuery, setSearchQuery] = React.useState("");
     const [isCreateModalOpen, setIsCreateModalOpen] = React.useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = React.useState(false);
-    const [editingTag, setEditingTag] = React.useState(null);
-    const [createForm, setCreateForm] = React.useState({color: TAG_COLORS[0]});
-    const [editForm, setEditForm] = React.useState({});
+    const [editingTag, setEditingTag] = React.useState<any>(null);
+    const [createForm, setCreateForm] = React.useState<any>({color: TAG_COLORS[0]});
+    const [editForm, setEditForm] = React.useState<any>({});
 
     const filteredTags = tags.filter((tag) =>
         tag.name.toLowerCase().includes(searchQuery.toLowerCase())

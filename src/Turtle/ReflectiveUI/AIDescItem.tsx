@@ -31,10 +31,10 @@ export default function AIDescriptionItem({
                 size={"small"}
                 disabled={disabled}
                 defaultValue={entity[attribute]}
-                onChange={(e) => {
+                onChange={((e) => {
                     entity[attribute] = e.target.value
-                }}
-                {...restProps} // Forward all additional props to Input
+                }) as any}
+                {...restProps as any} // Forward all additional props to Input
             />
         </Form.Item>
     )

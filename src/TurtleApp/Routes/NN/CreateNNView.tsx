@@ -20,7 +20,7 @@ export default function CreateNNView({
     async function createClicked() {
         onBeforeSubmit()
         TurtleApp.Lock()
-        await Neural
+        // await NNApi
         TurtleApp.Unlock()
         onAfterSubmit()
     }

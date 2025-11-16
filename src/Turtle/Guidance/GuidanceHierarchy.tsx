@@ -1,12 +1,13 @@
 import React from "react"
-import {Knowledge} from "@Turtle/Knowledge/Data/Knowledge";
+import {Knowledge} from "@Turtle/KnowledgeHub/Data/Knowledge";
 import {Flex, Tree, TreeDataNode} from "antd";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {HierarchyAddButton, HierarchyRightFlex} from "@Turtle/Components/HierarchyComponents";
-import {GuidanceStep} from "@Turtle/Knowledge/Data/Guidance";
+
 import COUGuidanceStepView from "@Turtle/Guidance/COUGuidanceStepView";
+import {GuidanceStep} from "@Turtle/KnowledgeHub/Artifacts/Guidance";
 
 interface GuidanceHierarchyProps {
     knowledge: Knowledge

@@ -7,6 +7,7 @@ export class Knowledge {
     name = ""
     description = ""
     type = 0
+    domain = ""
     hasEmbedding = false
     typeData = {}
 
@@ -18,6 +19,7 @@ export class Knowledge {
             type: this.type,
             hasEmbedding: this.hasEmbedding,
             typeData: this.typeData,
+            domain: this.domain,
         }
     }
 
@@ -28,6 +30,7 @@ export class Knowledge {
         this.type = jObj.type ?? ""
         this.hasEmbedding = jObj.hasEmbedding
         this.typeData = jObj.typeData ?? {}
+        this.domain = jObj.domain ?? ""
     }
 }
 

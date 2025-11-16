@@ -3,12 +3,12 @@ import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import {useParams} from "react-router-dom";
 import DocIntTopBar from "@Turtle/DocInt/Dock/DocIntTopBar";
 import {Splitter} from "antd";
-import KnowledgeHierarchy from "@Turtle/Knowledge/KnowledgeHierarchy";
-import KnowledgeEditView from "@Turtle/Knowledge/KnowledgeEditView";
-import {Knowledge} from "@Turtle/Knowledge/Data/Knowledge";
+import KnowledgeHierarchy from "@Turtle/KnowledgeHub/KnowledgeHierarchy";
+import KnowledgeEditView from "@Turtle/KnowledgeHub/KnowledgeEditView";
+import {Knowledge} from "@Turtle/KnowledgeHub/Data/Knowledge";
 import {CenterSpinner} from "@Turtle/Components/Loadings";
 import TurtleEmpty from "@Turtle/Components/TurtleEmpty";
-import KnowledgeApi from "@Turtle/Knowledge/Api/KnowledgeApi";
+import KnowledgeApi from "@Turtle/KnowledgeHub/Api/KnowledgeApi";
 import GuidanceTopBar from "@Turtle/Guidance/GuidanceTopBar";
 import GuidanceHierarchy from "@Turtle/Guidance/GuidanceHierarchy";
 

@@ -103,7 +103,7 @@ export default function AppNavBar() {
 
                         <MyNavbarItem
                             lang={"knowledgehub"}
-                            link={"/knowledge-hub"}
+                            link={"/kh"}
                             icon={"/icons/article_person.svg"}
                             iconStyle={ICON_STYLE}
                         />

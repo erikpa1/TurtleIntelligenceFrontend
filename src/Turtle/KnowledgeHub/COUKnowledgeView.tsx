@@ -1,12 +1,13 @@
 import React from "react"
 import {Flex, Form, Select, Timeline, Typography} from "antd"
-import {Knowledge, KnowledgeType} from "@Turtle/Knowledge/Data/Knowledge";
+import {Knowledge, KnowledgeType} from "@Turtle/KnowledgeHub/Data/Knowledge";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import {useTranslation} from "react-i18next";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import TurtleApp from "@TurtleApp/TurtleApp";
-import KnowledgeApi from "@Turtle/Knowledge/Api/KnowledgeApi";
+import KnowledgeApi from "@Turtle/KnowledgeHub/Api/KnowledgeApi";
 import {StringAreaAttributeView} from "@Turtle/Components/Forms/StringAreaPropertyView";
+import SelectKhDomain from "@Turtle/KnowledgeHub/Domains/SelectKhDomain";
 
 interface COUKnowledgeViewProps {
     knowledge: Knowledge
@@ -48,6 +49,13 @@ export default function COUKnowledgeView({
                 <StringAreaAttributeView
                     entity={knowledge}
                     attribute={"description"}
+                />
+
+                <SelectKhDomain
+                    domain={knowledge.domain}
+                    onDomainChange={(newDomain) => {
+                        knowledge.domain = newDomain
+                    }}
                 />
 
                 {
