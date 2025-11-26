@@ -1,8 +1,8 @@
-import {Col, Divider, Flex, Layout, Menu, Modal, Row} from "antd";
+import {Col, Divider, Flex, Layout, Modal, Row} from "antd";
 
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
-import {IconSimulation, IconWidgets} from "@Turtle/Icons";
+import {IconSimulation} from "@Turtle/Icons";
 import Search from "antd/es/input/Search";
 import React from "react";
 
@@ -159,6 +159,20 @@ const AI_WIDGETS: INavBarItem[] = [
     }
 ]
 
+const DOCUMENT_AUTOMATION_WIDGETS: INavBarItem[] = [
+    {
+        lang: "ocr.tools",
+        icon: "/icons/format_shapes.svg",
+        link: "/ocr-tools"
+    },
+    {
+        lang: "ocr.pipelines",
+        icon: "/icons/flowsheet.svg",
+        link: "/ocr-pipelines"
+    }
+]
+
+
 const DATA_WIDGETS: INavBarItem[] = [
     {
         lang: "functions",
@@ -235,9 +249,9 @@ const OTHER_WIDGETS: INavBarItem[] = [
 
 const AOF_WIDGETS: INavBarItem[] = [
     {
-        lang: "aof",
+        lang: "factories",
         icon: "/icons/article.svg",
-        link: "/aof"
+        link: "/aof-factories"
     },
     {
         lang: "devices",
@@ -262,6 +276,10 @@ const WIDGET_CATEGORIES: IWidgetCategory[] = [
         items: DATA_WIDGETS
     },
     {
+        titleKey: "documents.automation",
+        items: DOCUMENT_AUTOMATION_WIDGETS
+    },
+    {
         titleKey: "3D",
         items: THREED_WIDGETS
     },
@@ -274,6 +292,7 @@ const WIDGET_CATEGORIES: IWidgetCategory[] = [
         items: AOF_WIDGETS
     }
 ]
+
 
 function _WidgetsView({onRereoute}) {
 

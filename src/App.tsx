@@ -2,11 +2,8 @@ import React from "react";
 
 import "./App.css"
 
-
-import {useTranslation} from "react-i18next";
-
 import AppRoutes from "./AppRoutes";
-import {Layout} from "antd";
+import {Alert, Layout} from "antd";
 import AppNavBar from "./AppNavBar";
 import Sider from "antd/es/layout/Sider";
 import {GlobalLock} from "@Turtle/Components/GlobalLock";
@@ -18,7 +15,7 @@ function App() {
     const [isLoading, setIsLoading] = React.useState(true)
 
     const initTheme = useThemeInit()
-    
+
 
     React.useEffect(() => {
         setIsLoading(true)
@@ -66,7 +63,9 @@ function Main({}) {
             // position: "absolute",
             // left: "200px"
         }}>
-            <AppRoutes/>
+            <Alert.ErrorBoundary>
+                <AppRoutes/>
+            </Alert.ErrorBoundary>
         </main>
     )
 }

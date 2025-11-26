@@ -158,5 +158,15 @@
     "domains": "Domains",
     "domain": "Domain",
     "edit.domain": "Edit domain",
-    "create.domain": "Create domain"
+    "create.domain": "Create domain",
+    "documents.automation": "Documents automation",
+    "ocr": "OCR",
+    "ocr.pipelines": "OCR pipelines",
+    "ocr.tools": "OCR tools",
+    "tables": "Tables",
+    "tables.data": "Tables data",
+    "scenes": "Scenes",
+    "aof": "Artificial organic factory",
+    "devices": "Devices",
+    "factories": "Factories"
 }
