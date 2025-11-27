@@ -32,6 +32,12 @@
             ],
             "@TurtleApp/*": [
                 "src/TurtleApp/*"
+            ],
+            "@TurtleCrm/*": [
+                "src/TurtleCrm/*"
+            ],
+            "@NavBar/*": [
+                "src/NavBar/*"
             ]
         }
     },

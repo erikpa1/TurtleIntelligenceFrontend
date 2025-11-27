@@ -1,9 +1,9 @@
 import React from "react"
 import {Route} from "react-router-dom"
 
+const OcrToolsDock = React.lazy(() => import("@TurtleCrm/Ocr/OcrTools/OcrToolsDock"))
+const OcrPipelinesDock = React.lazy(() => import("@TurtleCrm/Ocr/OcrPipelines/OcrPipelinesDock"))
 
-const OcrToolsDock = React.lazy(() => import("@TurtleApp/Ocr/OcrTools/OcrToolsDock"))
-const OcrPipelinesDock = React.lazy(() => import("@TurtleApp/Ocr/OcrPipelines/OcrPipelinesDock"))
 
 export default function GetOcrRoutes(): Array<any> {
 

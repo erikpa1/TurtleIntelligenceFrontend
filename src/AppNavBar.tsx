@@ -1,13 +1,14 @@
-import {Col, Divider, Flex, Layout, Modal, Row} from "antd";
+import {Flex, Layout, Modal,} from "antd";
 
-import {useNavigate} from "react-router-dom";
-import {useTranslation} from "react-i18next";
-import {IconSimulation} from "@Turtle/Icons";
-import Search from "antd/es/input/Search";
-import React from "react";
+import {useNavigate} from "react-router-dom"
+import {useTranslation} from "react-i18next"
+import {IconSimulation} from "@Turtle/Icons"
+
+import React from "react"
 
 import "./AppNavBar.css"
-import {INavBarItem, MyNavbarItem, MyNavbarItemBigger} from "@Turtle/Components/NavBar";
+import {MyNavbarItem,} from "@Turtle/Components/NavBar"
+import TurtleAppsGallery, {ICON_STYLE} from "@TurtleApp/TurtleAppsGallery"
 
 export default function AppNavBar() {
 
@@ -128,181 +129,10 @@ export default function AppNavBar() {
         </div>
     )
 }
-const ICON_STYLE = {
-    width: "25px",
-    height: "25px",
-    marginTop: "1px",
-    marginBottom: "1px"
-}
-
-
-const AI_WIDGETS: INavBarItem[] = [
-    {
-        lang: "neuralnetworks",
-        icon: "/icons/network_intel_node.svg",
-        link: "/nn"
-    },
-    {
-        lang: "llm.models",
-        icon: "/icons/ollama.svg",
-        link: "/llms"
-    },
-    {
-        lang: "agents",
-        icon: "/icons/robot_2.svg",
-        link: "/agents"
-    },
-    {
-        lang: "agents-tools",
-        icon: "/icons/robot_2.svg",
-        link: "/agents-tools"
-    }
-]
-
-const DOCUMENT_AUTOMATION_WIDGETS: INavBarItem[] = [
-    {
-        lang: "ocr.tools",
-        icon: "/icons/format_shapes.svg",
-        link: "/ocr-tools"
-    },
-    {
-        lang: "ocr.pipelines",
-        icon: "/icons/flowsheet.svg",
-        link: "/ocr-pipelines"
-    }
-]
-
-
-const DATA_WIDGETS: INavBarItem[] = [
-    {
-        lang: "functions",
-        icon: "/icons/function.svg",
-        link: "/functions"
-    },
-    {
-        lang: "containers",
-        icon: "/icons/inventory_2.svg",
-        link: "/containers"
-    },
-    {
-        lang: "actors",
-        icon: "/icons/support_agent.svg",
-        link: "/actors"
-    },
-    {
-        lang: "resources",
-        icon: "/icons/support_agent.svg",
-        link: "/resources"
-    },
-    {
-        lang: "flows",
-        icon: "/icons/flowsheet.svg",
-        link: "/flows"
-    },
-    {
-        lang: "tables",
-        icon: "/icons/flowsheet.svg",
-        link: "/tables"
-    },
-    {
-        lang: "table.data",
-        icon: "/icons/flowsheet.svg",
-        link: "/table-data"
-    },
-    {
-        lang: "forecasting",
-        icon: "/icons/flowsheet.svg",
-        link: "/forecasting"
-    }
-]
-
-const THREED_WIDGETS: INavBarItem[] = [
-    {
-        lang: "scenes",
-        icon: "/icons/article.svg",
-        link: "/scenes"
-    }
-]
-
-const OTHER_WIDGETS: INavBarItem[] = [
-    {
-        lang: "documentation",
-        icon: "/icons/article.svg",
-        link: "/documentation"
-    },
-    {
-        lang: "llm.clusters",
-        icon: "/icons/graph_3.svg",
-        link: "/llm-clusters"
-    },
-    {
-        lang: "agents.incidents",
-        icon: "/icons/graph_3.svg",
-        link: "/agents-incidents"
-    },
-    {
-        lang: "themes",
-        icon: "/icons/graph_3.svg",
-        link: "/themes"
-    }
-]
-
-const AOF_WIDGETS: INavBarItem[] = [
-    {
-        lang: "factories",
-        icon: "/icons/article.svg",
-        link: "/aof-factories"
-    },
-    {
-        lang: "devices",
-        icon: "/icons/article.svg",
-        link: "/devices"
-    }
-]
-
-
-interface IWidgetCategory {
-    titleKey: string
-    items: INavBarItem[]
-}
-
-const WIDGET_CATEGORIES: IWidgetCategory[] = [
-    {
-        titleKey: "AI",
-        items: AI_WIDGETS
-    },
-    {
-        titleKey: "data",
-        items: DATA_WIDGETS
-    },
-    {
-        titleKey: "documents.automation",
-        items: DOCUMENT_AUTOMATION_WIDGETS
-    },
-    {
-        titleKey: "3D",
-        items: THREED_WIDGETS
-    },
-    {
-        titleKey: "other",
-        items: OTHER_WIDGETS
-    },
-    {
-        titleKey: "aof",
-        items: AOF_WIDGETS
-    }
-]
-
 
 function _WidgetsView({onRereoute}) {
 
     const [t] = useTranslation()
-
-    const [searchText, setSearchText] = React.useState("")
-
-    function searchTyping(text: string) {
-        setSearchText(text)
-    }
 
     return (
         <Modal
@@ -313,55 +143,7 @@ function _WidgetsView({onRereoute}) {
             width={800}
             footer={<></>}
         >
-            <Flex vertical>
-
-                <div style={{display: 'flex', justifyContent: 'center'}}>
-                    <Search
-                        defaultValue={searchText}
-                        onChange={(e) => {
-                            searchTyping(e.target.value)
-                        }}
-                        variant="borderless"
-                        style={{
-                            width: '200px',
-                            flex: 'none',
-                            borderBottom: '1px solid #d9d9d9',
-                            borderRadius: 0
-                        }}
-                    />
-                </div>
-
-                {
-                    WIDGET_CATEGORIES.map((category) => {
-                        return (
-                            <React.Fragment key={category.titleKey}>
-                                <Divider orientation={"left"}>
-                                    {category.titleKey === "3D" ? category.titleKey : t(category.titleKey)}:
-                                </Divider>
-
-                                <Row gutter={[16, 16]}>
-                                    {
-                                        category.items.map((item) => {
-                                            return (
-                                                <Col key={item.link} span={6}>
-                                                    <MyNavbarItemBigger
-                                                        lang={item.lang}
-                                                        icon={item.icon}
-                                                        link={item.link}
-                                                        onRerouted={onRereoute}
-                                                        iconStyle={ICON_STYLE}
-                                                    />
-                                                </Col>
-                                            )
-                                        })
-                                    }
-                                </Row>
-                            </React.Fragment>
-                        )
-                    })
-                }
-
-            </Flex>
+            <TurtleAppsGallery onRereoute={onRereoute}/>
         </Modal>
     )
 }

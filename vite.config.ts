@@ -13,6 +13,8 @@ export default defineConfig({
         alias: {
             "@Turtle": path.resolve(__dirname, "src/Turtle"),
             "@TurtleApp": path.resolve(__dirname, "src/TurtleApp"),
+            "@TurtleCrm": path.resolve(__dirname, "src/TurtleCrm"),
+            "@NavBar": path.resolve(__dirname, "src/NavBar"),
         },
     },
 

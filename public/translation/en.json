@@ -164,9 +164,10 @@
     "ocr.pipelines": "OCR pipelines",
     "ocr.tools": "OCR tools",
     "tables": "Tables",
-    "tables.data": "Tables data",
+    "table.data": "Table data",
     "scenes": "Scenes",
     "aof": "Artificial organic factory",
     "devices": "Devices",
-    "factories": "Factories"
+    "factories": "Factories",
+    "invoices": "Invoices"
 }
