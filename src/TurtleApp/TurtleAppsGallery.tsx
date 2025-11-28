@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next";
 import React from "react";
 import Search from "antd/es/input/Search";
 import {BASIC_CATEGORIES} from "@NavBar/NavBarModules_Basic";
-import {CRM_CATEGORIES} from "@NavBar/NavBarModules_CRM";
+import {CRM_CATEGORIES} from "@TurtleCrm/NavBarModules_CRM";
 import {MyNavbarItemBigger} from "@Turtle/Components/NavBar";
 
 

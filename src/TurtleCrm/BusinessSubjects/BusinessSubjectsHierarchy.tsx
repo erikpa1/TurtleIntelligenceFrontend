@@ -2,7 +2,7 @@ import {useTranslation} from "react-i18next";
 import React from "react";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {Flex, Tree, TreeDataNode} from "antd";
-import BusinessSubject from "@TurtleCrm/BusinessSubjects/BusinessSubject";
+import {Forecast} from "@TurtleApp/Forecasting/Forecast";
 import {
     HierarchyAddButton,
     HierarchyCustomIcon,
@@ -12,12 +12,12 @@ import {
 } from "@Turtle/Components/HierarchyComponents";
 import {IconSimulation} from "@Turtle/Icons";
 import TurtleApp from "@TurtleApp/TurtleApp";
-import BusinessSubjectsApi from "@TurtleCrm/BusinessSubjects/BusinessSubjectsApi";
-import COUBusinessSubject from "@TurtleCrm/BusinessSubjects/COUBusinessSubject";
-import {Forecast} from "@TurtleApp/Forecasting/Forecast";
 import ForecastApi from "@TurtleApp/Forecasting/ForecastsApi";
+import BusinessSubject from "@TurtleCrm/BusinessSubjects/BusinessSubject";
+import COUBusinessSubject from "@TurtleCrm/BusinessSubjects/COUBusinessSubject";
+import BusinessSubjectsApi from "@TurtleCrm/BusinessSubjects/BusinessSubjectsApi";
 
-export default function InvoicesHierarchy() {
+export default function BusinessSubjectsHierarchy() {
 
 
     const [t] = useTranslation()

@@ -1,24 +1,40 @@
+export enum InvoiceType {
+    INCOMING = 0,
+    OUTCOMING = 1,
+    REPAIR = 2
+}
+
 export default class Invoice {
 
     uid = ""
     name = ""
-    customer = ""
+    busSub = ""
+    type = InvoiceType.INCOMING
+    total = 0
+    paidPart = 0
+    parentInvoice = ""
+
     metadata = {}
 
     ToJson(): any {
         return {
             uid: this.uid,
             name: this.name,
-            customer: this.customer,
-            metadata: this.metadata
+            busSub: this.busSub,
+            total: this.total,
+            metadata: this.metadata,
+
         }
     }
 
     FromJson(jObj: any) {
         this.uid = jObj.uid ?? ""
         this.name = jObj.name ?? ""
-        this.customer = jObj.customer ?? ""
+        this.busSub = jObj.busSub ?? ""
+        this.total = jObj.total ?? 0
         this.metadata = jObj.metadata ?? {}
+
+
     }
 
 

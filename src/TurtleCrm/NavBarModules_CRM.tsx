@@ -22,7 +22,12 @@ const DATA_WIDGETS: INavBarItem[] = [
         lang: "invoices",
         icon: "/icons/receipt.svg",
         link: "/invoices"
-    }
+    }, {
+        lang: "business.subjects",
+        icon: "/icons/receipt.svg",
+        link: "/business-subjects"
+    },
+
 ]
 
 
@@ -35,5 +40,6 @@ export const CRM_CATEGORIES: IWidgetCategory[] = [
         titleKey: "documents.automation",
         items: DOCUMENT_AUTOMATION_WIDGETS
     },
+
 
 ]
