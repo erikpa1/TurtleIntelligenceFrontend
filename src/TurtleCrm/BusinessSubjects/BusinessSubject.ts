@@ -4,10 +4,18 @@ export enum BusinessSubjectType {
     SUPPLIER = 2
 }
 
+export enum BusinessSubjectLegalType {
+    COMPANY = 0,
+    PERSON = 1,
+}
+
+
 export default class BusinessSubject {
     uid = ""
     name = ""
     type: BusinessSubjectType = BusinessSubjectType.ALL
+    legalType: BusinessSubjectLegalType = BusinessSubjectLegalType.COMPANY
+    
 
     ToJson(): any {
         return {

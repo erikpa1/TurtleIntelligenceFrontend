@@ -2,6 +2,7 @@ import {Route} from "react-router-dom";
 import React from "react";
 import InvoicesDock from "@TurtleCrm/Invoices/InvoicesDock";
 import BusinessSubjectsDock from "@TurtleCrm/BusinessSubjects/BusinessSubjectsDock";
+import ContractsDock from "@TurtleCrm/Contacts/ContractsDock";
 
 
 export default function CrmRoutes() {
@@ -15,6 +16,14 @@ export default function CrmRoutes() {
             element={<InvoicesDock/>}
         />,
         <Route
+            path={"/contacts"}
+            element={<ContractsDock/>}/>
+        ,
+        <Route
+            path={"/contacts/:contractUid"}
+            element={<ContractsDock/>}/>
+        ,
+        <Route
             path={"/business-subjects"}
             element={<BusinessSubjectsDock/>}/>
         ,
@@ -22,5 +31,6 @@ export default function CrmRoutes() {
             path={"/business-subjects/:subUid"}
             element={<BusinessSubjectsDock/>}/>
         ,
+
     ]
 }

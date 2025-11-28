@@ -22,10 +22,26 @@ const DATA_WIDGETS: INavBarItem[] = [
         lang: "invoices",
         icon: "/icons/receipt.svg",
         link: "/invoices"
-    }, {
+    },
+    {
+        lang: "contracts",
+        icon: "/icons/receipt.svg",
+        link: "/contracts"
+    },
+    {
         lang: "business.subjects",
         icon: "/icons/receipt.svg",
         link: "/business-subjects"
+    },
+    {
+        lang: "cities",
+        icon: "/icons/receipt.svg",
+        link: "/cities"
+    },
+    {
+        lang: "states",
+        icon: "/icons/receipt.svg",
+        link: "/states"
     },
 
 ]
