@@ -92,6 +92,7 @@ export default function AppRoutes({}) {
             <Route path={"/kh"} element={<KHDock/>}/>
             <Route path={"/kh/:domainUid"} element={<KHDock/>}/>
             <Route path={"/kh/:domainUid/:knowledgeUid"} element={<KHDock/>}/>
+            <Route path={"/kh/:domainUid/:knowledgeUid/:viewMethod"} element={<KHDock/>}/>
 
 
             <Route path={"/guidance-edit/:knUid"} element={<KnowledgeGuidanceDock/>}/>

@@ -6,11 +6,13 @@ import {CenterSpinner} from "@Turtle/Components/Loadings";
 import TurtleEmpty from "@Turtle/Components/TurtleEmpty";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import {MarkdownParser} from "@Turtle/KnowledgeHub/KHMarkDown";
+import {useParams} from "react-router-dom";
 
 export default function KnowledgeEditView({knUid}) {
 
-    const [isLoading, setIsLoading] = React.useState(false)
+    const {viewMethod} = useParams()
 
+    const [isLoading, setIsLoading] = React.useState(false)
 
     const [knowledge, setKnowledge] = React.useState<Knowledge | null>(null)
 
@@ -41,8 +43,8 @@ export default function KnowledgeEditView({knUid}) {
             )
         }
     }
-
 }
+
 
 
 interface _KnowledgeTypeDispatcherProps {

@@ -8,6 +8,8 @@ import KnowledgeEditView from "@Turtle/KnowledgeHub/KnowledgeEditView";
 
 import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
 import DomainsHierarchy from "@Turtle/KnowledgeHub/Domains/DomainsHierarchy";
+import TopBarWrapper from "@Turtle/Components/TopBarWrapper";
+import KnowledgeTopBar from "@Turtle/KnowledgeHub/KnowledgeTopBar";
 
 
 export default function KnowledgeDock() {
@@ -46,13 +48,11 @@ export default function KnowledgeDock() {
 
             </Splitter.Panel>
 
-            <Splitter.Panel
-                style={{
-                    height: "95vh",
-
-                }}
-            >
+            <Splitter.Panel>
                 <Alert.ErrorBoundary>
+                    <TopBarWrapper>
+                        <KnowledgeTopBar/>
+                    </TopBarWrapper>
                     {
                         knowledgeUid && (
                             <KnowledgeEditView knUid={knowledgeUid}/>

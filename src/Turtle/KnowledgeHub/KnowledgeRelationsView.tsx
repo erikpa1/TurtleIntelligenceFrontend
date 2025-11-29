@@ -1,28 +1,26 @@
-import {Flex, Space, Tree, TreeDataNode} from "antd"
-import React from "react"
-import {useTranslation} from "react-i18next"
-import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal"
-import {useNavigate} from "react-router-dom"
-
+import {Flex, Space, Tree, TreeDataNode} from "antd";
+import {useTranslation} from "react-i18next";
+import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
+import {useNavigate} from "react-router-dom";
+import React from "react";
+import {Knowledge, KnowledgeType} from "@Turtle/KnowledgeHub/Data/Knowledge";
 import {
-    HierarchyAddButton,
-    HierarchyDeleteButton, HierarchyEditButton,
+    HierarchyAddButton, HierarchyDeleteButton,
+    HierarchyEditButton,
     HierarchyFlex,
     HierarchyRightFlex
-} from "@Turtle/Components/HierarchyComponents"
-
-import {Knowledge, KnowledgeType} from "@Turtle/KnowledgeHub/Data/Knowledge"
+} from "@Turtle/Components/HierarchyComponents";
+import IconDatabaseSearch from "@Turtle/Icons/IconDatabaseSearch";
 import COUKnowledgeView from "@Turtle/KnowledgeHub/COUKnowledgeView";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import KnowledgeApi from "@Turtle/KnowledgeHub/Api/KnowledgeApi";
-import IconDatabaseSearch from "@Turtle/Icons/IconDatabaseSearch";
 
 
-interface KnowledgeHierarchyProps {
-    domain?: string
+interface KnowledgeRelationsViewProps {
+    parentKnowledge: string
 }
 
-export default function KnowledgeHierarchy({domain}: KnowledgeHierarchyProps) {
+export default function KnowledgeRelationsView({parentKnowledge}: KnowledgeRelationsViewProps) {
     const [t] = useTranslation()
 
     const {activate, deactivate} = useTurtleModal()
