@@ -30,6 +30,9 @@
             "@Turtle/*": [
                 "src/Turtle/*"
             ],
+            "@TurtleData/*": [
+                "src/TurtleData/*"
+            ],
             "@TurtleApp/*": [
                 "src/TurtleApp/*"
             ],

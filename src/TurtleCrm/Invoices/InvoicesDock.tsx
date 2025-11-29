@@ -2,6 +2,7 @@ import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
 import {Splitter} from "antd";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import InvoicesTopBar from "@TurtleCrm/Invoices/InvoicesTopBar";
+import InvoicesHierarchy from "@TurtleCrm/Invoices/InvoicesHierarchy";
 
 
 export default function InvoicesDock() {
@@ -18,8 +19,7 @@ export default function InvoicesDock() {
                     padding: bigPadding
                 }}
             >
-
-
+                <InvoicesHierarchy/>
             </Splitter.Panel>
 
             <Splitter.Panel>
