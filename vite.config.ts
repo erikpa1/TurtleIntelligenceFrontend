@@ -13,6 +13,7 @@ export default defineConfig({
             "@TurtleData": path.resolve(__dirname, "src/TurtleData"),
             "@TurtleApp": path.resolve(__dirname, "src/TurtleApp"),
             "@TurtleCrm": path.resolve(__dirname, "src/TurtleCrm"),
+            "@TurtleSecurity": path.resolve(__dirname, "src/TurtleSecurity"),
             "@NavBar": path.resolve(__dirname, "src/NavBar"),
         },
     },

@@ -10,7 +10,16 @@ export default function COUCity(props: COUEntityView<City>) {
     return (
         <Form layout={"vertical"}>
             <Flex vertical gap={15}>
-                <StringAttributeView entity={props.entity} attribute={"name"}/>
+                <StringAttributeView
+                    entity={props.entity}
+                    attribute={"name"}
+                />
+
+                <StringAttributeView
+                    entity={props.entity}
+                    attribute={"abbreviation"}
+                />
+
 
                 <COUSubmitButton api={CitiesApi} props={props}/>
             </Flex>

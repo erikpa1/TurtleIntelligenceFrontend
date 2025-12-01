@@ -11,7 +11,8 @@ export default function CrmRoutes() {
     return [
         <Route
             path={"/invoices"}
-            element={<InvoicesDock/>}/>
+            element={<InvoicesDock/>}
+        />
         ,
         <Route
             path={"/invoices/:uid"}
@@ -19,7 +20,8 @@ export default function CrmRoutes() {
         />,
         <Route
             path={"/contacts"}
-            element={<ContractsDock/>}/>
+            element={<ContractsDock/>}
+        />
         ,
         <Route
             path={"/contacts/:contractUid"}

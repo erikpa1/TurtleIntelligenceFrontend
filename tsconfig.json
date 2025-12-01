@@ -39,6 +39,9 @@
             "@TurtleCrm/*": [
                 "src/TurtleCrm/*"
             ],
+            "@TurtleSecurity/*": [
+                "src/TurtleSecurity/*"
+            ],
             "@NavBar/*": [
                 "src/NavBar/*"
             ]
