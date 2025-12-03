@@ -1,5 +1,5 @@
 import React from "react"
-import {Flex} from "antd";
+import {Card, Flex} from "antd";
 import {Knowledge, KnowledgeType} from "@Turtle/KnowledgeHub/Data/Knowledge";
 import KnowledgeApi from "@Turtle/KnowledgeHub/Api/KnowledgeApi";
 import {CenterSpinner} from "@Turtle/Components/Loadings";
@@ -7,10 +7,13 @@ import TurtleEmpty from "@Turtle/Components/TurtleEmpty";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import {MarkdownParser} from "@Turtle/KnowledgeHub/KHMarkDown";
 import {useParams} from "react-router-dom";
+import KnowledgeRelationsView from "@Turtle/KnowledgeHub/KHRelations/KnowledgeRelationsView";
 
 export default function KnowledgeEditView({knUid}) {
 
     const {viewMethod} = useParams()
+
+    const {bigPadding} = useTurtleTheme()
 
     const [isLoading, setIsLoading] = React.useState(false)
 
@@ -34,9 +37,29 @@ export default function KnowledgeEditView({knUid}) {
         )
     } else {
         if (knowledge) {
-            return (
-                <_KnowledgeTypeDispatcher knowledge={knowledge}/>
-            )
+            if (Boolean(viewMethod) === false || viewMethod === "data") {
+                return (
+                    <Flex
+                        vertical
+                        gap={15}
+                    >
+                        <_KnowledgeTypeDispatcher
+                            knowledge={knowledge}
+                        />
+                    </Flex>
+                )
+            } else {
+                return (
+                    <Flex
+                        vertical
+                        gap={15}
+                    >
+                        <KnowledgeRelationsView
+                            knowledge={knowledge}
+                        />
+                    </Flex>
+                )
+            }
         } else {
             return (
                 <TurtleEmpty/>
@@ -44,7 +67,6 @@ export default function KnowledgeEditView({knUid}) {
         }
     }
 }
-
 
 
 interface _KnowledgeTypeDispatcherProps {
@@ -67,22 +89,29 @@ function _KnowledgeTypeDispatcher({knowledge}: _KnowledgeTypeDispatcherProps) {
 
     if (knowledge.type === KnowledgeType.PLAIN_TEXT) {
         return (
-            <Flex
-                vertical
+            <Card
+                title={(
+                    <h3>{knowledge.name}</h3>
+                )}
                 style={{
-                    padding: bigPadding
+                    margin: bigPadding
                 }}
             >
-                <h3>{knowledge.name}</h3>
+                <Flex
+                    vertical
+                    style={{
+                        padding: bigPadding
+                    }}
+                >
 
-                <h4>{knowledge.description}</h4>
+                    <h4>{knowledge.description}</h4>
 
-
-                <div
-                    dangerouslySetInnerHTML={{__html: toSee}}
-                />
-                <div>{}</div>
-            </Flex>
+                    <div
+                        dangerouslySetInnerHTML={{__html: toSee}}
+                    />
+                    <div>{}</div>
+                </Flex>
+            </Card>
         )
     }
 
