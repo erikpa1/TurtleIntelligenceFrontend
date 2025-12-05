@@ -18,6 +18,8 @@ import AgentToolNode from "@Turtle/LLM/LLMAgentsDock/Edit/AgentToolNode";
 import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import AgentTriggerNode from "@Turtle/LLM/LLMAgentsDock/Edit/AgentTriggerNode";
 import AgentLLMNode from "@Turtle/LLM/LLMAgentsDock/Edit/AgentLLMNode";
+import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
+import AgentExecDock from "@Turtle/LLM/LLMAgentsDock/Edit/AgentExecDock";
 
 
 const initialEdges = [{id: 'e1-2', source: '1', target: '2'}];
@@ -25,8 +27,14 @@ const initialEdges = [{id: 'e1-2', source: '1', target: '2'}];
 
 export default function LLMAgentEditCanvas({}) {
 
+
     return (
-        <Splitter layout={"vertical"}>
+        <Splitter
+            layout={"vertical"}
+            style={{
+                height: "100%",
+            }}
+        >
 
             <Splitter.Panel>
                 <_NodesFlowEditor/>
@@ -39,7 +47,7 @@ export default function LLMAgentEditCanvas({}) {
                 }}
 
             >
-
+                <AgentExecDock/>
             </Splitter.Panel>
 
 
@@ -58,16 +66,23 @@ const initialNodes: Array<FlowNode<AgentNodeParent>> = [
     },
     {
         id: '2',
-        position: {x: 300, y: 0},
+        position: {x: 200, y: 0},
         data: new AgentNodeParent()
     },
     {
         id: '3',
-        position: {x: 600, y: 0},
+        position: {x: 400, y: 0},
         data: new AgentNodeParent(),
         type: 'llmAgent',
     },
 ];
+
+
+const NODE_TYPES = {
+    default: AgentToolNode,
+    trigger: AgentTriggerNode,
+    llmAgent: AgentLLMNode
+}
 
 function _NodesFlowEditor({}) {
 
@@ -84,11 +99,7 @@ function _NodesFlowEditor({}) {
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
-            nodeTypes={{
-                default: AgentToolNode,
-                trigger: AgentTriggerNode,
-                llmAgent: AgentLLMNode
-            }}
+            nodeTypes={NODE_TYPES}
             fitView
         >
             <MiniMap/>
