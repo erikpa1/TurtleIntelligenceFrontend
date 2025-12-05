@@ -14,6 +14,8 @@ import IconDatabaseSearch from "@Turtle/Icons/IconDatabaseSearch";
 import COUKnowledgeView from "@Turtle/KnowledgeHub/COUKnowledgeView";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import KnowledgeApi from "@Turtle/KnowledgeHub/Api/KnowledgeApi";
+import KhRelationsApi from "@Turtle/KnowledgeHub/Api/KhRelationsApi";
+import KnowledgeRelation from "@Turtle/KnowledgeHub/Data/KnowledgeRelation";
 
 
 interface KnowledgeRelationsViewProps {
@@ -27,52 +29,32 @@ export default function KnowledgeRelationsView({parentKnowledge}: KnowledgeRelat
 
     const navigate = useNavigate()
 
-
     const [data, setData] = React.useState<Array<TreeDataNode>>(createHierarchy([]))
 
-
-    function createHierarchy(documents: Array<Knowledge>) {
+    function createHierarchy(relations: Array<KnowledgeRelation>) {
         return [
             {
                 key: "knowledge",
                 title: (
                     <Flex>
-                        {t("knowledge")} ({documents.length})
-
-                        <HierarchyRightFlex>
-                            <HierarchyAddButton
-                                onClick={createDocument}
-                            />
-                        </HierarchyRightFlex>
+                        {t("relations")} ({relations.length})
                     </Flex>
                 ),
 
-                children: documents.map((val) => {
+                children: relations.map((val) => {
                     return {
                         key: val.uid,
                         title: (
-                            <HierarchyFlex onClick={() => {
-                                navigate(`/kh/${domain ?? "*"}/${val.uid}/data`)
-                            }}>
+                            <HierarchyFlex>
 
                                 <Space>
                                     <IconDatabaseSearch/>
-                                    {val.name}
+                                    Relation
                                 </Space>
 
 
                                 <HierarchyRightFlex>
-
-                                    <HierarchyEditButton
-                                        onClick={() => {
-                                            editKnowledge(val)
-                                        }}
-                                    />
-                                    <HierarchyDeleteButton
-                                        onClick={() => {
-                                            deleteKnowledge(val.uid)
-                                        }}
-                                    />
+                                    <div/>
                                 </HierarchyRightFlex>
                             </HierarchyFlex>
                         ),
@@ -82,72 +64,23 @@ export default function KnowledgeRelationsView({parentKnowledge}: KnowledgeRelat
         ]
     }
 
-    function editKnowledge(kn: Knowledge) {
-
-        if (kn.type === KnowledgeType.PLAIN_TEXT) {
-            activate({
-                title: t("edit.knowledge"),
-                closable: true,
-                content: (
-                    <COUKnowledgeView
-                        knowledge={kn}
-                        onBeforeSubmit={deactivate}
-                        onAfterSubmit={refresh}
-
-                    />
-                )
-            })
-        } else {
-            navigate(`/guidance-edit/${kn.uid}`)
-        }
-    }
-
-    function createDocument() {
-
-        const knowledge = new Knowledge()
-
-        activate({
-            title: t("create.knowledge"),
-            closable: true,
-            content: (
-                <COUKnowledgeView
-                    knowledge={knowledge}
-                    onBeforeSubmit={deactivate}
-                    onAfterSubmit={refresh}
-
-                />
-            )
-        })
-    }
-
-    async function deleteKnowledge(knowledgeUid: string) {
-
-        TurtleApp.Lock()
-        await KnowledgeApi.Delete(knowledgeUid)
-        TurtleApp.Unlock()
-        refresh()
-
-    }
-
     async function refresh() {
 
-        var knowledge: Knowledge[] = []
+        var relations: KnowledgeRelation[] = []
 
-        if (domain) {
-            knowledge = await KnowledgeApi.Query({
-                domain: {"$oid": domain},
+        if (parentKnowledge) {
+            relations = await KhRelationsApi.Query({
+                a: {"$oid": parentKnowledge},
             })
-        } else {
-            knowledge = await KnowledgeApi.List()
         }
 
-        setData(createHierarchy(knowledge))
+        setData(createHierarchy(relations))
     }
 
 
     React.useEffect(() => {
         refresh()
-    }, [domain])
+    }, [parentKnowledge])
 
     return (
         <Tree

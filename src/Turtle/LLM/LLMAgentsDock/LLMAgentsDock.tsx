@@ -4,6 +4,7 @@ import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
 import LLMAgentsHierarchy from "@Turtle/LLM/LLMAgentsDock/LLMAgentsHierarchy";
 import {useParams} from "react-router-dom";
 import LLMAgentView from "@Turtle/LLM/LLMAgentsDock/LLMAgentView";
+import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
 
 
 export default function LLMAgentsDock() {
@@ -14,37 +15,31 @@ export default function LLMAgentsDock() {
 
 
     return (
-        <div>
-            <Splitter style={{
-                height: "100vh",
-                // backgroundColor: "#212124"
-            }}>
+        <SplitterWithHeader topbar={<div/>}>
 
-                <Splitter.Panel
-                    defaultSize="20%"
-                    style={{
-                        backgroundColor: "white",
-                        padding: bigPadding
-                    }}
-                >
-                    <LLMAgentsHierarchy/>
-                </Splitter.Panel>
+            <Splitter.Panel
+                defaultSize="20%"
+                style={{
+                    backgroundColor: "white",
+                    padding: bigPadding
+                }}
+            >
+                <LLMAgentsHierarchy/>
+            </Splitter.Panel>
 
-                <Splitter.Panel
-                    defaultSize="80%"
-                >
+            <Splitter.Panel
+                defaultSize="80%"
+            >
 
-                    {
-                        agentUid && (
-                            <LLMAgentView agentUid={agentUid}/>
-                        )
-                    }
+                {
+                    agentUid && (
+                        <LLMAgentView agentUid={agentUid}/>
+                    )
+                }
 
-                </Splitter.Panel>
-
-            </Splitter>
-
-        </div>
-
+            </Splitter.Panel>
+        </SplitterWithHeader>
     )
+
+
 }

@@ -9,6 +9,7 @@ export default class ColorConstants {
     static GRAY = "#666666"
     static ORANGE = "#ff8900"
     static BLACK = "#333333"
+    static WHITE = "#ffffff"
 }
 
 

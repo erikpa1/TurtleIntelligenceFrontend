@@ -1,8 +1,12 @@
 import KnowledgeRelation from "@Turtle/KnowledgeHub/Data/KnowledgeRelation";
-import Turxios from "@Turtle/Api/Turxios";
+import Turxios, {QueryEntities} from "@Turtle/Api/Turxios";
 
 
 export default class KhRelationsApi {
+
+    static async Query(query = {}): Promise<KnowledgeRelation[]> {
+        return QueryEntities("/api/kh/relations", query, KnowledgeRelation)
+    }
 
     static async ListConnectionsOfKnowledge(khUid: string): Promise<KnowledgeRelation[]> {
 
