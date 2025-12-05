@@ -12,6 +12,7 @@ import {Card} from "antd"
 
 import GetOcrRoutes from "@TurtleCrm/Ocr/OcrRoutes"
 import CrmRoutes from "@TurtleCrm/CrmRoutes"
+import SecurityRoutes from "@TurtleSecurity/SecurityRoutes";
 
 const AofModelsDock = React.lazy(() => import("@TurtleApp/Aof/AofModelsDock"))
 const AofEditModelDock = React.lazy(() => import("@TurtleApp/Aof/AofEditModelDock"))
@@ -137,6 +138,7 @@ export default function AppRoutes({}) {
 
             {...GetOcrRoutes()}
             {...CrmRoutes()}
+            {...SecurityRoutes()}
         </Routes>
 
     );

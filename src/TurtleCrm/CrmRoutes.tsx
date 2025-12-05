@@ -1,15 +1,18 @@
 import {Route} from "react-router-dom";
 import React from "react";
-import InvoicesDock from "@TurtleCrm/Invoices/InvoicesDock";
-import BusinessSubjectsDock from "@TurtleCrm/BusinessSubjects/BusinessSubjectsDock";
-import ContractsDock from "@TurtleCrm/Contacts/ContractsDock";
+
+const InvoicesDock = React.lazy(() => import("@TurtleCrm/Invoices/InvoicesDock"))
+const BusinessSubjectsDock = React.lazy(() => import("@TurtleCrm/BusinessSubjects/BusinessSubjectsDock"))
+const ContractsDock = React.lazy(() => import("@TurtleCrm/Contacts/ContractsDock"))
+const CitiesDock = React.lazy(() => import("@TurtleCrm/Cities/CitiesDock"))
 
 
 export default function CrmRoutes() {
     return [
         <Route
             path={"/invoices"}
-            element={<InvoicesDock/>}/>
+            element={<InvoicesDock/>}
+        />
         ,
         <Route
             path={"/invoices/:uid"}
@@ -17,7 +20,8 @@ export default function CrmRoutes() {
         />,
         <Route
             path={"/contacts"}
-            element={<ContractsDock/>}/>
+            element={<ContractsDock/>}
+        />
         ,
         <Route
             path={"/contacts/:contractUid"}
@@ -31,6 +35,13 @@ export default function CrmRoutes() {
             path={"/business-subjects/:subUid"}
             element={<BusinessSubjectsDock/>}/>
         ,
-
+        <Route
+            path={"/contacts"}
+            element={<ContractsDock/>}/>
+        ,
+        <Route
+            path={"/cities"}
+            element={<CitiesDock/>}/>
+        ,
     ]
 }

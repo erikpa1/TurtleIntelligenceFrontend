@@ -6,7 +6,8 @@ import {useNavigate} from "react-router-dom"
 
 import {
     HierarchyAddButton,
-    HierarchyDeleteButton, HierarchyEditButton,
+    HierarchyDeleteButton,
+    HierarchyEditButton,
     HierarchyFlex,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents"
@@ -28,7 +29,6 @@ export default function KnowledgeHierarchy({domain}: KnowledgeHierarchyProps) {
     const {activate, deactivate} = useTurtleModal()
 
     const navigate = useNavigate()
-
 
     const [data, setData] = React.useState<Array<TreeDataNode>>(createHierarchy([]))
 
@@ -105,8 +105,11 @@ export default function KnowledgeHierarchy({domain}: KnowledgeHierarchyProps) {
     }
 
     function createDocument() {
-
         const knowledge = new Knowledge()
+
+        if (domain) {
+            knowledge.domain = domain
+        }
 
         activate({
             title: t("create.knowledge"),
@@ -123,12 +126,10 @@ export default function KnowledgeHierarchy({domain}: KnowledgeHierarchyProps) {
     }
 
     async function deleteKnowledge(knowledgeUid: string) {
-
         TurtleApp.Lock()
         await KnowledgeApi.Delete(knowledgeUid)
         TurtleApp.Unlock()
         refresh()
-
     }
 
     async function refresh() {

@@ -26,7 +26,7 @@
         "@types/three": "^0.134.0",
         "antd": "5.26.1",
         "apexcharts": "^4.7.0",
-        "axios": "^1.8.4",
+        "axios": "^1.13.2",
         "dayjs": "1.11.13",
         "i18next": "^21.6.10",
         "i18next-browser-languagedetector": "^6.1.3",

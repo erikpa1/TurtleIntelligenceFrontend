@@ -49,6 +49,7 @@ export function BoolAttributeView({
                     entity[attribute] = e
                     onChange && onChange(e)
                 }}
+                size={"small"}
             />
         </Form.Item>
     )

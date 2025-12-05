@@ -169,5 +169,8 @@
     "aof": "Artificial organic factory",
     "devices": "Devices",
     "factories": "Factories",
-    "invoices": "Invoices"
+    "invoices": "Invoices",
+    "penetrative.testing": "Penetrative testing",
+    "login.attack": "Login attack",
+    "security": "Security"
 }

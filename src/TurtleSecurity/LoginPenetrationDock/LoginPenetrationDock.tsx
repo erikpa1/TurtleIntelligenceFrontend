@@ -1,11 +1,9 @@
 import {Splitter} from "antd"
 import {SplitterWithHeader} from "@Turtle/Antd/Splitter"
-
-import ColorConstants from "@Turtle/Constants/ColorConstants"
-import CitiesHierarchy from "@TurtleCrm/Cities/CitiesHierarchy"
+import LoginPenetrationHierarchy from "@TurtleSecurity/LoginPenetrationDock/LoginPenetrationHierarchy"
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 
-export default function CitiesDock() {
+export default function LoginPenetrationDock({}) {
 
     const {bigPadding} = useTurtleTheme()
 
@@ -14,16 +12,18 @@ export default function CitiesDock() {
             <Splitter.Panel
                 defaultSize={"20%"}
                 style={{
-                    backgroundColor: ColorConstants.BG_1,
-                    padding: bigPadding
+                    padding: bigPadding,
+                    backgroundColor: "white",
                 }}
             >
-                <CitiesHierarchy/>
+                <LoginPenetrationHierarchy/>
             </Splitter.Panel>
 
             <Splitter.Panel>
 
             </Splitter.Panel>
+
         </SplitterWithHeader>
     )
+
 }

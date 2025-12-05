@@ -1,9 +1,11 @@
-import {Col, Divider, Flex, Modal, Row, Tabs} from "antd";
+import {Col, Divider, Flex, Row, Tabs} from "antd";
 import {useTranslation} from "react-i18next";
 import React from "react";
 import Search from "antd/es/input/Search";
 import {BASIC_CATEGORIES} from "@NavBar/NavBarModules_Basic";
 import {CRM_CATEGORIES} from "@TurtleCrm/NavBarModules_CRM";
+import {SECURITY_CATEGORIES} from "@TurtleSecurity/NavBarModules_Security";
+
 import {MyNavbarItemBigger} from "@Turtle/Components/NavBar";
 
 
@@ -49,6 +51,10 @@ export default function TurtleAppsGallery({onRereoute}: TurtleAppsGalleryProps) 
                         key: "crm",
                         label: "CRM",
                     },
+                    {
+                        key: "security",
+                        label: t("security"),
+                    },
                 ]}
             />
 
@@ -74,6 +80,8 @@ export default function TurtleAppsGallery({onRereoute}: TurtleAppsGalleryProps) 
                         return BASIC_CATEGORIES
                     } else if (activeTab === "crm") {
                         return CRM_CATEGORIES
+                    } else if (activeTab === "security") {
+                        return SECURITY_CATEGORIES
                     } else {
                         return []
                     }

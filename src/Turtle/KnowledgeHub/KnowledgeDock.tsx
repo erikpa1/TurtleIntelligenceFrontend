@@ -1,6 +1,5 @@
 import React from "react"
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
-import DocIntTopBar from "@Turtle/DocInt/Dock/DocIntTopBar";
 import {Alert, Splitter} from "antd";
 import KnowledgeHierarchy from "@Turtle/KnowledgeHub/KnowledgeHierarchy";
 import {useParams} from "react-router-dom";
@@ -8,7 +7,6 @@ import KnowledgeEditView from "@Turtle/KnowledgeHub/KnowledgeEditView";
 
 import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
 import DomainsHierarchy from "@Turtle/KnowledgeHub/Domains/DomainsHierarchy";
-import TopBarWrapper from "@Turtle/Components/TopBarWrapper";
 import KnowledgeTopBar from "@Turtle/KnowledgeHub/KnowledgeTopBar";
 
 
@@ -19,7 +17,7 @@ export default function KnowledgeDock() {
     const {domainUid, knowledgeUid} = useParams()
 
     return (
-        <SplitterWithHeader topbar={<DocIntTopBar/>}>
+        <SplitterWithHeader topbar={<KnowledgeTopBar/>}>
             <Splitter.Panel
                 defaultSize="20%"
                 style={{
@@ -50,9 +48,6 @@ export default function KnowledgeDock() {
 
             <Splitter.Panel>
                 <Alert.ErrorBoundary>
-                    <TopBarWrapper>
-                        <KnowledgeTopBar/>
-                    </TopBarWrapper>
                     {
                         knowledgeUid && (
                             <KnowledgeEditView knUid={knowledgeUid}/>
