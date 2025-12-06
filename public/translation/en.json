@@ -172,5 +172,7 @@
     "invoices": "Invoices",
     "penetrative.testing": "Penetrative testing",
     "login.attack": "Login attack",
-    "security": "Security"
+    "security": "Security",
+    "triggers": "Triggers",
+    "outputs": "Outputs"
 }

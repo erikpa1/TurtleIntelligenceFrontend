@@ -1,4 +1,5 @@
 import React from "react"
+import {Splitter} from "antd"
 
 import ReactFlow, {
     MiniMap,
@@ -8,25 +9,41 @@ import ReactFlow, {
     useEdgesState,
     addEdge,
     Node as FlowNode
-} from 'reactflow';
+} from 'reactflow'
 
-import 'reactflow/dist/style.css';
-import {Splitter} from "antd";
+import 'reactflow/dist/style.css'
 
 
-import AgentToolNode from "@Turtle/LLM/LLMAgentsDock/Edit/AgentToolNode";
-import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
-import AgentTriggerNode from "@Turtle/LLM/LLMAgentsDock/Edit/AgentTriggerNode";
-import AgentLLMNode from "@Turtle/LLM/LLMAgentsDock/Edit/AgentLLMNode";
-import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
-import AgentExecDock from "@Turtle/LLM/LLMAgentsDock/Edit/AgentExecDock";
+import AgentToolNode from "@Turtle/LLM/LLMAgentsDock/Edit/AgentToolNode"
+import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent"
+import AgentTriggerNode from "@Turtle/LLM/LLMAgentsDock/Edit/AgentTriggerNode"
+import AgentLLMNode from "@Turtle/LLM/LLMAgentsDock/Edit/AgentLLMNode"
+import AgentExecDock from "@Turtle/LLM/LLMAgentsDock/Edit/AgentExecDock"
+import AgentNodesApi from "@Turtle/LLM/LLMAgentsDock/Api/AgentNodesApi";
+import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
+import AgentNodesLibrary from "@Turtle/LLM/LLMAgentsDock/Edit/AgentNodesLibrary";
 
 
 const initialEdges = [{id: 'e1-2', source: '1', target: '2'}];
 
+interface LLMAgentEditCanvasProps {
+    agentUid: string
+}
 
-export default function LLMAgentEditCanvas({}) {
+export default function LLMAgentEditCanvas({
+                                               agentUid
+                                           }: LLMAgentEditCanvasProps) {
 
+
+    const [nodes, setNodes] = React.useState<AgentNodeParent[]>([])
+
+    async function refresh() {
+        setNodes(await AgentNodesApi.ListNodesOfAgent(agentUid))
+    }
+
+    React.useEffect(() => {
+        refresh()
+    }, [agentUid])
 
     return (
         <Splitter
@@ -37,7 +54,7 @@ export default function LLMAgentEditCanvas({}) {
         >
 
             <Splitter.Panel>
-                <_NodesFlowEditor/>
+                <_NodesFlowEditor agentNodes={nodes}/>
             </Splitter.Panel>
 
             <Splitter.Panel
@@ -84,13 +101,39 @@ const NODE_TYPES = {
     llmAgent: AgentLLMNode
 }
 
-function _NodesFlowEditor({}) {
+interface _NodesFlowEditorProps {
+    agentNodes: AgentNodeParent[]
+}
 
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+function _NodesFlowEditor({agentNodes}: _NodesFlowEditorProps) {
+
+
+    const {activate, deactivate} = useTurtleModal()
+
+    const initialNodes = React.useMemo(() => {
+        return agentNodes.map(node => ({
+            id: node.uid,
+            position: {x: node.posX, y: node.posY},
+            data: node,
+            type: node.type
+        }))
+    }, [agentNodes])
+
+    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
+
+    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
 
     const onConnect = React.useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
+    function addNodePressed() {
+        activate({
+            title: "Add Node",
+            width: 800,
+            content: (
+                <AgentNodesLibrary/>
+            )
+        })
+    }
 
     return (
         <ReactFlow
@@ -101,6 +144,10 @@ function _NodesFlowEditor({}) {
             onConnect={onConnect}
             nodeTypes={NODE_TYPES}
             fitView
+            onContextMenu={(e) => {
+                e.preventDefault()
+                addNodePressed()
+            }}
         >
             <MiniMap/>
             <Controls/>

@@ -1,13 +1,15 @@
 import {Handle, Position} from "reactflow";
 import ColorConstants from "@Turtle/Constants/ColorConstants";
 import {OUTPUT_HANDLE_STYLE} from "@Turtle/LLM/LLMAgentsDock/Edit/Styles";
+import {HierarchyCustomIcon} from "@Turtle/Components/HierarchyComponents";
+import {IconSimulation} from "@Turtle/Icons";
 
 export default function AgentTriggerNode() {
     return (
         <div
             className="react-flow__node-default"
             style={{
-                width: 100,
+                width: 60,
                 borderColor: ColorConstants.GRAY,
                 borderTopLeftRadius: '30px',
                 borderBottomLeftRadius: '30px',
@@ -19,7 +21,8 @@ export default function AgentTriggerNode() {
                 padding: '10px',
             }}
         >
-            <div>Trigger</div>
+            <HierarchyCustomIcon icon={<IconSimulation/>}/>
+
             <Handle
                 id={"a"}
                 position={Position.Right}

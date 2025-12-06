@@ -1,13 +1,18 @@
 import {Handle, Position} from "reactflow";
 import {INPUT_HANDLE_STYLE, OUTPUT_HANDLE_STYLE, SUBNODE_HANDLE_STYLE} from "@Turtle/LLM/LLMAgentsDock/Edit/Styles";
+import {HierarchyCustomIcon} from "@Turtle/Components/HierarchyComponents";
+import IconAutoRenew from "@Turtle/Icons/IconAutoRenew";
+import {Flex} from "antd";
 
 export default function AgentLLMNode() {
 
     return (
         <div className="react-flow__node-default">
 
-            <div>LLMagent</div>
-
+            <Flex gap={15}>
+                <HierarchyCustomIcon icon={<IconAutoRenew/>}/>
+                <div>LLMagent</div>
+            </Flex>
             <Handle
                 id={"a"}
                 position={Position.Left}

@@ -5,6 +5,7 @@ import LLMAgentsHierarchy from "@Turtle/LLM/LLMAgentsDock/LLMAgentsHierarchy";
 import {useParams} from "react-router-dom";
 import LLMAgentView from "@Turtle/LLM/LLMAgentsDock/LLMAgentView";
 import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
+import LLMAgentEditCanvas from "@Turtle/LLM/LLMAgentsDock/Edit/LLMAgentEditCanvas";
 
 
 export default function LLMAgentsDock() {
@@ -33,7 +34,7 @@ export default function LLMAgentsDock() {
 
                 {
                     agentUid && (
-                        <LLMAgentView agentUid={agentUid}/>
+                        <LLMAgentEditCanvas agentUid={agentUid}/>
                     )
                 }
 
