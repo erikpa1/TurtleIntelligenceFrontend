@@ -22,6 +22,7 @@ import AgentExecDock from "@Turtle/LLM/LLMAgentsDock/Edit/AgentExecDock"
 import AgentNodesApi from "@Turtle/LLM/LLMAgentsDock/Api/AgentNodesApi";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import AgentNodesLibrary from "@Turtle/LLM/LLMAgentsDock/Edit/AgentNodesLibrary";
+import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus";
 
 
 const initialEdges = [{id: 'e1-2', source: '1', target: '2'}];
@@ -35,7 +36,9 @@ export default function LLMAgentEditCanvas({
                                            }: LLMAgentEditCanvasProps) {
 
 
-    const [nodes, setNodes] = React.useState<AgentNodeParent[]>([])
+    const {nodes, setNodes} = useAgentNodesZus()
+
+    console.log(nodes)
 
     async function refresh() {
         setNodes(await AgentNodesApi.ListNodesOfAgent(agentUid))
@@ -125,12 +128,15 @@ function _NodesFlowEditor({agentNodes}: _NodesFlowEditorProps) {
 
     const onConnect = React.useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
+
     function addNodePressed() {
         activate({
             title: "Add Node",
             width: 800,
             content: (
-                <AgentNodesLibrary/>
+                <AgentNodesLibrary
+                    onBeforeSubmit={deactivate}
+                />
             )
         })
     }
