@@ -191,6 +191,30 @@ export function HierarchyCustomIcon({onClick, icon}: HierarchyCustomIconProps) {
     )
 }
 
+export function HierarchyDivIcon({onClick, icon}: HierarchyCustomIconProps) {
+
+
+    return (
+        <div
+            onClick={(e) => {
+                e.stopPropagation()
+                onClick && onClick(e)
+            }}
+        >
+            {
+                (typeof icon === "string") ? <img
+                    src={icon}
+                    style={{
+                        width: "20px",
+                        height: "20px",
+                        verticalAlign: 'middle'
+                    }}
+                /> : icon
+            }
+        </div>
+    )
+}
+
 
 export function HierarchyUpButton({onClick}) {
 

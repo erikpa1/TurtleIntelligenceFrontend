@@ -113,16 +113,8 @@ function _NodesFlowEditor({agentNodes}: _NodesFlowEditorProps) {
 
     const {activate, deactivate} = useTurtleModal()
 
-    const initialNodes = React.useMemo(() => {
-        return agentNodes.map(node => ({
-            id: node.uid,
-            position: {x: node.posX, y: node.posY},
-            data: node,
-            type: node.type
-        }))
-    }, [agentNodes])
 
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
+    const [nodes, setNodes, onNodesChange] = useNodesState([])
 
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
 
@@ -140,6 +132,15 @@ function _NodesFlowEditor({agentNodes}: _NodesFlowEditorProps) {
             )
         })
     }
+
+    React.useEffect(() => {
+        setNodes(agentNodes.map(node => ({
+            id: node.uid,
+            position: {x: node.posX, y: node.posY},
+            data: node,
+            type: node.GetFlowType()
+        })))
+    }, [agentNodes])
 
     return (
         <ReactFlow

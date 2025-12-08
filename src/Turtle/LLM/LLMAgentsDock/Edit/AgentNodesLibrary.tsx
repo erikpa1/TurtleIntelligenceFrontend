@@ -26,6 +26,7 @@ export default function AgentNodesLibrary({onBeforeSubmit}) {
         tmp.name = "New node"
         tmp.type = nodeType
         tmp.phaseType = PhaseType.TRIGGER
+        tmp.RandomizePosition()
 
         TurtleApp.Unlock()
 

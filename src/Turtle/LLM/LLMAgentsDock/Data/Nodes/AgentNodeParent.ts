@@ -38,5 +38,19 @@ export default class AgentNodeParent {
         this.typeData = jObj.typeData ?? {}
     }
 
+    RandomizePosition() {
+        const radius = 100
+
+        this.posX = this.posX + (Math.random() * 100 - radius / 2)
+        this.posY = this.posY + (Math.random() * 100 - radius / 2)
+    }
+
+    GetFlowType(): string {
+        if (this.phaseType == PhaseType.TRIGGER) {
+            return "trigger"
+        } else {
+            return "default"
+        }
+    }
 
 }
