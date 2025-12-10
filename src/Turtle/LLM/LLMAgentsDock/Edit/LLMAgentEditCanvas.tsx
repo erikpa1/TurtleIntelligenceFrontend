@@ -13,35 +13,39 @@ import ReactFlow, {
 
 import 'reactflow/dist/style.css'
 
-
-import AgentToolNode from "@Turtle/LLM/LLMAgentsDock/Edit/AgentToolNode"
 import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent"
-import AgentTriggerNode from "@Turtle/LLM/LLMAgentsDock/Edit/AgentTriggerNode"
+
 import AgentLLMNode from "@Turtle/LLM/LLMAgentsDock/Edit/AgentLLMNode"
 import AgentExecDock from "@Turtle/LLM/LLMAgentsDock/Edit/AgentExecDock"
 import AgentNodesApi from "@Turtle/LLM/LLMAgentsDock/Api/AgentNodesApi";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import AgentNodesLibrary from "@Turtle/LLM/LLMAgentsDock/Edit/AgentNodesLibrary";
 import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus";
+import AgentTriggerNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/AgentTriggerNode";
+import AgentToolNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/AgentToolNode";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 
-
-const initialEdges = [{id: 'e1-2', source: '1', target: '2'}];
 
 interface LLMAgentEditCanvasProps {
     agentUid: string
 }
 
-export default function LLMAgentEditCanvas({
+export default function LLMAgentLLMAgentEditCanvasEditCanvas({
                                                agentUid
                                            }: LLMAgentEditCanvasProps) {
 
 
     const {nodes, setNodes} = useAgentNodesZus()
 
-    console.log(nodes)
+
+    const {theme} = useTurtleTheme();
+
 
     async function refresh() {
-        setNodes(await AgentNodesApi.ListNodesOfAgent(agentUid))
+
+        const tmp = await AgentNodesApi.ListNodesOfAgent(agentUid)
+        console.log(tmp)
+        setNodes(tmp)
     }
 
     React.useEffect(() => {
@@ -51,13 +55,10 @@ export default function LLMAgentEditCanvas({
     return (
         <Splitter
             layout={"vertical"}
-            style={{
-                height: "100%",
-            }}
         >
 
             <Splitter.Panel>
-                <_NodesFlowEditor agentNodes={nodes}/>
+                <_NodesFlowEditor agentUid={agentUid} agentNodes={nodes}/>
             </Splitter.Panel>
 
             <Splitter.Panel
@@ -76,27 +77,6 @@ export default function LLMAgentEditCanvas({
 
 }
 
-const initialNodes: Array<FlowNode<AgentNodeParent>> = [
-    {
-        id: '1',
-        position: {x: 0, y: 0},
-        data: new AgentNodeParent(),
-        type: 'trigger',
-
-    },
-    {
-        id: '2',
-        position: {x: 200, y: 0},
-        data: new AgentNodeParent()
-    },
-    {
-        id: '3',
-        position: {x: 400, y: 0},
-        data: new AgentNodeParent(),
-        type: 'llmAgent',
-    },
-];
-
 
 const NODE_TYPES = {
     default: AgentToolNode,
@@ -106,17 +86,20 @@ const NODE_TYPES = {
 
 interface _NodesFlowEditorProps {
     agentNodes: AgentNodeParent[]
+    agentUid: string
 }
 
-function _NodesFlowEditor({agentNodes}: _NodesFlowEditorProps) {
+function _NodesFlowEditor({
+                              agentNodes,
+                              agentUid
+                          }: _NodesFlowEditorProps) {
 
 
     const {activate, deactivate} = useTurtleModal()
 
-
     const [nodes, setNodes, onNodesChange] = useNodesState([])
 
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
+    const [edges, setEdges, onEdgesChange] = useEdgesState([])
 
     const onConnect = React.useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
@@ -127,6 +110,7 @@ function _NodesFlowEditor({agentNodes}: _NodesFlowEditorProps) {
             width: 800,
             content: (
                 <AgentNodesLibrary
+                    agentUid={agentUid}
                     onBeforeSubmit={deactivate}
                 />
             )
@@ -134,12 +118,23 @@ function _NodesFlowEditor({agentNodes}: _NodesFlowEditorProps) {
     }
 
     React.useEffect(() => {
-        setNodes(agentNodes.map(node => ({
-            id: node.uid,
-            position: {x: node.posX, y: node.posY},
-            data: node,
-            type: node.GetFlowType()
-        })))
+
+        const asNodes = agentNodes.map((node) => {
+
+            console.log(node)
+
+            return {
+                id: node.uid,
+                position: {x: node.posX, y: node.posY},
+                data: node,
+                type: node.GetFlowType()
+            }
+        })
+
+        console.log(asNodes)
+
+        setNodes(asNodes)
+
     }, [agentNodes])
 
     return (

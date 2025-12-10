@@ -1,7 +1,10 @@
-import {Handle, Position} from "reactflow";
+import {Handle, NodeProps, Position} from "reactflow";
 import {INPUT_HANDLE_STYLE, OUTPUT_HANDLE_STYLE, SUBNODE_HANDLE_STYLE} from "@Turtle/LLM/LLMAgentsDock/Edit/Styles";
+import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 
-export default function AgentToolNode() {
+export default function AgentToolNode({
+                                          data
+                                      }: NodeProps<AgentNodeParent>) {
     return (
         <div>
             <div>Receive</div>

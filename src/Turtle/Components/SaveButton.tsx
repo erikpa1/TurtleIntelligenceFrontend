@@ -3,12 +3,19 @@ import {SaveTwoTone} from "@ant-design/icons";
 import {useTranslation} from "react-i18next";
 
 
-export function SaveButton({}) {
+interface SaveButtonProps {
+    onClick?: (e: React.MouseEvent) => void;
+}
+
+export function SaveButton({
+                               onClick
+                           }: SaveButtonProps) {
 
     const [t] = useTranslation()
 
     return (
         <Button
+            onClick={onClick}
             type={"text"}
             icon={<SaveTwoTone/>}
         >

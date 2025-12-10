@@ -4,6 +4,12 @@ export enum PhaseType {
     OUTPUT = 2
 }
 
+export enum CanvasStatus {
+    NO_CHANGE = 0,
+    CREATED = 1,
+    MODIFIED = 2
+}
+
 export default class AgentNodeParent {
     uid = ""
     name = ""
@@ -12,7 +18,11 @@ export default class AgentNodeParent {
     posY = 0
     type = ""
     phaseType: PhaseType = PhaseType.TRIGGER
+    connections = {}
     typeData = {}
+
+
+    canvasStatus = CanvasStatus.NO_CHANGE
 
     ToJson(): any {
         return {
@@ -24,6 +34,7 @@ export default class AgentNodeParent {
             posX: this.posX,
             posY: this.posY,
             typeData: this.typeData,
+            connections: this.connections,
         }
     }
 
@@ -36,6 +47,7 @@ export default class AgentNodeParent {
         this.posX = jObj.posX ?? 0
         this.posY = jObj.posY ?? 0
         this.typeData = jObj.typeData ?? {}
+        this.connections = jObj.connections ?? {}
     }
 
     RandomizePosition() {
@@ -50,6 +62,12 @@ export default class AgentNodeParent {
             return "trigger"
         } else {
             return "default"
+        }
+    }
+
+    SetModified() {
+        if (this.canvasStatus !== CanvasStatus.CREATED) {
+            this.canvasStatus = CanvasStatus.MODIFIED
         }
     }
 

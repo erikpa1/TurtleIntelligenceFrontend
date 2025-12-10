@@ -1,11 +1,28 @@
-import {Handle, Position} from "reactflow";
+import {Handle, NodeProps, Position} from "reactflow";
 import ColorConstants from "@Turtle/Constants/ColorConstants";
 import {OUTPUT_HANDLE_STYLE} from "@Turtle/LLM/LLMAgentsDock/Edit/Styles";
-import {HierarchyCustomIcon, HierarchyDivIcon} from "@Turtle/Components/HierarchyComponents";
+import {HierarchyDivIcon} from "@Turtle/Components/HierarchyComponents";
 import {IconSimulation} from "@Turtle/Icons";
 import {Tooltip} from "antd";
+import AgentNodeParent, {CanvasStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 
-export default function AgentTriggerNode({}) {
+
+export default function AgentTriggerNode({
+                                             data,
+                                             xPos,
+                                             yPos,
+                                             selected,
+                                             ...other
+                                         }: NodeProps<AgentNodeParent>) {
+
+    if (data.canvasStatus === CanvasStatus.NO_CHANGE && selected) {
+        data.canvasStatus = CanvasStatus.MODIFIED
+    }
+
+    data.posX = xPos
+    data.posY = yPos
+
+
     return (
         <Tooltip title="Agent trigger node">
             <div

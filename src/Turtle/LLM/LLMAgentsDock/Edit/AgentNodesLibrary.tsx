@@ -6,27 +6,34 @@ import {IconSimulation} from "@Turtle/Icons";
 import NodesLibrary from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodesLibrary";
 import {GalleryButton} from "@Turtle/Components/GaleryButton";
 import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus";
-import AgentNodeParent, {PhaseType} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
+import AgentNodeParent, {CanvasStatus, PhaseType} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import TurtleApp from "@TurtleApp/TurtleApp";
+import {fetchMongoUid} from "@Turtle/Utils/Uid";
 
-export default function AgentNodesLibrary({onBeforeSubmit}) {
+interface AgentNodesLibraryProps {
+    agentUid: string
+    onBeforeSubmit: () => void
+}
+
+export default function AgentNodesLibrary({agentUid, onBeforeSubmit}: AgentNodesLibraryProps) {
 
     const [t] = useTranslation()
-
 
     const {nodes, setNodes} = useAgentNodesZus()
 
     const [activeView, setActiveView] = React.useState("triggers")
 
-    function addPressed(nodeType: string, phase: PhaseType) {
+    async function addPressed(nodeType: string, phase: PhaseType) {
         TurtleApp.Lock()
 
         const tmp = new AgentNodeParent()
-        tmp.uid = crypto.randomUUID()
+        tmp.uid = await fetchMongoUid()
         tmp.name = "New node"
         tmp.type = nodeType
+        tmp.parent = agentUid
         tmp.phaseType = PhaseType.TRIGGER
         tmp.RandomizePosition()
+        tmp.canvasStatus = CanvasStatus.CREATED
 
         TurtleApp.Unlock()
 

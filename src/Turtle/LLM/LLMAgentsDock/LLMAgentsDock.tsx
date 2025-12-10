@@ -13,7 +13,7 @@ export default function LLMAgentsDock() {
 
     const {agentUid} = useParams()
 
-    const {bigPadding} = useTurtleTheme()
+    const {bigPadding, theme} = useTurtleTheme()
 
 
     return (
@@ -37,6 +37,10 @@ export default function LLMAgentsDock() {
 
             <Splitter.Panel
                 defaultSize="80%"
+                style={{
+                    height: `calc(100dvh + ${theme.topBarHeightBig})`,
+                    // height: 2000
+                }}
             >
 
                 {
