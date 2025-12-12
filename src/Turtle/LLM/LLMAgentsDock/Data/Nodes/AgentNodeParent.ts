@@ -1,7 +1,8 @@
 export enum PhaseType {
     TRIGGER = 0,
-    CONTROL = 1,
-    OUTPUT = 2
+    Action = 1,
+    OUTPUT = 2,
+    AGENT = 3
 }
 
 export enum CanvasStatus {

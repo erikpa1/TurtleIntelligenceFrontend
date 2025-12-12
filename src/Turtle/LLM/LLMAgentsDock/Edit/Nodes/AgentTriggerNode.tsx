@@ -5,22 +5,12 @@ import {HierarchyDivIcon} from "@Turtle/Components/HierarchyComponents";
 import {IconSimulation} from "@Turtle/Icons";
 import {Tooltip} from "antd";
 import AgentNodeParent, {CanvasStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
+import {nodeMoveAndModify} from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/nodeFuncts";
 
 
-export default function AgentTriggerNode({
-                                             data,
-                                             xPos,
-                                             yPos,
-                                             selected,
-                                             ...other
-                                         }: NodeProps<AgentNodeParent>) {
+export default function AgentTriggerNode(props: NodeProps<AgentNodeParent>) {
 
-    if (data.canvasStatus === CanvasStatus.NO_CHANGE && selected) {
-        data.canvasStatus = CanvasStatus.MODIFIED
-    }
-
-    data.posX = xPos
-    data.posY = yPos
+    nodeMoveAndModify(props)
 
 
     return (

@@ -15,11 +15,11 @@ import 'reactflow/dist/style.css'
 
 import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent"
 
-import AgentLLMNode from "@Turtle/LLM/LLMAgentsDock/Edit/AgentLLMNode"
+import AgentLLMNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/AgentLLMNode"
 import AgentExecDock from "@Turtle/LLM/LLMAgentsDock/Edit/AgentExecDock"
 import AgentNodesApi from "@Turtle/LLM/LLMAgentsDock/Api/AgentNodesApi";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
-import AgentNodesLibrary from "@Turtle/LLM/LLMAgentsDock/Edit/AgentNodesLibrary";
+import LLMNodesGallery from "@Turtle/LLM/LLMAgentsDock/Edit/LLMNodesGallery";
 import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus";
 import AgentTriggerNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/AgentTriggerNode";
 import AgentToolNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/AgentToolNode";
@@ -109,7 +109,7 @@ function _NodesFlowEditor({
             title: "Add Node",
             width: 800,
             content: (
-                <AgentNodesLibrary
+                <LLMNodesGallery
                     agentUid={agentUid}
                     onBeforeSubmit={deactivate}
                 />

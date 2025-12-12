@@ -1,18 +1,23 @@
-import {Handle, Position} from "reactflow";
+import {Handle, NodeProps, Position} from "reactflow";
+
 import {INPUT_HANDLE_STYLE, OUTPUT_HANDLE_STYLE, SUBNODE_HANDLE_STYLE} from "@Turtle/LLM/LLMAgentsDock/Edit/Styles";
 import {HierarchyCustomIcon} from "@Turtle/Components/HierarchyComponents";
 import IconAutoRenew from "@Turtle/Icons/IconAutoRenew";
 import {Flex} from "antd";
+import {nodeMoveAndModify} from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/nodeFuncts";
+import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
+import NodeLabel from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/NodeLabel";
 
-export default function AgentLLMNode() {
+export default function AgentLLMNode(props: NodeProps<AgentNodeParent>) {
+
+    nodeMoveAndModify(props)
+
 
     return (
         <div className="react-flow__node-default">
 
-            <Flex gap={15}>
-                <HierarchyCustomIcon icon={<IconAutoRenew/>}/>
-                <div>LLMagent</div>
-            </Flex>
+            <NodeLabel node={props.data}/>
+
             <Handle
                 id={"a"}
                 position={Position.Left}

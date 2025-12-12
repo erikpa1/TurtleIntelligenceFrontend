@@ -9,13 +9,17 @@ import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus";
 import AgentNodeParent, {CanvasStatus, PhaseType} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import {fetchMongoUid} from "@Turtle/Utils/Uid";
+import MongoObjectId from "@Turtle/Utils/MongoObjectId";
 
 interface AgentNodesLibraryProps {
     agentUid: string
     onBeforeSubmit: () => void
 }
 
-export default function AgentNodesLibrary({agentUid, onBeforeSubmit}: AgentNodesLibraryProps) {
+
+const ICON_SIZE = "50px"
+
+export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLibraryProps) {
 
     const [t] = useTranslation()
 
@@ -23,11 +27,11 @@ export default function AgentNodesLibrary({agentUid, onBeforeSubmit}: AgentNodes
 
     const [activeView, setActiveView] = React.useState("triggers")
 
-    async function addPressed(nodeType: string, phase: PhaseType) {
+    async function addTriggerPressed(nodeType: string, phase: PhaseType) {
         TurtleApp.Lock()
 
         const tmp = new AgentNodeParent()
-        tmp.uid = await fetchMongoUid()
+        tmp.uid = await MongoObjectId.GetMongoId()
         tmp.name = "New node"
         tmp.type = nodeType
         tmp.parent = agentUid
@@ -40,6 +44,29 @@ export default function AgentNodesLibrary({agentUid, onBeforeSubmit}: AgentNodes
         setNodes([...nodes, tmp])
 
         onBeforeSubmit?.()
+    }
+
+    async function addAllAgentPressed() {
+        TurtleApp.Lock()
+
+        const tmp = new AgentNodeParent()
+        tmp.uid = await MongoObjectId.GetMongoId()
+        tmp.name = "LLM Agent"
+        tmp.type = "llmAgent"
+        tmp.parent = agentUid
+        tmp.phaseType = PhaseType.AGENT
+        tmp.RandomizePosition()
+        tmp.canvasStatus = CanvasStatus.CREATED
+
+        TurtleApp.Unlock()
+
+        setNodes([...nodes, tmp])
+
+        onBeforeSubmit?.()
+    }
+
+
+    async function addMemory() {
     }
 
 
@@ -62,17 +89,31 @@ export default function AgentNodesLibrary({agentUid, onBeforeSubmit}: AgentNodes
                                     lang={val}
                                     icon={(
                                         <IconSimulation
-                                            width={"50px"}
-                                            height={"50px"}
+                                            width={ICON_SIZE}
+                                            height={ICON_SIZE}
                                         />
                                     )}
-                                    onClick={() => addPressed(val, PhaseType.TRIGGER)}
+                                    onClick={() => addTriggerPressed(val, PhaseType.TRIGGER)}
                                 />
                             </Col>
                         )
                     })
                 }
             </Row>
+
+            <Divider orientation={"left"}>
+                LLM
+            </Divider>
+
+            <Row>
+                <Col span={6}>
+                    <_LLMAgentButton onClick={addAllAgentPressed}/>
+                </Col>
+                <Col span={6}>
+                    <_LLMMemoryButton onClick={addAllAgentPressed}/>
+                </Col>
+            </Row>
+
 
 
             <Divider orientation={"left"}>
@@ -91,11 +132,11 @@ export default function AgentNodesLibrary({agentUid, onBeforeSubmit}: AgentNodes
                                     lang={val}
                                     icon={(
                                         <IconSimulation
-                                            width={"50px"}
-                                            height={"50px"}
+                                            width={ICON_SIZE}
+                                            height={ICON_SIZE}
                                         />
                                     )}
-                                    onClick={() => addPressed(val, PhaseType.CONTROL)}
+                                    onClick={() => addTriggerPressed(val, PhaseType.Action)}
                                 />
                             </Col>
                         )
@@ -118,11 +159,11 @@ export default function AgentNodesLibrary({agentUid, onBeforeSubmit}: AgentNodes
                                 lang={val}
                                 icon={(
                                     <IconSimulation
-                                        width={"50px"}
-                                        height={"50px"}
+                                        width={ICON_SIZE}
+                                        height={ICON_SIZE}
                                     />
                                 )}
-                                onClick={() => addPressed(val, PhaseType.OUTPUT)}
+                                onClick={() => addTriggerPressed(val, PhaseType.OUTPUT)}
                             />
                         </Col>
                     )
@@ -130,5 +171,35 @@ export default function AgentNodesLibrary({agentUid, onBeforeSubmit}: AgentNodes
             }
 
         </Flex>
+    )
+}
+
+function _LLMAgentButton({onClick}) {
+    return (
+        <GalleryButton
+            lang={"llm.agent"}
+            icon={(
+                <IconSimulation
+                    width={ICON_SIZE}
+                    height={ICON_SIZE}
+                />
+            )}
+            onClick={onClick}
+        />
+    )
+}
+
+function _LLMMemoryButton({onClick}) {
+    return (
+        <GalleryButton
+            lang={"MongoDB memory"}
+            icon={(
+                <IconSimulation
+                    width={ICON_SIZE}
+                    height={ICON_SIZE}
+                />
+            )}
+            onClick={onClick}
+        />
     )
 }

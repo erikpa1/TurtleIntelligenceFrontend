@@ -42,6 +42,9 @@
             "@TurtleSecurity/*": [
                 "src/TurtleSecurity/*"
             ],
+            "@TurtlePostman/*": [
+                "src/TurtlePostman/*"
+            ],
             "@NavBar/*": [
                 "src/NavBar/*"
             ]
