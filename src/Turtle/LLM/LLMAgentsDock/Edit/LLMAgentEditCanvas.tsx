@@ -1,15 +1,7 @@
 import React from "react"
 import {Splitter} from "antd"
 
-import ReactFlow, {
-    MiniMap,
-    Controls,
-    Background,
-    useNodesState,
-    useEdgesState,
-    addEdge,
-    Node as FlowNode
-} from 'reactflow'
+import ReactFlow, {addEdge, Background, Connection, Controls, MiniMap, useEdgesState, useNodesState} from 'reactflow'
 
 import 'reactflow/dist/style.css'
 
@@ -24,6 +16,7 @@ import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus";
 import AgentTriggerNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/AgentTriggerNode";
 import AgentToolNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/AgentToolNode";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
+import NodeConnection, {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
 
 
 interface LLMAgentEditCanvasProps {
@@ -31,11 +24,16 @@ interface LLMAgentEditCanvasProps {
 }
 
 export default function LLMAgentLLMAgentEditCanvasEditCanvas({
-                                               agentUid
-                                           }: LLMAgentEditCanvasProps) {
+                                                                 agentUid
+                                                             }: LLMAgentEditCanvasProps) {
 
 
-    const {nodes, setNodes} = useAgentNodesZus()
+    const {
+        nodes,
+        setNodes,
+        connections,
+        setConnections
+    } = useAgentNodesZus()
 
 
     const {theme} = useTurtleTheme();
@@ -58,7 +56,11 @@ export default function LLMAgentLLMAgentEditCanvasEditCanvas({
         >
 
             <Splitter.Panel>
-                <_NodesFlowEditor agentUid={agentUid} agentNodes={nodes}/>
+                <_NodesFlowEditor
+                    agentUid={agentUid}
+                    agentNodes={nodes}
+                    nodesConnections={connections}
+                />
             </Splitter.Panel>
 
             <Splitter.Panel
@@ -86,11 +88,13 @@ const NODE_TYPES = {
 
 interface _NodesFlowEditorProps {
     agentNodes: AgentNodeParent[]
+    nodesConnections: NodeConnection[]
     agentUid: string
 }
 
 function _NodesFlowEditor({
                               agentNodes,
+                              nodesConnections,
                               agentUid
                           }: _NodesFlowEditorProps) {
 
@@ -101,8 +105,22 @@ function _NodesFlowEditor({
 
     const [edges, setEdges, onEdgesChange] = useEdgesState([])
 
-    const onConnect = React.useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
+    const onConnect = React.useCallback((params: Connection) => {
+
+        const conn = new NodeConnection()
+        conn.source = params.source ?? ""
+        conn.target = params.target ?? ""
+        conn.sourceHandle = params.sourceHandle ?? ""
+        conn.targetHandle = params.targetHandle ?? ""
+        conn._status = NodeConnStatus.NEW
+        conn.parent = agentUid
+        conn.CreateRuntimeUid()
+
+        useAgentNodesZus.getState().connections.push(conn)
+
+        setEdges((eds) => addEdge(params, eds));
+    }, [setEdges])
 
     function addNodePressed() {
         activate({
@@ -121,8 +139,6 @@ function _NodesFlowEditor({
 
         const asNodes = agentNodes.map((node) => {
 
-            console.log(node)
-
             return {
                 id: node.uid,
                 position: {x: node.posX, y: node.posY},
@@ -131,11 +147,21 @@ function _NodesFlowEditor({
             }
         })
 
-        console.log(asNodes)
-
         setNodes(asNodes)
 
-    }, [agentNodes])
+        const newEdges = nodesConnections.map((connection) => {
+            return {
+                id: connection.runTimeUid,
+                source: connection.source,
+                sourceHandle: connection.sourceHandle,
+                target: connection.target,
+                targetHandle: connection.targetHandle,
+            }
+        })
+
+        setEdges(newEdges)
+
+    }, [agentNodes, nodesConnections])
 
     return (
         <ReactFlow

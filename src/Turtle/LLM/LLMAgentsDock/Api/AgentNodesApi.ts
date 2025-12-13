@@ -1,6 +1,7 @@
 import AgentNodeParent, {CanvasStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import Turxios, {DeleteEntity, PostEntity, QueryEntities} from "@Turtle/Api/Turxios";
 import MongoObjectId from "@Turtle/Utils/MongoObjectId";
+import NodeConnection, {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
 
 export default class AgentNodesApi {
 
@@ -18,14 +19,22 @@ export default class AgentNodesApi {
     }
 
 
-    static async SavePressed(nodes: Array<AgentNodeParent>, deletedNodes: Array<AgentNodeParent>) {
+    static async SavePressed(
+        nodes: Array<AgentNodeParent>,
+        deletedNodes: Array<AgentNodeParent>,
+        connections: Array<NodeConnection>
+    ) {
         const modified = nodes.filter(val => val.canvasStatus === CanvasStatus.MODIFIED)
         const created = nodes.filter(val => val.canvasStatus === CanvasStatus.CREATED)
+
+
+        const newConnections = connections.filter(val => val._status === NodeConnStatus.NEW)
 
         const tmp = {
             modified: modified.map(val => val.ToJson()),
             created: created.map(val => val.ToJson()),
             deleted: deletedNodes.map(val => val.uid),
+            newConnections: newConnections.map(val => val.ToJson()),
         }
 
         const formData = new FormData()

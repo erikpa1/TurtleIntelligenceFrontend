@@ -4,7 +4,8 @@ import AgentNodesApi from "@Turtle/LLM/LLMAgentsDock/Api/AgentNodesApi";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus";
 import {CanvasStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
-import {Flex, Space} from "antd";
+import {Button, Flex, Space} from "antd";
+import {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
 
 
 export default function CanvasTopBar() {
@@ -13,6 +14,7 @@ export default function CanvasTopBar() {
             <_Statistics/>
 
             <HierarchyRightFlex>
+                <_PlayButton/>
                 <_Save/>
             </HierarchyRightFlex>
         </>
@@ -41,7 +43,11 @@ function _Save({}) {
         TurtleApp.Lock()
 
         const canvasState = useAgentNodesZus.getState()
-        await AgentNodesApi.SavePressed(canvasState.nodes, Array.from(canvasState.deletedNodes.values()))
+        await AgentNodesApi.SavePressed(
+            canvasState.nodes,
+            Array.from(canvasState.deletedNodes.values()),
+            canvasState.connections
+        )
 
         canvasState.nodes.forEach((val) => {
             val.canvasStatus = CanvasStatus.NO_CHANGE
@@ -49,10 +55,24 @@ function _Save({}) {
 
         canvasState.deletedNodes.clear()
 
+        canvasState.connections.forEach((val) => {
+            val._status = NodeConnStatus.NOT_MODIFIED
+        })
+
         TurtleApp.Unlock()
+
+
     }
 
     return (
         <SaveButton onClick={savePressed}/>
+    )
+}
+
+function _PlayButton({}) {
+    return (
+        <Button type={"text"}>
+            Play
+        </Button>
     )
 }

@@ -62,6 +62,9 @@ export default class AgentNodeParent {
         if (this.phaseType == PhaseType.TRIGGER) {
             return "trigger"
         } else {
+            if (this.type == "llmAgent") {
+                return "llmAgent"
+            }
             return "default"
         }
     }
