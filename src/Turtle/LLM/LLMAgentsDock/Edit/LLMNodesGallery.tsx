@@ -1,15 +1,17 @@
 import {Col, Divider, Flex, Row} from "antd"
 import React from "react"
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "react-i18next"
+import {IconSimulation} from "@Turtle/Icons"
 
-import {IconSimulation} from "@Turtle/Icons";
-import NodesLibrary from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodesLibrary";
-import {GalleryButton} from "@Turtle/Components/GaleryButton";
-import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus";
+import NodesLibrary from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodesLibrary"
+import {GalleryButton} from "@Turtle/Components/GaleryButton"
+import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus"
 import AgentNodeParent, {CanvasStatus, PhaseType} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
-import TurtleApp from "@TurtleApp/TurtleApp";
-import {fetchMongoUid} from "@Turtle/Utils/Uid";
-import MongoObjectId from "@Turtle/Utils/MongoObjectId";
+import TurtleApp from "@TurtleApp/TurtleApp"
+import MongoObjectId from "@Turtle/Utils/MongoObjectId"
+import IconApi from "@Turtle/Icons/IconApi"
+import IconOllama from "@Turtle/Icons/IconOllama"
+
 
 interface AgentNodesLibraryProps {
     agentUid: string
@@ -17,22 +19,19 @@ interface AgentNodesLibraryProps {
 }
 
 
-const ICON_SIZE = "50px"
-
 export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLibraryProps) {
 
     const [t] = useTranslation()
 
     const {nodes, setNodes} = useAgentNodesZus()
 
-    const [activeView, setActiveView] = React.useState("triggers")
 
     async function addTriggerPressed(nodeType: string, phase: PhaseType) {
         TurtleApp.Lock()
 
         const tmp = new AgentNodeParent()
         tmp.uid = await MongoObjectId.GetMongoId()
-        tmp.name = "New node"
+        tmp.name = `${nodeType} - trigger`
         tmp.type = nodeType
         tmp.parent = agentUid
         tmp.phaseType = PhaseType.TRIGGER
@@ -88,10 +87,7 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
                                 <GalleryButton
                                     lang={val}
                                     icon={(
-                                        <IconSimulation
-                                            width={ICON_SIZE}
-                                            height={ICON_SIZE}
-                                        />
+                                        <_GalleryIcon icon={IconApi}/>
                                     )}
                                     onClick={() => addTriggerPressed(val, PhaseType.TRIGGER)}
                                 />
@@ -112,8 +108,10 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
                 <Col span={6}>
                     <_LLMMemoryButton onClick={addAllAgentPressed}/>
                 </Col>
+                <Col span={6}>
+                    <_OllamaButton onBeforeSubmit={onBeforeSubmit} agentUid={agentUid}/>
+                </Col>
             </Row>
-
 
 
             <Divider orientation={"left"}>
@@ -131,10 +129,7 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
                                 <GalleryButton
                                     lang={val}
                                     icon={(
-                                        <IconSimulation
-                                            width={ICON_SIZE}
-                                            height={ICON_SIZE}
-                                        />
+                                        <_GalleryIcon icon={IconSimulation}/>
                                     )}
                                     onClick={() => addTriggerPressed(val, PhaseType.Action)}
                                 />
@@ -158,10 +153,7 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
                             <GalleryButton
                                 lang={val}
                                 icon={(
-                                    <IconSimulation
-                                        width={ICON_SIZE}
-                                        height={ICON_SIZE}
-                                    />
+                                    <_GalleryIcon icon={IconSimulation}/>
                                 )}
                                 onClick={() => addTriggerPressed(val, PhaseType.OUTPUT)}
                             />
@@ -179,10 +171,7 @@ function _LLMAgentButton({onClick}) {
         <GalleryButton
             lang={"llm.agent"}
             icon={(
-                <IconSimulation
-                    width={ICON_SIZE}
-                    height={ICON_SIZE}
-                />
+                <_GalleryIcon icon={IconSimulation}/>
             )}
             onClick={onClick}
         />
@@ -194,12 +183,55 @@ function _LLMMemoryButton({onClick}) {
         <GalleryButton
             lang={"MongoDB memory"}
             icon={(
-                <IconSimulation
-                    width={ICON_SIZE}
-                    height={ICON_SIZE}
-                />
+                <_GalleryIcon icon={IconSimulation}/>
             )}
             onClick={onClick}
         />
     )
+}
+
+function _OllamaButton({
+                           onBeforeSubmit,
+                           agentUid
+                       }: AgentNodesLibraryProps) {
+
+    async function addOllamaPressed() {
+
+        const {nodes, setNodes} = useAgentNodesZus.getState()
+
+        TurtleApp.Lock()
+
+        const tmp = new AgentNodeParent()
+        tmp.uid = await MongoObjectId.GetMongoId()
+        tmp.name = "Ollama"
+        tmp.type = "ollama"
+        tmp.parent = agentUid
+        tmp.phaseType = PhaseType.AGENT
+        tmp.RandomizePosition()
+        tmp.canvasStatus = CanvasStatus.CREATED
+
+        TurtleApp.Unlock()
+
+        setNodes([...nodes, tmp])
+
+        onBeforeSubmit?.()
+    }
+
+
+    return (
+        <GalleryButton
+            lang={"Ollama"}
+            icon={(
+                <_GalleryIcon icon={IconOllama}/>
+            )}
+            onClick={addOllamaPressed}
+        />
+    )
+}
+
+function _GalleryIcon({icon}) {
+    return React.createElement(icon, {
+        width: "50px",
+        height: "50px",
+    })
 }

@@ -5,14 +5,10 @@ import React from "react";
 
 export default function IconColor(props: any = {}) {
 
-
     return (
         <TurtleIcon
-
             {...props}
             viewBox={"0 -960 960 960"}
-            width="14px"
-            height="14px"
         >
 
             <path

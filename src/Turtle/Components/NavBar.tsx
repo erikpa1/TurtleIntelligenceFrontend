@@ -13,6 +13,13 @@ interface MyNavbarItemProps {
 }
 
 
+export function NavBarIcon({icon}) {
+    return React.createElement(icon, {
+        width: "30px",
+        height: "30px",
+    })
+}
+
 export function MyNavbarItem({lang, icon, link, onClick, onRerouted, iconStyle}: MyNavbarItemProps) {
     const navigate = useNavigate();
 

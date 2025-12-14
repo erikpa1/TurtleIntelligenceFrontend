@@ -6,15 +6,15 @@ import {IconSimulation} from "@Turtle/Icons";
 import {Tooltip} from "antd";
 import AgentNodeParent, {CanvasStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import {nodeMoveAndModify} from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/nodeFuncts";
+import IconApi from "@Turtle/Icons/IconApi";
 
 
-export default function AgentTriggerNode(props: NodeProps<AgentNodeParent>) {
+export default function TriggerNode(props: NodeProps<AgentNodeParent>) {
 
     nodeMoveAndModify(props)
 
-
     return (
-        <Tooltip title="Agent trigger node">
+        <Tooltip title={props.data.name}>
             <div
                 className="react-flow__node-default"
                 style={{
@@ -30,7 +30,7 @@ export default function AgentTriggerNode(props: NodeProps<AgentNodeParent>) {
                     padding: '10px',
                 }}
             >
-                <HierarchyDivIcon icon={<IconSimulation/>}/>
+                <HierarchyDivIcon icon={<IconApi/>}/>
 
                 <Handle
                     id={"a"}

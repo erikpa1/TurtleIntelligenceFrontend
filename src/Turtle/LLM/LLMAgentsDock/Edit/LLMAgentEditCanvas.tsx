@@ -13,10 +13,11 @@ import AgentNodesApi from "@Turtle/LLM/LLMAgentsDock/Api/AgentNodesApi";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import LLMNodesGallery from "@Turtle/LLM/LLMAgentsDock/Edit/LLMNodesGallery";
 import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus";
-import AgentTriggerNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/AgentTriggerNode";
+import TriggerNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/TriggerNode";
 import AgentToolNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/AgentToolNode";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
-import NodeConnection, {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
+import AgentNodeEdge, {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
+import OllamaNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/OllamaNode";
 
 
 interface LLMAgentEditCanvasProps {
@@ -31,8 +32,8 @@ export default function LLMAgentLLMAgentEditCanvasEditCanvas({
     const {
         nodes,
         setNodes,
-        connections,
-        setConnections
+        edges,
+        setEdges
     } = useAgentNodesZus()
 
 
@@ -41,9 +42,19 @@ export default function LLMAgentLLMAgentEditCanvasEditCanvas({
 
     async function refresh() {
 
-        const tmp = await AgentNodesApi.ListNodesOfAgent(agentUid)
-        console.log(tmp)
-        setNodes(tmp)
+        const [
+            nodes,
+            edges
+        ] = await Promise.all([
+            AgentNodesApi.ListNodesOfAgent(agentUid),
+            AgentNodesApi.ListEdgesOfParent(agentUid)
+        ])
+
+
+        setNodes(nodes)
+        setEdges(edges)
+
+
     }
 
     React.useEffect(() => {
@@ -59,7 +70,7 @@ export default function LLMAgentLLMAgentEditCanvasEditCanvas({
                 <_NodesFlowEditor
                     agentUid={agentUid}
                     agentNodes={nodes}
-                    nodesConnections={connections}
+                    nodesConnections={edges}
                 />
             </Splitter.Panel>
 
@@ -82,13 +93,14 @@ export default function LLMAgentLLMAgentEditCanvasEditCanvas({
 
 const NODE_TYPES = {
     default: AgentToolNode,
-    trigger: AgentTriggerNode,
-    llmAgent: AgentLLMNode
+    trigger: TriggerNode,
+    llmAgent: AgentLLMNode,
+    ollama: OllamaNode,
 }
 
 interface _NodesFlowEditorProps {
     agentNodes: AgentNodeParent[]
-    nodesConnections: NodeConnection[]
+    nodesConnections: AgentNodeEdge[]
     agentUid: string
 }
 
@@ -108,7 +120,11 @@ function _NodesFlowEditor({
 
     const onConnect = React.useCallback((params: Connection) => {
 
-        const conn = new NodeConnection()
+        if (params.source === params.target) {
+            return
+        }
+
+        const conn = new AgentNodeEdge()
         conn.source = params.source ?? ""
         conn.target = params.target ?? ""
         conn.sourceHandle = params.sourceHandle ?? ""
@@ -117,7 +133,7 @@ function _NodesFlowEditor({
         conn.parent = agentUid
         conn.CreateRuntimeUid()
 
-        useAgentNodesZus.getState().connections.push(conn)
+        useAgentNodesZus.getState().edges.push(conn)
 
         setEdges((eds) => addEdge(params, eds));
     }, [setEdges])
@@ -150,6 +166,9 @@ function _NodesFlowEditor({
         setNodes(asNodes)
 
         const newEdges = nodesConnections.map((connection) => {
+
+            console.log(connection)
+
             return {
                 id: connection.runTimeUid,
                 source: connection.source,

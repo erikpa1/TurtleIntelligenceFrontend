@@ -1,13 +1,20 @@
 import AgentNodeParent, {CanvasStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import Turxios, {DeleteEntity, PostEntity, QueryEntities} from "@Turtle/Api/Turxios";
 import MongoObjectId from "@Turtle/Utils/MongoObjectId";
-import NodeConnection, {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
+import AgentNodeEdge, {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
 
 export default class AgentNodesApi {
 
+    static async ListEdgesOfParent(agentUid: string): Promise<AgentNodeEdge[]> {
+        const query = MongoObjectId.GetObjectIdQuery("parent", agentUid)
+        const result = await QueryEntities("/api/llm/agent-edges/query", query, AgentNodeEdge)
+
+        return result
+    }
+
     static async ListNodesOfAgent(agentUid: string): Promise<Array<AgentNodeParent>> {
         const query = MongoObjectId.GetObjectIdQuery("parent", agentUid)
-        return QueryEntities("/api/llm/agent-nodes/query", query, AgentNodeParent)
+        return await QueryEntities("/api/llm/agent-nodes/query", query, AgentNodeParent)
     }
 
     static async Delete(nodeUid: string) {
@@ -22,7 +29,7 @@ export default class AgentNodesApi {
     static async SavePressed(
         nodes: Array<AgentNodeParent>,
         deletedNodes: Array<AgentNodeParent>,
-        connections: Array<NodeConnection>
+        connections: Array<AgentNodeEdge>
     ) {
         const modified = nodes.filter(val => val.canvasStatus === CanvasStatus.MODIFIED)
         const created = nodes.filter(val => val.canvasStatus === CanvasStatus.CREATED)

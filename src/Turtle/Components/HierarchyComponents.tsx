@@ -168,7 +168,6 @@ interface HierarchyCustomIconProps {
 
 export function HierarchyCustomIcon({onClick, icon}: HierarchyCustomIconProps) {
 
-
     return (
         <Button
             type="text"

@@ -1,0 +1,30 @@
+import TurtleIcon from "@Turtle/Icons/A";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
+
+export default function IconApi(props: any = {}) {
+
+    const {theme} = useTurtleTheme()
+
+    return (
+        <TurtleIcon
+            {...props}
+            viewBox={"0 0 1024 1024"}
+        >
+            <path
+                fill={theme.iconPrimaryColor}
+                d="M512,597.333L426.667,512L512,426.667L597.333,512L512,597.333ZM759.381,692.096L669.952,602.667L760.619,512L669.952,421.333L759.381,331.904L939.488,512L759.381,692.096Z"
+            />
+
+            <path
+                d="M421.333,354.048L331.904,264.619L512,84.512L692.096,264.619L602.667,354.048L512,263.381L421.333,354.048ZM264.619,692.096L84.512,512L264.619,331.904L354.048,421.333L263.381,512L354.048,602.667L264.619,692.096ZM512,939.488L331.904,759.381L421.333,669.952L512,760.619L602.667,669.952L692.096,759.381L512,939.488Z"
+                fill={theme.iconSecondaryColor}
+            />
+
+
+
+        </TurtleIcon>
+    )
+
+
+}
+

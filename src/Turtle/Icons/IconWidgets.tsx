@@ -1,19 +1,27 @@
 import ColorConstants from "@Turtle/Constants/ColorConstants";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
+import TurtleIcon from "@Turtle/Icons/A";
 
 
-export default function IconWidgets({
-                                        color = "#666666",
-                                        width = 24,
-                                        height = 24,
-                                    }) {
+export default function IconWidgets(props: any = {}) {
+
+
+        const {theme} = useTurtleTheme()
 
     return (
-        <svg width={width} height={height} fill="#666666">
+        <TurtleIcon
+            {...props}
+
+        >
             <path
-                fill={color}
-                d="M659.08-460.77 461.54-658.31l197.54-197.53 197.53 197.53-197.53 197.54Zm-506.77-66.92v-280h280v280h-280Zm375.38 375.38v-280h280v280h-280Zm-375.38 0v-280h280v280h-280Zm60-435.38h160v-160h-160v160Zm447.77 43.38 113-113-113-113-113 113 113 113Zm-72.39 332h160v-160h-160v160Zm-375.38 0h160v-160h-160v160Zm160-375.38Zm174.77-69.62Zm-174.77 285Zm215.38 0Z"/>
-        </svg>
+                d="M16.477,12.481L11.539,7.542L16.477,2.604L21.415,7.542L16.477,12.481ZM16.502,10.392L19.327,7.567L16.502,4.742L13.677,7.567L16.502,10.392Z"
+                fill={theme.iconPrimaryColor}/>
+            <path
+                d="M13.192,20.192L13.192,13.192L20.192,13.192L20.192,20.192L13.192,20.192ZM3.808,20.192L3.808,13.192L10.808,13.192L10.808,20.192L3.808,20.192ZM14.692,18.692L18.692,18.692L18.692,14.692L14.692,14.692L14.692,18.692ZM5.308,18.692L9.308,18.692L9.308,14.692L5.308,14.692L5.308,18.692ZM3.808,10.808L3.808,3.808L10.808,3.808L10.808,10.808L3.808,10.808ZM5.308,9.308L9.308,9.308L9.308,5.308L5.308,5.308L5.308,9.308Z"
+                fill={theme.iconSecondaryColor}/>
+        </TurtleIcon>
     )
+
 
 }
 

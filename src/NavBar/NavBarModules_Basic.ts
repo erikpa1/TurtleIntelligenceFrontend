@@ -93,10 +93,19 @@ const OTHER_WIDGETS: INavBarItem[] = [
         icon: "/icons/graph_3.svg",
         link: "/agents-incidents"
     },
+
+]
+
+const UTILS_WIDGETS: INavBarItem[] = [
     {
         lang: "themes",
         icon: "/icons/graph_3.svg",
         link: "/themes"
+    },
+    {
+        lang: "icons",
+        icon: "/icons/graph_3.svg",
+        link: "/icons"
     }
 ]
 
@@ -135,6 +144,10 @@ export const BASIC_CATEGORIES: IWidgetCategory[] = [
     {
         titleKey: "aof",
         items: AOF_WIDGETS
+    },
+    {
+        titleKey: "utils",
+        items: UTILS_WIDGETS
     }
 ]
 

@@ -34,6 +34,6 @@ export const SUBNODE_HANDLE_STYLE: React.CSSProperties = {
     height: INPUT_SIZE,
     backgroundColor: ColorConstants.WHITE,
     borderColor: ColorConstants.GRAY,
-    transform: `rotate(45deg)`,
+    transform: `translateX(-50%) rotate(45deg)`,
     borderRadius: 0
 }

@@ -7,8 +7,9 @@ import {IconSimulation} from "@Turtle/Icons"
 import React from "react"
 
 import "./AppNavBar.css"
-import {MyNavbarItem,} from "@Turtle/Components/NavBar"
+import {MyNavbarItem, NavBarIcon,} from "@Turtle/Components/NavBar"
 import TurtleAppsGallery, {ICON_STYLE} from "@TurtleApp/TurtleAppsGallery"
+import IconChat from "@Turtle/Icons/IconChat";
 
 export default function AppNavBar() {
 
@@ -75,21 +76,21 @@ export default function AppNavBar() {
                         }}/>
 
                         <MyNavbarItem
-                            icon={<IconSimulation width={"30px"} height={"30px"}/>}
+                            icon={<NavBarIcon icon={IconSimulation}/>}
                             link={"/"}
                             lang={"simulations"}
                             iconStyle={ICON_STYLE}
                         />
 
                         <MyNavbarItem
-                            icon={"/icons/chat.svg"}
+                            icon={<NavBarIcon icon={IconChat}/>}
                             link={"/llm-chat"}
                             lang={"aichat"}
                             iconStyle={ICON_STYLE}
                         />
 
                         <MyNavbarItem
-                            icon={"/icons/chat.svg"}
+                            icon={"/icons/support_agent.svg"}
                             link={"/llm-agent-chat"}
                             lang={"agent.chat"}
                             iconStyle={ICON_STYLE}

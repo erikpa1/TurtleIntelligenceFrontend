@@ -46,7 +46,7 @@ function _Save({}) {
         await AgentNodesApi.SavePressed(
             canvasState.nodes,
             Array.from(canvasState.deletedNodes.values()),
-            canvasState.connections
+            canvasState.edges
         )
 
         canvasState.nodes.forEach((val) => {
@@ -55,7 +55,7 @@ function _Save({}) {
 
         canvasState.deletedNodes.clear()
 
-        canvasState.connections.forEach((val) => {
+        canvasState.edges.forEach((val) => {
             val._status = NodeConnStatus.NOT_MODIFIED
         })
 

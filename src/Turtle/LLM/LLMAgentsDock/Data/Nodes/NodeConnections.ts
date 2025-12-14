@@ -1,10 +1,11 @@
+
 export enum NodeConnStatus {
     NOT_MODIFIED = 0,
     MODIFIED = 1,
     NEW = 2
 }
 
-export default class NodeConnection {
+export default class AgentNodeEdge {
     runTimeUid = ""
 
     uid = ""
@@ -32,6 +33,9 @@ export default class NodeConnection {
     }
 
     FromJson(jObj: any) {
+
+        console.log(jObj)
+
         this.uid = jObj.uid ?? ""
         this.parent = jObj.parent ?? ""
         this.source = jObj.source ?? ""

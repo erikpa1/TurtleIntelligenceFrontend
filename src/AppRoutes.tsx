@@ -14,6 +14,8 @@ import GetOcrRoutes from "@TurtleCrm/Ocr/OcrRoutes"
 import CrmRoutes from "@TurtleCrm/CrmRoutes"
 import SecurityRoutes from "@TurtleSecurity/SecurityRoutes";
 
+const IconsGalleryDock = React.lazy(() => import("@Turtle/IconsGallery/IconsGalleryDock"))
+
 const AofModelsDock = React.lazy(() => import("@TurtleApp/Aof/AofModelsDock"))
 const AofEditModelDock = React.lazy(() => import("@TurtleApp/Aof/AofEditModelDock"))
 
@@ -43,8 +45,6 @@ const NNDock = React.lazy(() => import("@TurtleApp/Routes/NN/NNDock"))
 
 
 export default function AppRoutes({}) {
-
-    console.log(GetOcrRoutes())
 
     return (
         <Routes>
@@ -111,6 +111,9 @@ export default function AppRoutes({}) {
 
             <Route path={"/themes"} element={<ThemeDock/>}/>
             <Route path={"/themes/:themeUid"} element={<ThemeDock/>}/>
+
+
+            <Route path={"/icons"} element={<IconsGalleryDock/>}/>
 
             <Route path={"/scenes"} element={<ScenesDock/>}/>
             <Route path={"/scenes/:sceneUid"} element={<ScenesDock/>}/>

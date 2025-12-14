@@ -42,7 +42,7 @@ export function useThemeInit(): () => void {
 
     function init() {
         const redOne = new TurtleTheme()
-        redOne.iconPrimaryColor = ColorConstants.RED
+        redOne.iconPrimaryColor = ColorConstants.AZURE_BLUE
         redOne.iconSecondaryColor = ColorConstants.GRAY
         redOne.borderColor = ColorConstants.RED
         redOne.borderHoverColor = ColorConstants.RED
