@@ -29,19 +29,20 @@ export default class AgentNodesApi {
     static async SavePressed(
         nodes: Array<AgentNodeParent>,
         deletedNodes: Array<AgentNodeParent>,
-        connections: Array<AgentNodeEdge>
+        edges: Array<AgentNodeEdge>,
+        deletedEdges: Array<AgentNodeEdge>
     ) {
         const modified = nodes.filter(val => val.canvasStatus === CanvasStatus.MODIFIED)
         const created = nodes.filter(val => val.canvasStatus === CanvasStatus.CREATED)
 
-
-        const newConnections = connections.filter(val => val._status === NodeConnStatus.NEW)
+        const newConnections = edges.filter(val => val._status === NodeConnStatus.NEW)
 
         const tmp = {
             modified: modified.map(val => val.ToJson()),
             created: created.map(val => val.ToJson()),
             deleted: deletedNodes.map(val => val.uid),
-            newConnections: newConnections.map(val => val.ToJson()),
+            newEdges: newConnections.map(val => val.ToJson()),
+            deletedEdges: deletedEdges.map(val => val.uid),
         }
 
         const formData = new FormData()

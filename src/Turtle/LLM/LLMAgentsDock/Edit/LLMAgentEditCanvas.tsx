@@ -1,7 +1,17 @@
-import React from "react"
+import React, {type MouseEvent as ReactMouseEvent} from "react"
 import {Splitter} from "antd"
 
-import ReactFlow, {addEdge, Background, Connection, Controls, MiniMap, useEdgesState, useNodesState} from 'reactflow'
+import ReactFlow, {
+    addEdge,
+    Background,
+    Connection,
+    Controls,
+    Edge,
+    Node,
+    MiniMap,
+    useEdgesState,
+    useNodesState
+} from 'reactflow'
 
 import 'reactflow/dist/style.css'
 
@@ -18,6 +28,7 @@ import AgentToolNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/AgentToolNode";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import AgentNodeEdge, {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
 import OllamaNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/OllamaNode";
+import COUNodeView from "@Turtle/LLM/LLMAgentsDock/Edit/COUNodeView";
 
 
 interface LLMAgentEditCanvasProps {
@@ -153,7 +164,7 @@ function _NodesFlowEditor({
 
     React.useEffect(() => {
 
-        const asNodes = agentNodes.map((node) => {
+        const asNodes: Node<AgentNodeParent> = agentNodes.map((node) => {
 
             return {
                 id: node.uid,
@@ -161,13 +172,11 @@ function _NodesFlowEditor({
                 data: node,
                 type: node.GetFlowType()
             }
-        })
+        }) as any
 
-        setNodes(asNodes)
+        setNodes(asNodes as any)
 
-        const newEdges = nodesConnections.map((connection) => {
-
-            console.log(connection)
+        const newEdges: Edge<AgentNodeEdge>[] = nodesConnections.map((connection) => {
 
             return {
                 id: connection.runTimeUid,
@@ -175,6 +184,7 @@ function _NodesFlowEditor({
                 sourceHandle: connection.sourceHandle,
                 target: connection.target,
                 targetHandle: connection.targetHandle,
+                data: connection
             }
         })
 
@@ -182,13 +192,43 @@ function _NodesFlowEditor({
 
     }, [agentNodes, nodesConnections])
 
+    function deleteEdge(event: ReactMouseEvent, tmp: Edge<AgentNodeEdge>) {
+
+        const {addDeletesEdge} = useAgentNodesZus.getState()
+
+        if (tmp.data) {
+            addDeletesEdge(tmp.data)
+        }
+
+    }
+
+    function onNodeDoubleClick(event: ReactMouseEvent, node: Node<AgentNodeParent>) {
+        activate({
+            title: "Edit Node",
+            width: 800,
+            content: (
+                <COUNodeView
+                    entity={node.data}
+                    onBeforeUpdate={deactivate}
+                    onAfterUpdate={() => {
+                        console.log("TODO refresh key hook")
+                    }}
+                />
+            ),
+        })
+
+    }
+
+
     return (
         <ReactFlow
             nodes={nodes}
             edges={edges}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
+            onEdgeDoubleClick={deleteEdge as any}
             onConnect={onConnect}
+            onNodeDoubleClick={onNodeDoubleClick}
             nodeTypes={NODE_TYPES}
             fitView
             onContextMenu={(e) => {

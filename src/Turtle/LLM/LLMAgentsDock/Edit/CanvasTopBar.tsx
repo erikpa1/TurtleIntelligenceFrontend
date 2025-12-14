@@ -43,10 +43,12 @@ function _Save({}) {
         TurtleApp.Lock()
 
         const canvasState = useAgentNodesZus.getState()
+
         await AgentNodesApi.SavePressed(
             canvasState.nodes,
             Array.from(canvasState.deletedNodes.values()),
-            canvasState.edges
+            canvasState.edges,
+            canvasState.deletedEdges
         )
 
         canvasState.nodes.forEach((val) => {
