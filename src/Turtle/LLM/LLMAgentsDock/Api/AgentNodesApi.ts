@@ -37,10 +37,12 @@ export default class AgentNodesApi {
 
         const newConnections = edges.filter(val => val._status === NodeConnStatus.NEW)
 
+        const deleted = deletedNodes.filter((val) => val.canvasStatus !== CanvasStatus.CREATED)
+
         const tmp = {
             modified: modified.map(val => val.ToJson()),
             created: created.map(val => val.ToJson()),
-            deleted: deletedNodes.map(val => val.uid),
+            deleted: deleted.map(val => val.uid),
             newEdges: newConnections.map(val => val.ToJson()),
             deletedEdges: deletedEdges.map(val => val.uid),
         }

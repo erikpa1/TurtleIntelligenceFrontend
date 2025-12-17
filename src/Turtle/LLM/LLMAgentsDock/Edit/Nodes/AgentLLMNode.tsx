@@ -7,15 +7,15 @@ import {Flex} from "antd";
 import {nodeMoveAndModify} from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/nodeFuncts";
 import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import NodeLabel from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/NodeLabel";
+import NWrapper from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/NWrapper";
 
 export default function AgentLLMNode(props: NodeProps<AgentNodeParent>) {
 
-    nodeMoveAndModify(props)
-
 
     return (
-        <div className="react-flow__node-default">
-
+        <NWrapper
+            nodeProps={props}
+        >
             <NodeLabel node={props.data}/>
 
             <Handle
@@ -44,7 +44,8 @@ export default function AgentLLMNode(props: NodeProps<AgentNodeParent>) {
                     ...OUTPUT_HANDLE_STYLE
                 }}
             />
-        </div>
+        </NWrapper>
+
     )
 
 }

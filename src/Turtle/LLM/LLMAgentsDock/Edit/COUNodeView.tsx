@@ -1,16 +1,22 @@
 import {COUEntityView} from "@Turtle/Interfaces/ICOUView";
 import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import {Flex, Form} from "antd";
+import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodesFactory";
+import React from "react";
 
 
 export default function COUNodeView(props: COUEntityView<AgentNodeParent>) {
 
+
+    const viewComponent = React.useMemo(() => {
+        const tmp = React.createElement(NodesFactory.GetCOUView(props.entity.type) as any, {node: props.entity})
+        return tmp
+    }, [props.entity])
+
     return (
         <Form>
             <Flex vertical>
-                <div>
-                    Here
-                </div>
+                {viewComponent}
             </Flex>
         </Form>
     )

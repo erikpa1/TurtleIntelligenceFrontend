@@ -26,7 +26,7 @@ function _Statistics({}) {
     const {nodes, deletedNodes} = useAgentNodesZus()
 
     return (
-        <Flex vertical>
+        <Flex vertical justify={"center"}>
             <Space>
                 Nodes: {nodes.length}
                 Deleted: {deletedNodes.size}

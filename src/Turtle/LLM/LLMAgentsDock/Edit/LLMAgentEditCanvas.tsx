@@ -29,6 +29,7 @@ import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import AgentNodeEdge, {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
 import OllamaNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/OllamaNode";
 import COUNodeView from "@Turtle/LLM/LLMAgentsDock/Edit/COUNodeView";
+import WriteFileNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/WriteFileNode";
 
 
 interface LLMAgentEditCanvasProps {
@@ -107,6 +108,7 @@ const NODE_TYPES = {
     trigger: TriggerNode,
     llmAgent: AgentLLMNode,
     ollama: OllamaNode,
+    writeToFile: WriteFileNode,
 }
 
 interface _NodesFlowEditorProps {
@@ -194,30 +196,15 @@ function _NodesFlowEditor({
 
     function deleteEdge(event: ReactMouseEvent, tmp: Edge<AgentNodeEdge>) {
 
-        const {addDeletesEdge} = useAgentNodesZus.getState()
+        const {addDeletedEdge} = useAgentNodesZus.getState()
 
         if (tmp.data) {
-            addDeletesEdge(tmp.data)
+            addDeletedEdge(tmp.data)
         }
 
     }
 
-    function onNodeDoubleClick(event: ReactMouseEvent, node: Node<AgentNodeParent>) {
-        activate({
-            title: "Edit Node",
-            width: 800,
-            content: (
-                <COUNodeView
-                    entity={node.data}
-                    onBeforeUpdate={deactivate}
-                    onAfterUpdate={() => {
-                        console.log("TODO refresh key hook")
-                    }}
-                />
-            ),
-        })
 
-    }
 
 
     return (
@@ -228,7 +215,6 @@ function _NodesFlowEditor({
             onEdgesChange={onEdgesChange}
             onEdgeDoubleClick={deleteEdge as any}
             onConnect={onConnect}
-            onNodeDoubleClick={onNodeDoubleClick}
             nodeTypes={NODE_TYPES}
             fitView
             onContextMenu={(e) => {

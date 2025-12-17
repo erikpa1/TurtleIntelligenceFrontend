@@ -1,15 +1,19 @@
 import {Handle, NodeProps, Position} from "reactflow";
-import {INPUT_HANDLE_STYLE, OUTPUT_HANDLE_STYLE, SUBNODE_HANDLE_STYLE} from "@Turtle/LLM/LLMAgentsDock/Edit/Styles";
 import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import {nodeMoveAndModify} from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/nodeFuncts";
+import NWrapper from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/NWrapper";
 import NodeLabel from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/NodeLabel";
+import {INPUT_HANDLE_STYLE, OUTPUT_HANDLE_STYLE, SUBNODE_HANDLE_STYLE} from "@Turtle/LLM/LLMAgentsDock/Edit/Styles";
+import IconBookmarkManager from "@Turtle/Icons/IconBookmarkManager";
 
-export default function AgentToolNode(props: NodeProps<AgentNodeParent>) {
 
+export default function WriteFileNode(props: NodeProps<AgentNodeParent>) {
 
     return (
-        <div>
-            <NodeLabel node={props.data}/>
+        <NWrapper
+            nodeProps={props}
+        >
+            <NodeLabel node={props.data} icon={<IconBookmarkManager/>}/>
 
             <Handle
                 id={"a"}
@@ -20,7 +24,6 @@ export default function AgentToolNode(props: NodeProps<AgentNodeParent>) {
                 }}
             />
 
-
             <Handle
                 id={"b"}
                 position={Position.Right}
@@ -29,6 +32,8 @@ export default function AgentToolNode(props: NodeProps<AgentNodeParent>) {
                     ...OUTPUT_HANDLE_STYLE
                 }}
             />
-        </div>
+        </NWrapper>
+
     )
+
 }

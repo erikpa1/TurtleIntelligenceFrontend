@@ -1,6 +1,8 @@
+import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodesFactory";
+
 export enum PhaseType {
     TRIGGER = 0,
-    Action = 1,
+    ACTION = 1,
     OUTPUT = 2,
     AGENT = 3
 }
@@ -9,6 +11,17 @@ export enum CanvasStatus {
     NO_CHANGE = 0,
     CREATED = 1,
     MODIFIED = 2
+}
+
+
+class EmptyTypeData {
+    ToJson(): any {
+        return {}
+    }
+
+    FromJson(jObj: any) {
+
+    }
 }
 
 export default class AgentNodeParent {
@@ -20,7 +33,7 @@ export default class AgentNodeParent {
     type = ""
     phaseType: PhaseType = PhaseType.TRIGGER
     connections = {}
-    typeData = {}
+    typeData: EmptyTypeData | any = new EmptyTypeData()
 
 
     canvasStatus = CanvasStatus.NO_CHANGE
@@ -34,7 +47,7 @@ export default class AgentNodeParent {
             phaseType: this.phaseType,
             posX: this.posX,
             posY: this.posY,
-            typeData: this.typeData,
+            typeData: this.typeData.ToJson(),
             connections: this.connections,
         }
     }
@@ -47,8 +60,8 @@ export default class AgentNodeParent {
         this.phaseType = jObj.phaseType ?? PhaseType.TRIGGER
         this.posX = jObj.posX ?? 0
         this.posY = jObj.posY ?? 0
-        this.typeData = jObj.typeData ?? {}
         this.connections = jObj.connections ?? {}
+        this.typeData = NodesFactory.GetByType(jObj.typeData)
     }
 
     RandomizePosition() {

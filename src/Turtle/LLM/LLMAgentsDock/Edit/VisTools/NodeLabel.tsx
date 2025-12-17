@@ -4,12 +4,14 @@ import {HierarchyCustomIcon} from "@Turtle/Components/HierarchyComponents";
 import IconAutoRenew from "@Turtle/Icons/IconAutoRenew";
 
 interface NodeLabelProps {
-    node: AgentNodeParent
+    node: AgentNodeParent,
+    icon?: any
 }
-export default function NodeLabel({node}: NodeLabelProps) {
+
+export default function NodeLabel({node, icon}: NodeLabelProps) {
     return (
         <Flex gap={15}>
-            <HierarchyCustomIcon icon={<IconAutoRenew/>}/>
+            <HierarchyCustomIcon icon={icon ?? <IconAutoRenew/>}/>
             <div>{node.name}</div>
         </Flex>
 

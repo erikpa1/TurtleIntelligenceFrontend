@@ -1,5 +1,5 @@
 import React from "react"
-import {Col, Flex, Row, Space} from "antd";
+import {Col, Flex, Row, Space, Splitter} from "antd";
 import IconAutoRenew from "@Turtle/Icons/IconAutoRenew";
 
 import IconCleaningServices from "@Turtle/Icons/IconCleaningServices";
@@ -16,6 +16,8 @@ import IconRobot2 from "@Turtle/Icons/IconRobot2";
 import IconApi from "@Turtle/Icons/IconApi";
 import IconWebhook from "@Turtle/Icons/IconWebhook";
 import IconOllama from "@Turtle/Icons/IconOllama";
+import IconBookmarkManager from "@Turtle/Icons/IconBookmarkManager";
+import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
 
 
 export default function IconsGalleryDock({}) {
@@ -23,12 +25,16 @@ export default function IconsGalleryDock({}) {
     const {bigPadding} = useTurtleTheme()
 
     return (
-        <div style={{
-            padding: bigPadding,
+        <SplitterWithHeader topbar={<></>}>
+            <Splitter.Panel>
+                <div style={{
+                    padding: bigPadding,
 
-        }}>
-            <IconsGallery/>
-        </div>
+                }}>
+                    <IconsGallery/>
+                </div>
+            </Splitter.Panel>
+        </SplitterWithHeader>
     )
 }
 
@@ -62,6 +68,7 @@ export function IconsGallery({}) {
                         ["Api", IconApi],
                         ["Webhook", IconWebhook],
                         ["Ollama", IconOllama],
+                        ["BookmarkManager", IconBookmarkManager],
                     ].map(([lang, icon], i) => {
 
                         const tmp: any = React.createElement(icon, {

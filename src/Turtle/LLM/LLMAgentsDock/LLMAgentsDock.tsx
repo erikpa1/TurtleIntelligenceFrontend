@@ -7,6 +7,9 @@ import {useParams} from "react-router-dom";
 import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
 import LLMAgentEditCanvas from "@Turtle/LLM/LLMAgentsDock/Edit/LLMAgentEditCanvas";
 import CanvasTopBar from "@Turtle/LLM/LLMAgentsDock/Edit/CanvasTopBar";
+import NodesLibrary from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodesLibrary";
+import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodesFactory";
+import COUHttpTriggerView from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUHttpTriggerView";
 
 
 export default function LLMAgentsDock() {
@@ -14,6 +17,13 @@ export default function LLMAgentsDock() {
     const {agentUid} = useParams()
 
     const {bigPadding, theme} = useTurtleTheme()
+
+    React.useEffect(() => {
+
+        NodesFactory.Register("httpTrigger", null, COUHttpTriggerView)
+        NodesFactory.Register("writeToFile", null, COUHttpTriggerView)
+
+    }, [])
 
 
     return (

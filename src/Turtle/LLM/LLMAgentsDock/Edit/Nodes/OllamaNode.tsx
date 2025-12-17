@@ -6,36 +6,34 @@ import ColorConstants from "@Turtle/Constants/ColorConstants";
 import {HierarchyDivIcon} from "@Turtle/Components/HierarchyComponents";
 import {SUBNODE_HANDLE_STYLE} from "@Turtle/LLM/LLMAgentsDock/Edit/Styles";
 import IconOllama from "@Turtle/Icons/IconOllama";
+import NWrapper from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/NWrapper";
 
 
 export default function OllamaNode(props: NodeProps<AgentNodeParent>) {
 
-    nodeMoveAndModify(props)
-
     return (
-        <Tooltip title={props.data.name}>
-            <div
-                className="react-flow__node-default"
+        <NWrapper
+            nodeProps={props}
+            nodeStyle={{
+                width: 50,
+                height: 50,
+                borderColor: ColorConstants.GRAY,
+                borderRadius: '50%',
+                justifyContent: 'center',
+            }}
+        >
+            <Handle
+                id={"a"}
+                position={Position.Top}
+                type="target"
                 style={{
-                    width: 50,
-                    height: 50,
-                    borderColor: ColorConstants.GRAY,
-                    borderRadius: '50%',
-                    justifyContent: 'center',
+                    ...SUBNODE_HANDLE_STYLE
                 }}
-            >
-                <Handle
-                    id={"a"}
-                    position={Position.Top}
-                    type="target"
-                    style={{
-                        ...SUBNODE_HANDLE_STYLE
-                    }}
-                />
+            />
 
-                <HierarchyDivIcon icon={<IconOllama/>}/>
+            <HierarchyDivIcon icon={<IconOllama/>}/>
 
-            </div>
-        </Tooltip>
+        </NWrapper>
     )
+
 }

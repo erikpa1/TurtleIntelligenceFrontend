@@ -26,15 +26,15 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
     const {nodes, setNodes} = useAgentNodesZus()
 
 
-    async function addTriggerPressed(nodeType: string, phase: PhaseType) {
+    async function addNodePressed(nodeType: string, phase: PhaseType) {
         TurtleApp.Lock()
 
         const tmp = new AgentNodeParent()
         tmp.uid = await MongoObjectId.GetMongoId()
-        tmp.name = `${nodeType} - trigger`
+        tmp.name = `${nodeType}`
         tmp.type = nodeType
         tmp.parent = agentUid
-        tmp.phaseType = PhaseType.TRIGGER
+        tmp.phaseType = phase
         tmp.RandomizePosition()
         tmp.canvasStatus = CanvasStatus.CREATED
 
@@ -89,7 +89,7 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
                                     icon={(
                                         <_GalleryIcon icon={IconApi}/>
                                     )}
-                                    onClick={() => addTriggerPressed(val, PhaseType.TRIGGER)}
+                                    onClick={() => addNodePressed(val, PhaseType.TRIGGER)}
                                 />
                             </Col>
                         )
@@ -131,7 +131,7 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
                                     icon={(
                                         <_GalleryIcon icon={IconSimulation}/>
                                     )}
-                                    onClick={() => addTriggerPressed(val, PhaseType.Action)}
+                                    onClick={() => addNodePressed(val, PhaseType.ACTION)}
                                 />
                             </Col>
                         )
@@ -144,18 +144,18 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
             </Divider>
 
             {
-                NodesLibrary.ListOutputs().map((val) => {
+                NodesLibrary.ListOutputs().map(([iconType, icon]) => {
                     return (
                         <Col
                             span={6}
-                            key={val}
+                            key={iconType}
                         >
                             <GalleryButton
-                                lang={val}
+                                lang={iconType}
                                 icon={(
-                                    <_GalleryIcon icon={IconSimulation}/>
+                                    <_GalleryIcon icon={icon}/>
                                 )}
-                                onClick={() => addTriggerPressed(val, PhaseType.OUTPUT)}
+                                onClick={() => addNodePressed(iconType, PhaseType.OUTPUT)}
                             />
                         </Col>
                     )
