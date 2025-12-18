@@ -6,7 +6,7 @@ import {IconSimulation} from "@Turtle/Icons"
 import NodesLibrary from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodesLibrary"
 import {GalleryButton} from "@Turtle/Components/GaleryButton"
 import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus"
-import AgentNodeParent, {CanvasStatus, PhaseType} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
+import AgentNodeParent, {CanvasStatus, NodePhaseType} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import TurtleApp from "@TurtleApp/TurtleApp"
 import MongoObjectId from "@Turtle/Utils/MongoObjectId"
 import IconApi from "@Turtle/Icons/IconApi"
@@ -26,7 +26,7 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
     const {nodes, setNodes} = useAgentNodesZus()
 
 
-    async function addNodePressed(nodeType: string, phase: PhaseType) {
+    async function addNodePressed(nodeType: string, phase: NodePhaseType) {
         TurtleApp.Lock()
 
         const tmp = new AgentNodeParent()
@@ -53,7 +53,7 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
         tmp.name = "LLM Agent"
         tmp.type = "llmAgent"
         tmp.parent = agentUid
-        tmp.phaseType = PhaseType.AGENT
+        tmp.phaseType = NodePhaseType.AGENT
         tmp.RandomizePosition()
         tmp.canvasStatus = CanvasStatus.CREATED
 
@@ -89,7 +89,7 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
                                     icon={(
                                         <_GalleryIcon icon={IconApi}/>
                                     )}
-                                    onClick={() => addNodePressed(val, PhaseType.TRIGGER)}
+                                    onClick={() => addNodePressed(val, NodePhaseType.TRIGGER)}
                                 />
                             </Col>
                         )
@@ -131,7 +131,7 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
                                     icon={(
                                         <_GalleryIcon icon={IconSimulation}/>
                                     )}
-                                    onClick={() => addNodePressed(val, PhaseType.ACTION)}
+                                    onClick={() => addNodePressed(val, NodePhaseType.ACTION)}
                                 />
                             </Col>
                         )
@@ -155,7 +155,7 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
                                 icon={(
                                     <_GalleryIcon icon={icon}/>
                                 )}
-                                onClick={() => addNodePressed(iconType, PhaseType.OUTPUT)}
+                                onClick={() => addNodePressed(iconType, NodePhaseType.OUTPUT)}
                             />
                         </Col>
                     )
@@ -206,7 +206,7 @@ function _OllamaButton({
         tmp.name = "Ollama"
         tmp.type = "ollama"
         tmp.parent = agentUid
-        tmp.phaseType = PhaseType.AGENT
+        tmp.phaseType = NodePhaseType.AGENT
         tmp.RandomizePosition()
         tmp.canvasStatus = CanvasStatus.CREATED
 

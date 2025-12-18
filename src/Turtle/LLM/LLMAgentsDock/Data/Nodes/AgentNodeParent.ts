@@ -1,6 +1,6 @@
 import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodesFactory";
 
-export enum PhaseType {
+export enum NodePhaseType {
     TRIGGER = 0,
     ACTION = 1,
     OUTPUT = 2,
@@ -31,7 +31,7 @@ export default class AgentNodeParent {
     posX = 0
     posY = 0
     type = ""
-    phaseType: PhaseType = PhaseType.TRIGGER
+    phaseType: NodePhaseType = NodePhaseType.TRIGGER
     connections = {}
     typeData: EmptyTypeData | any = new EmptyTypeData()
 
@@ -57,7 +57,7 @@ export default class AgentNodeParent {
         this.type = jObj.type ?? ""
         this.name = jObj.name ?? ""
         this.parent = jObj.parent ?? ""
-        this.phaseType = jObj.phaseType ?? PhaseType.TRIGGER
+        this.phaseType = jObj.phaseType ?? NodePhaseType.TRIGGER
         this.posX = jObj.posX ?? 0
         this.posY = jObj.posY ?? 0
         this.connections = jObj.connections ?? {}
@@ -72,7 +72,7 @@ export default class AgentNodeParent {
     }
 
     GetFlowType(): string {
-        if (this.phaseType == PhaseType.TRIGGER) {
+        if (this.phaseType == NodePhaseType.TRIGGER) {
             return "trigger"
         } else {
             return this.type

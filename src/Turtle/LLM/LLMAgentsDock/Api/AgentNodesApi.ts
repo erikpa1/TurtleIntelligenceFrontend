@@ -26,6 +26,15 @@ export default class AgentNodesApi {
     }
 
 
+    static async PlayNode(nodeUid: string) {
+        await PostEntity("/api/llm/agent-play", null, {
+            params: {
+                uid: nodeUid,
+            }
+        })
+    }
+
+
     static async SavePressed(
         nodes: Array<AgentNodeParent>,
         deletedNodes: Array<AgentNodeParent>,

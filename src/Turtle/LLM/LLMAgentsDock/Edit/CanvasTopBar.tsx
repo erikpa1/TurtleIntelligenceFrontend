@@ -3,7 +3,7 @@ import {SaveButton} from "@Turtle/Components/SaveButton";
 import AgentNodesApi from "@Turtle/LLM/LLMAgentsDock/Api/AgentNodesApi";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus";
-import {CanvasStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
+import {CanvasStatus, NodePhaseType} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import {Button, Flex, Space} from "antd";
 import {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
 
@@ -72,6 +72,22 @@ function _Save({}) {
 }
 
 function _PlayButton({}) {
+
+    async function playPressed() {
+
+        TurtleApp.Lock()
+
+        for (const node of useAgentNodesZus.getState().nodes) {
+            if (node.phaseType === NodePhaseType.TRIGGER) {
+                await AgentNodesApi.PlayNode(node.uid)
+                break
+            }
+        }
+
+        TurtleApp.Unlock()
+    }
+
+
     return (
         <Button type={"text"}>
             Play
