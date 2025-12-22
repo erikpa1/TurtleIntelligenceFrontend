@@ -62,7 +62,7 @@ export default class AgentNodeParent {
         this.posX = jObj.posX ?? 0
         this.posY = jObj.posY ?? 0
         this.connections = jObj.connections ?? {}
-        this.typeData = NodesFactory.GetByType(jObj.typeData)
+        this.typeData = NodesFactory.GetDataByType(jObj.typeData)
     }
 
     RandomizePosition() {

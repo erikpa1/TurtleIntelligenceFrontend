@@ -84,7 +84,7 @@ function _PlayButton({}) {
 
         for (const node of useAgentNodesZus.getState().nodes) {
             if (node.phaseType === NodePhaseType.TRIGGER) {
-                await AgentNodesApi.PlayNode(node.uid)
+                await AgentNodesApi.PlayNode(node)
                 break
             }
         }

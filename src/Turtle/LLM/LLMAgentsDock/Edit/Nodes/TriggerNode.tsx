@@ -30,7 +30,7 @@ export default function TriggerNode(props: NodeProps<AgentNodeParent>) {
             <HierarchyDivIcon icon={<IconApi/>}/>
 
             <Handle
-                id={"b"}
+                id={"a"}
                 position={Position.Right}
                 type="source"
                 style={{

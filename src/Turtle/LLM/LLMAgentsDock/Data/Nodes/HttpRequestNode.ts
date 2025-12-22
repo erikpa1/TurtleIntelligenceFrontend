@@ -1,4 +1,4 @@
-export class HttpTriggerNodeData {
+export class HttpRequestNodeData {
     limiter = 0
     method = "GET"
 

@@ -23,14 +23,12 @@ export default class NodesFactory {
     static NODE_ICONS = new Map<string, React.Component | string>()
     static NODE_HANDLERS = {}
 
-    static GetByType(jObj: any) {
-        if (jObj.type === "httpTrigger") {
-            const tmp = new HttpTriggerNodeData()
-            tmp.FromJson(jObj)
-            return tmp
-        }
+    static GetDataByType(jObj: any) {
+        const tmpConstructor = this.NODES_DATA.get(jObj.type) ?? EmptyNodeData
+        const tmp = new tmpConstructor()
+        tmp.FromJson(jObj)
+        return tmp
 
-        return new HttpTriggerNodeData()
     }
 
     static GetCOUView(nodeType): React.Component<RetFun> {
@@ -73,4 +71,15 @@ function _NotFoundFragment({}) {
             Undefined edit view
         </div>
     )
+}
+
+class EmptyNodeData {
+    ToJson() {
+        return Object.entries(this)
+    }
+    FromJson(jObj: any) {
+        Object.entries(jObj).forEach(([key, value]) => {
+            this[key] = value
+        })
+    }
 }
