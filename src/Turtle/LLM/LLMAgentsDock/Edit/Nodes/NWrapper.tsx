@@ -27,7 +27,7 @@ export default function NWrapper({
     function onNodeDoubleClick() {
         activate({
             title: "Edit Node",
-            width: 800,
+            width: 600,
             content: (
                 <COUNodeView
                     entity={nodeProps.data}

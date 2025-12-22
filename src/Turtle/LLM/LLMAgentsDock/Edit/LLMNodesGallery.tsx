@@ -120,18 +120,18 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
 
             <Row>
                 {
-                    NodesLibrary.ListActions().map((val) => {
+                    NodesLibrary.ListActions().map(([iconType, icon]) => {
                         return (
                             <Col
                                 span={6}
-                                key={val}
+                                key={iconType}
                             >
                                 <GalleryButton
-                                    lang={val}
+                                    lang={iconType}
                                     icon={(
-                                        <_GalleryIcon icon={IconSimulation}/>
+                                        <_GalleryIcon icon={icon}/>
                                     )}
-                                    onClick={() => addNodePressed(val, NodePhaseType.ACTION)}
+                                    onClick={() => addNodePressed(iconType, NodePhaseType.OUTPUT)}
                                 />
                             </Col>
                         )
@@ -143,24 +143,52 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
                 {t("outputs")}
             </Divider>
 
-            {
-                NodesLibrary.ListOutputs().map(([iconType, icon]) => {
-                    return (
-                        <Col
-                            span={6}
-                            key={iconType}
-                        >
-                            <GalleryButton
-                                lang={iconType}
-                                icon={(
-                                    <_GalleryIcon icon={icon}/>
-                                )}
-                                onClick={() => addNodePressed(iconType, NodePhaseType.OUTPUT)}
-                            />
-                        </Col>
-                    )
-                })
-            }
+            <Row>
+                {
+                    NodesLibrary.ListOutputs().map(([iconType, icon]) => {
+                        return (
+                            <Col
+                                span={6}
+                                key={iconType}
+                            >
+                                <GalleryButton
+                                    lang={iconType}
+                                    icon={(
+                                        <_GalleryIcon icon={icon}/>
+                                    )}
+                                    onClick={() => addNodePressed(iconType, NodePhaseType.OUTPUT)}
+                                />
+                            </Col>
+                        )
+                    })
+                }
+            </Row>
+
+            <Divider orientation={"left"}>
+                {t("databases")}
+            </Divider>
+
+            <Row>
+                {
+                    NodesLibrary.ListDatabases().map(([iconType, icon]) => {
+                        return (
+                            <Col
+                                span={6}
+                                key={iconType}
+                            >
+                                <GalleryButton
+                                    lang={iconType}
+                                    icon={(
+                                        <_GalleryIcon icon={icon}/>
+                                    )}
+                                    onClick={() => addNodePressed(iconType, NodePhaseType.DATABASE)}
+                                />
+                            </Col>
+                        )
+                    })
+                }
+            </Row>
+
 
         </Flex>
     )
@@ -229,9 +257,27 @@ function _OllamaButton({
     )
 }
 
+
+
 function _GalleryIcon({icon}) {
-    return React.createElement(icon, {
-        width: "50px",
-        height: "50px",
-    })
+
+    if (typeof icon === 'string') {
+        return (
+            <img
+                src={icon as ""}
+                alt={"icon"}
+                style={{
+                    width: "50px",
+                    height: "50px",
+                }}
+            />
+        )
+    } else {
+
+        return React.createElement(icon, {
+            width: "50px",
+            height: "50px",
+        })
+    }
+
 }

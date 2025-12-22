@@ -10,6 +10,11 @@ import CanvasTopBar from "@Turtle/LLM/LLMAgentsDock/Edit/CanvasTopBar";
 import NodesLibrary from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodesLibrary";
 import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodesFactory";
 import COUHttpTriggerView from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUHttpTriggerView";
+import COUWriteToFileView from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUWriteToFileView";
+import COULLMNodeView from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COULLMNodeView";
+import COUOllamaView from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUOllamaView";
+import COUMongoDb from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUMongoDb";
+import IconOllama from "@Turtle/Icons/IconOllama";
 
 
 export default function LLMAgentsDock() {
@@ -20,9 +25,49 @@ export default function LLMAgentsDock() {
 
     React.useEffect(() => {
 
-        NodesFactory.Register("httpTrigger", null, COUHttpTriggerView)
-        NodesFactory.Register("writeToFile", null, COUHttpTriggerView)
+        NodesFactory.Register({
+            type: "httpTrigger",
+            couComponent: COUHttpTriggerView,
 
+        })
+
+        NodesFactory.Register({
+            type: "writeToFile",
+            couComponent: COUWriteToFileView,
+        })
+
+        NodesFactory.Register({
+            type: "llmAgent",
+            couComponent: COULLMNodeView,
+        })
+
+        NodesFactory.Register({
+            type: "ollama",
+            couComponent: COUOllamaView,
+            icon: IconOllama
+        })
+
+        NodesFactory.Register({
+            type: "mongoDb",
+            couComponent: COUMongoDb,
+            icon: "/icons/mongo_short.svg"
+        })
+
+
+        NodesFactory.Register({
+            type: "sqlite",
+            icon: "/icons/sqlite.svg"
+        })
+
+        NodesFactory.Register({
+            type: "mysql",
+            icon: "/icons/mariaDb.svg"
+        })
+
+
+        return () => {
+            NodesFactory.CleanUp()
+        }
     }, [])
 
 

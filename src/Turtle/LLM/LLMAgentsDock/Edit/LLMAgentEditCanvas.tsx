@@ -30,6 +30,7 @@ import AgentNodeEdge, {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Node
 import OllamaNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/OllamaNode";
 import COUNodeView from "@Turtle/LLM/LLMAgentsDock/Edit/COUNodeView";
 import WriteFileNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/WriteFileNode";
+import CircleNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/CircleNode";
 
 
 interface LLMAgentEditCanvasProps {
@@ -109,6 +110,10 @@ const NODE_TYPES = {
     llmAgent: AgentLLMNode,
     ollama: OllamaNode,
     writeToFile: WriteFileNode,
+    mongoDb: CircleNode,
+    sqlite: CircleNode,
+    mysql: CircleNode,
+
 }
 
 interface _NodesFlowEditorProps {

@@ -2,6 +2,7 @@ import AgentNodeParent, {CanvasStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Node
 import Turxios, {DeleteEntity, PostEntity, QueryEntities} from "@Turtle/Api/Turxios";
 import MongoObjectId from "@Turtle/Utils/MongoObjectId";
 import AgentNodeEdge, {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
+import {Axios} from "axios";
 
 export default class AgentNodesApi {
 
@@ -27,7 +28,7 @@ export default class AgentNodesApi {
 
 
     static async PlayNode(nodeUid: string) {
-        await PostEntity("/api/llm/agent-play", null, {
+        await Turxios.post("/api/llm/agent-play", null, {
             params: {
                 uid: nodeUid,
             }

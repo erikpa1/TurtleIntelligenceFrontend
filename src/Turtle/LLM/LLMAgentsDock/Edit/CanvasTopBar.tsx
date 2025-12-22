@@ -6,6 +6,7 @@ import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus";
 import {CanvasStatus, NodePhaseType} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import {Button, Flex, Space} from "antd";
 import {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
+import {useTranslation} from "react-i18next";
 
 
 export default function CanvasTopBar() {
@@ -73,6 +74,10 @@ function _Save({}) {
 
 function _PlayButton({}) {
 
+    const [t] = useTranslation()
+
+    const {nodes} = useAgentNodesZus()
+
     async function playPressed() {
 
         TurtleApp.Lock()
@@ -87,9 +92,14 @@ function _PlayButton({}) {
         TurtleApp.Unlock()
     }
 
+    const disabled = nodes.filter((val) => val.phaseType === NodePhaseType.TRIGGER).length === 0
 
     return (
-        <Button type={"text"}>
+        <Button
+            type={"text"}
+            onClick={playPressed}
+            disabled={disabled}
+        >
             Play
         </Button>
     )

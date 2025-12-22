@@ -4,7 +4,8 @@ export enum NodePhaseType {
     TRIGGER = 0,
     ACTION = 1,
     OUTPUT = 2,
-    AGENT = 3
+    AGENT = 3,
+    DATABASE = 4
 }
 
 export enum CanvasStatus {

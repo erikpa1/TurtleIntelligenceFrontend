@@ -204,8 +204,8 @@ export function HierarchyDivIcon({onClick, icon}: HierarchyCustomIconProps) {
                 (typeof icon === "string") ? <img
                     src={icon}
                     style={{
-                        width: "20px",
-                        height: "20px",
+                        width: "24px",
+                        height: "24px",
                         verticalAlign: 'middle'
                     }}
                 /> : icon

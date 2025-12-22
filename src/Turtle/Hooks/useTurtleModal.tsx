@@ -1,4 +1,4 @@
-import {ConfigProvider, Modal, ModalFuncProps} from "antd";
+import {Alert, ConfigProvider, Modal, ModalFuncProps} from "antd";
 import React from "react"
 import {useTranslation} from "react-i18next";
 import ErrorBoundary from "@Turtle/Components/ErrorBoundary";
@@ -28,11 +28,11 @@ export function useTurtleModal() {
             closable: true,
             content: (
                 <TurtleThemeProvider>
-                    <ErrorBoundary>
+                    <Alert.ErrorBoundary>
                         <QueryClientProvider client={TurtleQueryClient}>
                             {content}
                         </QueryClientProvider>
-                    </ErrorBoundary>
+                    </Alert.ErrorBoundary>
                 </TurtleThemeProvider>
 
 
