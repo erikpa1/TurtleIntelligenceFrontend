@@ -1,18 +1,21 @@
 import React from "react"
+import {Card} from "antd"
 
 import {Route, Routes} from "react-router-dom"
-import SceneEditDock from "@Turtle/Scene/SceneEditDock";
-import ForecastingDock from "@TurtleApp/Forecasting/ForecastingDock";
-import LoginForm from "@Turtle/Login/MainLoginForm";
-import RegisterForm from "@Turtle/Login/CreateAccountForm";
-import TablesDataDock from "@Turtle/TablesData/TablesDataDock";
+import SceneEditDock from "@Turtle/Scene/SceneEditDock"
+import ForecastingDock from "@TurtleApp/Forecasting/ForecastingDock"
+import LoginForm from "@Turtle/Login/MainLoginForm"
+import RegisterForm from "@Turtle/Login/CreateAccountForm"
+import TablesDataDock from "@Turtle/TablesData/TablesDataDock"
 
-import TurtleAppsGallery from "@TurtleApp/TurtleAppsGallery";
-import {Card} from "antd"
+import TurtleAppsGallery from "@TurtleApp/TurtleAppsGallery"
+
 
 import GetOcrRoutes from "@TurtleCrm/Ocr/OcrRoutes"
 import CrmRoutes from "@TurtleCrm/CrmRoutes"
-import SecurityRoutes from "@TurtleSecurity/SecurityRoutes";
+import SecurityRoutes from "@TurtleSecurity/SecurityRoutes"
+
+const UsersChatDock = React.lazy(() => import("@TurtleChat/UsersChat/UsersChatDock"))
 
 const IconsGalleryDock = React.lazy(() => import("@Turtle/IconsGallery/IconsGalleryDock"))
 
@@ -137,6 +140,8 @@ export default function AppRoutes({}) {
             {/*   AOF */}
             <Route path={"/aof-factories"} element={<AofModelsDock/>}/>
             <Route path={"/aof-factories/:aofUid"} element={<AofEditModelDock/>}/>
+
+            <Route path={"/users-chat"} element={<UsersChatDock/>}/>
 
 
             {...GetOcrRoutes()}

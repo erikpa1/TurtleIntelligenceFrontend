@@ -96,6 +96,14 @@ const OTHER_WIDGETS: INavBarItem[] = [
 
 ]
 
+const USERSCHAT_WIDGETS: INavBarItem[] = [
+    {
+        lang: "userschat",
+        icon: "/icons/graph_3.svg",
+        link: "/users-chat"
+    },
+]
+
 const UTILS_WIDGETS: INavBarItem[] = [
     {
         lang: "themes",
@@ -148,6 +156,10 @@ export const BASIC_CATEGORIES: IWidgetCategory[] = [
     {
         titleKey: "utils",
         items: UTILS_WIDGETS
+    },
+    {
+        titleKey: "usersChat",
+        items: USERSCHAT_WIDGETS
     }
 ]
 

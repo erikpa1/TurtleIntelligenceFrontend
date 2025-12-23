@@ -45,6 +45,9 @@
             "@TurtlePostman/*": [
                 "src/TurtlePostman/*"
             ],
+            "@TurtleChat/*": [
+                "src/TurtleChat/*"
+            ],
             "@NavBar/*": [
                 "src/NavBar/*"
             ]

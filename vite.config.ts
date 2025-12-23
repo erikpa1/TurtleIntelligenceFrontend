@@ -15,6 +15,7 @@ export default defineConfig({
             "@TurtleCrm": path.resolve(__dirname, "src/TurtleCrm"),
             "@TurtleSecurity": path.resolve(__dirname, "src/TurtleSecurity"),
             "@TurtlePostman": path.resolve(__dirname, "src/TurtlePostman"),
+            "@TurtleChat": path.resolve(__dirname, "src/TurtleChat"),
             "@NavBar": path.resolve(__dirname, "src/NavBar"),
         },
     },
