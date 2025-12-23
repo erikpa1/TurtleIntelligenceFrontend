@@ -2,7 +2,7 @@ import {HierarchyRightFlex} from "@Turtle/Components/HierarchyComponents";
 import {SaveButton} from "@Turtle/Components/SaveButton";
 import AgentNodesApi from "@Turtle/LLM/LLMAgentsDock/Api/AgentNodesApi";
 import TurtleApp from "@TurtleApp/TurtleApp";
-import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus";
+import {useAgentExecZus, useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus";
 import {CanvasStatus, NodePhaseType} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import {Button, Flex, Space} from "antd";
 import {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
@@ -84,7 +84,9 @@ function _PlayButton({}) {
 
         for (const node of useAgentNodesZus.getState().nodes) {
             if (node.phaseType === NodePhaseType.TRIGGER) {
-                await AgentNodesApi.PlayNode(node)
+                const data = await AgentNodesApi.PlayNode(node)
+                console.log(data)
+                useAgentExecZus.getState().setPipeline(data)
                 break
             }
         }

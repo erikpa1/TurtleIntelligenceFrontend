@@ -1,6 +1,7 @@
 import {create} from "zustand";
 import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import AgentNodeEdge from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
+import LLMPipeline from "@Turtle/LLM/Data/LLMPipeline";
 
 
 interface AgentNodeZus {
@@ -37,4 +38,18 @@ export const useAgentNodesZus = create<AgentNodeZus>((set) => ({
 
         return {deletedEdges: [...oldState.deletedEdges, edge]}
     }),
+}))
+
+
+
+interface AgentExecZus {
+    pipeline: LLMPipeline
+    setPipeline: (newPipeline: LLMPipeline) => void
+
+}
+
+export const useAgentExecZus = create<AgentExecZus>((set) => ({
+    pipeline: new LLMPipeline(),
+    setPipeline: (newPipeline: LLMPipeline) => set((newState) => ({pipeline: newPipeline})),
+
 }))

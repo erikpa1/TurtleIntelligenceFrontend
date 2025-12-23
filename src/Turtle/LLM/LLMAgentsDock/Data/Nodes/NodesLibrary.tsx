@@ -1,9 +1,13 @@
 import IconBookmarkManager from "@Turtle/Icons/IconBookmarkManager";
 import {IconSimulation} from "@Turtle/Icons";
+import IconChat from "@Turtle/Icons/IconChat";
+import IconApi from "@Turtle/Icons/IconApi";
+import IconOllama from "@Turtle/Icons/IconOllama";
 
 export default class NodesLibrary {
 
-    static httTrigger = "httpTrigger"
+    static httpTrigger = "httpTrigger"
+    static chatTrigger = "chatTrigger"
 
     static bash = "bash"
     static python = "python"
@@ -12,7 +16,10 @@ export default class NodesLibrary {
 
     static writeToFile = "writeToFile"
     static httpRequest = "httpRequest"
+
     static ollama = "ollama"
+    static llmAgent = "llmAgent"
+    static mongoDbMemory = "mongoDbMemory"
 
     //Databases
     static mongoDb = "mongoDb"
@@ -20,9 +27,19 @@ export default class NodesLibrary {
     static mysql = "mysql"
 
 
-    static ListTriggers(): string[] {
+    static ListLLMNodes(): Array<[string, any]> {
         return [
-            this.httTrigger,
+            [this.llmAgent, IconOllama],
+            [this.ollama, IconOllama]
+            [this.mongoDbMemory, "/icons/mongo_short.svg"]
+        ]
+    }
+
+
+    static ListTriggers(): Array<[string, any]>  {
+        return [
+            [this.httpTrigger, IconApi],
+            [this.chatTrigger, IconChat]
         ]
     }
 

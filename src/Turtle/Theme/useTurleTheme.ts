@@ -5,6 +5,7 @@ import ColorConstants from "@Turtle/Constants/ColorConstants";
 class TurtleTheme {
     topBarHeightBig = "45px"
     bigPadding = "15px"
+    headingFontColor = ColorConstants.AZURE_BLUE
     iconPrimaryColor = ColorConstants.AZURE_BLUE
     iconSecondaryColor = ColorConstants.GRAY
     borderColor = ColorConstants.AZURE_BLUE

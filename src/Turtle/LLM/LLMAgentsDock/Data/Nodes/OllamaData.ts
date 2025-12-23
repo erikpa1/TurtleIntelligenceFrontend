@@ -1,4 +1,4 @@
-export class OllamaNode {
+export class OllamaData {
     ollamaUrl = ""
     modelName = ""
 

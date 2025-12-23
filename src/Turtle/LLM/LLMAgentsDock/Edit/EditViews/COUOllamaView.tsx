@@ -1,10 +1,10 @@
 import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import {Form} from "antd";
 import SelectHttpMethod from "@TurtlePostman/Components/SelectHttpMethod";
-import {HttpTriggerNodeData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/HttpTriggerNode";
+import {HttpTriggerData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/HttpTriggerData";
 import {WriteToFileNode} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/WriteToFileNode";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
-import {OllamaNode} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/OllamaNode";
+import {OllamaData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/OllamaData";
 
 interface COUOllamaViewProps {
     node: AgentNodeParent
@@ -14,7 +14,7 @@ export default function COUOllamaView({
                                           node
                                       }: COUOllamaViewProps) {
 
-    const data: OllamaNode = node.typeData
+    const data: OllamaData = node.typeData
 
     return (
         <>

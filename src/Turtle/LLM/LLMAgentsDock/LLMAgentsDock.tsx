@@ -15,6 +15,10 @@ import COULLMNodeView from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COULLMNodeV
 import COUOllamaView from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUOllamaView";
 import COUMongoDb from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUMongoDb";
 import IconOllama from "@Turtle/Icons/IconOllama";
+import {HttpTriggerData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/HttpTriggerData";
+import {WriteToFileNode} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/WriteToFileNode";
+import LLMAgentData from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/LLMAgentData";
+import {OllamaData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/OllamaData";
 
 
 export default function LLMAgentsDock() {
@@ -26,41 +30,44 @@ export default function LLMAgentsDock() {
     React.useEffect(() => {
 
         NodesFactory.Register({
-            type: "httpTrigger",
+            type: NodesLibrary.httpTrigger,
+            dataConstructor: HttpTriggerData,
             couComponent: COUHttpTriggerView,
-
         })
 
         NodesFactory.Register({
-            type: "writeToFile",
+            type: NodesLibrary.writeToFile,
+            dataConstructor: WriteToFileNode,
             couComponent: COUWriteToFileView,
         })
 
         NodesFactory.Register({
-            type: "llmAgent",
+            type: NodesLibrary.llmAgent,
+            dataConstructor: LLMAgentData,
             couComponent: COULLMNodeView,
         })
 
         NodesFactory.Register({
-            type: "ollama",
+            type: NodesLibrary.ollama,
+            dataConstructor: OllamaData,
             couComponent: COUOllamaView,
             icon: IconOllama
         })
 
         NodesFactory.Register({
-            type: "mongoDb",
+            type: NodesLibrary.mongoDb,
             couComponent: COUMongoDb,
             icon: "/icons/mongo_short.svg"
         })
 
 
         NodesFactory.Register({
-            type: "sqlite",
+            type: NodesLibrary.sqlite,
             icon: "/icons/sqlite.svg"
         })
 
         NodesFactory.Register({
-            type: "mysql",
+            type:NodesLibrary.mysql,
             icon: "/icons/mariaDb.svg"
         })
 

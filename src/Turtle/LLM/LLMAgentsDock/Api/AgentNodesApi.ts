@@ -3,7 +3,8 @@ import Turxios, {DeleteEntity, PostEntity, QueryEntities} from "@Turtle/Api/Turx
 import MongoObjectId from "@Turtle/Utils/MongoObjectId";
 import AgentNodeEdge, {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
 import {Axios} from "axios";
-import {HttpTriggerNodeData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/HttpTriggerNode";
+import {HttpTriggerData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/HttpTriggerData";
+import LLMPipeline from "@Turtle/LLM/Data/LLMPipeline";
 
 export default class AgentNodesApi {
 
@@ -28,16 +29,18 @@ export default class AgentNodesApi {
     }
 
 
-    static async PlayNode(playNode: AgentNodeParent) {
+    static async PlayNode(playNode: AgentNodeParent): Promise<LLMPipeline> {
+        const tmp: HttpTriggerData = playNode.typeData
 
-        const tmp: HttpTriggerNodeData = playNode.typeData
-
-        await Turxios.post("/api/llm/agent-play", null, {
+        const response = (await Turxios.post("/api/llm/agent-play", tmp.demoBody, {
             params: {
                 uid: playNode.uid,
-            },
-            data: tmp.demoBody
-        })
+            }
+        })).data
+
+        const pipeline = new LLMPipeline()
+        pipeline.FromJson(response)
+        return pipeline
     }
 
 

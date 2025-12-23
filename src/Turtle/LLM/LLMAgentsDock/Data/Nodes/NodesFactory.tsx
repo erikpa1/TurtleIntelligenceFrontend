@@ -1,5 +1,5 @@
 import React from "react"
-import {HttpTriggerNodeData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/HttpTriggerNode";
+import {HttpTriggerData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/HttpTriggerData";
 import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 
 interface RetFun {
@@ -23,9 +23,15 @@ export default class NodesFactory {
     static NODE_ICONS = new Map<string, React.Component | string>()
     static NODE_HANDLERS = {}
 
-    static GetDataByType(jObj: any) {
-        const tmpConstructor = this.NODES_DATA.get(jObj.type) ?? EmptyNodeData
-        const tmp = new tmpConstructor()
+    static GetDataByType(type: string,jObj: any) {
+        const tmpConstructor = this.NODES_DATA.get(type)
+
+        if (Boolean(tmpConstructor) == false) {
+            console.log(jObj)
+            console.error(`Failed to get constructor of: [${type}]`)
+        }
+
+        const tmp = new (tmpConstructor?? EmptyNodeData)()
         tmp.FromJson(jObj)
         return tmp
 

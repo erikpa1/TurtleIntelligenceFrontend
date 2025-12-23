@@ -6,11 +6,14 @@ import ErrorBoundary from "@Turtle/Components/ErrorBoundary";
 import {TurtleQueryClient} from "@Turtle/TanStack";
 import {QueryClientProvider} from "react-query";
 import TurtleThemeProvider from "../../../TurtleThemeProvider";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 
 
 export function useTurtleModal() {
 
     const [t] = useTranslation()
+
+    const {theme} = useTurtleTheme()
 
     const guard: any = React.useMemo(() => ({current: null}), [])
 
@@ -22,7 +25,7 @@ export function useTurtleModal() {
 
         guard.current = Modal.info({
             ...props,
-            title: t(props.title as any ?? ""),
+            title: (<div style={{color: theme.headingFontColor}}>{t(props.title as any ?? "")}:</div>),
             icon: props.icon ?? null,
             footer: null,
             closable: true,

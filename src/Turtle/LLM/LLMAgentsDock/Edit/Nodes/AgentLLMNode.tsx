@@ -29,6 +29,15 @@ export default function AgentLLMNode(props: NodeProps<AgentNodeParent>) {
 
             <Handle
                 id={"b"}
+                position={Position.Right}
+                type="source"
+                style={{
+                    ...OUTPUT_HANDLE_STYLE
+                }}
+            />
+
+            <Handle
+                id={"llm"}
                 position={Position.Bottom}
                 type="source"
                 style={{
@@ -36,14 +45,7 @@ export default function AgentLLMNode(props: NodeProps<AgentNodeParent>) {
                 }}
             />
 
-            <Handle
-                id={"c"}
-                position={Position.Right}
-                type="source"
-                style={{
-                    ...OUTPUT_HANDLE_STYLE
-                }}
-            />
+
         </NWrapper>
 
     )

@@ -11,6 +11,7 @@ import TurtleApp from "@TurtleApp/TurtleApp"
 import MongoObjectId from "@Turtle/Utils/MongoObjectId"
 import IconApi from "@Turtle/Icons/IconApi"
 import IconOllama from "@Turtle/Icons/IconOllama"
+import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodesFactory";
 
 
 interface AgentNodesLibraryProps {
@@ -37,6 +38,7 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
         tmp.phaseType = phase
         tmp.RandomizePosition()
         tmp.canvasStatus = CanvasStatus.CREATED
+        tmp.typeData = NodesFactory.GetDataByType(nodeType, {})
 
         TurtleApp.Unlock()
 
@@ -45,24 +47,6 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
         onBeforeSubmit?.()
     }
 
-    async function addAllAgentPressed() {
-        TurtleApp.Lock()
-
-        const tmp = new AgentNodeParent()
-        tmp.uid = await MongoObjectId.GetMongoId()
-        tmp.name = "LLM Agent"
-        tmp.type = "llmAgent"
-        tmp.parent = agentUid
-        tmp.phaseType = NodePhaseType.AGENT
-        tmp.RandomizePosition()
-        tmp.canvasStatus = CanvasStatus.CREATED
-
-        TurtleApp.Unlock()
-
-        setNodes([...nodes, tmp])
-
-        onBeforeSubmit?.()
-    }
 
 
     async function addMemory() {
@@ -78,18 +62,18 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
 
             <Row>
                 {
-                    NodesLibrary.ListTriggers().map((val) => {
+                    NodesLibrary.ListTriggers().map(([iconType, icon]) => {
                         return (
                             <Col
                                 span={6}
-                                key={val}
+                                key={iconType}
                             >
                                 <GalleryButton
-                                    lang={val}
+                                    lang={iconType}
                                     icon={(
-                                        <_GalleryIcon icon={IconApi}/>
+                                        <_GalleryIcon icon={icon}/>
                                     )}
-                                    onClick={() => addNodePressed(val, NodePhaseType.TRIGGER)}
+                                    onClick={() => addNodePressed(iconType, NodePhaseType.TRIGGER)}
                                 />
                             </Col>
                         )
@@ -102,17 +86,25 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
             </Divider>
 
             <Row>
-                <Col span={6}>
-                    <_LLMAgentButton onClick={addAllAgentPressed}/>
-                </Col>
-                <Col span={6}>
-                    <_LLMMemoryButton onClick={addAllAgentPressed}/>
-                </Col>
-                <Col span={6}>
-                    <_OllamaButton onBeforeSubmit={onBeforeSubmit} agentUid={agentUid}/>
-                </Col>
+                {
+                    NodesLibrary.ListLLMNodes().map(([iconType, icon]) => {
+                        return (
+                            <Col
+                                span={6}
+                                key={iconType}
+                            >
+                                <GalleryButton
+                                    lang={iconType}
+                                    icon={(
+                                        <_GalleryIcon icon={icon}/>
+                                    )}
+                                    onClick={() => addNodePressed(iconType, NodePhaseType.ACTION)}
+                                />
+                            </Col>
+                        )
+                    })
+                }
             </Row>
-
 
             <Divider orientation={"left"}>
                 {t("actions")}
@@ -191,69 +183,6 @@ export default function LLMNodesGallery({agentUid, onBeforeSubmit}: AgentNodesLi
 
 
         </Flex>
-    )
-}
-
-function _LLMAgentButton({onClick}) {
-    return (
-        <GalleryButton
-            lang={"llm.agent"}
-            icon={(
-                <_GalleryIcon icon={IconSimulation}/>
-            )}
-            onClick={onClick}
-        />
-    )
-}
-
-function _LLMMemoryButton({onClick}) {
-    return (
-        <GalleryButton
-            lang={"MongoDB memory"}
-            icon={(
-                <_GalleryIcon icon={IconSimulation}/>
-            )}
-            onClick={onClick}
-        />
-    )
-}
-
-function _OllamaButton({
-                           onBeforeSubmit,
-                           agentUid
-                       }: AgentNodesLibraryProps) {
-
-    async function addOllamaPressed() {
-
-        const {nodes, setNodes} = useAgentNodesZus.getState()
-
-        TurtleApp.Lock()
-
-        const tmp = new AgentNodeParent()
-        tmp.uid = await MongoObjectId.GetMongoId()
-        tmp.name = "Ollama"
-        tmp.type = "ollama"
-        tmp.parent = agentUid
-        tmp.phaseType = NodePhaseType.AGENT
-        tmp.RandomizePosition()
-        tmp.canvasStatus = CanvasStatus.CREATED
-
-        TurtleApp.Unlock()
-
-        setNodes([...nodes, tmp])
-
-        onBeforeSubmit?.()
-    }
-
-
-    return (
-        <GalleryButton
-            lang={"Ollama"}
-            icon={(
-                <_GalleryIcon icon={IconOllama}/>
-            )}
-            onClick={addOllamaPressed}
-        />
     )
 }
 
