@@ -4,6 +4,7 @@ import SelectHttpMethod from "@TurtlePostman/Components/SelectHttpMethod";
 import {HttpTriggerData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/HttpTriggerData";
 import {WriteToFileNode} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/WriteToFileNode";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
+import LLMAgentData from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/LLMAgentData";
 
 interface COULLMNodeViewProps {
     node: AgentNodeParent
@@ -13,21 +14,20 @@ export default function COULLMNodeView({
                                                node
                                            }: COULLMNodeViewProps) {
 
-    const data: WriteToFileNode = node.typeData
+    const data: LLMAgentData = node.typeData
 
     return (
         <Form
             layout={"vertical"}
-
         >
             <StringAttributeView
                 entity={data}
-                attribute={"parentFolder"}
+                attribute={"systemPrompt"}
             />
 
             <StringAttributeView
                 entity={data}
-                attribute={"fileName"}
+                attribute={"userPrompt"}
             />
 
         </Form>

@@ -60,7 +60,6 @@ export default function LLMAgentsDock() {
             icon: "/icons/mongo_short.svg"
         })
 
-
         NodesFactory.Register({
             type: NodesLibrary.sqlite,
             icon: "/icons/sqlite.svg"
