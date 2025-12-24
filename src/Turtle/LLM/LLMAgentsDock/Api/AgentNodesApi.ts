@@ -39,7 +39,7 @@ export default class AgentNodesApi {
         })).data
 
         const pipeline = new LLMPipeline()
-        pipeline.FromJson(response)
+        pipeline.FromJson(response.pipeline)
         return pipeline
     }
 

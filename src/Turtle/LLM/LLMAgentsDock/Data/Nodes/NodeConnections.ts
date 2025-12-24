@@ -34,8 +34,6 @@ export default class AgentNodeEdge {
 
     FromJson(jObj: any) {
 
-        console.log(jObj)
-
         this.uid = jObj.uid ?? ""
         this.parent = jObj.parent ?? ""
         this.source = jObj.source ?? ""

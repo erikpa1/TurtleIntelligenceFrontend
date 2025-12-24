@@ -3,6 +3,7 @@ import {Form} from "antd";
 import SelectHttpMethod from "@TurtlePostman/Components/SelectHttpMethod";
 import {HttpTriggerData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/HttpTriggerData";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
+import {StringAreaAttributeView} from "@Turtle/Components/Forms/StringAreaPropertyView"
 
 interface COUHttpTriggerViewProps {
     node: AgentNodeParent
@@ -27,7 +28,7 @@ export default function COUHttpTriggerView({
                 }}
             />
 
-            <StringAttributeView
+            <StringAreaAttributeView
                 entity={data}
                 attribute={"demoBody"}
             />
