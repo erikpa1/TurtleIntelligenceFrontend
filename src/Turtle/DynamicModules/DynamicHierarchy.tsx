@@ -88,7 +88,7 @@ export default function DynamicHierarchy<T extends any>({
         })
 
         activate({
-            title: `${t("edit.business.subject")}:`,
+            title: t(`edit.${api.bucket}`),
             content: (tmp)
         })
     }
@@ -104,7 +104,7 @@ export default function DynamicHierarchy<T extends any>({
         })
 
         activate({
-            title: `${t("create.business.subject")}:`,
+            title: t(`create.${api.bucket}`),
             content: (tmp)
         })
 

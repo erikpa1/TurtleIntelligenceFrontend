@@ -22,7 +22,9 @@ export function COUSubmitButton({
                                 }: COUSubmitButtonProps) {
 
     async function submit() {
+        props.onBeforeUpdate?.()
         await COU(api, props)
+        props.onAfterUpdate?.()
     }
 
     return (

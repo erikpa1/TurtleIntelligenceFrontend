@@ -77,6 +77,10 @@ export async function getWithAbort<T = any>(
 }
 
 
+export async function PostEntityV1(route: string, data: any, config?: AxiosRequestConfig<any>) {
+    return await turxios.post(route, JSON.stringify(data.ToJson()), config)
+}
+
 export async function PostEntity(route: string, data: any, config?: AxiosRequestConfig<any>) {
     const form = new FormData()
     form.set("data", JSON.stringify(data.ToJson()))

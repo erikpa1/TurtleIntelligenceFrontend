@@ -66,6 +66,11 @@ const DATA_WIDGETS: INavBarItem[] = [
         lang: "forecasting",
         icon: "/icons/flowsheet.svg",
         link: "/forecasting"
+    },
+    {
+        lang: "users",
+        icon: "/icons/user.svg",
+        link: "/users"
     }
 ]
 

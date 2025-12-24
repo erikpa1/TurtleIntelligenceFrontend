@@ -1,9 +1,27 @@
 export class User {
     uid = ""
-    name = ""
+    firstname = ""
     surname = ""
     email = ""
     type = 0
+
+    ToJson(): any {
+        return {
+            uid: this.uid,
+            firstname: this.firstname,
+            surname: this.surname,
+            email: this.email,
+            type: this.type,
+        }
+    }
+
+    FromJson(jObj: any) {
+        this.uid = jObj.uid ?? ""
+        this.firstname = jObj.firstname ?? ""
+        this.surname = jObj.surname ?? ""
+        this.email = jObj.email ?? ""
+        this.type = jObj.type ?? 0
+    }
 }
 
 

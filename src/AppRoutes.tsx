@@ -10,10 +10,11 @@ import TablesDataDock from "@Turtle/TablesData/TablesDataDock"
 
 import TurtleAppsGallery from "@TurtleApp/TurtleAppsGallery"
 
-
 import GetOcrRoutes from "@TurtleCrm/Ocr/OcrRoutes"
 import CrmRoutes from "@TurtleCrm/CrmRoutes"
 import SecurityRoutes from "@TurtleSecurity/SecurityRoutes"
+
+const UsersDock = React.lazy(() => import("@Turtle/Users/UsersDock"))
 
 const UsersChatDock = React.lazy(() => import("@TurtleChat/UsersChat/UsersChatDock"))
 
@@ -140,6 +141,10 @@ export default function AppRoutes({}) {
             {/*   AOF */}
             <Route path={"/aof-factories"} element={<AofModelsDock/>}/>
             <Route path={"/aof-factories/:aofUid"} element={<AofEditModelDock/>}/>
+
+            <Route path={"/users"} element={<UsersDock/>}/>
+            <Route path={"/users/:userUid"} element={<UsersDock/>}/>
+
 
             <Route path={"/users-chat"} element={<UsersChatDock/>}/>
 
