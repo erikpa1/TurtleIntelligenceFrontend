@@ -8,6 +8,7 @@ import {nodeMoveAndModify} from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/nodeFun
 import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import NodeLabel from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/NodeLabel";
 import NWrapper from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/NWrapper";
+import IconRobot2 from "@Turtle/Icons/IconRobot2";
 
 export default function AgentLLMNode(props: NodeProps<AgentNodeParent>) {
 
@@ -16,7 +17,7 @@ export default function AgentLLMNode(props: NodeProps<AgentNodeParent>) {
         <NWrapper
             nodeProps={props}
         >
-            <NodeLabel node={props.data}/>
+            <NodeLabel node={props.data} icon={<IconRobot2/>}/>
 
             <Handle
                 id={"a"}

@@ -3,6 +3,8 @@ import {IconSimulation} from "@Turtle/Icons";
 import IconChat from "@Turtle/Icons/IconChat";
 import IconApi from "@Turtle/Icons/IconApi";
 import IconOllama from "@Turtle/Icons/IconOllama";
+import IconRobot2 from "@Turtle/Icons/IconRobot2";
+import IconNetworkIntelNode from "@Turtle/Icons/IconNetworkIntelNode";
 
 export default class NodesLibrary {
 
@@ -29,9 +31,9 @@ export default class NodesLibrary {
 
     static ListLLMNodes(): Array<[string, any]> {
         return [
-            [this.llmAgent, IconOllama],
-            [this.ollama, IconOllama]
-            [this.mongoDbMemory, "/icons/mongo_short.svg"]
+            [this.llmAgent, IconRobot2],
+            [this.ollama, IconOllama],
+            [this.mongoDbMemory, IconNetworkIntelNode],
         ]
     }
 

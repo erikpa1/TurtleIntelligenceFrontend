@@ -5,6 +5,7 @@ import {HttpTriggerData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/HttpTriggerD
 import {WriteToFileNode} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/WriteToFileNode";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import LLMAgentData from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/LLMAgentData";
+import {StringAreaAttributeView} from "@Turtle/Components/Forms/StringAreaPropertyView";
 
 interface COULLMNodeViewProps {
     node: AgentNodeParent
@@ -17,19 +18,17 @@ export default function COULLMNodeView({
     const data: LLMAgentData = node.typeData
 
     return (
-        <Form
-            layout={"vertical"}
-        >
-            <StringAttributeView
+        <>
+            <StringAreaAttributeView
                 entity={data}
                 attribute={"systemPrompt"}
+                areaProps={{
+                    style: {
+                        minHeight: 100
+                    }
+                }}
             />
 
-            <StringAttributeView
-                entity={data}
-                attribute={"userPrompt"}
-            />
-
-        </Form>
+        </>
     )
 }
