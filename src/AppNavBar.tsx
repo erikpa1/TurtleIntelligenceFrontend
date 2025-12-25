@@ -77,7 +77,7 @@ export default function AppNavBar() {
 
                         <MyNavbarItem
                             icon={<NavBarIcon icon={IconSimulation}/>}
-                            link={"/"}
+                            link={"/sim-models"}
                             lang={"simulations"}
                             iconStyle={ICON_STYLE}
                         />

@@ -47,28 +47,29 @@ export default function NWrapper({
     const markerHeight = nodeStyle.width ? nodeStyle.width : 92 / 2
 
     return (
-        <Tooltip title={nodeProps.data.name}>
-            <div
-                className="react-flow__node-default"
-                style={{
-                    borderColor: ColorConstants.GRAY,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    ...nodeStyle
-                }}
-                onDoubleClick={onNodeDoubleClick}
-            >
-                <SelectedNodeMarker
-                    node={nodeProps.data}
-                    width={markerWidth as number}
-                    height={markerHeight as number}
-                    isActive={nodeProps.selected}
-                />
-                {children}
+        <div
+            className="react-flow__node-default"
+            style={{
+                borderColor: ColorConstants.GRAY,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                ...nodeStyle
+            }}
+            onDoubleClick={onNodeDoubleClick}
+        >
 
-            </div>
+            <SelectedNodeMarker
+                node={nodeProps.data}
+                width={markerWidth as number}
+                height={markerHeight as number}
+                isActive={nodeProps.selected}
+            />
 
-        </Tooltip>
+            {children}
+
+        </div>
+
+
     )
 }

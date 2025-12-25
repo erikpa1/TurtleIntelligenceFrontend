@@ -3,10 +3,11 @@ import {SaveButton} from "@Turtle/Components/SaveButton";
 import AgentNodesApi from "@Turtle/LLM/LLMAgentsDock/Api/AgentNodesApi";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import {useAgentExecZus, useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus";
-import {CanvasStatus, NodePhaseType} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
+import {CanvasStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import {Button, Flex, Space} from "antd";
 import {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
 import {useTranslation} from "react-i18next";
+import NodesLibrary from "@Turtle/LLM/LLMAgentsDock/Data/NodesLibrary"
 
 
 export default function CanvasTopBar() {
@@ -83,7 +84,7 @@ function _PlayButton({}) {
         TurtleApp.Lock()
 
         for (const node of useAgentNodesZus.getState().nodes) {
-            if (node.phaseType === NodePhaseType.TRIGGER) {
+            if (node.type === NodesLibrary.httpTrigger) {
                 const data = await AgentNodesApi.PlayNode(node)
                 console.log(data)
                 useAgentExecZus.getState().setPipeline(data)
@@ -94,7 +95,7 @@ function _PlayButton({}) {
         TurtleApp.Unlock()
     }
 
-    const disabled = nodes.filter((val) => val.phaseType === NodePhaseType.TRIGGER).length === 0
+    const disabled = nodes.filter((val) => val.type === NodesLibrary.httpTrigger).length === 0
 
     return (
         <Button

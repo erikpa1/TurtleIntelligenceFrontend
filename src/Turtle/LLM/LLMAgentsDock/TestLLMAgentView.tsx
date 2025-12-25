@@ -139,7 +139,7 @@ export default function TestLLMAgentView({agent}: TestLLMAgentViewProps) {
                                                                                     title: (
                                                                                         <Flex gap={15}>
                                                                                             <b>{paramName}:</b>
-                                                                                            "{paramValue}"
+                                                                                            "{"{paramValue}"}"
                                                                                         </Flex>
                                                                                     ),
 

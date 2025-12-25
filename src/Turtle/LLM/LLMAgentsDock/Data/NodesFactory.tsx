@@ -1,6 +1,7 @@
 import React from "react"
-import {HttpTriggerData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/HttpTriggerData";
+
 import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
+import {IconSimulation} from "@Turtle/Icons"
 
 interface RetFun {
     node: AgentNodeParent
@@ -46,6 +47,15 @@ export default class NodesFactory {
         }
     }
 
+    static GetIcon(nodeType): any {
+        const tmp = this.NODE_ICONS.get(nodeType)
+        if (tmp) {
+            return tmp
+        } else {
+            return IconSimulation as any
+        }
+    }
+
     static Register(reg: NodeRegistration) {
 
         if (reg.couComponent) {
@@ -57,7 +67,7 @@ export default class NodesFactory {
         }
 
         if (reg.icon) {
-            this.NODE_ICONS[reg.type] = reg.icon
+            this.NODE_ICONS.set(reg.type,reg.icon)
         }
 
     }

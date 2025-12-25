@@ -22,8 +22,8 @@ export default function SelectedNodeMarker(
 
     if (isActive) {
 
-        const CIRCLE_SIZE = 5
-        const PADDING_SIZE = 10
+        const PADDING_SIZE = 15
+        const CORNER_LENGTH = 10
 
         return (
             <>
@@ -34,65 +34,84 @@ export default function SelectedNodeMarker(
                         left: -PADDING_SIZE / 2,
                         width: width + PADDING_SIZE,
                         height: height + PADDING_SIZE,
-                        border: `1px dashed ${ColorConstants.AZURE_BLUE}`,
-                        borderRadius: '1px',
                         pointerEvents: 'none',
-                        animation: 'dashAnimation 20s linear infinite',
-                        boxShadow: '0 0 0 1px rgba(59, 130, 246, 0.1)',
                     }}
                 >
-                    <style>
-                        {`
-                    @keyframes dashAnimation {
-                        to {
-                            stroke-dashoffset: -100;
-                        }
-                    }
-                `}
-                    </style>
+                    {/* Top-left corner */}
+                    <div style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: CORNER_LENGTH,
+                        height: 2,
+                        backgroundColor: ColorConstants.AZURE_BLUE,
+                    }}/>
+                    <div style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: 2,
+                        height: CORNER_LENGTH,
+                        backgroundColor: ColorConstants.AZURE_BLUE,
+                    }}/>
 
-                    {/* Corner indicators */}
+                    {/* Top-right corner */}
                     <div style={{
                         position: 'absolute',
-                        top: -CIRCLE_SIZE / 2,
-                        left: -CIRCLE_SIZE / 2,
-                        width: CIRCLE_SIZE,
-                        height: CIRCLE_SIZE,
+                        top: 0,
+                        right: 0,
+                        width: CORNER_LENGTH,
+                        height: 2,
                         backgroundColor: ColorConstants.AZURE_BLUE,
-                        borderRadius: '50%',
-                        boxShadow: '0 0 4px rgba(59, 130, 246, 0.5)'
                     }}/>
                     <div style={{
                         position: 'absolute',
-                        top: -CIRCLE_SIZE / 2,
-                        right: -CIRCLE_SIZE / 2,
-                        width: CIRCLE_SIZE,
-                        height: CIRCLE_SIZE,
+                        top: 0,
+                        right: 0,
+                        width: 2,
+                        height: CORNER_LENGTH,
                         backgroundColor: ColorConstants.AZURE_BLUE,
-                        borderRadius: '50%',
-                        boxShadow: '0 0 4px rgba(59, 130, 246, 0.5)'
+                    }}/>
+
+                    {/* Bottom-left corner */}
+                    <div style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        width: CORNER_LENGTH,
+                        height: 2,
+                        backgroundColor: ColorConstants.AZURE_BLUE,
                     }}/>
                     <div style={{
                         position: 'absolute',
-                        bottom: -CIRCLE_SIZE / 2,
-                        left: -CIRCLE_SIZE / 2,
-                        width: CIRCLE_SIZE,
-                        height: CIRCLE_SIZE,
+                        bottom: 0,
+                        left: 0,
+                        width: 2,
+                        height: CORNER_LENGTH,
                         backgroundColor: ColorConstants.AZURE_BLUE,
-                        borderRadius: '50%',
-                        boxShadow: '0 0 4px rgba(59, 130, 246, 0.5)'
+                    }}/>
+
+                    {/* Bottom-right corner */}
+                    <div style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        right: 0,
+                        width: CORNER_LENGTH,
+                        height: 2,
+                        backgroundColor: ColorConstants.AZURE_BLUE,
                     }}/>
                     <div style={{
                         position: 'absolute',
-                        bottom: -CIRCLE_SIZE / 2,
-                        right: -CIRCLE_SIZE / 2,
-                        width: CIRCLE_SIZE,
-                        height: CIRCLE_SIZE,
+                        bottom: 0,
+                        right: 0,
+                        width: 2,
+                        height: CORNER_LENGTH,
                         backgroundColor: ColorConstants.AZURE_BLUE,
-                        borderRadius: '50%',
-                        boxShadow: '0 0 4px rgba(59, 130, 246, 0.5)'
                     }}/>
+
+
                 </div>
+
                 <_ShortcutListener node={node}/>
             </>
         );
@@ -101,14 +120,14 @@ export default function SelectedNodeMarker(
     }
 }
 
-
 function _ShortcutListener({node}) {
 
     function deletePressed() {
-        TurtleApp.Lock()
-        useAgentNodesZus.getState().deleteNode(node)
-
-        TurtleApp.Unlock()
+        // TurtleApp.Lock()
+        // console.log("Delete pressed")
+        // useAgentNodesZus.getState().deleteNode(node)
+        //
+        // TurtleApp.Unlock()
     }
 
     const _ = useKeyDownEvent(KeyboardKeys.DEL, deletePressed)

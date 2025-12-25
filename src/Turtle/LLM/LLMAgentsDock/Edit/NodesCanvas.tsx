@@ -21,16 +21,13 @@ import AgentLLMNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/AgentLLMNode"
 import AgentExecDock from "@Turtle/LLM/LLMAgentsDock/Edit/AgentExecDock"
 import AgentNodesApi from "@Turtle/LLM/LLMAgentsDock/Api/AgentNodesApi";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
-import LLMNodesGallery from "@Turtle/LLM/LLMAgentsDock/Edit/LLMNodesGallery";
+import NodesGallery from "@Turtle/LLM/LLMAgentsDock/Edit/NodesGallery";
 import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus";
-import TriggerNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/TriggerNode";
-import AgentToolNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/AgentToolNode";
+
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import AgentNodeEdge, {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
-import OllamaNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/OllamaNode";
-import COUNodeView from "@Turtle/LLM/LLMAgentsDock/Edit/COUNodeView";
-import WriteFileNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/WriteFileNode";
-import CircleNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/CircleNode";
+import TurtleApp from "@TurtleApp/TurtleApp"
+import NodesLibrary from "@Turtle/LLM/LLMAgentsDock/Data/NodesLibrary"
 
 
 interface LLMAgentEditCanvasProps {
@@ -104,17 +101,7 @@ export default function LLMAgentLLMAgentEditCanvasEditCanvas({
 }
 
 
-const NODE_TYPES = {
-    default: AgentToolNode,
-    trigger: TriggerNode,
-    llmAgent: AgentLLMNode,
-    ollama: OllamaNode,
-    writeToFile: WriteFileNode,
-    mongoDb: CircleNode,
-    sqlite: CircleNode,
-    mysql: CircleNode,
 
-}
 
 interface _NodesFlowEditorProps {
     agentNodes: AgentNodeParent[]
@@ -161,7 +148,7 @@ function _NodesFlowEditor({
             title: "Add Node",
             width: 800,
             content: (
-                <LLMNodesGallery
+                <NodesGallery
                     agentUid={agentUid}
                     onBeforeSubmit={deactivate}
                 />
@@ -206,11 +193,20 @@ function _NodesFlowEditor({
         if (tmp.data) {
             addDeletedEdge(tmp.data)
         }
-
     }
 
+    function nodeDeleted(nodes: Node<AgentNodeParent>[]) {
+        TurtleApp.Lock()
+        for (const node of nodes) {
+            useAgentNodesZus.getState().deleteNode(node.data)
 
+        }
+        TurtleApp.Unlock()
+    }
 
+    const NODE_TYPES = React.useMemo(() => {
+        return NodesLibrary.GetNodesAndCanvasTypes()
+    }, [])
 
     return (
         <ReactFlow
@@ -222,6 +218,7 @@ function _NodesFlowEditor({
             onConnect={onConnect}
             nodeTypes={NODE_TYPES}
             fitView
+            onNodesDelete={nodeDeleted}
             onContextMenu={(e) => {
                 e.preventDefault()
                 addNodePressed()

@@ -13,6 +13,7 @@ interface AgentNodeZus {
     setEdges: (newEdges: AgentNodeEdge[]) => void,
     deletedEdges: AgentNodeEdge[],
     addDeletedEdge: (edge: AgentNodeEdge) => void,
+    clear: () => void
 }
 
 export const useAgentNodesZus = create<AgentNodeZus>((set) => ({
@@ -20,13 +21,26 @@ export const useAgentNodesZus = create<AgentNodeZus>((set) => ({
     nodes: [],
     setNodes: (newNodes: AgentNodeParent[]) => set((newState) => ({nodes: newNodes})),
     deleteNode: (toDelete: AgentNodeParent) => set((oldState) => {
+
         const filtered = oldState.nodes.filter((val) => val.uid !== toDelete.uid)
 
-        oldState.deletedNodes.set(toDelete.uid, toDelete)
+        const newDeleted = new Map(oldState.deletedNodes)
+        newDeleted.set(toDelete.uid, toDelete)
+
+        const newEdges = oldState.edges.filter((val) => {
+            const shouldStay = val.source !== toDelete.uid && val.target !== toDelete.uid
+
+            if (shouldStay == false) {
+                oldState.deletedEdges.push(val)
+            }
+
+            return shouldStay
+        })
 
         return {
             nodes: filtered,
-            deletedNodes: oldState.deletedNodes
+            deletedNodes: newDeleted,
+            edges: newEdges
         }
     }),
     edges: [],
@@ -38,6 +52,7 @@ export const useAgentNodesZus = create<AgentNodeZus>((set) => ({
 
         return {deletedEdges: [...oldState.deletedEdges, edge]}
     }),
+    clear: () => set(() => ({nodes: [], edges: [], deletedNodes: new Map()}))
 }))
 
 

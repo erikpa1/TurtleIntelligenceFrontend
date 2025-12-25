@@ -1,7 +1,7 @@
 import {COUEntityView} from "@Turtle/Interfaces/ICOUView";
 import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 
-import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodesFactory";
+import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/NodesFactory"
 import React from "react";
 import {VerticalForm} from "@Turtle/Antd/Formular";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
@@ -21,6 +21,13 @@ export default function COUNodeView(props: COUEntityView<AgentNodeParent>) {
                 entity={props.entity}
                 attribute={"name"}
             />
+
+            <StringAttributeView
+                entity={props.entity}
+                attribute={"type"}
+                inputProps={{disabled: true}}
+            />
+
 
             {viewComponent}
         </VerticalForm>

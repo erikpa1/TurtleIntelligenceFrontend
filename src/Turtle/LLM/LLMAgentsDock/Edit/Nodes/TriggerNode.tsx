@@ -1,15 +1,10 @@
 import {Handle, NodeProps, Position} from "reactflow";
-import ColorConstants from "@Turtle/Constants/ColorConstants";
-import {OUTPUT_HANDLE_STYLE} from "@Turtle/LLM/LLMAgentsDock/Edit/Styles";
-import {HierarchyDivIcon} from "@Turtle/Components/HierarchyComponents";
-import {IconSimulation} from "@Turtle/Icons";
-import {Tooltip} from "antd";
-import AgentNodeParent, {CanvasStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
-import {nodeMoveAndModify} from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/nodeFuncts";
-import IconApi from "@Turtle/Icons/IconApi";
-import SelectedNodeMarker from "@Turtle/LLM/LLMAgentsDock/Edit/Utils/SelectedeNodeMarker";
-import NWrapper from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/NWrapper";
 
+import {OUTPUT_HANDLE_STYLE} from "@Turtle/LLM/LLMAgentsDock/Edit/Styles";
+
+import AgentNodeParent, {CanvasStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
+import NWrapper from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/NWrapper";
+import NodeLabel, {NodeIcon} from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/NodeLabel"
 
 export default function TriggerNode(props: NodeProps<AgentNodeParent>) {
 
@@ -27,7 +22,7 @@ export default function TriggerNode(props: NodeProps<AgentNodeParent>) {
             }}
         >
 
-            <HierarchyDivIcon icon={<IconApi/>}/>
+            <NodeIcon node={props.data}/>
 
             <Handle
                 id={"a"}

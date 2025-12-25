@@ -1,13 +1,11 @@
 import {Handle, NodeProps, Position} from "reactflow";
 import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
-import {nodeMoveAndModify} from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/nodeFuncts";
-import {Tooltip} from "antd";
+
 import ColorConstants from "@Turtle/Constants/ColorConstants";
 import {HierarchyDivIcon} from "@Turtle/Components/HierarchyComponents";
 import {SUBNODE_HANDLE_STYLE} from "@Turtle/LLM/LLMAgentsDock/Edit/Styles";
-import IconOllama from "@Turtle/Icons/IconOllama";
 import NWrapper from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/NWrapper";
-import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodesFactory";
+import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/NodesFactory"
 import {IconSimulation} from "@Turtle/Icons";
 
 
