@@ -74,7 +74,7 @@ export default function AppRoutes({}) {
 
 
             <Route path={"/sim-models"} element={<SimModelsDock/>}/>
-            <Route path={"/models/:modelUid"} element={<SimWorldDock/>}/>
+            <Route path={"/sim-models/:modelUid"} element={<SimWorldDock/>}/>
             <Route path={"/containers"} element={<ContainersDock/>}/>
             <Route path={"/nn"} element={<NNDock/>}/>
             <Route path={"/documentation"} element={<DocumentationDock/>}/>
