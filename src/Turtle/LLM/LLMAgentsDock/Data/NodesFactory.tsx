@@ -18,13 +18,13 @@ export type NodeRegistration = {
 
 export default class NodesFactory {
 
-    static NODES_DATA = new Map<string,any>()
+    static NODES_DATA = new Map<string, any>()
     static NODES = new Map<string, React.Component<any, any>>()
     static NODE_COUS = new Map<string, React.Component<any, any>>()
     static NODE_ICONS = new Map<string, React.Component | string>()
     static NODE_HANDLERS = {}
 
-    static GetDataByType(type: string,jObj: any) {
+    static GetDataByType(type: string, jObj: any) {
         const tmpConstructor = this.NODES_DATA.get(type)
 
         if (Boolean(tmpConstructor) == false) {
@@ -32,7 +32,7 @@ export default class NodesFactory {
             console.error(`Failed to get constructor of: [${type}]`)
         }
 
-        const tmp = new (tmpConstructor?? EmptyNodeData)()
+        const tmp = new (tmpConstructor ?? EmptyNodeData)()
         tmp.FromJson(jObj)
         return tmp
 
@@ -50,8 +50,23 @@ export default class NodesFactory {
     static GetIcon(nodeType): any {
         const tmp = this.NODE_ICONS.get(nodeType)
         if (tmp) {
-            return tmp
+            if (typeof tmp === "string") {
+                return () => {
+                    return <img
+                        src={tmp as ""}
+                        alt={"icon"}
+                        style={{
+                            width: "25px",
+                            height: "25px",
+                        }}
+                    />
+                }
+            } else {
+                return tmp
+            }
+
         } else {
+            console.log("Failed to get icon for: " + nodeType)
             return IconSimulation as any
         }
     }
@@ -66,8 +81,10 @@ export default class NodesFactory {
             this.NODES_DATA.set(reg.type, reg.dataConstructor)
         }
 
+
         if (reg.icon) {
-            this.NODE_ICONS.set(reg.type,reg.icon)
+            console.log(`Registering icon for: ${reg.type} ${reg.icon}`)
+            this.NODE_ICONS.set(reg.type, reg.icon)
         }
 
     }
@@ -91,11 +108,12 @@ function _NotFoundFragment({}) {
 
 class EmptyNodeData {
     ToJson() {
-        return Object.entries(this)
+        return {
+
+        }
     }
+
     FromJson(jObj: any) {
-        Object.entries(jObj).forEach(([key, value]) => {
-            this[key] = value
-        })
+        //pass
     }
 }

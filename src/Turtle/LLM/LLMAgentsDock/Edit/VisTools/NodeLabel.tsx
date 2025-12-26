@@ -12,10 +12,12 @@ interface NodeLabelProps {
 
 export default function NodeLabel({node, icon}: NodeLabelProps) {
 
+    const tmp  = React.createElement(NodesFactory.GetIcon(node.type))
+
     return (
         <Tooltip title={node.name}>
             <Flex gap={5}>
-                <HierarchyCustomIcon icon={icon ?? <IconAutoRenew/>}/>
+                <HierarchyCustomIcon icon={tmp}/>
                 <div>{node.name}</div>
             </Flex>
         </Tooltip>

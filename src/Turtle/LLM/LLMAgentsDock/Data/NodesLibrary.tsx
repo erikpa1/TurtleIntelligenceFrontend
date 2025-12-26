@@ -1,5 +1,4 @@
-import IconBookmarkManager from "@Turtle/Icons/IconBookmarkManager";
-import {IconSimulation} from "@Turtle/Icons";
+
 import IconChat from "@Turtle/Icons/IconChat";
 import IconApi from "@Turtle/Icons/IconApi";
 import IconOllama from "@Turtle/Icons/IconOllama";
@@ -25,6 +24,9 @@ import ChatTriggerData from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/ChatTriggerDat
 import COUChatTrigger from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUChatTrigger"
 import {HttpTriggerData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/HttpTriggerData"
 import COUHttpTriggerView from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUHttpTriggerView"
+import ABNodeSmall from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABNodeSmall"
+import ABCircle from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABCircle"
+import IconSmartToy from "@Turtle/Icons/IconSmartToy"
 
 export default class NodesLibrary {
 
@@ -36,7 +38,7 @@ export default class NodesLibrary {
     static javascript = "javascript"
     static powershell = "powershell"
 
-    static writeToFile = "writeToFile"
+
     static httpRequest = "httpRequest"
 
     static ollama = "ollama"
@@ -51,6 +53,28 @@ export default class NodesLibrary {
 
     static triggers = new Set([this.httpTrigger, this.chatTrigger])
 
+
+    // Formats
+    static readExcel = "readExcel"
+    static readWord = "readWord"
+    static readPdf = "readPdf"
+    static readImage = "readImage"
+    static readVideo = "readVideo"
+    static readAudio = "readAudio"
+    static readTextFile = "readTextFile"
+    static readPpt = "readPpt"
+    static readCsv = "readCsv"
+    static readJson = "readJson"
+    static readText = "readText"
+
+    static writeExcel = "writeExcel"
+    static writeWord = "writeWord"
+    static writePpt = "writePpt"
+    static writeCsv = "writeCsv"
+    static writeJson = "writeJson"
+    static writeText = "writeText"
+    static writeToFile = "writeToFile"
+    static writeSqlite = "writeSqllite"
 
     static ListLLMNodes(): string[] {
         return [
@@ -77,10 +101,20 @@ export default class NodesLibrary {
         ]
     }
 
+    static ListReaders(): string[] {
+        return [
+            this.readExcel,
+            this.readWord,
+        ]
+    }
+
     static ListOutputs(): string[] {
         return [
             this.writeToFile,
             this.httpRequest,
+            this.writeExcel,
+            this.writeWord,
+            this.writeSqlite,
         ]
     }
 
@@ -106,8 +140,6 @@ export default class NodesLibrary {
 
         const result = {}
 
-        result["default"] = ABNode
-
         // Triggers
         result[this.httpTrigger] = TriggerNode
         result[this.chatTrigger] = TriggerNode
@@ -125,6 +157,10 @@ export default class NodesLibrary {
         result[this.mongoDb] = CircleNode
         result[this.sqlite] = CircleNode
         result[this.mysql] = CircleNode
+
+        //Formats
+        result[this.writeExcel] = ABCircle
+        result[this.writeSqlite] = ABCircle
 
         return result
 
@@ -169,6 +205,7 @@ export default class NodesLibrary {
             type: this.llmAgent,
             dataConstructor: LLMAgentData,
             couComponent: COULLMNodeView,
+            icon: IconSmartToy
         })
 
         NodesFactory.Register({
@@ -223,6 +260,18 @@ export default class NodesLibrary {
             type: this.powershell,
             icon: "/icons/powershell.svg"
         })
+
+        //Formats
+        NodesFactory.Register({
+            type: this.writeExcel,
+            icon: "/icons/excel.svg"
+        })
+
+        NodesFactory.Register({
+            type: this.writeSqlite,
+            icon: "/icons/sqlite.svg"
+        })
+
 
     }
 }

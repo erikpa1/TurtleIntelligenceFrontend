@@ -8,6 +8,8 @@ import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {useTranslation} from "react-i18next";
 import React, {MouseEvent as ReactMouseEvent} from "react";
 import COUNodeView from "@Turtle/LLM/LLMAgentsDock/Edit/COUNodeView";
+import NodesLibrary from "@Turtle/LLM/LLMAgentsDock/Data/NodesLibrary"
+import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/NodesFactory"
 
 interface NWrapperProps extends React.PropsWithChildren<any> {
     nodeProps: NodeProps<AgentNodeParent>
@@ -26,16 +28,42 @@ export default function NWrapper({
 
     function onNodeDoubleClick() {
         activate({
-            title: "Edit Node",
+            title: t("edit.node"),
+            // icon: React.createElement(NodesFactory.GetIcon(nodeProps.data.type)),
             width: 600,
             content: (
-                <COUNodeView
-                    entity={nodeProps.data}
-                    onBeforeUpdate={deactivate}
-                    onAfterUpdate={() => {
-                        console.log("TODO refresh key hook")
-                    }}
-                />
+                <>
+                    <COUNodeView
+                        entity={nodeProps.data}
+                        onBeforeUpdate={deactivate}
+                        onAfterUpdate={() => {
+                            console.log("TODO refresh key hook")
+                        }}
+                    />
+
+                    <div
+                        style={{
+                            height: 20
+                        }}
+                    />
+                    <div style={{
+                        position: "absolute",
+                        bottom: 0,
+                        left: "50%",
+                        transform: "translate(-50%, 50%)",
+                        backgroundColor: "white",
+                        borderRadius: "50%",
+                        border: `1px solid ${ColorConstants.GRAY}`,
+                        padding: 10
+                    }}>
+                        {
+                            React.createElement(NodesFactory.GetIcon(nodeProps.data.type), {
+                                width: 50,
+                                height: 50,
+                            })
+                        }
+                    </div>
+                </>
             ),
         })
 

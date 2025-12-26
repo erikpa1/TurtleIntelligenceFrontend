@@ -17,7 +17,7 @@ export default function AgentLLMNode(props: NodeProps<AgentNodeParent>) {
         <NWrapper
             nodeProps={props}
         >
-            <NodeLabel node={props.data} icon={<IconRobot2/>}/>
+            <NodeLabel node={props.data}/>
 
             <Handle
                 id={"a"}
