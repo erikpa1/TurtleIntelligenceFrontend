@@ -6,7 +6,7 @@ import {GalleryButton} from "@Turtle/Components/GaleryButton"
 import {useAgentNodesZus} from "@Turtle/LLM/LLMAgentsDock/Edit/agentNodeZus"
 import AgentNodeParent, {CanvasStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import TurtleApp from "@TurtleApp/TurtleApp"
-import MongoObjectId from "@Turtle/Utils/MongoObjectId"
+import ObjectIdApi from "@Turtle/Utils/ObjectIdApi"
 import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/NodesFactory"
 import NodesLibrary from "@Turtle/LLM/LLMAgentsDock/Data/NodesLibrary"
 
@@ -27,8 +27,8 @@ export default function NodesGallery({agentUid, onBeforeSubmit}: AgentNodesLibra
         TurtleApp.Lock()
 
         const tmp = new AgentNodeParent()
-        tmp.uid = await MongoObjectId.GetMongoId()
-        tmp.name = `${nodeType}`
+        tmp.uid = await ObjectIdApi.GetMongoId()
+        tmp.name = nodeType
         tmp.type = nodeType
         tmp.parent = agentUid
         tmp.RandomizePosition()

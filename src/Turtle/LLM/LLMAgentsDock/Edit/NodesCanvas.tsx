@@ -28,6 +28,7 @@ import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import AgentNodeEdge, {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
 import TurtleApp from "@TurtleApp/TurtleApp"
 import NodesLibrary from "@Turtle/LLM/LLMAgentsDock/Data/NodesLibrary"
+import {useRefreshKey} from "@Turtle/Utils/useRefreshKey"
 
 
 interface LLMAgentEditCanvasProps {
@@ -38,6 +39,7 @@ export default function LLMAgentLLMAgentEditCanvasEditCanvas({
                                                                  agentUid
                                                              }: LLMAgentEditCanvasProps) {
 
+    const [key, refreshKey] = useRefreshKey()
 
     const {
         nodes,
@@ -48,7 +50,6 @@ export default function LLMAgentLLMAgentEditCanvasEditCanvas({
 
 
     const {theme} = useTurtleTheme();
-
 
     async function refresh() {
 
@@ -64,7 +65,7 @@ export default function LLMAgentLLMAgentEditCanvasEditCanvas({
         setNodes(nodes)
         setEdges(edges)
 
-
+        refreshKey()
     }
 
     React.useEffect(() => {
@@ -75,9 +76,9 @@ export default function LLMAgentLLMAgentEditCanvasEditCanvas({
         <Splitter
             layout={"vertical"}
         >
-
             <Splitter.Panel>
                 <_NodesFlowEditor
+                    key={key}
                     agentUid={agentUid}
                     agentNodes={nodes}
                     nodesConnections={edges}

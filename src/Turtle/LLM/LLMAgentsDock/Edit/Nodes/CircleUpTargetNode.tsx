@@ -9,7 +9,7 @@ import IconOllama from "@Turtle/Icons/IconOllama";
 import NWrapper from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/NWrapper";
 
 
-export default function OllamaNode(props: NodeProps<AgentNodeParent>) {
+export default function CircleUpTargetNode(props: NodeProps<AgentNodeParent>) {
 
     return (
         <NWrapper

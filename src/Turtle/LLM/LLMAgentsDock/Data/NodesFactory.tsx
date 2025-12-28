@@ -11,8 +11,11 @@ interface RetFun {
 export type NodeRegistration = {
     type: string
     couComponent?: any
+    nodeHandle?: any
+    groupType?: string
     dataConstructor?: any
     icon?: string | any
+
 }
 
 
@@ -23,6 +26,7 @@ export default class NodesFactory {
     static NODE_COUS = new Map<string, React.Component<any, any>>()
     static NODE_ICONS = new Map<string, React.Component | string>()
     static NODE_HANDLERS = {}
+    static NODE_GROUPS = new Map<string, Array<any>>()
 
     static GetDataByType(type: string, jObj: any) {
         const tmpConstructor = this.NODES_DATA.get(type)
@@ -81,6 +85,17 @@ export default class NodesFactory {
             this.NODES_DATA.set(reg.type, reg.dataConstructor)
         }
 
+        if (reg.nodeHandle) {
+            this.NODE_HANDLERS[reg.type] = reg.nodeHandle
+        }
+
+        if (reg.groupType) {
+            if (this.NODE_GROUPS.has(reg.groupType)) {
+                this.NODE_GROUPS.get(reg.groupType)?.push(reg.type)
+            } else {
+                this.NODE_GROUPS.set(reg.groupType, [reg.type])
+            }
+        }
 
         if (reg.icon) {
             console.log(`Registering icon for: ${reg.type} ${reg.icon}`)

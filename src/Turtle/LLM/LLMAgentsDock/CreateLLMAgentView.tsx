@@ -12,6 +12,7 @@ import {useTranslation} from "react-i18next";
 import XApiKeySelect from "@Turtle/XApiKey/XApiKeySelect";
 import StringAreaPropertyView from "@Turtle/Components/Forms/StringAreaPropertyView";
 import LLMAgentToolsSelectionView from "@Turtle/LLM/LLMAgentsDock/LLMAgentToolsSelectionView";
+import {UidConvertableAttributeView} from "@Turtle/Components/Forms/UidAttributeView"
 
 
 interface CreateLLMClusterModalProps {
@@ -133,6 +134,11 @@ export default function CreateLLMAgentModal({
                                     attribute={"name"}
                                 />
 
+                                <UidConvertableAttributeView
+                                    entity={agent}
+                                    attribute={"uid"}
+                                />
+
                                 {/*TODO user level*/}
 
 
@@ -201,7 +207,7 @@ export default function CreateLLMAgentModal({
 
                 </Col>
             </Row>
-5
+            5
 
             <div style={{
                 marginTop: "15px"

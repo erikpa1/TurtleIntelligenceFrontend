@@ -7,7 +7,7 @@ import IconNetworkIntelNode from "@Turtle/Icons/IconNetworkIntelNode";
 
 import TriggerNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/TriggerNode"
 import AgentLLMNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/AgentLLMNode"
-import OllamaNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/OllamaNode"
+import CircleUpTargetNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/CircleUpTargetNode"
 import ABNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABNode"
 import CircleNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/CircleNode"
 import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/NodesFactory"
@@ -27,6 +27,14 @@ import COUHttpTriggerView from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUHttp
 import ABNodeSmall from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABNodeSmall"
 import ABCircle from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABCircle"
 import IconSmartToy from "@Turtle/Icons/IconSmartToy"
+
+import "./Nodes/index"
+import DeepseekOcr from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/Ocr/DeepseekOcr"
+import COUDeepseekOcr from "@Turtle/LLM/LLMAgentsDock/NodeCous/COUDeepseekOcr"
+import SqliteNode from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/Databases/Sqllite/SqliteNode"
+import SqliteInsertNode from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/Databases/Sqllite/SqliteInsert"
+import COUSqlite from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUSqlite"
+import ABWithConn from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABWithConn"
 
 export default class NodesLibrary {
 
@@ -121,9 +129,13 @@ export default class NodesLibrary {
     static ListDatabases(): string[] {
         return [
             this.mongoDb,
-            this.sqlite,
             this.mysql,
+            ...(NodesFactory.NODE_GROUPS.get("databases") ?? [])
         ]
+    }
+
+    static ListOcr(): string[] {
+        return NodesFactory.NODE_GROUPS.get("ocr") ?? []
     }
 
     static ListCategorized(): { name: string, nodes: string[] }[] {
@@ -133,6 +145,7 @@ export default class NodesLibrary {
             {name: "scripts", nodes: this.ListActions()},
             {name: "outputs", nodes: this.ListOutputs()},
             {name: "databases", nodes: this.ListDatabases()},
+            {name: "ocr", nodes: this.ListOcr()},
         ]
     }
 
@@ -146,7 +159,7 @@ export default class NodesLibrary {
 
         // LLM nodes
         result[this.llmAgent] = AgentLLMNode
-        result[this.ollama] = OllamaNode
+        result[this.ollama] = CircleUpTargetNode
         result[this.staticMemory] = CircleNode
         result[this.mongoDbMemory] = CircleNode
 
@@ -162,7 +175,10 @@ export default class NodesLibrary {
         result[this.writeExcel] = ABCircle
         result[this.writeSqlite] = ABCircle
 
-        return result
+        return {
+            ...result,
+            ...NodesFactory.NODE_HANDLERS
+        }
 
 
     }
@@ -230,14 +246,31 @@ export default class NodesLibrary {
         })
 
 
-        NodesFactory.Register({
-            type: this.sqlite,
-            icon: "/icons/sqlite.svg"
-        })
 
         NodesFactory.Register({
             type: this.mysql,
             icon: "/icons/mariaDb.svg"
+        })
+
+
+        /*
+        SQL lite
+         */
+        NodesFactory.Register({
+            type: SqliteNode.TYPE,
+            icon: "/icons/sqlite.svg",
+            dataConstructor: SqliteNode,
+            couComponent: COUSqlite,
+            groupType: "databases",
+            nodeHandle: CircleUpTargetNode
+        })
+
+        NodesFactory.Register({
+            type: SqliteInsertNode.TYPE,
+            icon: "/icons/sqlite.svg",
+            dataConstructor: SqliteInsertNode,
+            groupType: "databases",
+            nodeHandle: ABWithConn
         })
 
         /* Script nodes */
@@ -271,6 +304,18 @@ export default class NodesLibrary {
             type: this.writeSqlite,
             icon: "/icons/sqlite.svg"
         })
+
+        //OCR
+        NodesFactory.Register({
+            type: DeepseekOcr.TYPE,
+            icon: "/icons/deepseek.svg",
+            dataConstructor: DeepseekOcr,
+            nodeHandle: ABNode,
+            couComponent: COUDeepseekOcr,
+            groupType: "ocr",
+
+        })
+
 
 
     }

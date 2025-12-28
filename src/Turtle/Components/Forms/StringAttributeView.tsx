@@ -11,8 +11,8 @@ interface StringPropertyViewProps {
     onChange?: any
     inputProps?: InputProps
     itemProps?: FormItemProps
+    onSubmit?: () => void
 }
-
 
 export default function StringAttributeView({
                                                 entity,
@@ -21,9 +21,20 @@ export default function StringAttributeView({
                                                 behindLabel,
                                                 onChange,
                                                 inputProps,
-                                                itemProps
+                                                itemProps,
+                                                onSubmit
                                             }: StringPropertyViewProps) {
     const [t] = useTranslation()
+
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        e.preventDefault()
+        onSubmit?.()
+    }
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        entity[attribute] = e.target.value
+        onChange && onChange()
+    }
 
     return (
         <Form.Item
@@ -33,10 +44,8 @@ export default function StringAttributeView({
             <Flex align="center" gap="small">
                 <Input
                     defaultValue={entity[attribute]}
-                    onChange={(e) => {
-                        entity[attribute] = e.target.value
-                        onChange && onChange()
-                    }}
+                    onChange={handleChange}
+                    onPressEnter={handleKeyPress}
                     {...inputProps}
                 />
                 {behindLabel && (
@@ -48,4 +57,3 @@ export default function StringAttributeView({
         </Form.Item>
     )
 }
-

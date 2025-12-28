@@ -53,6 +53,7 @@ function _Save({}) {
             canvasState.deletedEdges
         )
 
+
         canvasState.nodes.forEach((val) => {
             val.canvasStatus = CanvasStatus.NO_CHANGE
         })
@@ -62,6 +63,9 @@ function _Save({}) {
         canvasState.edges.forEach((val) => {
             val._status = NodeConnStatus.NOT_MODIFIED
         })
+
+        canvasState.clear()
+
 
         TurtleApp.Unlock()
 

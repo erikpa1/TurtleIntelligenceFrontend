@@ -1,6 +1,6 @@
 import AgentNodeParent, {CanvasStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import Turxios, {DeleteEntity, PostEntity, QueryEntities} from "@Turtle/Api/Turxios";
-import MongoObjectId from "@Turtle/Utils/MongoObjectId";
+import ObjectIdApi from "@Turtle/Utils/ObjectIdApi";
 import AgentNodeEdge, {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
 import {Axios} from "axios";
 import {HttpTriggerData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/HttpTriggerData";
@@ -9,14 +9,14 @@ import LLMPipeline from "@Turtle/LLM/Data/LLMPipeline";
 export default class AgentNodesApi {
 
     static async ListEdgesOfParent(agentUid: string): Promise<AgentNodeEdge[]> {
-        const query = MongoObjectId.GetObjectIdQuery("parent", agentUid)
+        const query = ObjectIdApi.GetObjectIdQuery("parent", agentUid)
         const result = await QueryEntities("/api/llm/agent-edges/query", query, AgentNodeEdge)
 
         return result
     }
 
     static async ListNodesOfAgent(agentUid: string): Promise<Array<AgentNodeParent>> {
-        const query = MongoObjectId.GetObjectIdQuery("parent", agentUid)
+        const query = ObjectIdApi.GetObjectIdQuery("parent", agentUid)
         return await QueryEntities("/api/llm/agent-nodes/query", query, AgentNodeParent)
     }
 
