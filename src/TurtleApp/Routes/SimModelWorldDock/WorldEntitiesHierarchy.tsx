@@ -12,7 +12,7 @@ import {
     HierarchyDeleteButton,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents";
-import Entity from "@Turtle/Data/Entity";
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import EntitiesFactory from "@TurtleApp/Factories/EntitiesFactory";
 
@@ -26,13 +26,13 @@ export default function WorldEntitiesHierarchy({world}: WorldEntitiesHierarchyPr
     const [t] = useTranslation()
 
 
-    function entityDelete(entity: Entity) {
+    function entityDelete(entity: SimEntity) {
         TurtleApp.Lock()
         WorldSingleton.I.DeleteEntity(entity)
         TurtleApp.Unlock()
     }
 
-    function entitySelected(entity: Entity) {
+    function entitySelected(entity: SimEntity) {
         aee.emit("WorldEntityClicked", entity)
     }
 

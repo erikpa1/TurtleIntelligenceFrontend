@@ -1,5 +1,4 @@
-import Entity from "../../Turtle/Data/Entity";
-import {useTransformControls} from "../../Turtle/Fibers/TransformControlsFiber";
+
 import React from "react";
 import * as THREE from "three";
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
@@ -9,15 +8,17 @@ import click = Simulate.click;
 import {Box3D} from "@Turtle/Fibers/Drawing";
 import EntitiesFactory from "@TurtleApp/Factories/EntitiesFactory";
 import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity"
+import {useTransformControls} from "@Turtle/Fibers/TransformControlsFiber"
 
 
 export interface EntityFiberProps {
-    entity: Entity
+    entity: SimEntity
 }
 
 export interface _WEFiberWrapperProps {
     children: any
-    entity: Entity
+    entity: SimEntity
 }
 
 export default function WEFiberWrapper({
@@ -57,7 +58,7 @@ export default function WEFiberWrapper({
         }
     }
 
-    function someEntityClicked(externalEntity: Entity) {
+    function someEntityClicked(externalEntity: SimEntity) {
         if (externalEntity === entity) {
             clicked()
         }

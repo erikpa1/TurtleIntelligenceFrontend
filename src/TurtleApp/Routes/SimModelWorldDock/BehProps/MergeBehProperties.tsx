@@ -1,11 +1,11 @@
 import React from "react"
 import {ActorsSelect} from "@TurtleApp/Routes/SimModelWorldDock/BehProps/ActorSelect";
 import TimeExrItem from "@Turtle/ReflectiveUI/TimeExprItem";
-import Entity from "@Turtle/Data/Entity";
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity";
 
 
 interface MergeBehPropertiesProps {
-    entity: Entity
+    entity: SimEntity
 }
 
 export default function MergeBehProperties({

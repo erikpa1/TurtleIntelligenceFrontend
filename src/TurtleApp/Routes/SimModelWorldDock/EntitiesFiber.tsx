@@ -1,6 +1,6 @@
 import React from "react"
 import World from "@TurtleApp/Data/World";
-import Entity from "@Turtle/Data/Entity";
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity";
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
 import EntityFiber from "@TurtleApp/Routes/SimModelWorldDock/Submodules/EntityFiber";
@@ -12,7 +12,7 @@ interface EntitiesFiberProps {
 
 export default function EntitiesFiber({world}: EntitiesFiberProps) {
 
-    const [entities, setEntities] = React.useState<Array<Entity>>(Array.from(world.entities.values()))
+    const [entities, setEntities] = React.useState<Array<SimEntity>>(Array.from(world.entities.values()))
 
     function refresh() {
         setEntities(Array.from(world.entities.values()))

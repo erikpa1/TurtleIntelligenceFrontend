@@ -2,7 +2,7 @@ import React from "react"
 import World from "@TurtleApp/Data/World";
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
-import Entity from "@Turtle/Data/Entity";
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity";
 import ConnectionFiber from "@TurtleApp/Routes/SimModelWorldDock/Submodules/ConnectionFiber";
 
 interface ConnectionsFiberProps {

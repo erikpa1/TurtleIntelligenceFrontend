@@ -1,10 +1,12 @@
-import {CreateUid, fetchMongoUid} from "../Utils/Uid";
+
+import SimDiagram from "@TurtleApp/Routes/SimModelWorldDock/Data/SimDiagram"
+import {fetchMongoUid} from "@Turtle/Utils/Uid"
 
 
 export type TypeData = {}
 
 
-export default class Entity {
+export default class SimEntity {
 
     uid = ""
     name = ""
@@ -22,8 +24,9 @@ export default class Entity {
 
     typeData: TypeData = {}
 
-
     runtimeId = 0
+
+    diagram: SimDiagram | null = null
 
     ToJson(): any {
         return {
@@ -53,7 +56,7 @@ export default class Entity {
 
     async Duplicate() {
         const tmp = JSON.stringify(this.ToJson())
-        const newOne = new Entity()
+        const newOne = new SimEntity()
         newOne.FromJson(JSON.parse(tmp))
         newOne.uid = await fetchMongoUid()
         return newOne

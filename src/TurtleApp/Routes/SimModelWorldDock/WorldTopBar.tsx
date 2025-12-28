@@ -1,5 +1,5 @@
 import React from "react"
-import {Button, Flex, Space} from "antd";
+import {Button, Flex, Segmented, Space} from "antd";
 import {DisconnectOutlined, MergeOutlined, PlayCircleOutlined, SaveOutlined, SettingOutlined} from "@ant-design/icons";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import {useTranslation} from "react-i18next";
@@ -40,11 +40,11 @@ export default function WorldTopBar({}) {
                     paddingTop: "5px"
                 }}
             >
+                <_ViewMode/>
 
                 <_SaveButton/>
                 <_ConnectButton/>
                 <_DisconnectButton/>
-
 
                 <Flex
                     justify={"end"}
@@ -70,6 +70,17 @@ export default function WorldTopBar({}) {
                 }}
             />
         </div>
+    )
+}
+
+function _ViewMode() {
+    return (
+        <Segmented
+            options={[
+                {label: "World",    value: 0},
+                {label: "Diagrams", value: 1},
+            ]}
+        />
     )
 }
 

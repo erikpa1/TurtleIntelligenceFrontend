@@ -1,12 +1,12 @@
 import React from "react"
-import Entity from "@Turtle/Data/Entity"
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity"
 import {Cylinder, Plane, Sphere, useTexture} from "@react-three/drei"
 import WEFiberWrapper from "@TurtleApp/Fibers/WEFiberWrapper";
 import EntitiesFactory from "@TurtleApp/Factories/EntitiesFactory";
 import ErrorBoundary from "@Turtle/Components/ErrorBoundary";
 
 interface EntityFiberProps {
-    entity: Entity
+    entity: SimEntity
 }
 
 export default function EntityFiber({entity}: EntityFiberProps) {

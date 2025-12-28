@@ -1,12 +1,12 @@
 import React from "react"
-import Entity from "@Turtle/Data/Entity";
-import {ConnectionSelect} from "@TurtleApp/Routes/SimModelWorldDock/BehProps/ConnectionSelect";
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity";
+
 import {Divider, Flex, Form, Select, Tabs} from "antd";
 import {useTranslation} from "react-i18next";
 import {WorldSingleton} from "@TurtleApp/Data/World";
 
 interface SplitBehPropertiesProps {
-    entity: Entity
+    entity: SimEntity
 }
 
 export default function SplitBehProperties({
@@ -81,7 +81,7 @@ function _ConnectionActorSelect({entity}: SplitBehPropertiesProps) {
 
     const [t] = useTranslation()
 
-    const [connections, setConnections] = React.useState<Array<Entity>>([])
+    const [connections, setConnections] = React.useState<Array<SimEntity>>([])
 
     function refresh() {
 
@@ -94,7 +94,7 @@ function _ConnectionActorSelect({entity}: SplitBehPropertiesProps) {
                 if (tmp) {
                     return tmp
                 } else {
-                    const nonExisting = new Entity()
+                    const nonExisting = new SimEntity()
                     nonExisting.name = "--404--"
                     return nonExisting
                 }

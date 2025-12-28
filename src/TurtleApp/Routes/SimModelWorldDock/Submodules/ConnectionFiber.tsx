@@ -1,5 +1,5 @@
 import React from "react"
-import Entity from "@Turtle/Data/Entity";
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity";
 import {Html, Sphere} from "@react-three/drei";
 import CylinderBetweenPoints from "@Turtle/Fibers/CylinderBetween";
 import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";

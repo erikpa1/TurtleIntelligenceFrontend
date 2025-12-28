@@ -1,12 +1,12 @@
 import React from "react"
 import StringItem from "@Turtle/ReflectiveUI/StringItem";
-import {Flex} from "antd";
+
 import IntItem from "@Turtle/ReflectiveUI/NumberItem";
 import {ActorsSelect} from "@TurtleApp/Routes/SimModelWorldDock/BehProps/ActorSelect";
-import Entity from "@Turtle/Data/Entity";
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity"
 
 interface BufferEntityPropertiesProps {
-    entity: Entity
+    entity: SimEntity
 }
 
 export default function BufferBehProperties({

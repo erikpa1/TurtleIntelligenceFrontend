@@ -14,6 +14,8 @@ export default class EntitiesFactory {
     static TYPE_DOWNTIME = "downtime"
     static TYPE_WORKER_POOL = "workerPool"
 
+    static TYPE_TIME_TRIGGER= "timeTrigger"
+
     static ICONS = {
         [EntitiesFactory.TYPE_SPAWN]: "/icons/flag_check.svg",
         [EntitiesFactory.TYPE_BUFFER]: "/icons/shelves.svg",
@@ -26,6 +28,7 @@ export default class EntitiesFactory {
         [EntitiesFactory.TYPE_SINK]: "/icons/arrow_and_edge.svg",
         [EntitiesFactory.TYPE_DOWNTIME]: "/icons/arrow_and_edge.svg",
         [EntitiesFactory.TYPE_WORKER_POOL]: "/icons/arrow_and_edge.svg",
+        [EntitiesFactory.TYPE_TIME_TRIGGER]: "/icons/arrow_and_edge.svg",
     }
 
     static ICONS_COMPONENTS = {
@@ -44,6 +47,7 @@ export default class EntitiesFactory {
         [EntitiesFactory.TYPE_SINK]: "/iconsPng/arrow_and_edge.png",
         [EntitiesFactory.TYPE_DOWNTIME]: "/iconsPng/arrow_and_edge.png",
         [EntitiesFactory.TYPE_WORKER_POOL]: "/iconsPng/arrow_and_edge.png",
+        [EntitiesFactory.TYPE_TIME_TRIGGER]: "/iconsPng/arrow_and_edge.png",
     }
 
     static RIGHT_BAR_COMPONENTS = {}

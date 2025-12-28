@@ -1,12 +1,12 @@
 import React from "react"
 import IntItem from "@Turtle/ReflectiveUI/NumberItem"
 import {Flex} from "antd"
-import Entity from "@Turtle/Data/Entity"
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity"
 
 import {ActorsSelect} from "@TurtleApp/Routes/SimModelWorldDock/BehProps/ActorSelect";
 
 interface SpawnEntityPropertiesProps {
-    entity: Entity
+    entity: SimEntity
 }
 
 export default function SpawnEntitiyProperties({

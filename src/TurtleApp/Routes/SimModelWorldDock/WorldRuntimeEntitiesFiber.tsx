@@ -1,7 +1,7 @@
 import React from 'react'
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
-import Entity from "@Turtle/Data/Entity";
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity";
 import RuntimeEntity from "@Turtle/Data/RuntimeEntity";
 import RuntimeEntityFiber from "@TurtleApp/Routes/SimModelWorldDock/Submodules/RuntimeEntityFiber";
 

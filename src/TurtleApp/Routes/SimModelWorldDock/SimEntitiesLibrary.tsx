@@ -1,7 +1,7 @@
 import {useTranslation} from "react-i18next"
 import React from "react"
 import {Flex, Tree, TreeDataNode} from "antd"
-import Entity from "@Turtle/Data/Entity"
+
 import {WorldSingleton} from "@TurtleApp/Data/World"
 import aee from "@Turtle/Data/Aee"
 import {HierarchyCustomIcon} from "@Turtle/Components/HierarchyComponents"
@@ -9,6 +9,7 @@ import TurtleApp from "@TurtleApp/TurtleApp"
 import {fetchMongoUid} from "@Turtle/Utils/Uid"
 import IconFlagCheck from "@Turtle/Icons/IconFlagCheck"
 import EntitiesFactory from "@TurtleApp/Factories/EntitiesFactory"
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity"
 
 
 export default function SimEntitiesLibrary() {
@@ -22,7 +23,7 @@ export default function SimEntitiesLibrary() {
     async function addElement(type: string, position: number[]) {
         TurtleApp.Lock()
 
-        const entity = new Entity()
+        const entity = new SimEntity()
         entity.name = type
         entity.position = position
         entity.type = type

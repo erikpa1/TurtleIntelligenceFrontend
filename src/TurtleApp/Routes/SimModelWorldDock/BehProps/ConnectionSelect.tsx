@@ -4,9 +4,10 @@ import ActorsApi from "@TurtleApp/Api/ActorsApi";
 import SelectItem from "@Turtle/ReflectiveUI/SelectItem";
 import Entity, {TypeData} from "@Turtle/Data/Entity";
 import {WorldSingleton} from "@TurtleApp/Data/World";
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity"
 
 interface ActorsSelectProps {
-    entity: Entity
+    entity: SimEntity
     attribute: string
     typeData: TypeData
 }
@@ -17,7 +18,7 @@ export function ConnectionSelect({
                                      typeData,
                                  }: ActorsSelectProps) {
 
-    const [connections, setConnections] = React.useState<Array<Entity>>([])
+    const [connections, setConnections] = React.useState<Array<SimEntity>>([])
 
     function refresh() {
 
@@ -30,7 +31,7 @@ export function ConnectionSelect({
                 if (tmp) {
                     return tmp
                 } else {
-                    const nonExisting = new Entity()
+                    const nonExisting = new SimEntity()
                     nonExisting.name = "--404--"
                     return nonExisting
                 }

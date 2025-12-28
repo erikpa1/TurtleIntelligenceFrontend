@@ -1,11 +1,11 @@
 import React from "react"
-import Entity from "@Turtle/Data/Entity"
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity"
 
 import {ActorsSelect} from "@TurtleApp/Routes/SimModelWorldDock/BehProps/ActorSelect";
 import TimeExrItem from "@Turtle/ReflectiveUI/TimeExprItem";
 
 interface ProcessEntityPropertiesProps {
-    entity: Entity
+    entity: SimEntity
 }
 
 export default function ProcessBehProperties({

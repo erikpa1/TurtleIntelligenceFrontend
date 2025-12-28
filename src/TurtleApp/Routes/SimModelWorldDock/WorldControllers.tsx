@@ -3,7 +3,7 @@ import TurtleApp from "@TurtleApp/TurtleApp";
 import {WorldSingleton} from "@TurtleApp/Data/World";
 import aee, {AnyEventEmmiter} from "@Turtle/Data/Aee";
 import WorldApi from "@TurtleApp/Api/WorldApi";
-import Entity from "@Turtle/Data/Entity";
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity";
 import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
 import {runningSimulationController} from "@TurtleApp/Routes/SimModelWorldDock/Controllers/RunningSimulationController";
 

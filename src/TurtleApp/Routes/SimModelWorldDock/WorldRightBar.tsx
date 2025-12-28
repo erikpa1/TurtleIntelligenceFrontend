@@ -1,6 +1,6 @@
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
-import Entity from "@Turtle/Data/Entity";
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity";
 import React from "react";
 import {Empty, Flex, Form, Tabs} from "antd";
 
@@ -22,7 +22,7 @@ export default function WorldRightBar() {
     const [entity, setEntity] = React.useState<Entity | null>(null)
 
 
-    function entityPicked(entity: Entity) {
+    function entityPicked(entity: SimEntity) {
         setEntity(entity)
     }
 
@@ -85,7 +85,7 @@ export default function WorldRightBar() {
 
 
 interface _EntityEditPropsProps {
-    entity: Entity
+    entity: SimEntity
 }
 
 function _EntityEditProps({entity}: _EntityEditPropsProps) {

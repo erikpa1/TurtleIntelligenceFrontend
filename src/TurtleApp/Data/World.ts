@@ -1,14 +1,15 @@
-import Entity from "../../Turtle/Data/Entity";
+
 import aee from "@Turtle/Data/Aee";
 import {CreateUid} from "@Turtle/Utils/Uid";
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity"
 
 
 export default class World {
 
     name = ""
     uid = ""
-    entities: Map<string, Entity> = new Map<string, Entity>()
-    entitiesById: Map<number, Entity> = new Map<number, Entity>()
+    entities: Map<string, SimEntity> = new Map<string, SimEntity>()
+    entitiesById: Map<number, SimEntity> = new Map<number, SimEntity>()
     deletedEntities = new Set<string>()
 
     connections = new Map<string, Set<string>>()
@@ -66,7 +67,7 @@ export default class World {
         this.name = jObj.name ?? ""
 
         this.entities = new Map((jObj.entities ?? []).map((val) => {
-            const tmp = new Entity()
+            const tmp = new SimEntity()
             tmp.FromJson(val)
             return [tmp.uid, tmp]
         }))
@@ -94,7 +95,7 @@ export default class World {
 
     }
 
-    AddEntity(entity: Entity) {
+    AddEntity(entity: SimEntity) {
         entity.model = this.uid
         entity.created = true
 
@@ -106,7 +107,7 @@ export default class World {
 
     }
 
-    AddConnection(a: Entity, b: Entity) {
+    AddConnection(a: SimEntity, b: SimEntity) {
 
         const existingConn = this.connections.get(a.uid)
 
@@ -128,7 +129,7 @@ export default class World {
         this.EmitConnectionsChanged()
     }
 
-    DeleteConnection(a: Entity, b: Entity) {
+    DeleteConnection(a: SimEntity, b: SimEntity) {
         const existingConn = this.connections.get(a.uid)
 
         if (existingConn) {
@@ -154,7 +155,7 @@ export default class World {
         this.EmitConnectionsChanged()
     }
 
-    DeleteEntity(entity: Entity) {
+    DeleteEntity(entity: SimEntity) {
 
         this.deletedEntities.add(entity.uid)
         this.entities.delete(entity.uid)

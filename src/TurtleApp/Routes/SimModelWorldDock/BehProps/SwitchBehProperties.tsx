@@ -1,4 +1,4 @@
-import Entity from "@Turtle/Data/Entity";
+import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity";
 import {ActorsSelect} from "@TurtleApp/Routes/SimModelWorldDock/BehProps/ActorSelect";
 import StringItem from "@Turtle/ReflectiveUI/StringItem";
 import React from "react";
@@ -7,7 +7,7 @@ import {useTranslation} from "react-i18next";
 
 
 interface ProcessEntityPropertiesProps {
-    entity: Entity
+    entity: SimEntity
 }
 
 
