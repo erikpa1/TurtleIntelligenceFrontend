@@ -12,7 +12,7 @@ import {
 } from "@Turtle/Components/HierarchyComponents";
 
 import TurtleApp from "@TurtleApp/TurtleApp"
-import TurtleTheme, {TurtleThemeLight} from "@Turtle/Theme/theme";
+import  {TurtleThemeLight} from "@Turtle/Theme/theme";
 import ThemeApi from "@Turtle/Theme/ThemeApi";
 
 export default function SceneHierarchy() {
@@ -37,7 +37,7 @@ export default function SceneHierarchy() {
 
                         <HierarchyRightFlex>
                             <HierarchyAddButton
-                                onClick={createTheme}
+                                onClick={createScene}
                             />
                         </HierarchyRightFlex>
                     </Flex>
@@ -69,12 +69,9 @@ export default function SceneHierarchy() {
     }
 
 
-    function createTheme() {
-
-        const theme = new TurtleTheme()
-
+    function createScene() {
         activate({
-            title: t("create.theme"),
+            title: t("create.scene"),
             closable: true,
             content: (
                 <div>

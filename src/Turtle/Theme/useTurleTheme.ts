@@ -1,25 +1,8 @@
 import {create} from "zustand";
 import ColorConstants from "@Turtle/Constants/ColorConstants";
+import ThemeApi from "@Turtle/Theme/ThemeApi"
+import {TurtleTheme} from "@Turtle/Theme/theme"
 
-
-class TurtleTheme {
-    topBarHeightBig = "45px"
-    bigPadding = "15px"
-    headingFontColor = ColorConstants.AZURE_BLUE
-    iconPrimaryColor = ColorConstants.AZURE_BLUE
-    iconSecondaryColor = ColorConstants.GRAY
-    borderColor = ColorConstants.AZURE_BLUE
-    borderHoverColor = ColorConstants.AZURE_BLUE_HOVER
-
-    GetSplitterBigHeight(): string {
-        return `calc(100vh - ${this.topBarHeightBig})`
-    }
-
-    GetSpliterContentHeight(): string {
-        return `calc(100% - ${this.topBarHeightBig})`
-    }
-
-}
 
 
 interface TurtleThemeZus {
@@ -41,12 +24,8 @@ export function useThemeInit(): () => void {
 
     const {setTheme} = useTurtleTheme()
 
-    function init() {
-        const redOne = new TurtleTheme()
-        redOne.iconPrimaryColor = ColorConstants.AZURE_BLUE
-        redOne.iconSecondaryColor = ColorConstants.GRAY
-        redOne.borderColor = ColorConstants.RED
-        redOne.borderHoverColor = ColorConstants.RED
+    async function init() {
+        const redOne = await ThemeApi.GetDefaultTheme()
         setTheme(redOne)
     }
 

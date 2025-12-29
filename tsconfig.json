@@ -48,6 +48,9 @@
             "@TurtleChat/*": [
                 "src/TurtleChat/*"
             ],
+            "@TurtleSim/*": [
+                "src/TurtleSim/*"
+            ],
             "@NavBar/*": [
                 "src/NavBar/*"
             ]

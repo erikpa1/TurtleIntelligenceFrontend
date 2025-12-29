@@ -1,0 +1,46 @@
+import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
+import {ActorsSelect} from "@TurtleSim/SimModelWorldDock/BehProps/ActorSelect";
+import StringItem from "@Turtle/ReflectiveUI/StringItem";
+import React from "react";
+import SelectItem from "@Turtle/ReflectiveUI/SelectItem";
+import {useTranslation} from "react-i18next";
+
+
+interface ProcessEntityPropertiesProps {
+    entity: SimEntity
+}
+
+
+export default function SwitchBehProperties({
+                                                   entity,
+                                               }: ProcessEntityPropertiesProps) {
+
+    const [t] = useTranslation()
+
+    if (Object.keys(entity.typeData).length === 0) {
+        entity.typeData = {
+            mode: 0,
+        }
+    }
+
+    return (
+        <>
+
+            <SelectItem
+                attribute={"mode"}
+                entity={entity.typeData}
+                options={[
+                    {
+                        value: 0,
+                        label: t("firstfree"),
+                    },
+                    {
+                        value: 1,
+                        label: t("roundrobin"),
+                    }
+                ]}
+
+            />
+        </>
+    )
+}

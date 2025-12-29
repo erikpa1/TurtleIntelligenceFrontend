@@ -19,7 +19,7 @@ export function SaveButton({
             type={"text"}
             icon={<SaveTwoTone/>}
         >
-            {"save"}
+            {t("save")}
         </Button>
     )
 }

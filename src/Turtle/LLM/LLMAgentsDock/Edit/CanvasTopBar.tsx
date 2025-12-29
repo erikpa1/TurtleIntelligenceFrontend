@@ -64,7 +64,7 @@ function _Save({}) {
             val._status = NodeConnStatus.NOT_MODIFIED
         })
 
-        canvasState.clear()
+        canvasState.saveClear()
 
 
         TurtleApp.Unlock()

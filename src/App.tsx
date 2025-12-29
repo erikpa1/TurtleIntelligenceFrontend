@@ -17,11 +17,14 @@ function App() {
     const initTheme = useThemeInit()
 
 
-    React.useEffect(() => {
+    async function refresh() {
         setIsLoading(true)
+        await initTheme()
         setIsLoading(false)
-        initTheme()
+    }
 
+    React.useEffect(() => {
+        refresh()
     }, [])
 
 

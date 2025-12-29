@@ -1,4 +1,4 @@
-import {SimUpcomingEvent} from "@TurtleApp/Routes/SimModelWorldDock/Data/SimUpcomingEvent";
+import {SimUpcomingEvent} from "@TurtleSim/SimModelWorldDock/Data/SimUpcomingEvent";
 
 export class SimSecondUpdate {
     second = 0

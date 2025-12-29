@@ -42,7 +42,7 @@ export default function ABWithConn(props: NodeProps<AgentNodeParent>) {
             <Handle
                 id={"conn"}
                 position={Position.Bottom}
-                type="target"
+                type="source"
                 style={{
                     ...SUBNODE_HANDLE_STYLE
                 }}

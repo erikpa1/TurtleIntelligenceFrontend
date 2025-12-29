@@ -11,19 +11,19 @@ import CircleUpTargetNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/CircleUpTar
 import ABNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABNode"
 import CircleNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/CircleNode"
 import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/NodesFactory"
-import COUMongoDb from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUMongoDb"
+import COUMongoDb from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/Databases/COUMongoDb"
 import {StaticMemoryData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/StaticMemoryData"
-import COUStaticMemory from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUStaticMemory"
+import COUStaticMemory from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/Memory/COUStaticMemory"
 import COUOllamaView from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUOllamaView"
 import {OllamaData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/OllamaData"
 import LLMAgentData from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/LLMAgentData"
 import COULLMNodeView from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COULLMNodeView"
 import COUWriteToFileView from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUWriteToFileView"
 import {WriteToFileNode} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/WriteToFileNode"
-import ChatTriggerData from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/ChatTriggerData"
-import COUChatTrigger from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUChatTrigger"
-import {HttpTriggerData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/HttpTriggerData"
-import COUHttpTriggerView from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUHttpTriggerView"
+import ChatTriggerData from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/Triggers/ChatTriggerData"
+import COUChatTrigger from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/Triggers/COUChatTrigger"
+import {HttpTriggerData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/Triggers/HttpTriggerData"
+import COUHttpTriggerView from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/Triggers/COUHttpTriggerView"
 import ABNodeSmall from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABNodeSmall"
 import ABCircle from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABCircle"
 import IconSmartToy from "@Turtle/Icons/IconSmartToy"
@@ -33,7 +33,7 @@ import DeepseekOcr from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/Ocr/DeepseekOcr"
 import COUDeepseekOcr from "@Turtle/LLM/LLMAgentsDock/NodeCous/COUDeepseekOcr"
 import SqliteNode from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/Databases/Sqllite/SqliteNode"
 import SqliteInsertNode from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/Databases/Sqllite/SqliteInsert"
-import COUSqlite from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/COUSqlite"
+import COUSqlite from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/Databases/COUSqlite"
 import ABWithConn from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABWithConn"
 
 export default class NodesLibrary {
@@ -168,7 +168,6 @@ export default class NodesLibrary {
 
         // Databases
         result[this.mongoDb] = CircleNode
-        result[this.sqlite] = CircleNode
         result[this.mysql] = CircleNode
 
         //Formats

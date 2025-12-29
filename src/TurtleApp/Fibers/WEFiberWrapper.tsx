@@ -6,9 +6,9 @@ import aee from "@Turtle/Data/Aee";
 import {Simulate} from "react-dom/test-utils";
 import click = Simulate.click;
 import {Box3D} from "@Turtle/Fibers/Drawing";
-import EntitiesFactory from "@TurtleApp/Factories/EntitiesFactory";
+import SimFactory from "@TurtleSim/Factories/SimFactory";
 import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
-import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity"
+import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity"
 import {useTransformControls} from "@Turtle/Fibers/TransformControlsFiber"
 
 
@@ -79,7 +79,7 @@ export default function WEFiberWrapper({
                 {children}
 
                 {
-                    (phase === 1 && EntitiesFactory.CanConnectOutput(entity.type)) && (
+                    (phase === 1 && SimFactory.CanConnectOutput(entity.type)) && (
                         <Box3D
                             color={"lightgreen"}
                             onClick={() => {
@@ -90,7 +90,7 @@ export default function WEFiberWrapper({
                 }
 
                 {
-                    (phase === 2 && EntitiesFactory.CanConnectInput(entity.type)) && (
+                    (phase === 2 && SimFactory.CanConnectInput(entity.type)) && (
                         <Box3D
                             color={"green"}
                             onClick={() => {

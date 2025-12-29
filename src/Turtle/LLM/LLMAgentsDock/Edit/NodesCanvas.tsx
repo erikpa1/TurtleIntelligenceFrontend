@@ -77,6 +77,7 @@ export default function LLMAgentLLMAgentEditCanvasEditCanvas({
             layout={"vertical"}
         >
             <Splitter.Panel>
+
                 <_NodesFlowEditor
                     key={key}
                     agentUid={agentUid}

@@ -10,29 +10,9 @@ export default function ThemeEditView() {
 
     return (
         <div>
-            <TopBarWrapper>
+            <div>
 
-                {/*<Segmented*/}
-                {/*    defaultActiveKey="UI"*/}
-                {/*    size={"small"}*/}
-                {/*    items={[*/}
-                {/*        {*/}
-                {/*            label: t("ui"),*/}
-                {/*            key: "ui"*/}
-                {/*        }, {*/}
-                {/*            label: "3D",*/}
-                {/*            key: "3D"*/}
-                {/*        },*/}
-                {/*    ]}*/}
-                {/*/>*/}
-
-                <Flex>
-                    <Button>
-                        Save
-                    </Button>
-                </Flex>
-            </TopBarWrapper>
-
+            </div>
         </div>
     )
 }

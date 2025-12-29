@@ -1,7 +1,7 @@
 
 import aee from "@Turtle/Data/Aee";
 import {CreateUid} from "@Turtle/Utils/Uid";
-import SimEntity from "@TurtleApp/Routes/SimModelWorldDock/Data/SimEntity"
+import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity"
 
 
 export default class World {

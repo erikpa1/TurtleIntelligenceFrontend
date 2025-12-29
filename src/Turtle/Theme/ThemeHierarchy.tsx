@@ -1,9 +1,9 @@
 import React from "react"
-import {useTranslation} from "react-i18next";
-import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
-import {useNavigate} from "react-router-dom";
-import {Flex, Tree, TreeDataNode} from "antd";
-import {Knowledge, KnowledgeType} from "@Turtle/KnowledgeHub/Data/Knowledge";
+import {useTranslation} from "react-i18next"
+import {useNavigate} from "react-router-dom"
+import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal"
+
+import {Flex, Tree, TreeDataNode} from "antd"
 import {
     HierarchyAddButton, HierarchyDeleteButton,
     HierarchyEditButton,
@@ -12,7 +12,7 @@ import {
 } from "@Turtle/Components/HierarchyComponents";
 
 import TurtleApp from "@TurtleApp/TurtleApp"
-import TurtleTheme, {TurtleThemeLight} from "@Turtle/Theme/theme";
+import {TurtleTheme, TurtleThemeLight} from "@Turtle/Theme/theme";
 import ThemeApi from "@Turtle/Theme/ThemeApi";
 
 export default function ThemeHierarchy() {

@@ -14,6 +14,7 @@ interface AgentNodeZus {
     deletedEdges: AgentNodeEdge[],
     addDeletedEdge: (edge: AgentNodeEdge) => void,
     clear: () => void
+    saveClear: () => void
 }
 
 export const useAgentNodesZus = create<AgentNodeZus>((set) => ({
@@ -52,7 +53,9 @@ export const useAgentNodesZus = create<AgentNodeZus>((set) => ({
 
         return {deletedEdges: [...oldState.deletedEdges, edge]}
     }),
-    clear: () => set(() => ({nodes: [], edges: [], deletedNodes: new Map()}))
+    clear: () => set(() => ({nodes: [], edges: [], deletedNodes: new Map()})),
+    saveClear: () => set(() => ({ deletedNodes: new Map(), deletedEdges: []}))
+
 }))
 
 

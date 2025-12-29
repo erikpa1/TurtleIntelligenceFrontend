@@ -3,7 +3,7 @@ import Turxios, {DeleteEntity, PostEntity, QueryEntities} from "@Turtle/Api/Turx
 import ObjectIdApi from "@Turtle/Utils/ObjectIdApi";
 import AgentNodeEdge, {NodeConnStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/NodeConnections";
 import {Axios} from "axios";
-import {HttpTriggerData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/HttpTriggerData";
+import {HttpTriggerData} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/Triggers/HttpTriggerData";
 import LLMPipeline from "@Turtle/LLM/Data/LLMPipeline";
 
 export default class AgentNodesApi {
