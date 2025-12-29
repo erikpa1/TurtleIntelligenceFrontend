@@ -2,7 +2,7 @@ import React from "react"
 import {useTranslation} from "react-i18next"
 import {Button, Flex, Tabs} from "antd"
 
-import SimEntitiesLibrary from "@TurtleSim/SimModelWorldDock/SimEntitiesLibrary"
+import SimGallery from "@TurtleSim/SimModelWorldDock/SimGallery"
 import WorldEntitiesHierarchy from "@TurtleSim/SimModelWorldDock/WorldEntitiesHierarchy"
 import {SettingOutlined} from "@ant-design/icons";
 
@@ -45,7 +45,7 @@ export default function WorldHierarchy({world}) {
 
             {
                 segment === "library" && (
-                    <SimEntitiesLibrary/>
+                    <SimGallery/>
                 )
             }
 

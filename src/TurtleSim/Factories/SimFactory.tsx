@@ -14,6 +14,9 @@ export default class SimFactory {
     static TYPE_DOWNTIME = "downtime"
     static TYPE_WORKER_POOL = "workerPool"
 
+    //Actor spawns
+    static TYPE_HUMAN = "human"
+
     static TYPE_TIME_TRIGGER= "timeTrigger"
 
     static ICONS = {

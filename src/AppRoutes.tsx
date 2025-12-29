@@ -14,6 +14,8 @@ import GetOcrRoutes from "@TurtleCrm/Ocr/OcrRoutes"
 import CrmRoutes from "@TurtleCrm/CrmRoutes"
 import SecurityRoutes from "@TurtleSecurity/SecurityRoutes"
 
+import SimRoutes from "@TurtleSim/SimRoutes"
+
 const UsersDock = React.lazy(() => import("@Turtle/Users/UsersDock"))
 
 const UsersChatDock = React.lazy(() => import("@TurtleChat/UsersChat/UsersChatDock"))
@@ -43,8 +45,7 @@ const LLMChatDock = React.lazy(() => import("@Turtle/LLM/LLMChatDock/LLMChatDock
 const ActorsDock = React.lazy(() => import("@TurtleApp/Routes/Actors/ActorsDock"))
 const DocumentationDock = React.lazy(() => import("@TurtleApp/Routes/Documentation/DocumentationDock"))
 const ContainersDock = React.lazy(() => import("@TurtleApp/Routes/ContainersDock/ContainersDock"))
-const SimWorldDock = React.lazy(() => import("@TurtleSim/SimModelWorldDock/SimModelWorldDock"))
-const SimModelsDock = React.lazy(() => import( "@TurtleSim/SimModelsDock/SimModelsDock"))
+
 const NNDock = React.lazy(() => import("@TurtleApp/Routes/NN/NNDock"))
 
 
@@ -72,9 +73,6 @@ export default function AppRoutes({}) {
             <Route path={"/login"} element={<LoginForm/>}/>
             <Route path={"/register"} element={<RegisterForm/>}/>
 
-
-            <Route path={"/sim-models"} element={<SimModelsDock/>}/>
-            <Route path={"/sim-models/:modelUid"} element={<SimWorldDock/>}/>
             <Route path={"/containers"} element={<ContainersDock/>}/>
             <Route path={"/nn"} element={<NNDock/>}/>
             <Route path={"/documentation"} element={<DocumentationDock/>}/>
@@ -152,6 +150,7 @@ export default function AppRoutes({}) {
             {...GetOcrRoutes()}
             {...CrmRoutes()}
             {...SecurityRoutes()}
+            {...SimRoutes()}
         </Routes>
 
     );

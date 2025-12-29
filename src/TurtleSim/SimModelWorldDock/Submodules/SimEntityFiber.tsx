@@ -9,7 +9,7 @@ interface EntityFiberProps {
     entity: SimEntity
 }
 
-export default function EntityFiber({entity}: EntityFiberProps) {
+export default function SimEntityFiber({entity}: EntityFiberProps) {
 
 
     React.useEffect(() => {

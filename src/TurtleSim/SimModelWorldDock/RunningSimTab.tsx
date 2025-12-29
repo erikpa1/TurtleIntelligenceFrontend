@@ -10,7 +10,7 @@ import {IconSimulation} from "@Turtle/Icons";
 import {WorldSingleton} from "@TurtleApp/Data/World";
 import SimFactory from "@TurtleSim/Factories/SimFactory";
 import {useTranslation} from "react-i18next";
-import SimEntitiesLibrary from "@TurtleSim/SimModelWorldDock/SimEntitiesLibrary";
+import SimGallery from "@TurtleSim/SimModelWorldDock/SimGallery";
 
 export default function RunningSimTab() {
 

@@ -9,7 +9,7 @@ interface SpawnEntityPropertiesProps {
     entity: SimEntity
 }
 
-export default function SpawnBehProperties({
+export default function HumanBehProperties({
                                                    entity,
                                                }: SpawnEntityPropertiesProps) {
     return (
@@ -20,11 +20,6 @@ export default function SpawnBehProperties({
             <ActorsSelect
                 typeData={entity.typeData}
                 attribute={"actor"}
-            />
-
-            <IntItem
-                attribute={"spawn_interval"}
-                entity={entity.typeData}
             />
 
             <IntItem

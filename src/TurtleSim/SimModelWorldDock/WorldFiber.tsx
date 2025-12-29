@@ -14,9 +14,9 @@ import Gizmo3DFlag from "@TurtleApp/Fibers/Gizmo3D";
 
 import {useParams} from "react-router-dom";
 import PickEntityFiber from "@TurtleSim/SimModelWorldDock/Submodules/PickEntityFiber";
-import EntitiesFiber from "@TurtleSim/SimModelWorldDock/EntitiesFiber";
+import SimEntitiesFiber from "@TurtleSim/SimModelWorldDock/SimEntitiesFiber";
 import {WorldSingleton} from "@TurtleApp/Data/World";
-import {WorldRuntimeEntitiesFiber} from "@TurtleSim/SimModelWorldDock/WorldRuntimeEntitiesFiber";
+import {ActorsFiber} from "@TurtleSim/SimModelWorldDock/ActorsFiber";
 import ConnectionsFiber from "@TurtleSim/SimModelWorldDock/Submodules/ConnectionsFiber";
 import RuntimeActorsFiber from "@TurtleSim/SimModelWorldDock/Submodules/RuntimeActorsFiber";
 
@@ -68,10 +68,10 @@ export default function WorldFiber({world}) {
 function _SubModules({world}) {
     return (
         <>
-            <EntitiesFiber world={world}/>
+            <SimEntitiesFiber world={world}/>
             <ConnectionsFiber world={world}/>
             <PickEntityFiber/>
-            <WorldRuntimeEntitiesFiber world={world}/>
+            <ActorsFiber world={world}/>
             <RuntimeActorsFiber/>
         </>
     )

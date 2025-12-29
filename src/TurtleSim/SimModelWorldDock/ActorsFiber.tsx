@@ -6,7 +6,7 @@ import RuntimeEntity from "@Turtle/Data/RuntimeEntity";
 import RuntimeEntityFiber from "@TurtleSim/SimModelWorldDock/Submodules/RuntimeEntityFiber";
 
 
-export function WorldRuntimeEntitiesFiber({world}) {
+export function ActorsFiber({world}) {
 
     const [runtimeEntities, setRuntimeEntities] = React.useState<Array<RuntimeEntity>>([])
 

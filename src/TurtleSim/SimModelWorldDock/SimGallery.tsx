@@ -12,7 +12,7 @@ import SimFactory from "@TurtleSim/Factories/SimFactory"
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity"
 
 
-export default function SimEntitiesLibrary() {
+export default function SimGallery() {
 
     const [t] = useTranslation()
 
@@ -83,12 +83,11 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
 
     const actors = React.useMemo(() => {
         return [
-            {title: t("human"), key: "human", icon: "/icons/flag_check.svg"},
-            {title: t("agv"), key: "agv", icon: "/icons/flag_check.svg"},
-            {title: t("forklift"), key: "forklift", icon: "/icons/flag_check.svg"},
+            {title: t("human"), key: "human", icon: "/icons/robot_2.svg"},
+            {title: t("agv"), key: "agv", icon: "/icons/robot_2.svg"},
+            {title: t("forklift"), key: "forklift", icon: "/icons/robot_2.svg"},
         ]
     }, [])
-
 
     return React.useMemo(() => {
         return [
@@ -143,7 +142,7 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
                                 elementClicked(val.key)
                             }}
                         >
-                            <HierarchyCustomIcon icon={<IconFlagCheck/>}/>
+                            <HierarchyCustomIcon icon={val.icon}/>
                             {val.title}
                         </Flex>
                     ),

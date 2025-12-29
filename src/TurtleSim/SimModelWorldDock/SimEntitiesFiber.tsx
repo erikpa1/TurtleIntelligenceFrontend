@@ -3,14 +3,14 @@ import World from "@TurtleApp/Data/World";
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
-import EntityFiber from "@TurtleSim/SimModelWorldDock/Submodules/EntityFiber";
+import SimEntityFiber from "@TurtleSim/SimModelWorldDock/Submodules/SimEntityFiber";
 
 
 interface EntitiesFiberProps {
     world: World
 }
 
-export default function EntitiesFiber({world}: EntitiesFiberProps) {
+export default function SimEntitiesFiber({world}: EntitiesFiberProps) {
 
     const [entities, setEntities] = React.useState<Array<SimEntity>>(Array.from(world.entities.values()))
 
@@ -27,7 +27,7 @@ export default function EntitiesFiber({world}: EntitiesFiberProps) {
                 {
                     entities.map((val) => {
                         return (
-                            <EntityFiber
+                            <SimEntityFiber
                                 key={val.uid}
                                 entity={val}
                             />
