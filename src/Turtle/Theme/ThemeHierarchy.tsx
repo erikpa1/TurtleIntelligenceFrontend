@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next"
 import {useNavigate} from "react-router-dom"
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal"
 
-import {Flex, Tree, TreeDataNode} from "antd"
+import {Flex, Space, Tree, TreeDataNode} from "antd"
 import {
     HierarchyAddButton, HierarchyDeleteButton,
     HierarchyEditButton,
@@ -14,6 +14,8 @@ import {
 import TurtleApp from "@TurtleApp/TurtleApp"
 import {TurtleTheme, TurtleThemeLight} from "@Turtle/Theme/theme";
 import ThemeApi from "@Turtle/Theme/ThemeApi";
+import COUTheme from "@Turtle/Theme/COUTheme"
+import ColorCircle from "@Turtle/Components/ColorCircle"
 
 export default function ThemeHierarchy() {
 
@@ -47,13 +49,24 @@ export default function ThemeHierarchy() {
                     return {
                         key: val.uid,
                         title: (
-                            <HierarchyFlex onClick={() => {
-                                navigate(`/themes/${val.uid}`)
-                            }}>
+                            <HierarchyFlex
+                                onClick={() => {
+                                    navigate(`/themes/${val.uid}`)
+                                }}
+                            >
 
-                                {val.name}
+                                <Space>
+                                    <ColorCircle color={val.color}/>
+                                    {val.name}
+                                </Space>
 
                                 <HierarchyRightFlex>
+
+                                    <HierarchyEditButton
+                                        onClick={() => {
+                                            editTheme(val)
+                                        }}
+                                    />
                                     <HierarchyDeleteButton
                                         onClick={() => {
                                             deleteTheme(val.uid)
@@ -77,11 +90,36 @@ export default function ThemeHierarchy() {
             title: t("create.theme"),
             closable: true,
             content: (
-                <div>
-
-                </div>
+                <COUTheme
+                    entity={theme}
+                    onAfterUpdate={refresh}
+                    onBeforeUpdate={deactivate}
+                />
             )
         })
+    }
+
+    async function editTheme(lightTheme: TurtleThemeLight) {
+        TurtleApp.Lock()
+        const theme = await ThemeApi.Get(lightTheme.uid)
+        TurtleApp.Unlock()
+
+        if (theme) {
+            activate({
+                title: t("edit.theme"),
+                closable: true,
+                content: (
+                    <COUTheme
+                        entity={theme}
+                        onAfterUpdate={refresh}
+                        onBeforeUpdate={deactivate}
+                    />
+                )
+            })
+        } else {
+            //TOOD send local notification
+        }
+
     }
 
     async function deleteTheme(knowledgeUid: string) {

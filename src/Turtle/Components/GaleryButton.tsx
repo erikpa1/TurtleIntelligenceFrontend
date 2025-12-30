@@ -30,8 +30,8 @@ export function GalleryButton({lang, icon, onClick}: GalleryButtonProps) {
                         <img
                             src={icon}
                             style={{
-                                width: "55px",
-                                height: "55px",
+                                width: "30px",
+                                height: "30px",
                             }}
                             alt="icon"
                         />
@@ -47,7 +47,7 @@ export function GalleryButton({lang, icon, onClick}: GalleryButtonProps) {
 
                 <div style={{
                     textAlign: "center",
-                    fontSize: "15px",
+                    fontSize: "12px",
                     display: "block",
                     whiteSpace: "pre-wrap"
                 }}>

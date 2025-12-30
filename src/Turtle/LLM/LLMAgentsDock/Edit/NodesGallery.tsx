@@ -42,11 +42,11 @@ export default function NodesGallery({agentUid, onBeforeSubmit}: AgentNodesLibra
         onBeforeSubmit?.()
     }
 
-    async function addMemory() {
-    }
-
     return (
-        <Flex vertical gap={15}>
+        <Flex
+            vertical
+            gap={5}
+        >
             {
                 NodesLibrary.ListCategorized().map((val) => {
                     return (
@@ -81,7 +81,7 @@ function _GalleryBtn({nodeType, addNodePressed} ) {
 
     return (
         <Col
-            span={6}
+            span={4}
             key={nodeType}
         >
             <GalleryButton
@@ -103,16 +103,16 @@ function _GalleryIcon({icon}) {
                 src={icon as ""}
                 alt={"icon"}
                 style={{
-                    width: "50px",
-                    height: "50px",
+                    width: "30px",
+                    height: "30px",
                 }}
             />
         )
     } else {
 
         return React.createElement(icon, {
-            width: "50px",
-            height: "50px",
+            width: "30px",
+            height: "30px",
         })
     }
 

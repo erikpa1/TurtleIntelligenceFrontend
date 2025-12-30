@@ -7,7 +7,6 @@ export default function IconWidgets(props: any = {}) {
 
 
         const {theme} = useTurtleTheme()
-
     return (
         <TurtleIcon
             {...props}

@@ -2,7 +2,7 @@ import {Flex, Layout, Modal,} from "antd";
 
 import {useNavigate} from "react-router-dom"
 import {useTranslation} from "react-i18next"
-import {IconSimulation} from "@Turtle/Icons"
+import {IconSimulation, IconWidgets} from "@Turtle/Icons"
 
 import React from "react"
 
@@ -10,6 +10,9 @@ import "./AppNavBar.css"
 import {MyNavbarItem, NavBarIcon,} from "@Turtle/Components/NavBar"
 import TurtleAppsGallery, {ICON_STYLE} from "@TurtleApp/TurtleAppsGallery"
 import IconChat from "@Turtle/Icons/IconChat";
+import IconSupportAgent from "@Turtle/Icons/IconSupportAgent"
+import IconArticlePerson from "@Turtle/Icons/IconArticlePerson"
+import IconHub from "@Turtle/Icons/IconHub"
 
 export default function AppNavBar() {
 
@@ -61,7 +64,7 @@ export default function AppNavBar() {
                     }}>
 
                         <MyNavbarItem
-                            icon={"/icons/widgets.svg"}
+                            icon={<NavBarIcon icon={IconWidgets}/>}
                             iconStyle={{
                                 ...ICON_STYLE,
                                 width: "35px",
@@ -90,30 +93,30 @@ export default function AppNavBar() {
                         />
 
                         <MyNavbarItem
-                            icon={"/icons/support_agent.svg"}
+                            icon={<NavBarIcon icon={IconSupportAgent}/>}
                             link={"/llm-agent-chat"}
                             lang={"agent.chat"}
                             iconStyle={ICON_STYLE}
                         />
 
                         <MyNavbarItem
-                            icon={"/icons/article_person.svg"}
+                            icon={<NavBarIcon icon={IconArticlePerson}/>}
                             link={"/doc-int"}
                             lang={"document.intelligence"}
                             iconStyle={ICON_STYLE}
                         />
 
                         <MyNavbarItem
+                            icon={<NavBarIcon icon={IconHub}/>}
                             lang={"knowledgehub"}
                             link={"/kh"}
-                            icon={"/icons/article_person.svg"}
                             iconStyle={ICON_STYLE}
                         />
 
                         <MyNavbarItem
                             lang={"login"}
                             link={"/login"}
-                            icon={"/icons/article_person.svg"}
+                            icon={<NavBarIcon icon={IconArticlePerson}/>}
                             iconStyle={ICON_STYLE}
                         />
 

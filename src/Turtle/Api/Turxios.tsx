@@ -101,6 +101,23 @@ export async function QueryEntities(route: string, query: any, clazz, config?: A
     })
 }
 
+export async function GetEntity(route: string, uid: string, clazz, config?: AxiosRequestConfig<any>): Promise<any | null> {
+    const data = (await turxios.get<Array<any>>(route, {
+        params: {
+            uid: uid
+        }
+    })).data
+
+    if (data) {
+        const tmp = new clazz()
+        tmp.FromJson(data)
+        return tmp
+    } else {
+        return null
+    }
+
+}
+
 
 export async function DeleteEntity(route: string, uid: string, config?: AxiosRequestConfig<any>) {
     return await turxios.delete(route, {

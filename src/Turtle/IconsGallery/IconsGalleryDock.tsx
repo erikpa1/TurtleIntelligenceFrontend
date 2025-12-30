@@ -20,6 +20,9 @@ import IconBookmarkManager from "@Turtle/Icons/IconBookmarkManager";
 import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
 import IconRepeat from "@Turtle/Icons/IconRepeat"
 import IconLeftClick from "@Turtle/Icons/IconLeftClick"
+import IconJson from "@Turtle/Icons/IconJson"
+import IconSupportAgent from "@Turtle/Icons/IconSupportAgent"
+import IconArticlePerson from "@Turtle/Icons/IconArticlePerson"
 
 
 export default function IconsGalleryDock({}) {
@@ -73,6 +76,9 @@ export function IconsGallery({}) {
                         ["BookmarkManager", IconBookmarkManager],
                         ["Repeat", IconRepeat],
                         ["LeftClick", IconLeftClick],
+                        ["Json", IconJson],
+                        ["SupportAgent", IconSupportAgent],
+                        ["ArticlePerson", IconArticlePerson],
                     ].map(([lang, icon], i) => {
 
                         const tmp: any = React.createElement(icon, {

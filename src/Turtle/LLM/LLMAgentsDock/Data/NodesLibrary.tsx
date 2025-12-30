@@ -339,5 +339,12 @@ export default class NodesLibrary {
             groupType: "excel",
         })
 
+        //JSON
+        NodesFactory.Register({
+            type: "jsonParser",
+            icon: "/icons/json.svg",
+            groupType: "excel",
+        })
+
     }
 }
