@@ -20,7 +20,6 @@ export default function LLMAgentsDock() {
 
     React.useEffect(() => {
         NodesLibrary.InitNodesFactory()
-
         return () => {
             NodesFactory.CleanUp()
         }

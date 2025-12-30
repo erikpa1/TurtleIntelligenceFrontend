@@ -109,6 +109,10 @@ export default class NodesFactory {
         this.NODE_COUS.clear()
         this.NODE_HANDLERS = {}
         this.NODES_DATA.clear()
+        this.NODE_ICONS.clear()
+        this.NODE_HANDLERS = {}
+        this.NODE_GROUPS.clear()
+
     }
 
 }

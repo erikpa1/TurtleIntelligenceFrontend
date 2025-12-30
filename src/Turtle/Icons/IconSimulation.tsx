@@ -5,9 +5,6 @@ export default function IconSimulation(props: any = {}) {
 
     const {theme} = useTurtleTheme()
 
-    console.log(theme.iconPrimaryColor)
-    console.log(theme.iconSecondaryColor)
-
     return (
         <TurtleIcon
             {...props}

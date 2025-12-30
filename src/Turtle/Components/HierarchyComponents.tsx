@@ -163,15 +163,22 @@ export function HierarchyEditButton({onClick}) {
 interface HierarchyCustomIconProps {
     icon: any
     onClick?: (e) => void
+    onDoubleClick?: (e) => void
 
 }
 
-export function HierarchyCustomIcon({onClick, icon}: HierarchyCustomIconProps) {
+export function HierarchyCustomIcon({
+                                        onClick,
+                                        icon,
+                                        onDoubleClick
+
+                                    }: HierarchyCustomIconProps) {
 
     return (
         <Button
             type="text"
             size="small"
+            onDoubleClick={onDoubleClick}
             onClick={(e) => {
                 e.stopPropagation()
                 onClick && onClick(e)

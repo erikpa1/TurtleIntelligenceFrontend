@@ -1,11 +1,10 @@
-
 import IconChat from "@Turtle/Icons/IconChat";
 import IconApi from "@Turtle/Icons/IconApi";
 import IconOllama from "@Turtle/Icons/IconOllama";
 import IconRobot2 from "@Turtle/Icons/IconRobot2";
 import IconNetworkIntelNode from "@Turtle/Icons/IconNetworkIntelNode";
 
-import TriggerNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/TriggerNode"
+import TriggerHandle from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/TriggerHandle"
 import AgentLLMNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/AgentLLMNode"
 import CircleUpTargetNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/CircleUpTargetNode"
 import ABNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABNode"
@@ -35,11 +34,16 @@ import SqliteNode from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/Databases/Sqllite/S
 import SqliteInsertNode from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/Databases/Sqllite/SqliteInsert"
 import COUSqlite from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/Databases/COUSqlite"
 import ABWithConn from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABWithConn"
+import ForeachHandle from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ForeachHandle"
+import IconRepeat from "@Turtle/Icons/IconRepeat"
+import IconLeftClick from "@Turtle/Icons/IconLeftClick"
+import ForeachFolderData from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/Filesystem/ForeachFolderData"
 
 export default class NodesLibrary {
 
     static httpTrigger = "httpTrigger"
     static chatTrigger = "chatTrigger"
+    static clickTrigger = "clickTrigger"
 
     static bash = "bash"
     static python = "python"
@@ -75,7 +79,6 @@ export default class NodesLibrary {
     static readJson = "readJson"
     static readText = "readText"
 
-    static writeExcel = "writeExcel"
     static writeWord = "writeWord"
     static writePpt = "writePpt"
     static writeCsv = "writeCsv"
@@ -90,13 +93,6 @@ export default class NodesLibrary {
             this.ollama,
             this.mongoDbMemory,
             this.staticMemory,
-        ]
-    }
-
-    static ListTriggers(): string[] {
-        return [
-            this.httpTrigger,
-            this.chatTrigger
         ]
     }
 
@@ -120,17 +116,8 @@ export default class NodesLibrary {
         return [
             this.writeToFile,
             this.httpRequest,
-            this.writeExcel,
             this.writeWord,
             this.writeSqlite,
-        ]
-    }
-
-    static ListDatabases(): string[] {
-        return [
-            this.mongoDb,
-            this.mysql,
-            ...(NodesFactory.NODE_GROUPS.get("databases") ?? [])
         ]
     }
 
@@ -139,13 +126,17 @@ export default class NodesLibrary {
     }
 
     static ListCategorized(): { name: string, nodes: string[] }[] {
+        //TODO toto prepisat na file system
         return [
-            {name: "triggers", nodes: this.ListTriggers()},
+            {name: "triggers", nodes: (NodesFactory.NODE_GROUPS.get("trigger") ?? [])},
             {name: "llmNodes", nodes: this.ListLLMNodes()},
             {name: "scripts", nodes: this.ListActions()},
             {name: "outputs", nodes: this.ListOutputs()},
-            {name: "databases", nodes: this.ListDatabases()},
+            {name: "databases", nodes: (NodesFactory.NODE_GROUPS.get("databases") ?? [])},
             {name: "ocr", nodes: this.ListOcr()},
+            {name: "flow_control", nodes: (NodesFactory.NODE_GROUPS.get("flow_control") ?? [])},
+            {name: "filesystem", nodes: (NodesFactory.NODE_GROUPS.get("filesystem") ?? [])},
+            {name: "excel", nodes: (NodesFactory.NODE_GROUPS.get("excel") ?? [])},
         ]
     }
 
@@ -153,25 +144,10 @@ export default class NodesLibrary {
 
         const result = {}
 
-        // Triggers
-        result[this.httpTrigger] = TriggerNode
-        result[this.chatTrigger] = TriggerNode
-
-        // LLM nodes
-        result[this.llmAgent] = AgentLLMNode
-        result[this.ollama] = CircleUpTargetNode
-        result[this.staticMemory] = CircleNode
-        result[this.mongoDbMemory] = CircleNode
-
         // Actions
         result[this.writeToFile] = ABNode
 
-        // Databases
-        result[this.mongoDb] = CircleNode
-        result[this.mysql] = CircleNode
 
-        //Formats
-        result[this.writeExcel] = ABCircle
         result[this.writeSqlite] = ABCircle
 
         return {
@@ -192,16 +168,26 @@ export default class NodesLibrary {
             type: this.httpTrigger,
             dataConstructor: HttpTriggerData,
             couComponent: COUHttpTriggerView,
-            icon: IconApi
+            icon: IconApi,
+            nodeHandle: TriggerHandle,
+            groupType: "trigger",
         })
 
         NodesFactory.Register({
             type: this.chatTrigger,
             dataConstructor: ChatTriggerData,
             couComponent: COUChatTrigger,
-            icon: IconChat
+            icon: IconChat,
+            nodeHandle: TriggerHandle,
+            groupType: "trigger",
         })
 
+        NodesFactory.Register({
+            type: this.clickTrigger,
+            icon: IconLeftClick,
+            nodeHandle: TriggerHandle,
+            groupType: "trigger",
+        })
 
         /*
             Action nodes
@@ -220,37 +206,42 @@ export default class NodesLibrary {
             type: this.llmAgent,
             dataConstructor: LLMAgentData,
             couComponent: COULLMNodeView,
-            icon: IconSmartToy
+            icon: IconSmartToy,
+            nodeHandle: AgentLLMNode
         })
 
         NodesFactory.Register({
             type: this.ollama,
             dataConstructor: OllamaData,
             couComponent: COUOllamaView,
-            icon: IconOllama
+            icon: IconOllama,
+            nodeHandle: CircleUpTargetNode
         })
 
         NodesFactory.Register({
             type: this.staticMemory,
             dataConstructor: StaticMemoryData,
             couComponent: COUStaticMemory,
-            icon: IconNetworkIntelNode
+            icon: IconNetworkIntelNode,
+            nodeHandle: CircleNode
         })
 
         /* Database nodes */
         NodesFactory.Register({
             type: this.mongoDb,
             couComponent: COUMongoDb,
-            icon: "/icons/mongo_short.svg"
+            icon: "/icons/mongo_short.svg",
+            nodeHandle: CircleNode,
+            groupType: "database"
         })
-
 
 
         NodesFactory.Register({
             type: this.mysql,
-            icon: "/icons/mariaDb.svg"
+            icon: "/icons/mariaDb.svg",
+            nodeHandle: CircleNode,
+            groupType: "database"
         })
-
 
         /*
         SQL lite
@@ -294,10 +285,7 @@ export default class NodesLibrary {
         })
 
         //Formats
-        NodesFactory.Register({
-            type: this.writeExcel,
-            icon: "/icons/excel.svg"
-        })
+
 
         NodesFactory.Register({
             type: this.writeSqlite,
@@ -312,10 +300,44 @@ export default class NodesLibrary {
             nodeHandle: ABNode,
             couComponent: COUDeepseekOcr,
             groupType: "ocr",
+        })
 
+        // Flow control nodes
+        NodesFactory.Register({
+            type: "foreach",
+            icon: IconRepeat,
+            nodeHandle: ForeachHandle,
+            groupType: "flow_control",
         })
 
 
+        //File system
+        NodesFactory.Register({
+            type: ForeachFolderData.TYPE,
+            icon: IconRepeat,
+            nodeHandle: ForeachHandle,
+            groupType: "filesystem",
+        })
+
+        //Excel
+        NodesFactory.Register({
+            type: "excel",
+            icon: "/icons/excel.svg",
+            groupType: "excel",
+            nodeHandle: CircleUpTargetNode
+        })
+
+        NodesFactory.Register({
+            type: "writeExcelLine",
+            icon: "/icons/excel.svg",
+            groupType: "excel",
+        })
+
+        NodesFactory.Register({
+            type: "writeExcel",
+            icon: "/icons/excel.svg",
+            groupType: "excel",
+        })
 
     }
 }

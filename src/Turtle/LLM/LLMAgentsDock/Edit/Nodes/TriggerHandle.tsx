@@ -2,12 +2,20 @@ import {Handle, NodeProps, Position} from "reactflow";
 
 import {OUTPUT_HANDLE_STYLE} from "@Turtle/LLM/LLMAgentsDock/Edit/Styles";
 
-import AgentNodeParent, {CanvasStatus} from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
+import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import NWrapper from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/NWrapper";
-import NodeLabel, {NodeIcon} from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/NodeLabel"
+import {NodeIcon} from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/NodeLabel"
+import TurtleApp from "@TurtleApp/TurtleApp"
+import AgentNodesApi from "@Turtle/LLM/LLMAgentsDock/Api/AgentNodesApi"
 
-export default function TriggerNode(props: NodeProps<AgentNodeParent>) {
+export default function TriggerHandle(props: NodeProps<AgentNodeParent>) {
 
+
+    async function call() {
+        TurtleApp.Lock()
+        await AgentNodesApi.PlayNode(props.data)
+        TurtleApp.Unlock()
+    }
 
     return (
         <NWrapper
@@ -21,8 +29,10 @@ export default function TriggerNode(props: NodeProps<AgentNodeParent>) {
                 borderBottomRightRadius: 0,
             }}
         >
-
-            <NodeIcon node={props.data}/>
+            <NodeIcon
+                node={props.data}
+                onDoubleClick={call}
+            />
 
             <Handle
                 id={"a"}

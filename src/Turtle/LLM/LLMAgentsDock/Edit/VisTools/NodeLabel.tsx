@@ -28,10 +28,11 @@ export default function NodeLabel({node, icon}: NodeLabelProps) {
 
 interface NodeIconProps {
     node: AgentNodeParent,
+    onDoubleClick?: () => void
 }
 
 
-export function NodeIcon({node}: NodeIconProps) {
+export function NodeIcon({node, onDoubleClick}: NodeIconProps) {
 
 
     const tmp  = React.createElement(NodesFactory.GetIcon(node.type))
@@ -39,10 +40,11 @@ export function NodeIcon({node}: NodeIconProps) {
     return (
         <Tooltip title={node.name}>
             <Flex gap={5}>
-                <HierarchyCustomIcon icon={tmp}/>
+                <HierarchyCustomIcon
+                    icon={tmp}
+                    onDoubleClick={onDoubleClick}
+                />
             </Flex>
         </Tooltip>
-
-
     )
 }

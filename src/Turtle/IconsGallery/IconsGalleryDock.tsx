@@ -18,6 +18,8 @@ import IconWebhook from "@Turtle/Icons/IconWebhook";
 import IconOllama from "@Turtle/Icons/IconOllama";
 import IconBookmarkManager from "@Turtle/Icons/IconBookmarkManager";
 import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
+import IconRepeat from "@Turtle/Icons/IconRepeat"
+import IconLeftClick from "@Turtle/Icons/IconLeftClick"
 
 
 export default function IconsGalleryDock({}) {
@@ -69,6 +71,8 @@ export function IconsGallery({}) {
                         ["Webhook", IconWebhook],
                         ["Ollama", IconOllama],
                         ["BookmarkManager", IconBookmarkManager],
+                        ["Repeat", IconRepeat],
+                        ["LeftClick", IconLeftClick],
                     ].map(([lang, icon], i) => {
 
                         const tmp: any = React.createElement(icon, {
