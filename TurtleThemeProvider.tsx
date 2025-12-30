@@ -2,7 +2,7 @@ import React from "react"
 import {ConfigProvider} from "antd";
 
 import ColorConstants from "@Turtle/Constants/ColorConstants";
-import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
+import {useThemeInit, useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 
 
 export default function TurtleThemeProvider({
@@ -12,11 +12,17 @@ export default function TurtleThemeProvider({
 
     const {theme} = useTurtleTheme()
 
+    const initTheme = useThemeInit()
+
+    React.useEffect(() => {
+        initTheme()
+    }, [])
+
     return (
         <ConfigProvider
             theme={{
                 token: {
-                    colorPrimary: ColorConstants.AZURE_BLUE,
+                    colorPrimary: theme.primaryColor,
                     borderRadius: 0,
                 },
                 components: {

@@ -22,6 +22,7 @@ export default class AgentNodeParent {
     uid = ""
     name = ""
     parent = ""
+    color = ""
     posX = 0
     posY = 0
     type = ""

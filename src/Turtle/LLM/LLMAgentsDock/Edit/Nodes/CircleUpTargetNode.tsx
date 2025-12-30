@@ -7,6 +7,7 @@ import {HierarchyDivIcon} from "@Turtle/Components/HierarchyComponents";
 import {SUBNODE_HANDLE_STYLE} from "@Turtle/LLM/LLMAgentsDock/Edit/Styles";
 import IconOllama from "@Turtle/Icons/IconOllama";
 import NWrapper from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/NWrapper";
+import {NodeIcon} from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/NodeLabel"
 
 
 export default function CircleUpTargetNode(props: NodeProps<AgentNodeParent>) {
@@ -31,7 +32,7 @@ export default function CircleUpTargetNode(props: NodeProps<AgentNodeParent>) {
                 }}
             />
 
-            <HierarchyDivIcon icon={<IconOllama/>}/>
+            <NodeIcon node={props.data}/>
 
         </NWrapper>
     )

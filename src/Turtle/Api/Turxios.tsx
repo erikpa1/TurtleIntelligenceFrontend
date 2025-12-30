@@ -95,6 +95,7 @@ export async function QueryEntities(route: string, query: any, clazz, config?: A
     })).data
 
     return data.map((val) => {
+        console.log(val)
         const tmp = new clazz()
         tmp.FromJson(val)
         return tmp

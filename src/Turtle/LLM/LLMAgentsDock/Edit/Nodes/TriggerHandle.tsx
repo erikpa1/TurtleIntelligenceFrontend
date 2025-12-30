@@ -39,7 +39,8 @@ export default function TriggerHandle(props: NodeProps<AgentNodeParent>) {
                 position={Position.Right}
                 type="source"
                 style={{
-                    ...OUTPUT_HANDLE_STYLE
+                    ...OUTPUT_HANDLE_STYLE,
+                    top:"25%"
                 }}
             />
 

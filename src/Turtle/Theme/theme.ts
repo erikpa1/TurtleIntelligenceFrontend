@@ -26,13 +26,12 @@ export class TurtleThemeLight {
 }
 
 export class TurtleTheme extends  TurtleThemeLight{
-    name =""
-    uid = ""
-    default = false
+
     topBarHeightBig = "45px"
     bigPadding = "15px"
     headingFontColor = ColorConstants.AZURE_BLUE
     iconPrimaryColor = ColorConstants.AZURE_BLUE
+    primaryColor = ColorConstants.AZURE_BLUE
     iconSecondaryColor = ColorConstants.GRAY
     borderColor = ColorConstants.AZURE_BLUE
     borderHoverColor = ColorConstants.AZURE_BLUE_HOVER
@@ -55,6 +54,7 @@ export class TurtleTheme extends  TurtleThemeLight{
             iconSecondaryColor: this.iconSecondaryColor,
             borderColor: this.borderColor,
             borderHoverColor: this.borderHoverColor,
+            primaryColor: this.primaryColor,
         }
     }
 

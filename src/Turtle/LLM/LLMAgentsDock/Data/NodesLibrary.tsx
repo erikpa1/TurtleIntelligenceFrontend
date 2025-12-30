@@ -7,7 +7,7 @@ import IconNetworkIntelNode from "@Turtle/Icons/IconNetworkIntelNode";
 import TriggerHandle from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/TriggerHandle"
 import AgentLLMNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/AgentLLMNode"
 import CircleUpTargetNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/CircleUpTargetNode"
-import ABNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABNode"
+import ABNodeHandle from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABNodeHandle"
 import CircleNode from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/CircleNode"
 import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/NodesFactory"
 import COUMongoDb from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/Databases/COUMongoDb"
@@ -38,6 +38,10 @@ import ForeachHandle from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ForeachHandle"
 import IconRepeat from "@Turtle/Icons/IconRepeat"
 import IconLeftClick from "@Turtle/Icons/IconLeftClick"
 import ForeachFolderData from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/Filesystem/ForeachFolderData"
+import {IconSimulation} from "@Turtle/Icons"
+import ABErrorNodeHandle from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABErrorNodeHandle"
+import IconJson from "@Turtle/Icons/IconJson"
+import ABErrorWithConnNodeHandle from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABErrorWithConnNodeHandle"
 
 export default class NodesLibrary {
 
@@ -137,6 +141,7 @@ export default class NodesLibrary {
             {name: "flow_control", nodes: (NodesFactory.NODE_GROUPS.get("flow_control") ?? [])},
             {name: "filesystem", nodes: (NodesFactory.NODE_GROUPS.get("filesystem") ?? [])},
             {name: "excel", nodes: (NodesFactory.NODE_GROUPS.get("excel") ?? [])},
+            {name: "json", nodes: (NodesFactory.NODE_GROUPS.get("json") ?? [])},
         ]
     }
 
@@ -145,7 +150,7 @@ export default class NodesLibrary {
         const result = {}
 
         // Actions
-        result[this.writeToFile] = ABNode
+        result[this.writeToFile] = ABNodeHandle
 
 
         result[this.writeSqlite] = ABCircle
@@ -297,7 +302,7 @@ export default class NodesLibrary {
             type: DeepseekOcr.TYPE,
             icon: "/icons/deepseek.svg",
             dataConstructor: DeepseekOcr,
-            nodeHandle: ABNode,
+            nodeHandle: ABNodeHandle,
             couComponent: COUDeepseekOcr,
             groupType: "ocr",
         })
@@ -312,6 +317,15 @@ export default class NodesLibrary {
 
 
         //File system
+        NodesFactory.Register({
+            type: "loadFileString",
+            icon: IconSimulation,
+            nodeHandle: ABErrorNodeHandle,
+            groupType: "filesystem",
+        })
+
+
+
         NodesFactory.Register({
             type: ForeachFolderData.TYPE,
             icon: IconRepeat,
@@ -331,19 +345,22 @@ export default class NodesLibrary {
             type: "writeExcelLine",
             icon: "/icons/excel.svg",
             groupType: "excel",
+            nodeHandle: ABErrorWithConnNodeHandle,
         })
 
         NodesFactory.Register({
             type: "writeExcel",
             icon: "/icons/excel.svg",
             groupType: "excel",
+            nodeHandle: ABErrorWithConnNodeHandle,
         })
 
         //JSON
         NodesFactory.Register({
-            type: "jsonParser",
-            icon: "/icons/json.svg",
-            groupType: "excel",
+            type: "strToJsonArray",
+            icon: IconJson,
+            groupType: "json",
+            nodeHandle: ABErrorNodeHandle,
         })
 
     }

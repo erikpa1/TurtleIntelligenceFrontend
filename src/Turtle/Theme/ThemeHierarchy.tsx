@@ -46,6 +46,7 @@ export default function ThemeHierarchy() {
                 ),
 
                 children: themes.map((val) => {
+
                     return {
                         key: val.uid,
                         title: (
@@ -131,6 +132,7 @@ export default function ThemeHierarchy() {
 
     async function refresh() {
         const themes = await ThemeApi.List()
+
         setData(createHierarchy(themes))
     }
 

@@ -15,6 +15,7 @@ export type NodeRegistration = {
     groupType?: string
     dataConstructor?: any
     icon?: string | any
+    connections?: | any
 
 }
 
@@ -27,6 +28,8 @@ export default class NodesFactory {
     static NODE_ICONS = new Map<string, React.Component | string>()
     static NODE_HANDLERS = {}
     static NODE_GROUPS = new Map<string, Array<any>>()
+
+    static NODE_CONNECTIONS = new Map<string, Array<any>>()
 
     static GetDataByType(type: string, jObj: any) {
         const tmpConstructor = this.NODES_DATA.get(type)
@@ -98,8 +101,11 @@ export default class NodesFactory {
         }
 
         if (reg.icon) {
-            console.log(`Registering icon for: ${reg.type} ${reg.icon}`)
             this.NODE_ICONS.set(reg.type, reg.icon)
+        }
+
+        if (reg.connections) {
+            this.NODE_CONNECTIONS.set(reg.type, reg.connections)
         }
 
     }
@@ -112,6 +118,7 @@ export default class NodesFactory {
         this.NODE_ICONS.clear()
         this.NODE_HANDLERS = {}
         this.NODE_GROUPS.clear()
+        this.NODE_CONNECTIONS.clear()
 
     }
 

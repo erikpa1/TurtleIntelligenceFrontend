@@ -2,24 +2,18 @@ import {Handle, NodeProps, Position} from "reactflow";
 import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
 import {nodeMoveAndModify} from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/nodeFuncts";
 import NWrapper from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/NWrapper";
-import NodeLabel, {NodeIcon} from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/NodeLabel";
+import NodeLabel from "@Turtle/LLM/LLMAgentsDock/Edit/VisTools/NodeLabel";
 import {INPUT_HANDLE_STYLE, OUTPUT_HANDLE_STYLE, SUBNODE_HANDLE_STYLE} from "@Turtle/LLM/LLMAgentsDock/Edit/Styles";
 import IconBookmarkManager from "@Turtle/Icons/IconBookmarkManager";
-import ColorConstants from "@Turtle/Constants/ColorConstants"
 
 
-export default function ForeachHandle(props: NodeProps<AgentNodeParent>) {
+export default function ABErrorWithConnNodeHandle(props: NodeProps<AgentNodeParent>) {
 
     return (
         <NWrapper
             nodeProps={props}
-            nodeStyle={{
-                width: 50,
-                height: 50,
-                justifyContent: 'center',
-            }}
         >
-            <NodeIcon node={props.data}/>
+            <NodeLabel node={props.data}/>
 
             <Handle
                 id={"a"}
@@ -32,7 +26,7 @@ export default function ForeachHandle(props: NodeProps<AgentNodeParent>) {
             />
 
             <Handle
-                id={"loop"}
+                id={"b"}
                 position={Position.Right}
                 type="source"
                 style={{
@@ -42,7 +36,7 @@ export default function ForeachHandle(props: NodeProps<AgentNodeParent>) {
             />
 
             <Handle
-                id={"loop"}
+                id={"err"}
                 position={Position.Right}
                 type="source"
                 style={{
@@ -50,6 +44,16 @@ export default function ForeachHandle(props: NodeProps<AgentNodeParent>) {
                     top: "75%"
                 }}
             />
+
+            <Handle
+                id={"conn"}
+                position={Position.Bottom}
+                type="source"
+                style={{
+                    ...SUBNODE_HANDLE_STYLE,
+                }}
+            />
+
         </NWrapper>
 
     )

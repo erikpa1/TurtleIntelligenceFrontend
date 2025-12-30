@@ -5,6 +5,7 @@ import NodesFactory from "@Turtle/LLM/LLMAgentsDock/Data/NodesFactory"
 import React from "react";
 import {VerticalForm} from "@Turtle/Antd/Formular";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
+import ColorAttributeView from "@Turtle/Components/Forms/ColorAttributeView"
 
 
 export default function COUNodeView(props: COUEntityView<AgentNodeParent>) {
@@ -28,6 +29,11 @@ export default function COUNodeView(props: COUEntityView<AgentNodeParent>) {
                 inputProps={{disabled: true}}
             />
 
+
+            <ColorAttributeView
+                entity={props.entity}
+                attribute={"color"}
+            />
 
             {viewComponent}
         </VerticalForm>

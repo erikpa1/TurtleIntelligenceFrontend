@@ -74,10 +74,14 @@ export default function NWrapper({
     const markerWidth = nodeStyle.width ? nodeStyle.width : 150
     const markerHeight = nodeStyle.width ? nodeStyle.width : 92 / 2
 
+
+    const nodeColor = nodeProps.data.color
+
     return (
         <div
             className="react-flow__node-default"
             style={{
+                backgroundColor: nodeColor === ""? "white" : nodeColor,
                 borderColor: ColorConstants.GRAY,
                 display: 'flex',
                 alignItems: 'center',

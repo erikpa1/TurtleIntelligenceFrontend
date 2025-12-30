@@ -173,14 +173,13 @@ function _NodesFlowEditor({
         setNodes(asNodes as any)
 
         const newEdges: Edge<AgentNodeEdge>[] = nodesConnections.map((connection) => {
-
             return {
                 id: connection.runTimeUid,
                 source: connection.source,
                 sourceHandle: connection.sourceHandle,
                 target: connection.target,
                 targetHandle: connection.targetHandle,
-                data: connection
+                data: connection,
             }
         })
 

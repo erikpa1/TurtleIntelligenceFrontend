@@ -14,17 +14,20 @@ export async function COU(api: any, props: COUEntityView<any>) {
 interface COUSubmitButtonProps {
     api: any
     props: COUEntityView<any>
+    afterUpdate?: () => void
 }
 
 export function COUSubmitButton({
                                     api,
-                                    props
+                                    props,
+                                    afterUpdate
                                 }: COUSubmitButtonProps) {
 
     async function submit() {
         props.onBeforeUpdate?.()
         await COU(api, props)
         props.onAfterUpdate?.()
+        afterUpdate?.()
     }
 
     return (

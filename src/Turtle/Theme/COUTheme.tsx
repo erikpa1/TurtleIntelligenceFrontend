@@ -7,11 +7,20 @@ import ThemeApi from "@Turtle/Theme/ThemeApi"
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView"
 import ColorAttributeView from "@Turtle/Components/Forms/ColorAttributeView"
 import {BoolAttributeView} from "@Turtle/Components/Forms/BoolPropertyView"
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
 
 
 export default function COUTheme(props: COUEntityView<TurtleTheme>) {
 
+    const {setTheme} = useTurtleTheme()
+
     const entity = props.entity
+
+    function refreshDefault() {
+        if (props.entity.default) {
+            setTheme(props.entity)
+        }
+    }
 
     return (
         <VerticalForm>
@@ -33,6 +42,11 @@ export default function COUTheme(props: COUEntityView<TurtleTheme>) {
 
             <ColorAttributeView
                 entity={entity}
+                attribute={"primaryColor"}
+            />
+
+            <ColorAttributeView
+                entity={entity}
                 attribute={"iconPrimaryColor"}
             />
 
@@ -41,7 +55,11 @@ export default function COUTheme(props: COUEntityView<TurtleTheme>) {
                 attribute={"iconSecondaryColor"}
             />
 
-            <COUSubmitButton api={ThemeApi} props={props}/>
+            <COUSubmitButton
+                api={ThemeApi}
+                props={props}
+                afterUpdate={refreshDefault}
+            />
         </VerticalForm>
     )
 }

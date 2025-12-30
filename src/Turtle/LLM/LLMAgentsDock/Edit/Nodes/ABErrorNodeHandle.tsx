@@ -7,7 +7,7 @@ import {INPUT_HANDLE_STYLE, OUTPUT_HANDLE_STYLE, SUBNODE_HANDLE_STYLE} from "@Tu
 import IconBookmarkManager from "@Turtle/Icons/IconBookmarkManager";
 
 
-export default function ABNode(props: NodeProps<AgentNodeParent>) {
+export default function ABErrorNodeHandle(props: NodeProps<AgentNodeParent>) {
 
     return (
         <NWrapper
@@ -20,7 +20,8 @@ export default function ABNode(props: NodeProps<AgentNodeParent>) {
                 position={Position.Left}
                 type="target"
                 style={{
-                    ...INPUT_HANDLE_STYLE
+                    ...INPUT_HANDLE_STYLE,
+                    top:"25%"
                 }}
             />
 
@@ -29,9 +30,21 @@ export default function ABNode(props: NodeProps<AgentNodeParent>) {
                 position={Position.Right}
                 type="source"
                 style={{
-                    ...OUTPUT_HANDLE_STYLE
+                    ...OUTPUT_HANDLE_STYLE,
+                    top: "25%"
                 }}
             />
+
+            <Handle
+                id={"err"}
+                position={Position.Right}
+                type="source"
+                style={{
+                    ...OUTPUT_HANDLE_STYLE,
+                    top: "75%"
+                }}
+            />
+
         </NWrapper>
 
     )

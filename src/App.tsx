@@ -14,12 +14,10 @@ function App() {
 
     const [isLoading, setIsLoading] = React.useState(true)
 
-    const initTheme = useThemeInit()
-
 
     async function refresh() {
         setIsLoading(true)
-        await initTheme()
+        //Nothing to do yet
         setIsLoading(false)
     }
 
