@@ -103,8 +103,6 @@ export default function LLMAgentLLMAgentEditCanvasEditCanvas({
 }
 
 
-
-
 interface _NodesFlowEditorProps {
     agentNodes: AgentNodeParent[]
     nodesConnections: AgentNodeEdge[]
@@ -180,6 +178,11 @@ function _NodesFlowEditor({
                 target: connection.target,
                 targetHandle: connection.targetHandle,
                 data: connection,
+                // animated: true,
+                style: {
+                    // stroke: "red",
+                    // strokeDasharray: '5 5'
+                }
             }
         })
 
