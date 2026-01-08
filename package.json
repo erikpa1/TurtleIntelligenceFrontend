@@ -24,7 +24,7 @@
         "@types/react": "^17.0.34",
         "@types/react-dom": "^17.0.11",
         "@types/three": "^0.134.0",
-        "antd": "5.26.1",
+        "antd": "6.1.4",
         "apexcharts": "^4.7.0",
         "axios": "^1.13.2",
         "dayjs": "1.11.13",

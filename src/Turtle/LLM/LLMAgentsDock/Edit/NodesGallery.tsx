@@ -51,7 +51,7 @@ export default function NodesGallery({agentUid, onBeforeSubmit}: AgentNodesLibra
                 NodesLibrary.ListCategorized().map((val) => {
                     return (
                         <React.Fragment key={val.name}>
-                            <Divider orientation={"left"}>
+                            <Divider titlePlacement={"start"}>
                                 {t(val.name)}
                             </Divider>
 

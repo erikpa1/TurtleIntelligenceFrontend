@@ -39,7 +39,7 @@ function _SplitCreationLine({entity}: SplitBehPropertiesProps) {
 
     return (
         <>
-            <Divider orientation="left">
+            <Divider titlePlacement="start">
                 {t("Splitting")}
             </Divider>
 

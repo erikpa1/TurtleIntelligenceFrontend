@@ -88,7 +88,7 @@ export default function TurtleAppsGallery({onRereoute}: TurtleAppsGalleryProps) 
                 })().map((category) => {
                     return (
                         <React.Fragment key={category.titleKey}>
-                            <Divider orientation={"left"}>
+                            <Divider titlePlacement={"start"}>
                                 {category.titleKey === "3D" ? category.titleKey : t(category.titleKey)}:
                             </Divider>
 
