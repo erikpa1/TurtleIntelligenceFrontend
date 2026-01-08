@@ -22,37 +22,34 @@
         "noImplicitAny": false,
         "noUnusedParameters": false,
         "noFallthroughCasesInSwitch": true,
-        "baseUrl": ".",
+//        "baseUrl": ".",
         "paths": {
-            "@ui/*": [
-                "src/ui/*"
-            ],
             "@Turtle/*": [
-                "src/Turtle/*"
+                "./src/Turtle/*"
             ],
             "@TurtleData/*": [
-                "src/TurtleData/*"
+                "./src/TurtleData/*"
             ],
             "@TurtleApp/*": [
-                "src/TurtleApp/*"
+                "./src/TurtleApp/*"
             ],
             "@TurtleCrm/*": [
-                "src/TurtleCrm/*"
+                "./src/TurtleCrm/*"
             ],
             "@TurtleSecurity/*": [
-                "src/TurtleSecurity/*"
+                "./src/TurtleSecurity/*"
             ],
             "@TurtlePostman/*": [
-                "src/TurtlePostman/*"
+                "./src/TurtlePostman/*"
             ],
             "@TurtleChat/*": [
-                "src/TurtleChat/*"
+                "./src/TurtleChat/*"
             ],
             "@TurtleSim/*": [
-                "src/TurtleSim/*"
+                "./src/TurtleSim/*"
             ],
             "@NavBar/*": [
-                "src/NavBar/*"
+                "./src/NavBar/*"
             ]
         }
     },
