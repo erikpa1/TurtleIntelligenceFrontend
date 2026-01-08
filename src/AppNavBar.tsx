@@ -13,6 +13,7 @@ import IconChat from "@Turtle/Icons/IconChat";
 import IconSupportAgent from "@Turtle/Icons/IconSupportAgent"
 import IconArticlePerson from "@Turtle/Icons/IconArticlePerson"
 import IconHub from "@Turtle/Icons/IconHub"
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 
 export default function AppNavBar() {
 
@@ -121,7 +122,16 @@ export default function AppNavBar() {
                         />
 
                     </div>
+
+
+                    <button onClick={() => {
+                        useTurtleTheme.getState().swapTheme()
+                    }}>
+                        Theme
+                    </button>
+
                 </Flex>
+
 
             </Layout.Sider>
 

@@ -2,16 +2,21 @@
 
 import React from "react"
 import {Flex} from "antd";
-import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
+
+
+import {theme as antdTheme} from 'antd';
 
 export default function TopBarWrapper({children}) {
 
     const {theme} = useTurtleTheme();
 
+    const {token} = antdTheme.useToken()
+
     return (
         <div style={{
             height: theme.topBarHeightBig,
-            backgroundColor: "white",
+            backgroundColor: token.colorBgContainer,
             position: "relative",
             paddingLeft: "15px",
             paddingRight: "15px",

@@ -213,25 +213,27 @@ function _NodesFlowEditor({
     }, [])
 
     return (
-        <ReactFlow
-            nodes={nodes}
-            edges={edges}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            onEdgeDoubleClick={deleteEdge as any}
-            onConnect={onConnect}
-            nodeTypes={NODE_TYPES}
-            fitView
-            onNodesDelete={nodeDeleted}
-            deleteKeyCode={["Backspace", "Delete"]}
-            onContextMenu={(e) => {
-                e.preventDefault()
-                addNodePressed()
-            }}
-        >
-            <MiniMap/>
-            <Controls/>
-            <Background/>
-        </ReactFlow>
+        <div style={{height: "100%"}} className={"light"}>
+            <ReactFlow
+                nodes={nodes}
+                edges={edges}
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
+                onEdgeDoubleClick={deleteEdge as any}
+                onConnect={onConnect}
+                nodeTypes={NODE_TYPES}
+                fitView
+                onNodesDelete={nodeDeleted}
+                deleteKeyCode={["Backspace", "Delete"]}
+                onContextMenu={(e) => {
+                    e.preventDefault()
+                    addNodePressed()
+                }}
+            >
+                <MiniMap/>
+                <Controls/>
+                <Background/>
+            </ReactFlow>
+        </div>
     );
 }

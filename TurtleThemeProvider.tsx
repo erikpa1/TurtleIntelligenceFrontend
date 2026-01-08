@@ -1,5 +1,5 @@
 import React from "react"
-import {ConfigProvider} from "antd";
+import {ConfigProvider, theme as antdTheme} from "antd";
 
 import ColorConstants from "@Turtle/Constants/ColorConstants";
 import {useThemeInit, useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
@@ -10,7 +10,9 @@ export default function TurtleThemeProvider({
                                             }) {
 
 
-    const {theme} = useTurtleTheme()
+    const {theme, isLight} = useTurtleTheme()
+
+    const {darkAlgorithm, defaultAlgorithm} = antdTheme
 
     const initTheme = useThemeInit()
 
@@ -21,6 +23,7 @@ export default function TurtleThemeProvider({
     return (
         <ConfigProvider
             theme={{
+                algorithm: isLight ? defaultAlgorithm : darkAlgorithm,
                 token: {
                     colorPrimary: theme.primaryColor,
                     borderRadius: 0,
@@ -62,3 +65,4 @@ export default function TurtleThemeProvider({
 
     )
 }
+
