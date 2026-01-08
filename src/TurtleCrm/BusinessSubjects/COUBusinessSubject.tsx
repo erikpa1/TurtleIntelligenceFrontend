@@ -1,4 +1,4 @@
-import {COUView} from "@Turtle/Interfaces/ICOUView";
+import {COUEntityView, COUView} from "@Turtle/Interfaces/ICOUView";
 import BusinessSubject from "@TurtleCrm/BusinessSubjects/BusinessSubject";
 import {Flex, Form} from "antd";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
@@ -6,25 +6,14 @@ import UidAttributeView from "@Turtle/Components/Forms/UidAttributeView";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import BusinessSubjectsApi from "@TurtleCrm/BusinessSubjects/BusinessSubjectsApi";
+import {COUSubmitButton} from "@Turtle/Utils/Cou";
 
 
-interface _COUBusinessSubjectProps extends COUView {
-    subject: BusinessSubject
-}
 
-export default function COUBusinessSubject({
-                                               onAfterUpdate,
-                                               onBeforeUpdate,
-                                               subject
-                                           }: _COUBusinessSubjectProps) {
+export default function COUBusinessSubject(props: COUEntityView<BusinessSubject>) {
 
-    async function submit() {
-        onAfterUpdate?.()
-        TurtleApp.Lock()
-        await BusinessSubjectsApi.COU(subject)
-        TurtleApp.Unlock()
-        onBeforeUpdate?.()
-    }
+
+    const subject = props.entity
 
     return (
         <Form layout={"vertical"}>
@@ -40,10 +29,8 @@ export default function COUBusinessSubject({
                     attribute={"uid"}
                 />
 
+                <COUSubmitButton api={BusinessSubjectsApi} props={props}/>
 
-
-
-                <RightSubmitButton onClick={submit}/>
             </Flex>
         </Form>
     )

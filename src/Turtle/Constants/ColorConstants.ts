@@ -11,6 +11,7 @@ export default class ColorConstants {
     static ORANGE = "#ff8900"
     static BLACK = "#333333"
     static WHITE = "#ffffff"
+    static MUI_BACKGROUND = "#F6F7F9"
 }
 
 

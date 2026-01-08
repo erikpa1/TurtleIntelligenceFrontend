@@ -1,7 +1,6 @@
-import {Alert, ConfigProvider, Modal, ModalFuncProps} from "antd";
+import {Alert, App, ModalFuncProps} from "antd";
 import React from "react"
 import {useTranslation} from "react-i18next";
-import ErrorBoundary from "@Turtle/Components/ErrorBoundary";
 
 import {TurtleQueryClient} from "@Turtle/TanStack";
 import {QueryClientProvider} from "react-query";
@@ -15,6 +14,8 @@ export function useTurtleModal() {
 
     const {theme} = useTurtleTheme()
 
+    const {modal} = App.useApp()
+
     const guard: any = React.useMemo(() => ({current: null}), [])
 
     function activate({
@@ -23,12 +24,13 @@ export function useTurtleModal() {
                       }: ModalFuncProps) {
 
 
-        guard.current = Modal.info({
+        guard.current = modal.confirm({
             ...props,
             title: (<div style={{color: theme.headingFontColor}}>{t(props.title as any ?? "")}:</div>),
             icon: props.icon ?? null,
             footer: null,
             closable: true,
+            zIndex: 10,
             content: (
                 <TurtleThemeProvider>
                     <Alert.ErrorBoundary>

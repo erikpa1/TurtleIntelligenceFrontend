@@ -13,12 +13,12 @@ export default function ConnectionsFiber({world}: ConnectionsFiberProps) {
 
     const [rKey, setRKey] = React.useState(0)
 
-    const [connections, setConnections] = React.useState<Array<[Entity, Entity]>>([])
+    const [connections, setConnections] = React.useState<Array<[SimEntity, SimEntity]>>([])
 
     function refresh() {
 
 
-        const pairs = new Array<[Entity, Entity]>()
+        const pairs = new Array<[SimEntity, SimEntity]>()
 
         world.connections.entries().forEach(([aPoint, bPoints],) => {
 

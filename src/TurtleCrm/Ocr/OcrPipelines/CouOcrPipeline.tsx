@@ -1,10 +1,11 @@
-import OcrPipeline from "@TurtleApp/Ocr/Data/OcrPipeline";
+
 import {Card, Flex, Form} from "antd";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import UidAttributeView from "@Turtle/Components/Forms/UidAttributeView";
 import {useTranslation} from "react-i18next";
+import OcrPipeline from "@TurtleCrm/Ocr/Data/OcrPipeline";
 
 
 interface COUOcrPipelineProps {

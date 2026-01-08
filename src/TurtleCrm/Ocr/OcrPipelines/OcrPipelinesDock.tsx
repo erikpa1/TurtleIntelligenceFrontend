@@ -1,8 +1,8 @@
 import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
 import {Splitter} from "antd";
 import ColorConstants from "@Turtle/Constants/ColorConstants";
-import OcrPipelinesHierarchy from "@TurtleApp/Ocr/OcrPipelines/OcrPipelinesHierarchy";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
+import OcrPipelinesHierarchy from "@TurtleCrm/Ocr/OcrPipelines/OcrPipelinesHierarchy";
 
 export default function OcrPipelinesDock({}) {
 

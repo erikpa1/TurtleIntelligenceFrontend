@@ -43,6 +43,7 @@ import ABErrorNodeHandle from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABErrorNodeH
 import IconJson from "@Turtle/Icons/IconJson"
 import ABErrorWithConnNodeHandle from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABErrorWithConnNodeHandle"
 import IconClinicalNotes from "@Turtle/Icons/IconClinicalNotes";
+import COUFormTrigger from "@Turtle/LLM/LLMAgentsDock/Edit/EditViews/Triggers/COUFormTrigger";
 
 export default class NodesLibrary {
 
@@ -199,6 +200,7 @@ export default class NodesLibrary {
         NodesFactory.Register({
             type: this.formTrigger,
             icon: IconClinicalNotes,
+            couComponent: COUFormTrigger,
             nodeHandle: TriggerHandle,
             groupType: "trigger",
         })

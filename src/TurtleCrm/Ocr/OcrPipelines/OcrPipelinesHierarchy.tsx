@@ -14,8 +14,8 @@ import {IconSimulation} from "@Turtle/Icons";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import ForecastApi from "@TurtleApp/Forecasting/ForecastsApi";
 import TimeManager from "@Turtle/Tools/TimeManager";
-import OcrPipeline from "@TurtleApp/Ocr/Data/OcrPipeline";
-import COUOcrPipeline from "@TurtleApp/Ocr/OcrPipelines/CouOcrPipeline";
+import OcrPipeline from "@TurtleCrm/Ocr/Data/OcrPipeline";
+import COUOcrPipeline from "@TurtleCrm/Ocr/OcrPipelines/CouOcrPipeline";
 
 export default function OcrPipelinesHierarchy({}) {
 

@@ -21,8 +21,8 @@ export default function WorldControllers({}) {
 }
 
 interface ConnMemoGuard {
-    a: null | Entity
-    b: null | Entity
+    a: null | SimEntity
+    b: null | SimEntity
 }
 
 function connectionController() {

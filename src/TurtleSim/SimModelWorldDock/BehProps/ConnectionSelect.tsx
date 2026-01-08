@@ -1,10 +1,7 @@
 import React from "react";
-import Actor from "@TurtleApp/Data/Actor";
-import ActorsApi from "@TurtleApp/Api/ActorsApi";
 import SelectItem from "@Turtle/ReflectiveUI/SelectItem";
-import Entity, {TypeData} from "@Turtle/Data/Entity";
 import {WorldSingleton} from "@TurtleApp/Data/World";
-import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity"
+import SimEntity, {TypeData} from "@TurtleSim/SimModelWorldDock/Data/SimEntity"
 
 interface ActorsSelectProps {
     entity: SimEntity

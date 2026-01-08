@@ -10,7 +10,7 @@ import {GlobalLock} from "@Turtle/Components/GlobalLock";
 import {useThemeInit} from "@Turtle/Theme/useTurleTheme";
 
 
-function App() {
+export default function TurtleApp() {
 
     const [isLoading, setIsLoading] = React.useState(true)
 
@@ -72,4 +72,4 @@ function Main({}) {
 }
 
 
-export default App;
+

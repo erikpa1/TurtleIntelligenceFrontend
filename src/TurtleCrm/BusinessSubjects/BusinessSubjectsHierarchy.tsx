@@ -84,7 +84,7 @@ export default function BusinessSubjectsHierarchy() {
             title: `${t("edit.business.subject")}:`,
             content: (
                 <COUBusinessSubject
-                    subject={subject}
+                    entity={subject}
                     onBeforeUpdate={deactivate}
                     onAfterUpdate={refresh}
                 />
@@ -94,14 +94,14 @@ export default function BusinessSubjectsHierarchy() {
     }
 
     function createBusinessSubject() {
-        const subject = new Forecast()
+        const subject = new BusinessSubject()
         subject.name = `Customer`
 
         activate({
             title: `${t("create.business.subject")}:`,
             content: (
                 <COUBusinessSubject
-                    subject={subject}
+                    entity={subject}
                     onBeforeUpdate={deactivate}
                     onAfterUpdate={refresh}
                 />
@@ -112,8 +112,8 @@ export default function BusinessSubjectsHierarchy() {
 
     async function refresh() {
 
-        const data = await ForecastApi.ListForecasts()
-        setData(createHierarchy(data))
+        // const data = await ForecastApi.ListForecasts()
+        setData(createHierarchy([]))
         setKey(crypto.randomUUID())
     }
 

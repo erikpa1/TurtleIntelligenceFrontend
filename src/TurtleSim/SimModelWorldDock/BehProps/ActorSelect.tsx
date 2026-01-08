@@ -2,7 +2,7 @@ import React from "react";
 import Actor from "@TurtleApp/Data/Actor";
 import ActorsApi from "@TurtleApp/Api/ActorsApi";
 import SelectItem from "@Turtle/ReflectiveUI/SelectItem";
-import {TypeData} from "@Turtle/Data/Entity";
+import {TypeData} from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
 
 interface ActorsSelectProps {
     attribute: string

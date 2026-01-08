@@ -19,7 +19,7 @@ export default function WorldRightBar() {
 
     const [activeTab, setActiveTab] = React.useState("config")
 
-    const [entity, setEntity] = React.useState<Entity | null>(null)
+    const [entity, setEntity] = React.useState<SimEntity | null>(null)
 
 
     function entityPicked(entity: SimEntity) {

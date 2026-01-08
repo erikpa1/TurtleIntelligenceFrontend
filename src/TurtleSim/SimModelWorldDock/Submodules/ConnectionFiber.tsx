@@ -10,8 +10,8 @@ import ColorConstants from "@Turtle/Constants/ColorConstants";
 
 
 interface ConnectionFiberProps {
-    a: Entity
-    b: Entity
+    a: SimEntity
+    b: SimEntity
 }
 
 

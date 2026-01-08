@@ -27,7 +27,7 @@ export default function TurtleThemeProvider({
                 },
                 components: {
                     Button: {
-                        defaultBorderColor: theme.borderColor,
+                        defaultBorderColor: theme.primaryColor,
                         defaultHoverBorderColor: theme.borderHoverColor
                     },
                     Input: {
@@ -48,6 +48,10 @@ export default function TurtleThemeProvider({
                         borderRadius: 0,
                         borderRadiusLG: 0,
                         borderRadiusSM: 0,
+                        titleColor: theme.primaryColor,
+                        headerBg: ColorConstants.MUI_BACKGROUND,
+                        contentBg: ColorConstants.MUI_BACKGROUND,
+                        footerBg: ColorConstants.MUI_BACKGROUND,
                     }
                     // Add other input components as needed
                 },

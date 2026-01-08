@@ -5,6 +5,7 @@ import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import SimModelsApi from "@TurtleApp/Api/SimModelsApi";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
+import {VerticalForm} from "@Turtle/Antd/Formular";
 
 interface COUSimModelProps {
     model: SimModel
@@ -29,16 +30,15 @@ export default function COUSimModel({
         onAfterSubmit()
     }
 
-
     return (
-        <Form>
-            <Flex vertical gap={15}>
-
+        <VerticalForm>
+            <Flex
+                vertical
+                gap={15}
+            >
                 <StringAttributeView entity={model} attribute={"name"}/>
-
                 <RightSubmitButton onClick={submitPressed}/>
-
             </Flex>
-        </Form>
+        </VerticalForm>
     )
 }

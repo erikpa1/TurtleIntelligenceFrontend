@@ -82,7 +82,7 @@ export default function DynamicHierarchy<T extends any>({
     function editEntity(entity: T) {
 
         const tmp = React.createElement(cou, {
-            entity: SimEntity,
+            entity: entity,
             onBeforeUpdate: deactivate,
             onAfterUpdate: refresh,
         })
@@ -98,7 +98,7 @@ export default function DynamicHierarchy<T extends any>({
         entity.name = api.bucket
 
         const tmp = React.createElement(cou, {
-            entity: SimEntity,
+            entity: new api.TConstructor(),
             onBeforeUpdate: deactivate,
             onAfterUpdate: refresh,
         })
