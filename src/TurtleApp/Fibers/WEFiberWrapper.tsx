@@ -3,8 +3,7 @@ import React from "react";
 import * as THREE from "three";
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
-import {Simulate} from "react-dom/test-utils";
-import click = Simulate.click;
+
 import {Box3D} from "@Turtle/Fibers/Drawing";
 import SimFactory from "@TurtleSim/Factories/SimFactory";
 import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";

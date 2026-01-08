@@ -14,7 +14,7 @@ export default function LLMChatInput({isBlocked, onChat}: LLMChatInputProps) {
 
     const [t] = useTranslation()
 
-    const inputRef = React.useRef<HTMLInputElement>()
+    const inputRef = React.useRef<HTMLInputElement>(null)
 
     const [activeText, setActiveText] = React.useState("")
 

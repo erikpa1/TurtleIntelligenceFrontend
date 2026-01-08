@@ -18,7 +18,7 @@ export default function TimeExrItem({
 
     const [t] = useTranslation()
 
-    const timePickerRef = React.useRef<any>()
+    const timePickerRef = React.useRef<any>(null)
 
 
     return (

@@ -4,8 +4,7 @@ import {Flex, Form, Space, Spin, Timeline, Tree, Typography} from "antd";
 import TextArea from "antd/es/input/TextArea";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import LLMAgentApi from "@Turtle/LLM/Api/LLMAgentApi";
-import {Simulate} from "react-dom/test-utils";
-import reset = Simulate.reset;
+
 import {useTranslation} from "react-i18next";
 import LLModelSelect from "@Turtle/LLM/LLMsDock/LLMModelsSelect";
 import {CheckCircleTwoTone} from "@ant-design/icons";
