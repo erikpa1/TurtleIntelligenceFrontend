@@ -23,6 +23,7 @@ import IconLeftClick from "@Turtle/Icons/IconLeftClick"
 import IconJson from "@Turtle/Icons/IconJson"
 import IconSupportAgent from "@Turtle/Icons/IconSupportAgent"
 import IconArticlePerson from "@Turtle/Icons/IconArticlePerson"
+import IconClinicalNotes from "@Turtle/Icons/IconClinicalNotes";
 
 
 export default function IconsGalleryDock({}) {
@@ -79,6 +80,7 @@ export function IconsGallery({}) {
                         ["Json", IconJson],
                         ["SupportAgent", IconSupportAgent],
                         ["ArticlePerson", IconArticlePerson],
+                        ["IconClinicalNotes", IconClinicalNotes],
                     ].map(([lang, icon], i) => {
 
                         const tmp: any = React.createElement(icon, {

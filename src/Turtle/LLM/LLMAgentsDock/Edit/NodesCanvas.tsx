@@ -223,6 +223,7 @@ function _NodesFlowEditor({
             nodeTypes={NODE_TYPES}
             fitView
             onNodesDelete={nodeDeleted}
+            deleteKeyCode={["Backspace", "Delete"]}
             onContextMenu={(e) => {
                 e.preventDefault()
                 addNodePressed()

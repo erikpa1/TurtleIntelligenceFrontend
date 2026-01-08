@@ -42,12 +42,14 @@ import {IconSimulation} from "@Turtle/Icons"
 import ABErrorNodeHandle from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABErrorNodeHandle"
 import IconJson from "@Turtle/Icons/IconJson"
 import ABErrorWithConnNodeHandle from "@Turtle/LLM/LLMAgentsDock/Edit/Nodes/ABErrorWithConnNodeHandle"
+import IconClinicalNotes from "@Turtle/Icons/IconClinicalNotes";
 
 export default class NodesLibrary {
 
     static httpTrigger = "httpTrigger"
     static chatTrigger = "chatTrigger"
     static clickTrigger = "clickTrigger"
+    static formTrigger = "formTrigger"
 
     static bash = "bash"
     static python = "python"
@@ -194,6 +196,13 @@ export default class NodesLibrary {
             groupType: "trigger",
         })
 
+        NodesFactory.Register({
+            type: this.formTrigger,
+            icon: IconClinicalNotes,
+            nodeHandle: TriggerHandle,
+            groupType: "trigger",
+        })
+
         /*
             Action nodes
          */
@@ -323,7 +332,6 @@ export default class NodesLibrary {
             nodeHandle: ABErrorNodeHandle,
             groupType: "filesystem",
         })
-
 
 
         NodesFactory.Register({
