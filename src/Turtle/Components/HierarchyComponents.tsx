@@ -1,4 +1,4 @@
-import React from "react"
+import React, {EventHandler, MouseEvent, MouseEventHandler} from "react"
 import {Button, Flex, Popconfirm} from "antd";
 import {
     DeleteRowOutlined,
@@ -162,8 +162,8 @@ export function HierarchyEditButton({onClick}) {
 
 interface HierarchyCustomIconProps {
     icon: any
-    onClick?: (e) => void
-    onDoubleClick?: (e) => void
+    onClick?: (e: MouseEvent) => void
+    onDoubleClick?: (e: MouseEvent) => void
 
 }
 
@@ -178,7 +178,7 @@ export function HierarchyCustomIcon({
         <Button
             type="text"
             size="small"
-            onDoubleClick={onDoubleClick}
+            onDoubleClick={onDoubleClick as any}
             onClick={(e) => {
                 e.stopPropagation()
                 onClick && onClick(e)

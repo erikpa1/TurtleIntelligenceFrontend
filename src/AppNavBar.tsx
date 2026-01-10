@@ -14,6 +14,7 @@ import IconSupportAgent from "@Turtle/Icons/IconSupportAgent"
 import IconArticlePerson from "@Turtle/Icons/IconArticlePerson"
 import IconHub from "@Turtle/Icons/IconHub"
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
+import IconRobot2 from "@Turtle/Icons/IconRobot2";
 
 export default function AppNavBar() {
 
@@ -80,9 +81,9 @@ export default function AppNavBar() {
                         }}/>
 
                         <MyNavbarItem
-                            icon={<NavBarIcon icon={IconSimulation}/>}
-                            link={"/sim-models"}
-                            lang={"simulations"}
+                            icon={<NavBarIcon icon={IconRobot2}/>}
+                            link={"/blueprints"}
+                            lang={"blueprints"}
                             iconStyle={ICON_STYLE}
                         />
 
@@ -94,32 +95,18 @@ export default function AppNavBar() {
                         />
 
                         <MyNavbarItem
-                            icon={<NavBarIcon icon={IconSupportAgent}/>}
-                            link={"/llm-agent-chat"}
-                            lang={"agent.chat"}
+                            icon={<NavBarIcon icon={IconSimulation}/>}
+                            link={"/sim-models"}
+                            lang={"simulations"}
                             iconStyle={ICON_STYLE}
                         />
 
-                        <MyNavbarItem
-                            icon={<NavBarIcon icon={IconArticlePerson}/>}
-                            link={"/doc-int"}
-                            lang={"document.intelligence"}
-                            iconStyle={ICON_STYLE}
-                        />
-
-                        <MyNavbarItem
-                            icon={<NavBarIcon icon={IconHub}/>}
-                            lang={"knowledgehub"}
-                            link={"/kh"}
-                            iconStyle={ICON_STYLE}
-                        />
-
-                        <MyNavbarItem
-                            lang={"login"}
-                            link={"/login"}
-                            icon={<NavBarIcon icon={IconArticlePerson}/>}
-                            iconStyle={ICON_STYLE}
-                        />
+                        {/*<MyNavbarItem*/}
+                        {/*    lang={"login"}*/}
+                        {/*    link={"/login"}*/}
+                        {/*    icon={<NavBarIcon icon={IconArticlePerson}/>}*/}
+                        {/*    iconStyle={ICON_STYLE}*/}
+                        {/*/>*/}
 
                     </div>
 

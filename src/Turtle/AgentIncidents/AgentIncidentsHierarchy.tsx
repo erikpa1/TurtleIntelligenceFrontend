@@ -42,7 +42,7 @@ export default function AgentIncidentsHierarchy(props: any) {
                         key: val.uid,
                         title: (
                             <HierarchyFlex onClick={() => {
-                                navigate(`/agents-incidents/${val.uid}`)
+                                navigate(`/blueprints-incidents/${val.uid}`)
                             }}>
 
                                 {val.at}

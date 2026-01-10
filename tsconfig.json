@@ -22,7 +22,7 @@
         "noImplicitAny": false,
         "noUnusedParameters": false,
         "noFallthroughCasesInSwitch": true,
-//        "baseUrl": ".",
+        //        "baseUrl": ".",
         "paths": {
             "@Turtle/*": [
                 "./src/Turtle/*"
@@ -47,6 +47,9 @@
             ],
             "@TurtleSim/*": [
                 "./src/TurtleSim/*"
+            ],
+            "@TurtleBlueprints/*": [
+                "./src/TurtleBlueprints/*"
             ],
             "@NavBar/*": [
                 "./src/NavBar/*"

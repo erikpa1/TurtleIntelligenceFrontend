@@ -1,7 +1,7 @@
 import React from "react";
 import axios, {Axios, Axios as BigAxios, AxiosError, AxiosRequestConfig, AxiosResponse} from "axios";
 import {useTranslation} from "react-i18next";
-import { message} from "antd";
+import {message} from "antd";
 import TurtleApp from "@TurtleApp/TurtleApp";
 
 import {QueryHeader} from "@Turtle/Utils/Http";
@@ -12,7 +12,7 @@ const turxios = axios.create();
 
 export function TurxiosProvider() {
 
-    const [messageApi] = message.useMessage()
+    const [messageApi, contextHolder] = message.useMessage()
 
     const [t] = useTranslation()
 
@@ -21,8 +21,6 @@ export function TurxiosProvider() {
     }
 
     function errorInterceptor(error: AxiosError) {
-
-        console.log(error)
 
         if (error.response && error.response.status === 401) {
             messageApi.error(t("Unauthorized"))
@@ -57,9 +55,12 @@ export function TurxiosProvider() {
         };
     }, []);
 
-    return (<></>)
-};
-
+    return (
+        <>
+            {contextHolder}
+        </>
+    )
+}
 
 export async function getWithAbort<T = any>(
     controller: AbortController,
@@ -95,7 +96,6 @@ export async function QueryEntities(route: string, query: any, clazz, config?: A
     })).data
 
     return data.map((val) => {
-        console.log(val)
         const tmp = new clazz()
         tmp.FromJson(val)
         return tmp

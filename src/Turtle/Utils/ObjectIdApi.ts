@@ -1,4 +1,4 @@
-import AgentNodeParent from "@Turtle/LLM/LLMAgentsDock/Data/Nodes/AgentNodeParent";
+import AgentNodeParent from "../../TurtleBlueprints/Data/Nodes/AgentNodeParent";
 import {fetchMongoUid} from "@Turtle/Utils/Uid";
 import Turxios from "@Turtle/Api/Turxios"
 

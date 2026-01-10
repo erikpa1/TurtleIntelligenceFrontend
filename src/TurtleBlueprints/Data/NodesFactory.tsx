@@ -1,0 +1,132 @@
+import React from "react"
+
+import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import {IconSimulation} from "@Turtle/Icons"
+import {EmptyTypeData} from "@TurtleBlueprints/Data/Nodes/NodeTypeData";
+
+interface RetFun {
+    node: AgentNodeParent
+}
+
+
+export type NodeRegistration = {
+    type: string
+    couComponent?: any
+    nodeHandle?: any
+    groupType?: string
+    dataConstructor?: any
+    icon?: string | any
+    connections?: | any
+
+}
+
+
+export default class NodesFactory {
+
+    static NODES_DATA = new Map<string, any>()
+    static NODES = new Map<string, React.Component<any, any>>()
+    static NODE_COUS = new Map<string, React.Component<any, any>>()
+    static NODE_ICONS = new Map<string, React.Component | string>()
+    static NODE_HANDLERS = {}
+    static NODE_GROUPS = new Map<string, Array<any>>()
+
+    static NODE_CONNECTIONS = new Map<string, Array<any>>()
+
+    static GetDataByType(type: string, jObj: any) {
+        const tmpConstructor = this.NODES_DATA.get(type)
+
+        if (Boolean(tmpConstructor) == false) {
+            console.log(jObj)
+            console.error(`Failed to get constructor of: [${type}]`)
+        }
+
+        const tmp = new (tmpConstructor ?? EmptyTypeData)()
+        tmp.FromJson(jObj)
+        return tmp
+
+    }
+
+    static GetCOUView(nodeType): React.Component<RetFun> {
+        const tmp = this.NODE_COUS.get(nodeType)
+        if (tmp) {
+            return tmp
+        } else {
+            return _NotFoundFragment as any
+        }
+    }
+
+    static GetIcon(nodeType): any {
+        const tmp = this.NODE_ICONS.get(nodeType)
+        if (tmp) {
+            if (typeof tmp === "string") {
+                return () => {
+                    return <img
+                        src={tmp as ""}
+                        alt={"icon"}
+                        style={{
+                            width: "25px",
+                            height: "25px",
+                        }}
+                    />
+                }
+            } else {
+                return tmp
+            }
+        } else {
+            return IconSimulation as any
+        }
+    }
+
+    static Register(reg: NodeRegistration) {
+
+        if (reg.couComponent) {
+            this.NODE_COUS.set(reg.type, reg.couComponent)
+        }
+
+        if (reg.dataConstructor) {
+            this.NODES_DATA.set(reg.type, reg.dataConstructor)
+        }
+
+        if (reg.nodeHandle) {
+            this.NODE_HANDLERS[reg.type] = reg.nodeHandle
+        }
+
+        if (reg.groupType) {
+            if (this.NODE_GROUPS.has(reg.groupType)) {
+                this.NODE_GROUPS.get(reg.groupType)?.push(reg.type)
+            } else {
+                this.NODE_GROUPS.set(reg.groupType, [reg.type])
+            }
+        }
+
+        if (reg.icon) {
+            this.NODE_ICONS.set(reg.type, reg.icon)
+        }
+
+        if (reg.connections) {
+            this.NODE_CONNECTIONS.set(reg.type, reg.connections)
+        }
+
+    }
+
+    static CleanUp() {
+        this.NODES.clear()
+        this.NODE_COUS.clear()
+        this.NODE_HANDLERS = {}
+        this.NODES_DATA.clear()
+        this.NODE_ICONS.clear()
+        this.NODE_HANDLERS = {}
+        this.NODE_GROUPS.clear()
+        this.NODE_CONNECTIONS.clear()
+
+    }
+
+}
+
+function _NotFoundFragment({}) {
+    return (
+        <div>
+            Undefined edit view
+        </div>
+    )
+}

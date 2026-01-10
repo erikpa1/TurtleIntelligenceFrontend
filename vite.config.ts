@@ -17,6 +17,7 @@ export default defineConfig({
             "@TurtlePostman": path.resolve(__dirname, "src/TurtlePostman"),
             "@TurtleChat": path.resolve(__dirname, "src/TurtleChat"),
             "@TurtleSim": path.resolve(__dirname, "src/TurtleSim"),
+            "@TurtleBlueprints": path.resolve(__dirname, "src/TurtleBlueprints"),
             "@NavBar": path.resolve(__dirname, "src/NavBar"),
         },
     },

@@ -5,7 +5,7 @@ export default class AgentIncidentsApi {
 
     static async List(): Promise<AgentIncident[]> {
 
-        const response = (await Turxios.get<Array<any>>("/api/agents-incidents")).data
+        const response = (await Turxios.get<Array<any>>("/api/blueprints-incidents")).data
 
         return response.map((val) => {
             const tmp = new AgentIncident()
@@ -20,12 +20,12 @@ export default class AgentIncidentsApi {
         const data = new FormData()
         data.set("data", JSON.stringify(inc.ToJson()))
 
-        await Turxios.put(`/api/agents-incidents`, data)
+        await Turxios.put(`/api/blueprints-incidents`, data)
     }
 
 
     static async Delete(incUid: string) {
-        await Turxios.delete(`/api/agents-incidents`, {
+        await Turxios.delete(`/api/blueprints-incidents`, {
             params: {
                 incUid: incUid
             }
