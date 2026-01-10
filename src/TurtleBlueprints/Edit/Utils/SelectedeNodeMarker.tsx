@@ -2,10 +2,10 @@ import ColorConstants from "@Turtle/Constants/ColorConstants";
 import {KeyboardKeys, useKeyDownEvent} from "@Turtle/Data/Aee";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import {useAgentNodesZus} from "@TurtleBlueprints/Edit/agentNodeZus";
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 
 interface SelectedNodeMarkerProps {
-    node: AgentNodeParent
+    node: NodeParent
     isActive: boolean
     width: number
     height: number

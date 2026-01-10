@@ -1,5 +1,5 @@
 import {Handle, NodeProps, Position} from "reactflow";
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {nodeMoveAndModify} from "@TurtleBlueprints/Edit/VisTools/nodeFuncts";
 import {Tooltip} from "antd";
 import ColorConstants from "@Turtle/Constants/ColorConstants";
@@ -10,7 +10,7 @@ import NWrapper from "@TurtleBlueprints/Edit/Nodes/NWrapper";
 import {NodeIcon} from "@TurtleBlueprints/Edit/VisTools/NodeLabel"
 
 
-export default function CircleUpTargetNode(props: NodeProps<AgentNodeParent>) {
+export default function CircleUpTargetNode(props: NodeProps<NodeParent>) {
 
     return (
         <NWrapper

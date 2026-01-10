@@ -1,5 +1,5 @@
 import {Handle, NodeProps, Position} from "reactflow";
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {nodeMoveAndModify} from "@TurtleBlueprints/Edit/VisTools/nodeFuncts";
 import NWrapper from "@TurtleBlueprints/Edit/Nodes/NWrapper";
 import NodeLabel from "@TurtleBlueprints/Edit/VisTools/NodeLabel";
@@ -8,7 +8,7 @@ import IconBookmarkManager from "@Turtle/Icons/IconBookmarkManager";
 import ColorConstants from "@Turtle/Constants/ColorConstants";
 
 
-export default function ABErrorNodeHandle(props: NodeProps<AgentNodeParent>) {
+export default function ABErrorNodeHandle(props: NodeProps<NodeParent>) {
 
     return (
         <NWrapper

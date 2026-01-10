@@ -1,5 +1,5 @@
 import {Node, NodeProps} from "reactflow";
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {Tooltip} from "antd";
 import {nodeMoveAndModify} from "@TurtleBlueprints/Edit/VisTools/nodeFuncts";
 import ColorConstants from "@Turtle/Constants/ColorConstants";
@@ -12,7 +12,7 @@ import NodesLibrary from "@TurtleBlueprints/Data/NodesLibrary"
 import NodesFactory from "@TurtleBlueprints/Data/NodesFactory"
 
 interface NWrapperProps extends React.PropsWithChildren<any> {
-    nodeProps: NodeProps<AgentNodeParent>
+    nodeProps: NodeProps<NodeParent>
     nodeStyle?: React.CSSProperties;
 }
 

@@ -1,4 +1,4 @@
-import AgentNodeParent, {CanvasStatus} from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent, {CanvasStatus} from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import Turxios, {DeleteEntity, PostEntity, QueryEntities} from "@Turtle/Api/Turxios"
 import ObjectIdApi from "@Turtle/Utils/ObjectIdApi"
 import AgentNodeEdge, {NodeConnStatus} from "@TurtleBlueprints/Data/Nodes/NodeConnections"
@@ -14,21 +14,21 @@ export default class BlueprintNodesApi {
         return result
     }
 
-    static async ListNodesOfAgent(agentUid: string): Promise<Array<AgentNodeParent>> {
+    static async ListNodesOfAgent(agentUid: string): Promise<Array<NodeParent>> {
         const query = ObjectIdApi.GetObjectIdQuery("parent", agentUid)
-        return await QueryEntities("/api/blueprints/nodes/query", query, AgentNodeParent)
+        return await QueryEntities("/api/blueprints/nodes/query", query, NodeParent)
     }
 
     static async Delete(nodeUid: string) {
         await DeleteEntity("/api/blueprints/node", nodeUid)
     }
 
-    static async COU(node: AgentNodeParent) {
+    static async COU(node: NodeParent) {
         await PostEntity("/api/blueprints/node", node)
     }
 
 
-    static async PlayNode(playNode: AgentNodeParent): Promise<LLMPipeline> {
+    static async PlayNode(playNode: NodeParent): Promise<LLMPipeline> {
         const tmp: HttpTriggerData = playNode.typeData as any
 
         var body: any = undefined
@@ -50,8 +50,8 @@ export default class BlueprintNodesApi {
 
 
     static async SavePressed(
-        nodes: Array<AgentNodeParent>,
-        deletedNodes: Array<AgentNodeParent>,
+        nodes: Array<NodeParent>,
+        deletedNodes: Array<NodeParent>,
         edges: Array<AgentNodeEdge>,
         deletedEdges: Array<AgentNodeEdge>
     ) {

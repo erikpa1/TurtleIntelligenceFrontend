@@ -1,5 +1,5 @@
 import {Handle, NodeProps, Position} from "reactflow";
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 
 import ColorConstants from "@Turtle/Constants/ColorConstants";
 import {HierarchyDivIcon} from "@Turtle/Components/HierarchyComponents";
@@ -9,7 +9,7 @@ import NodesFactory from "@TurtleBlueprints/Data/NodesFactory"
 import {IconSimulation} from "@Turtle/Icons";
 
 
-export default function CircleNode(props: NodeProps<AgentNodeParent>) {
+export default function CircleNode(props: NodeProps<NodeParent>) {
 
     return (
         <NWrapper

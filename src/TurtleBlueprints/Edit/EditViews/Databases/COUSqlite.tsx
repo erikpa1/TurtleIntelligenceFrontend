@@ -1,11 +1,11 @@
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent"
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent"
 
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView"
 import SqliteNode from "@TurtleBlueprints/Data/Nodes/Databases/Sqllite/SqliteNode"
 import {BoolAttributeView} from "@Turtle/Components/Forms/BoolPropertyView"
 
 interface COUSqliteProps {
-    node: AgentNodeParent
+    node: NodeParent
 }
 
 export default function COUSqlite({

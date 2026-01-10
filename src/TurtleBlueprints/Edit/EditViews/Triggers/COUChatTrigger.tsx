@@ -1,9 +1,9 @@
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent"
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent"
 import {HttpTriggerData} from "@TurtleBlueprints/Data/Nodes/Triggers/HttpTriggerData"
 import {StringAreaAttributeView} from "@Turtle/Components/Forms/StringAreaPropertyView"
 
 interface COUChatTriggeProps {
-    node: AgentNodeParent
+    node: NodeParent
 }
 
 export default function COUChatTrigger({

@@ -15,7 +15,7 @@ import ReactFlow, {
 
 import 'reactflow/dist/style.css'
 
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent"
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent"
 
 import AgentExecDock from "@TurtleBlueprints/Edit/AgentExecDock"
 import BlueprintNodesApi from "@TurtleBlueprints/Api/BlueprintNodesApi";
@@ -105,7 +105,7 @@ export default function LLMAgentLLMAgentEditCanvasEditCanvas({
 
 
 interface _NodesFlowEditorProps {
-    agentNodes: AgentNodeParent[]
+    agentNodes: NodeParent[]
     nodesConnections: AgentNodeEdge[]
     agentUid: string
 }
@@ -165,7 +165,7 @@ function _NodesFlowEditor({
 
     React.useEffect(() => {
 
-        const asNodes: Node<AgentNodeParent> = agentNodes.map((node) => {
+        const asNodes: Node<NodeParent> = agentNodes.map((node) => {
 
             return {
                 id: node.uid,
@@ -216,7 +216,7 @@ function _NodesFlowEditor({
         }
     }
 
-    function nodeDeleted(nodes: Node<AgentNodeParent>[]) {
+    function nodeDeleted(nodes: Node<NodeParent>[]) {
         TurtleApp.Lock()
         for (const node of nodes) {
             useAgentNodesZus.getState().deleteNode(node.data)

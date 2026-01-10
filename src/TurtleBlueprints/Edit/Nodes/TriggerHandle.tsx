@@ -2,13 +2,13 @@ import {Handle, NodeProps, Position} from "reactflow";
 
 import {OUTPUT_HANDLE_STYLE} from "@TurtleBlueprints/Edit/Styles";
 
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import NWrapper from "@TurtleBlueprints/Edit/Nodes/NWrapper";
 import {NodeIcon} from "@TurtleBlueprints/Edit/VisTools/NodeLabel"
 import TurtleApp from "@TurtleApp/TurtleApp"
 import BlueprintNodesApi from "@TurtleBlueprints/Api/BlueprintNodesApi"
 
-export default function TriggerHandle(props: NodeProps<AgentNodeParent>) {
+export default function TriggerHandle(props: NodeProps<NodeParent>) {
 
     async function call() {
         TurtleApp.Lock()

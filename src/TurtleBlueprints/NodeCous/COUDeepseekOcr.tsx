@@ -1,4 +1,4 @@
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView"
 import DeepseekOcr from "@TurtleBlueprints/Data/Nodes/Ocr/DeepseekOcr"
 import UnderlineButton from "@Turtle/Components/UnderlineButton"
@@ -7,7 +7,7 @@ import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal"
 import NodesFactory from "@TurtleBlueprints/Data/NodesFactory"
 
 interface COUStaticMemoryProps {
-    node: AgentNodeParent
+    node: NodeParent
 }
 
 export default function COUDeepseekOcr({

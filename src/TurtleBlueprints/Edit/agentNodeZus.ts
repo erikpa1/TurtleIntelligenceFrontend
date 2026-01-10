@@ -1,14 +1,14 @@
 import {create} from "zustand";
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import AgentNodeEdge from "@TurtleBlueprints/Data/Nodes/NodeConnections";
 import LLMPipeline from "@Turtle/LLM/Data/LLMPipeline";
 
 
 interface AgentNodeZus {
-    deletedNodes: Map<string, AgentNodeParent>
-    nodes: AgentNodeParent[]
-    setNodes: (newNodes: AgentNodeParent[]) => void,
-    deleteNode: (node: AgentNodeParent) => void,
+    deletedNodes: Map<string, NodeParent>
+    nodes: NodeParent[]
+    setNodes: (newNodes: NodeParent[]) => void,
+    deleteNode: (node: NodeParent) => void,
     edges: AgentNodeEdge[]
     setEdges: (newEdges: AgentNodeEdge[]) => void,
     deletedEdges: AgentNodeEdge[],
@@ -18,10 +18,10 @@ interface AgentNodeZus {
 }
 
 export const useAgentNodesZus = create<AgentNodeZus>((set) => ({
-    deletedNodes: new Map<string, AgentNodeParent>(),
+    deletedNodes: new Map<string, NodeParent>(),
     nodes: [],
-    setNodes: (newNodes: AgentNodeParent[]) => set((newState) => ({nodes: newNodes})),
-    deleteNode: (toDelete: AgentNodeParent) => set((oldState) => {
+    setNodes: (newNodes: NodeParent[]) => set((newState) => ({nodes: newNodes})),
+    deleteNode: (toDelete: NodeParent) => set((oldState) => {
 
         const filtered = oldState.nodes.filter((val) => val.uid !== toDelete.uid)
 

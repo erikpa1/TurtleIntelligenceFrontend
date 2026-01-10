@@ -11,7 +11,7 @@ export enum CanvasStatus {
 
 
 
-export default class AgentNodeParent {
+export default class NodeParent {
     uid = ""
     name = ""
     parent = ""

@@ -1,4 +1,4 @@
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {Form} from "antd";
 import SelectHttpMethod from "@TurtlePostman/Components/SelectHttpMethod";
 import {HttpTriggerData} from "@TurtleBlueprints/Data/Nodes/Triggers/HttpTriggerData";
@@ -7,7 +7,7 @@ import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import {OllamaData} from "@TurtleBlueprints/Data/Nodes/OllamaData";
 
 interface COUOllamaViewProps {
-    node: AgentNodeParent
+    node: NodeParent
 }
 
 export default function COUOllamaView({

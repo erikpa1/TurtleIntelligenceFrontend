@@ -3,7 +3,7 @@ import {SaveButton} from "@Turtle/Components/SaveButton";
 import BlueprintNodesApi from "@TurtleBlueprints/Api/BlueprintNodesApi";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import {useAgentExecZus, useAgentNodesZus} from "@TurtleBlueprints/Edit/agentNodeZus";
-import {CanvasStatus} from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import {CanvasStatus} from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {Button, Flex, Space} from "antd";
 import {NodeConnStatus} from "@TurtleBlueprints/Data/Nodes/NodeConnections";
 import {useTranslation} from "react-i18next";

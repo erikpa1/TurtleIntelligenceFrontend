@@ -1,4 +1,4 @@
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {Flex, Tooltip} from "antd";
 import {HierarchyCustomIcon} from "@Turtle/Components/HierarchyComponents";
 import IconAutoRenew from "@Turtle/Icons/IconAutoRenew";
@@ -6,7 +6,7 @@ import React from "react"
 import NodesFactory from "@TurtleBlueprints/Data/NodesFactory"
 
 interface NodeLabelProps {
-    node: AgentNodeParent,
+    node: NodeParent,
     icon?: any
 }
 
@@ -27,7 +27,7 @@ export default function NodeLabel({node, icon}: NodeLabelProps) {
 }
 
 interface NodeIconProps {
-    node: AgentNodeParent,
+    node: NodeParent,
     onDoubleClick?: () => void
     onClick?: () => void
 }

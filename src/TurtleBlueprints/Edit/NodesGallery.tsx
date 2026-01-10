@@ -4,7 +4,7 @@ import {useTranslation} from "react-i18next"
 
 import {GalleryButton} from "@Turtle/Components/GaleryButton"
 import {useAgentNodesZus} from "@TurtleBlueprints/Edit/agentNodeZus"
-import AgentNodeParent, {CanvasStatus} from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent, {CanvasStatus} from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import TurtleApp from "@TurtleApp/TurtleApp"
 import ObjectIdApi from "@Turtle/Utils/ObjectIdApi"
 import NodesFactory from "@TurtleBlueprints/Data/NodesFactory"
@@ -31,7 +31,7 @@ export default function NodesGallery({
     async function addNodePressed(nodeType: string) {
         TurtleApp.Lock()
 
-        const tmp = new AgentNodeParent()
+        const tmp = new NodeParent()
         tmp.uid = await ObjectIdApi.GetMongoId()
         tmp.name = nodeType
         tmp.type = nodeType

@@ -1,11 +1,11 @@
 import React from "react"
 
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {IconSimulation} from "@Turtle/Icons"
 import {EmptyTypeData} from "@TurtleBlueprints/Data/Nodes/NodeTypeData";
 
 interface RetFun {
-    node: AgentNodeParent
+    node: NodeParent
 }
 
 

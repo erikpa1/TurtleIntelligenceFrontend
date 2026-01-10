@@ -1,4 +1,4 @@
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {Divider, Flex, Form} from "antd";
 import SelectHttpMethod from "@TurtlePostman/Components/SelectHttpMethod";
 import {HttpTriggerData} from "@TurtleBlueprints/Data/Nodes/Triggers/HttpTriggerData";
@@ -10,7 +10,7 @@ import UnderlineButton from "@Turtle/Components/UnderlineButton"
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal"
 
 interface COULLMNodeViewProps {
-    node: AgentNodeParent
+    node: NodeParent
 }
 
 export default function COULLMNodeView({

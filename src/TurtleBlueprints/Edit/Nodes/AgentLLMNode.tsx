@@ -5,12 +5,12 @@ import {HierarchyCustomIcon} from "@Turtle/Components/HierarchyComponents";
 import IconAutoRenew from "@Turtle/Icons/IconAutoRenew";
 import {Flex, Tooltip} from "antd";
 import {nodeMoveAndModify} from "@TurtleBlueprints/Edit/VisTools/nodeFuncts";
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import NodeLabel from "@TurtleBlueprints/Edit/VisTools/NodeLabel";
 import NWrapper from "@TurtleBlueprints/Edit/Nodes/NWrapper";
 import IconRobot2 from "@Turtle/Icons/IconRobot2";
 
-export default function AgentLLMNode(props: NodeProps<AgentNodeParent>) {
+export default function AgentLLMNode(props: NodeProps<NodeParent>) {
 
 
     return (

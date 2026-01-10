@@ -1,5 +1,5 @@
 import {COUEntityView} from "@Turtle/Interfaces/ICOUView";
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 
 import NodesFactory from "@TurtleBlueprints/Data/NodesFactory"
 import React from "react";
@@ -8,7 +8,7 @@ import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import ColorAttributeView from "@Turtle/Components/Forms/ColorAttributeView"
 
 
-export default function COUNodeView(props: COUEntityView<AgentNodeParent>) {
+export default function COUNodeView(props: COUEntityView<NodeParent>) {
 
     const viewComponent = React.useMemo(() => {
         const tmp = React.createElement(NodesFactory.GetCOUView(props.entity.type) as any, {node: props.entity})

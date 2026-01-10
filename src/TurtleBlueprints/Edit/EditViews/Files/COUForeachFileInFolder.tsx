@@ -4,16 +4,17 @@ import {Form} from "antd";
 import {WriteToFileNode} from "@TurtleBlueprints/Data/Nodes/WriteToFileNode";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import {BoolAttributeView} from "@Turtle/Components/Forms/BoolPropertyView";
+import LoadFileStringData from "@TurtleBlueprints/Data/Nodes/Filesystem/LoadFileStringData";
 
-interface COUWriteToFileViewProps {
+interface COUForeachFileInFolderProps {
     node: NodeParent
 }
 
-export default function COUWriteToFileView({
-                                               node
-                                           }: COUWriteToFileViewProps) {
+export default function COUForeachFileInFolder({
+                                                   node
+                                               }: COUForeachFileInFolderProps) {
 
-    const data: WriteToFileNode = node.typeData as any
+    const data: LoadFileStringData = node.typeData as any
 
     return (
         <Form
@@ -21,18 +22,9 @@ export default function COUWriteToFileView({
         >
             <StringAttributeView
                 entity={data}
-                attribute={"parentFolder"}
+                attribute={"filePath"}
             />
 
-            <StringAttributeView
-                entity={data}
-                attribute={"fileName"}
-            />
-
-            <BoolAttributeView
-                entity={data}
-                attribute={"openFolder"}
-            />
             <BoolAttributeView
                 entity={data}
                 attribute={"useWd"}

@@ -1,5 +1,5 @@
 import {Handle, NodeProps, Position} from "reactflow";
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {nodeMoveAndModify} from "@TurtleBlueprints/Edit/VisTools/nodeFuncts";
 import NWrapper from "@TurtleBlueprints/Edit/Nodes/NWrapper";
 import NodeLabel, {NodeIcon} from "@TurtleBlueprints/Edit/VisTools/NodeLabel";
@@ -8,18 +8,13 @@ import IconBookmarkManager from "@Turtle/Icons/IconBookmarkManager";
 import ColorConstants from "@Turtle/Constants/ColorConstants"
 
 
-export default function ForeachHandle(props: NodeProps<AgentNodeParent>) {
+export default function ForeachHandle(props: NodeProps<NodeParent>) {
 
     return (
         <NWrapper
             nodeProps={props}
-            nodeStyle={{
-                width: 50,
-                height: 50,
-                justifyContent: 'center',
-            }}
         >
-            <NodeIcon node={props.data}/>
+            <NodeLabel node={props.data}/>
 
             <Handle
                 id={"a"}
@@ -27,7 +22,7 @@ export default function ForeachHandle(props: NodeProps<AgentNodeParent>) {
                 type="target"
                 style={{
                     ...INPUT_HANDLE_STYLE,
-                    top:"25%"
+                    top: "25%"
                 }}
             />
 
@@ -37,7 +32,9 @@ export default function ForeachHandle(props: NodeProps<AgentNodeParent>) {
                 type="source"
                 style={{
                     ...OUTPUT_HANDLE_STYLE,
-                    top: "25%"
+                    top: "25%",
+                    background: props.data.typeData.GetConnectionColor("a") ?? "inherit"
+
                 }}
             />
 

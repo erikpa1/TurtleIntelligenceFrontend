@@ -1,4 +1,4 @@
-import AgentNodeParent from "@TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {Form} from "antd";
 
 import {WriteToFileNode} from "@TurtleBlueprints/Data/Nodes/WriteToFileNode";
@@ -7,7 +7,7 @@ import {BoolAttributeView} from "@Turtle/Components/Forms/BoolPropertyView";
 import LoadFileStringData from "@TurtleBlueprints/Data/Nodes/Filesystem/LoadFileStringData";
 
 interface COULoadFileStringViewProps {
-    node: AgentNodeParent
+    node: NodeParent
 }
 
 export default function COULoadFileStringView({

@@ -1,4 +1,4 @@
-import AgentNodeParent from "../../TurtleBlueprints/Data/Nodes/AgentNodeParent";
+import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {fetchMongoUid} from "@Turtle/Utils/Uid";
 import Turxios from "@Turtle/Api/Turxios"
 
