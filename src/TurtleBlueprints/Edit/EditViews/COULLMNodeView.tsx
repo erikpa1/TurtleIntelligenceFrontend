@@ -2,7 +2,7 @@ import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {Divider, Flex, Form} from "antd";
 import SelectHttpMethod from "@TurtlePostman/Components/SelectHttpMethod";
 import {HttpTriggerData} from "@TurtleBlueprints/Data/Nodes/Triggers/HttpTriggerData";
-import {WriteToFileNode} from "@TurtleBlueprints/Data/Nodes/WriteToFileNode";
+import {WriteToFile} from "@TurtleBlueprints/Data/Nodes/Filesystem/WriteToFile";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import LLMAgentData from "@TurtleBlueprints/Data/Nodes/LLMAgentData";
 import {StringAreaAttributeView} from "@Turtle/Components/Forms/StringAreaPropertyView";

@@ -7,10 +7,13 @@ import ReactFlow, {
     Connection,
     Controls,
     Edge,
-    Node,
     MiniMap,
+    Node,
+    ReactFlowProvider,
+    SelectionMode,
     useEdgesState,
-    useNodesState, useReactFlow, ReactFlowProvider
+    useNodesState,
+    useReactFlow
 } from 'reactflow'
 
 import 'reactflow/dist/style.css'
@@ -22,13 +25,10 @@ import BlueprintNodesApi from "@TurtleBlueprints/Api/BlueprintNodesApi";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import NodesGallery from "@TurtleBlueprints/Edit/NodesGallery";
 import {useAgentNodesZus} from "@TurtleBlueprints/Edit/agentNodeZus";
-
-import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import AgentNodeEdge, {NodeConnStatus} from "@TurtleBlueprints/Data/Nodes/NodeConnections";
 import TurtleApp from "@TurtleApp/TurtleApp"
 import NodesLibrary from "@TurtleBlueprints/Data/NodesLibrary"
 import {useRefreshKey} from "@Turtle/Utils/useRefreshKey"
-import ColorConstants from "@Turtle/Constants/ColorConstants";
 
 
 interface LLMAgentEditCanvasProps {
@@ -242,6 +242,10 @@ function _NodesFlowEditor({
                 fitView
                 onNodesDelete={nodeDeleted}
                 deleteKeyCode={["Backspace", "Delete"]}
+                selectionKeyCode="Shift" // Key to hold for box selection (default)
+                multiSelectionKeyCode="Meta" // Key for multi-select clicks (Cmd/Ctrl)
+                selectionMode={SelectionMode.Partial} // or "full" - how nodes are selected in box
+
                 onContextMenu={(e) => {
                     e.preventDefault()
 

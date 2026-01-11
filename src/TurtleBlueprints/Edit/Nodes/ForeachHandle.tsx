@@ -33,13 +33,13 @@ export default function ForeachHandle(props: NodeProps<NodeParent>) {
                 style={{
                     ...OUTPUT_HANDLE_STYLE,
                     top: "25%",
-                    background: props.data.typeData.GetConnectionColor("a") ?? "inherit"
+                    background: props.data.typeData.GetConnectionColor("loop") ?? "inherit"
 
                 }}
             />
 
             <Handle
-                id={"loop"}
+                id={"end"}
                 position={Position.Right}
                 type="source"
                 style={{

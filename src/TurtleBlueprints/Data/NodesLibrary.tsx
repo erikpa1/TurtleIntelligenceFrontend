@@ -1,8 +1,8 @@
-import IconChat from "@Turtle/Icons/IconChat";
-import IconApi from "@Turtle/Icons/IconApi";
-import IconOllama from "@Turtle/Icons/IconOllama";
-import IconRobot2 from "@Turtle/Icons/IconRobot2";
-import IconNetworkIntelNode from "@Turtle/Icons/IconNetworkIntelNode";
+import IconChat from "@Turtle/Icons/IconChat"
+import IconApi from "@Turtle/Icons/IconApi"
+import IconOllama from "@Turtle/Icons/IconOllama"
+import IconRobot2 from "@Turtle/Icons/IconRobot2"
+import IconNetworkIntelNode from "@Turtle/Icons/IconNetworkIntelNode"
 
 import TriggerHandle from "@TurtleBlueprints/Edit/Nodes/TriggerHandle"
 import AgentLLMNode from "@TurtleBlueprints/Edit/Nodes/AgentLLMNode"
@@ -17,8 +17,8 @@ import COUOllamaView from "@TurtleBlueprints/Edit/EditViews/COUOllamaView"
 import {OllamaData} from "@TurtleBlueprints/Data/Nodes/OllamaData"
 import LLMAgentData from "@TurtleBlueprints/Data/Nodes/LLMAgentData"
 import COULLMNodeView from "@TurtleBlueprints/Edit/EditViews/COULLMNodeView"
-import COUWriteToFileView from "@TurtleBlueprints/Edit/EditViews/Files/COUWriteToFileView"
-import {WriteToFileNode} from "@TurtleBlueprints/Data/Nodes/WriteToFileNode"
+
+
 import ChatTriggerData from "@TurtleBlueprints/Data/Nodes/Triggers/ChatTriggerData"
 import COUChatTrigger from "@TurtleBlueprints/Edit/EditViews/Triggers/COUChatTrigger"
 import {HttpTriggerData} from "@TurtleBlueprints/Data/Nodes/Triggers/HttpTriggerData"
@@ -37,16 +37,24 @@ import ABWithConn from "@TurtleBlueprints/Edit/Nodes/ABWithConn"
 import ForeachHandle from "@TurtleBlueprints/Edit/Nodes/ForeachHandle"
 import IconRepeat from "@Turtle/Icons/IconRepeat"
 import IconLeftClick from "@Turtle/Icons/IconLeftClick"
-import ForeachFileInFolder from "@TurtleBlueprints/Data/Nodes/Filesystem/ForeachFileInFolder"
+
 import {IconSimulation} from "@Turtle/Icons"
 import ABErrorNodeHandle from "@TurtleBlueprints/Edit/Nodes/ABErrorNodeHandle"
 import IconJson from "@Turtle/Icons/IconJson"
 import ABErrorWithConnNodeHandle from "@TurtleBlueprints/Edit/Nodes/ABErrorWithConnNodeHandle"
-import IconClinicalNotes from "@Turtle/Icons/IconClinicalNotes";
-import COUFormTrigger from "@TurtleBlueprints/Edit/EditViews/Triggers/COUFormTrigger";
-import LoadFileStringData from "@TurtleBlueprints/Data/Nodes/Filesystem/LoadFileStringData";
-import StrToJsonArrayData from "@TurtleBlueprints/Data/Nodes/Json/StrToJsonArrayData";
-import COULoadFileStringView from "@TurtleBlueprints/Edit/EditViews/Files/COULoadFileStringView";
+import IconClinicalNotes from "@Turtle/Icons/IconClinicalNotes"
+import COUFormTrigger from "@TurtleBlueprints/Edit/EditViews/Triggers/COUFormTrigger"
+
+import StrToJsonArrayData from "@TurtleBlueprints/Data/Nodes/Json/StrToJsonArrayData"
+
+
+import IconDriveFileMove from "@Turtle/Icons/IconDriveFileMove"
+
+//FIle system nodes
+import {LoadFileStringData, COULoadFileStringView} from "@TurtleBlueprints/Data/Nodes/Filesystem/LoadFileStringData"
+import {ForeachFileInFolder, COUForeachFileInFolder} from "@TurtleBlueprints/Data/Nodes/Filesystem/ForeachFileInFolder"
+import {WriteToFile, COUWriteToFileView} from "@TurtleBlueprints/Data/Nodes/Filesystem/WriteToFile"
+import {MoveFile, COUMoveToFileView} from "@TurtleBlueprints/Data/Nodes/Filesystem/MoveFile"
 
 export default class NodesLibrary {
 
@@ -169,7 +177,44 @@ export default class NodesLibrary {
     }
 
 
+    static InitFileNodes() {
+
+        const CATEGORY = "filesystem"
+
+        //File system
+        NodesFactory.Register({
+            type: LoadFileStringData.TYPE,
+            dataConstructor: LoadFileStringData,
+            couComponent: COULoadFileStringView,
+            icon: IconSimulation,
+            nodeHandle: ABErrorNodeHandle,
+            groupType: CATEGORY,
+        })
+
+        NodesFactory.Register({
+            type: ForeachFileInFolder.TYPE,
+            icon: IconRepeat,
+            nodeHandle: ForeachHandle,
+            dataConstructor: ForeachFileInFolder,
+            couComponent: COUForeachFileInFolder,
+            groupType: CATEGORY,
+        })
+
+        NodesFactory.Register({
+            type: MoveFile.TYPE,
+            icon: IconDriveFileMove,
+            dataConstructor: MoveFile,
+            couComponent: COUMoveToFileView,
+            nodeHandle: ABErrorNodeHandle,
+            groupType: CATEGORY,
+        })
+
+    }
+
+
     static InitNodesFactory() {
+
+        this.InitFileNodes()
 
         /*
             Triggers
@@ -212,10 +257,9 @@ export default class NodesLibrary {
          */
         NodesFactory.Register({
             type: this.writeToFile,
-            dataConstructor: WriteToFileNode,
+            dataConstructor: WriteToFile,
             couComponent: COUWriteToFileView,
         })
-
 
         /*
             LLM nodes
@@ -328,24 +372,6 @@ export default class NodesLibrary {
             groupType: "flow_control",
         })
 
-
-        //File system
-        NodesFactory.Register({
-            type: LoadFileStringData.TYPE,
-            dataConstructor: LoadFileStringData,
-            couComponent: COULoadFileStringView,
-            icon: IconSimulation,
-            nodeHandle: ABErrorNodeHandle,
-            groupType: "filesystem",
-        })
-
-
-        NodesFactory.Register({
-            type: ForeachFileInFolder.TYPE,
-            icon: IconRepeat,
-            nodeHandle: ForeachHandle,
-            groupType: "filesystem",
-        })
 
         //Excel
         NodesFactory.Register({

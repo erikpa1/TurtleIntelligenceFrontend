@@ -9,8 +9,6 @@ export enum CanvasStatus {
 }
 
 
-
-
 export default class NodeParent {
     uid = ""
     name = ""
