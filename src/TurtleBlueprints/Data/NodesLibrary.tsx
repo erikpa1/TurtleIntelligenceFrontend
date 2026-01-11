@@ -55,6 +55,9 @@ import {LoadFileStringData, COULoadFileStringView} from "@TurtleBlueprints/Data/
 import {ForeachFileInFolder, COUForeachFileInFolder} from "@TurtleBlueprints/Data/Nodes/Filesystem/ForeachFileInFolder"
 import {WriteToFile, COUWriteToFileView} from "@TurtleBlueprints/Data/Nodes/Filesystem/WriteToFile"
 import {MoveFile, COUMoveToFileView} from "@TurtleBlueprints/Data/Nodes/Filesystem/MoveFile"
+import LLMIf, {COULLMIfView} from "@TurtleBlueprints/Data/Nodes/LLM/LLMIf"
+import IfHandle from "@TurtleBlueprints/Edit/Nodes/IfNode"
+import LLMIfHandle from "@TurtleBlueprints/Edit/Nodes/LLMIfHandle"
 
 export default class NodesLibrary {
 
@@ -105,11 +108,13 @@ export default class NodesLibrary {
     static writeSqlite = "writeSqllite"
 
     static ListLLMNodes(): string[] {
+        //TODO AI nody by mali byt v stamostatnom packagi
         return [
             this.llmAgent,
             this.ollama,
             this.mongoDbMemory,
             this.staticMemory,
+            ...NodesFactory.NODE_GROUPS.get("llm") ?? []
         ]
     }
 
@@ -177,6 +182,22 @@ export default class NodesLibrary {
     }
 
 
+    static InitLLMNodes() {
+        const CATEGORY = "llm"
+
+
+        //File system
+        NodesFactory.Register({
+            type: LLMIf.TYPE,
+            dataConstructor: LLMIf,
+            couComponent: COULLMIfView,
+            icon: IconSimulation, //TODO find icon with arrows
+            nodeHandle: LLMIfHandle,
+            groupType: CATEGORY,
+        })
+
+    }
+
     static InitFileNodes() {
 
         const CATEGORY = "filesystem"
@@ -215,6 +236,7 @@ export default class NodesLibrary {
     static InitNodesFactory() {
 
         this.InitFileNodes()
+        this.InitLLMNodes()
 
         /*
             Triggers
