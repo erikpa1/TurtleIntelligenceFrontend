@@ -17,7 +17,9 @@ export default class ThemeApi {
     }
 
     static async Get(uid: string): Promise<null | TurtleTheme> {
-        return GetEntity("/api/theme", uid, TurtleTheme)
+        const tmp = await GetEntity("/api/theme", uid, TurtleTheme)
+        console.log(tmp)
+        return tmp
     }
 
     static async List(): Promise<Array<TurtleThemeLight>> {

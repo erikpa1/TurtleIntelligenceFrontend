@@ -1,13 +1,11 @@
 import React from "react"
 import {Button, Flex, Segmented, Space} from "antd";
-import {DisconnectOutlined, MergeOutlined, PlayCircleOutlined, SaveOutlined, SettingOutlined} from "@ant-design/icons";
-import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
+import {DisconnectOutlined, MergeOutlined, PlayCircleOutlined} from "@ant-design/icons";
 import {useTranslation} from "react-i18next";
 import aee from "@Turtle/Data/Aee";
 import WorldApi from "@TurtleApp/Api/WorldApi";
 import {WorldSingleton} from "@TurtleApp/Data/World";
 import {
-    HierarchyDeleteButton,
     HierarchyPauseButton,
     HierarchyPlayButton,
     HierarchyStopButton
@@ -19,6 +17,7 @@ import {useActiveSimulation} from "@TurtleSim/SimModelWorldDock/Controllers/Runn
 import TurtleApp from "@TurtleApp/TurtleApp";
 import SimConfigSettingsButton from "@TurtleSim/SimModelWorldDock/Components/SimConfig";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
+import IconSave from "@Turtle/Icons/IconSave"
 
 
 export default function WorldTopBar({}) {
@@ -100,7 +99,7 @@ function _SaveButton() {
             onClick={savePressed}
             type={"text"}
         >
-            <SaveOutlined/>
+            <IconSave/>
             {t("save")}
         </Button>
     )
@@ -298,7 +297,7 @@ function _SimHudEditView({}) {
             type={"text"}
 
         >
-            <SaveOutlined/>
+            <IconSave/>
             HUD
         </Button>
     )

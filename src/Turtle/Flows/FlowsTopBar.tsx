@@ -1,12 +1,13 @@
 import {Button, Flex, Segmented} from "antd"
 import React from "react"
 import TopBarWrapper from "@Turtle/Components/TopBarWrapper"
-import {AppstoreOutlined, BarsOutlined, SaveOutlined} from "@ant-design/icons"
+import {AppstoreOutlined, BarsOutlined} from "@ant-design/icons"
 import {useActiveFlowEditor} from "@Turtle/Flows/flowEditorZus"
 import {Flow} from "@Turtle/Flows/Flow"
 import {useTranslation} from "react-i18next"
 import TurtleApp from "@TurtleApp/TurtleApp"
 import FlowsApi from "@Turtle/Flows/FlowsApi"
+import IconSave from "@Turtle/Icons/IconSave"
 
 interface FlowsTopBarProps {
     flow: Flow | null
@@ -52,7 +53,7 @@ function _SaveBtn({flow}: FlowsTopBarProps) {
             type={"text"}
             disabled={!Boolean(flow)}
         >
-            <SaveOutlined/>
+            <IconSave/>
             {t("save")}
         </Button>
     )

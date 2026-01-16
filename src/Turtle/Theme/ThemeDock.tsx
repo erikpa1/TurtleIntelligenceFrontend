@@ -34,10 +34,10 @@ export default function ThemeDock({}) {
             >
                 {
                     themeUid && (
-                        <ThemeEditView/>
+                        <ThemeEditView themeUid={themeUid}/>
                     )
                 }
-                <ThemeEditView/>
+
             </Splitter.Panel>
 
         </SplitterWithHeader>

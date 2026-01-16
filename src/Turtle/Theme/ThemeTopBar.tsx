@@ -7,21 +7,9 @@ export default function ThemeTopBar() {
     return (
         <>
             <HierarchyRightFlex>
-                <_SaveButton/>
                 <_CopilotButton/>
             </HierarchyRightFlex>
         </>
-    )
-}
-
-function _SaveButton({}) {
-
-    function savePressed() {
-
-    }
-
-    return (
-        <SaveButton onClick={savePressed}/>
     )
 }
 

@@ -1,0 +1,14 @@
+{
+  "uid": "696a89b3e6ac274aed39ea41",
+  "name": "Pointe",
+  "default": false,
+  "color": "#4E8A6E",
+  "topBarHeightBig": "45px",
+  "bigPadding": "15px",
+  "headingFontColor": "#069AF3",
+  "iconPrimaryColor": "#4E8A6E",
+  "iconSecondaryColor": "#666666",
+  "borderColor": "#069AF3",
+  "borderHoverColor": "#52b7f8",
+  "primaryColor": "#4E8A6E"
+}

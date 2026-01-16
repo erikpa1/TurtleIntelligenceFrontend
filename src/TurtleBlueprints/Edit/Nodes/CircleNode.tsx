@@ -7,6 +7,7 @@ import {SUBNODE_HANDLE_STYLE} from "@TurtleBlueprints/Edit/Styles";
 import NWrapper from "@TurtleBlueprints/Edit/Nodes/NWrapper";
 import NodesFactory from "@TurtleBlueprints/Data/NodesFactory"
 import {IconSimulation} from "@Turtle/Icons";
+import {NodeIcon} from "@TurtleBlueprints/Edit/VisTools/NodeLabel"
 
 
 export default function CircleNode(props: NodeProps<NodeParent>) {
@@ -31,7 +32,7 @@ export default function CircleNode(props: NodeProps<NodeParent>) {
                 }}
             />
 
-            <HierarchyDivIcon icon={NodesFactory.NODE_ICONS[props.data.type] ?? <IconSimulation/>}/>
+            <NodeIcon node={props.data}/>
 
         </NWrapper>
     )

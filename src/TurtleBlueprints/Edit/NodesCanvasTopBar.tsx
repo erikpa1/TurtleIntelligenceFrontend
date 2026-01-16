@@ -8,6 +8,7 @@ import {Button, Flex, Space} from "antd";
 import {NodeConnStatus} from "@TurtleBlueprints/Data/Nodes/NodeConnections";
 import {useTranslation} from "react-i18next";
 import NodesLibrary from "@TurtleBlueprints/Data/NodesLibrary"
+import {HttpTriggerData} from "@TurtleBlueprints/Data/Nodes/Triggers/HttpTriggerData"
 
 
 export default function NodesCanvasTopBar() {
@@ -88,7 +89,7 @@ function _PlayButton({}) {
         TurtleApp.Lock()
 
         for (const node of useAgentNodesZus.getState().nodes) {
-            if (node.type === NodesLibrary.httpTrigger) {
+            if (node.type === HttpTriggerData.TYPE) {
                 const data = await BlueprintNodesApi.PlayNode(node)
                 console.log(data)
                 useAgentExecZus.getState().setPipeline(data)
@@ -99,7 +100,7 @@ function _PlayButton({}) {
         TurtleApp.Unlock()
     }
 
-    const disabled = nodes.filter((val) => val.type === NodesLibrary.httpTrigger).length === 0
+    const disabled = nodes.filter((val) => val.type === HttpTriggerData.TYPE).length === 0
 
     return (
         <Button
