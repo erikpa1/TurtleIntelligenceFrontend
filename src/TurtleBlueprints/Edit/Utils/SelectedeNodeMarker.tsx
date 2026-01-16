@@ -1,8 +1,8 @@
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+
 import {KeyboardKeys, useKeyDownEvent} from "@Turtle/Data/Aee";
-import TurtleApp from "@TurtleApp/TurtleApp";
-import {useAgentNodesZus} from "@TurtleBlueprints/Edit/agentNodeZus";
+
 import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
+import { useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
 
 interface SelectedNodeMarkerProps {
     node: NodeParent
@@ -19,6 +19,8 @@ export default function SelectedNodeMarker(
         width,
         height
     }: SelectedNodeMarkerProps) {
+
+    const theme = useTurtleTheme()
 
     if (isActive) {
 
@@ -44,7 +46,7 @@ export default function SelectedNodeMarker(
                         left: 0,
                         width: CORNER_LENGTH,
                         height: 2,
-                        backgroundColor: ColorConstants.AZURE_BLUE,
+                        backgroundColor: theme.theme.primaryColor,
                     }}/>
                     <div style={{
                         position: 'absolute',
@@ -52,7 +54,7 @@ export default function SelectedNodeMarker(
                         left: 0,
                         width: 2,
                         height: CORNER_LENGTH,
-                        backgroundColor: ColorConstants.AZURE_BLUE,
+                        backgroundColor: theme.theme.primaryColor,
                     }}/>
 
                     {/* Top-right corner */}
@@ -62,7 +64,7 @@ export default function SelectedNodeMarker(
                         right: 0,
                         width: CORNER_LENGTH,
                         height: 2,
-                        backgroundColor: ColorConstants.AZURE_BLUE,
+                        backgroundColor: theme.theme.primaryColor,
                     }}/>
                     <div style={{
                         position: 'absolute',
@@ -70,7 +72,7 @@ export default function SelectedNodeMarker(
                         right: 0,
                         width: 2,
                         height: CORNER_LENGTH,
-                        backgroundColor: ColorConstants.AZURE_BLUE,
+                        backgroundColor: theme.theme.primaryColor,
                     }}/>
 
                     {/* Bottom-left corner */}
@@ -80,7 +82,7 @@ export default function SelectedNodeMarker(
                         left: 0,
                         width: CORNER_LENGTH,
                         height: 2,
-                        backgroundColor: ColorConstants.AZURE_BLUE,
+                        backgroundColor: theme.theme.primaryColor,
                     }}/>
                     <div style={{
                         position: 'absolute',
@@ -88,7 +90,7 @@ export default function SelectedNodeMarker(
                         left: 0,
                         width: 2,
                         height: CORNER_LENGTH,
-                        backgroundColor: ColorConstants.AZURE_BLUE,
+                        backgroundColor: theme.theme.primaryColor,
                     }}/>
 
                     {/* Bottom-right corner */}
@@ -98,7 +100,7 @@ export default function SelectedNodeMarker(
                         right: 0,
                         width: CORNER_LENGTH,
                         height: 2,
-                        backgroundColor: ColorConstants.AZURE_BLUE,
+                        backgroundColor: theme.theme.primaryColor,
                     }}/>
                     <div style={{
                         position: 'absolute',
@@ -106,7 +108,7 @@ export default function SelectedNodeMarker(
                         right: 0,
                         width: 2,
                         height: CORNER_LENGTH,
-                        backgroundColor: ColorConstants.AZURE_BLUE,
+                        backgroundColor: theme.theme.primaryColor,
                     }}/>
 
 

@@ -4,10 +4,14 @@ import ThemeApi from "@Turtle/Theme/ThemeApi"
 import {TurtleTheme} from "@Turtle/Theme/theme"
 
 import {theme as antdTheme} from 'antd';
+import ColorConstants from "@Turtle/Constants/ColorConstants"
 
 
 type AntdToken = {
     colorBgContainer: string
+    token: {
+        colorPrimary: string
+    }
 }
 
 interface TurtleThemeZus {
@@ -19,10 +23,7 @@ interface TurtleThemeZus {
 }
 
 
-export function getThemeToken(): AntdToken {
-    const {token} = antdTheme.useToken()
-    return token as any
-}
+
 
 export const useTurtleTheme = create<TurtleThemeZus>((set) => ({
     bigPadding: "15px",

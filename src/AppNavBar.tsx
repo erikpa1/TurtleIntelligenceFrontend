@@ -111,11 +111,11 @@ export default function AppNavBar() {
                     </div>
 
 
-                    <button onClick={() => {
-                        useTurtleTheme.getState().swapTheme()
-                    }}>
-                        Theme
-                    </button>
+                    {/*<button onClick={() => {*/}
+                    {/*    useTurtleTheme.getState().swapTheme()*/}
+                    {/*}}>*/}
+                    {/*    Theme*/}
+                    {/*</button>*/}
 
                 </Flex>
 
