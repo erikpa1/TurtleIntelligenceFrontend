@@ -23,7 +23,8 @@ export default function AgentLLMNode(props: NodeProps<NodeParent>) {
                 type="target"
                 style={{
                     ...INPUT_HANDLE_STYLE,
-                    background: props.data.typeData.GetConnectionColor("a") ?? "inherit"
+                    background: props.data.typeData.GetConnectionType("a") ?? "inherit",
+                    top: "25%",
                 }}
             />
 
@@ -33,7 +34,8 @@ export default function AgentLLMNode(props: NodeProps<NodeParent>) {
                 type="source"
                 style={{
                     ...OUTPUT_HANDLE_STYLE,
-                    background: props.data.typeData.GetConnectionColor("b") ?? "inherit"
+                    background: props.data.typeData.GetConnectionType("b") ?? "inherit",
+                                        top: "25%",
                 }}
             />
 

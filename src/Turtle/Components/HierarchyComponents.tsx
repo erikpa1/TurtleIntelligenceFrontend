@@ -9,6 +9,8 @@ import {
     StepForwardOutlined,
     StopOutlined, UpOutlined, WechatWorkOutlined
 } from "@ant-design/icons";
+import IconDriveFileMove from "@Turtle/Icons/IconDriveFileMove";
+import IconDriveFolderUpload from "@Turtle/Icons/IconDriveFolderUpload";
 
 
 interface HierarchFlexProps {
@@ -72,6 +74,17 @@ export function HierarchyInfoButton({onClick}) {
     return (
         <HierarchyCustomIcon
             icon={<InfoOutlined/>}
+            onClick={onClick}
+        />
+    )
+}
+
+
+export function HierarchyImportButton({onClick}) {
+
+    return (
+        <HierarchyCustomIcon
+            icon={<IconDriveFolderUpload/>}
             onClick={onClick}
         />
     )

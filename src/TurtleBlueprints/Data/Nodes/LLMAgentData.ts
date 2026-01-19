@@ -1,5 +1,6 @@
 import NodeTypeData from "@TurtleBlueprints/Data/Nodes/NodeTypeData";
 import ColorConstants from "@Turtle/Constants/ColorConstants";
+import NodeColors from "@TurtleBlueprints/Data/Nodes/NodeColors";
 
 
 export default class LLMAgentData extends NodeTypeData{
@@ -15,11 +16,11 @@ export default class LLMAgentData extends NodeTypeData{
         this.systemPrompt = jObj.systemPrompt ?? this.systemPrompt
     }
 
-    GetConnectionColor(conn: string): string | undefined {
+    GetConnectionType(conn: string): string | undefined {
         if (conn === "b" || conn === "a") {
-            return ColorConstants.AZURE_BLUE
+            return NodeColors.STRING
         }
 
-        return super.GetConnectionColor(conn)
+        return super.GetConnectionType(conn)
     }
 }

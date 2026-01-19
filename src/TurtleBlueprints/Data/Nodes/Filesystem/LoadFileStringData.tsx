@@ -5,6 +5,7 @@ import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView"
 import {BoolAttributeView} from "@Turtle/Components/Forms/BoolPropertyView"
 import NodeTypeData from "@TurtleBlueprints/Data/Nodes/NodeTypeData";
 import ColorConstants from "@Turtle/Constants/ColorConstants";
+import NodeColors from "@TurtleBlueprints/Data/Nodes/NodeColors";
 
 export class LoadFileStringData extends NodeTypeData {
 
@@ -22,11 +23,11 @@ export class LoadFileStringData extends NodeTypeData {
         this.filePath = jObj.filePath ?? this.filePath
     }
 
-    GetConnectionColor(conn: string): string | undefined {
+    GetConnectionType(conn: string): string | undefined {
         if (conn === "b") {
-            return ColorConstants.AZURE_BLUE
+            return NodeColors.STRING
         }
-        return super.GetConnectionColor(conn);
+        return super.GetConnectionType(conn);
     }
 }
 

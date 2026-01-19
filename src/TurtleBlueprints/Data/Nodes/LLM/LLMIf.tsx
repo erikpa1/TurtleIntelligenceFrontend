@@ -6,6 +6,7 @@ import {Form} from "antd";
 
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import {BoolAttributeView} from "@Turtle/Components/Forms/BoolPropertyView";
+import NodeColors from "@TurtleBlueprints/Data/Nodes/NodeColors";
 
 
 
@@ -25,12 +26,12 @@ export default class LLMIf extends NodeTypeData{
         this.systemPrompt = jObj.systemPrompt ?? this.systemPrompt
     }
 
-    GetConnectionColor(conn: string): string | undefined {
+    GetConnectionType(conn: string): string | undefined {
         if (conn === "b" || conn === "a") {
-            return ColorConstants.AZURE_BLUE
+            return NodeColors.STRING
         }
 
-        return super.GetConnectionColor(conn)
+        return super.GetConnectionType(conn)
     }
 }
 

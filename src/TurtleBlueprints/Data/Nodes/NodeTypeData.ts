@@ -3,7 +3,7 @@ import ColorConstants from "@Turtle/Constants/ColorConstants";
 
 export default class NodeTypeData {
 
-    GetConnectionColor(conn: string): string | undefined {
+    GetConnectionType(conn: string): string | undefined {
         return undefined
     }
 

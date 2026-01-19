@@ -12,6 +12,10 @@ export default class ThemeApi {
         await PostEntity("/api/theme", theme)
     }
 
+    static async Import(theme: TurtleTheme) {
+        await PostEntity("/api/theme/import", theme)
+    }
+
     static async Delete(uid: string) {
         DeleteEntity("/api/theme", uid)
     }

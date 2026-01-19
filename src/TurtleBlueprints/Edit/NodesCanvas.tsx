@@ -185,7 +185,7 @@ function _NodesFlowEditor({
 
             if (node) {
                 console.log(node.typeData)
-                color = node.typeData.GetConnectionColor(connection.sourceHandle)
+                color = node.typeData.GetConnectionType(connection.sourceHandle)
             }
 
             return {

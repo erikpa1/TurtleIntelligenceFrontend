@@ -23,7 +23,7 @@ export default function ABErrorNodeHandle(props: NodeProps<NodeParent>) {
                 style={{
                     ...INPUT_HANDLE_STYLE,
                     top: "25%",
-                    background: props.data.typeData.GetConnectionColor("a") ?? "inherit"
+                    background: props.data.typeData.GetConnectionType("a") ?? "inherit"
                 }}
             />
 
@@ -34,7 +34,7 @@ export default function ABErrorNodeHandle(props: NodeProps<NodeParent>) {
                 style={{
                     ...OUTPUT_HANDLE_STYLE,
                     top: "25%",
-                    background: props.data.typeData.GetConnectionColor("b") ?? "inherit"
+                    background: props.data.typeData.GetConnectionType("b") ?? "inherit"
                 }}
             />
 

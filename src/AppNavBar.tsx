@@ -15,6 +15,7 @@ import IconArticlePerson from "@Turtle/Icons/IconArticlePerson"
 import IconHub from "@Turtle/Icons/IconHub"
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import IconRobot2 from "@Turtle/Icons/IconRobot2";
+import NavBarBrandingIcon from "@Turtle/Branding/NavBarIcon";
 
 export default function AppNavBar() {
 
@@ -116,6 +117,13 @@ export default function AppNavBar() {
                     {/*}}>*/}
                     {/*    Theme*/}
                     {/*</button>*/}
+
+                    <div style={{
+                        marginBottom: "5px"
+                    }}>
+                        <NavBarBrandingIcon/>
+                    </div>
+
 
                 </Flex>
 

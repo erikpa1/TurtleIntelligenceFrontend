@@ -3,6 +3,7 @@ import NodeTypeData from "@TurtleBlueprints/Data/Nodes/NodeTypeData"
 import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent"
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView"
 import ColorConstants from "@Turtle/Constants/ColorConstants"
+import NodeColors from "@TurtleBlueprints/Data/Nodes/NodeColors";
 
 export class ForeachFileInFolder extends NodeTypeData {
 
@@ -20,11 +21,11 @@ export class ForeachFileInFolder extends NodeTypeData {
         this.folderPath = jObj.folderPath ?? this.folderPath
     }
 
-    GetConnectionColor(conn: string): string | undefined {
+    GetConnectionType(conn: string): string | undefined {
         if (conn === "loop") {
-            return ColorConstants.AZURE_BLUE
+            return NodeColors.STRING
         }
-        return super.GetConnectionColor(conn);
+        return super.GetConnectionType(conn);
     }
 
 

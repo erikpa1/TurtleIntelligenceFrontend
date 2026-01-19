@@ -7,7 +7,7 @@ import {Flex, Space, Tree, TreeDataNode} from "antd"
 import {
     HierarchyAddButton, HierarchyDeleteButton,
     HierarchyEditButton,
-    HierarchyFlex,
+    HierarchyFlex, HierarchyImportButton,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents";
 
@@ -16,6 +16,7 @@ import {TurtleTheme, TurtleThemeLight} from "@Turtle/Theme/theme";
 import ThemeApi from "@Turtle/Theme/ThemeApi";
 import COUTheme from "@Turtle/Theme/COUTheme"
 import ColorCircle from "@Turtle/Components/ColorCircle"
+import ImportThemeModal from "@Turtle/Theme/ImportThemeModal";
 
 export default function ThemeHierarchy() {
 
@@ -38,6 +39,21 @@ export default function ThemeHierarchy() {
                         {t("themes")} ({themes.length})
 
                         <HierarchyRightFlex>
+                            <HierarchyImportButton
+                                onClick={() => {
+                                    activate({
+                                        title: "import.theme",
+                                        content: (
+                                            <ImportThemeModal
+                                                onFinish={() => {
+                                                    deactivate()
+                                                    refresh()
+                                                }}
+                                            />
+                                        )
+                                    })
+                                }}
+                            />
                             <HierarchyAddButton
                                 onClick={createTheme}
                             />

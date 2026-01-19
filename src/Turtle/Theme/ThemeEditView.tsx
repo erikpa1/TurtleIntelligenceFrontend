@@ -44,7 +44,7 @@ export default function ThemeEditView({themeUid}: ThemeEditViewProps) {
                 <Flex vertical>
                     <TopBarWrapper>
                         <HierarchyRightFlex>
-                            <_ImportButton/>
+
                             <_ExportButton theme={theme}/>
                         </HierarchyRightFlex>
                     </TopBarWrapper>
@@ -82,7 +82,7 @@ function _ExportButton({
 
         const link = document.createElement('a');
         link.href = url;
-        link.download = `${theme.name}-${new Date().toISOString().slice(0, 10)}.json`;
+        link.download = `${theme.name}-${new Date().toISOString().slice(0, 10)}.turtletheme`;
 
         document.body.appendChild(link);
         link.click();
@@ -102,15 +102,3 @@ function _ExportButton({
     )
 }
 
-function _ImportButton({}) {
-
-    const [t] = useTranslation()
-
-    return (
-        <Button
-            type={"text"}
-        >
-            Import
-        </Button>
-    )
-}
