@@ -30,6 +30,17 @@ export default function COUTheme(props: COUEntityView<TurtleTheme>) {
                 attribute={"name"}
             />
 
+
+            <StringAttributeView
+                entity={entity}
+                attribute={"title"}
+            />
+
+            <StringAttributeView
+                entity={entity}
+                attribute={"favicon"}
+            />
+
             <ColorAttributeView
                 entity={entity}
                 attribute={"color"}

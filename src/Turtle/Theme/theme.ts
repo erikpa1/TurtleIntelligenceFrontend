@@ -26,7 +26,8 @@ export class TurtleThemeLight {
 }
 
 export class TurtleTheme extends  TurtleThemeLight{
-
+    title = "Turtle Intelligence"
+    favicon = "/icons/tortoise.svg"
     topBarHeightBig = "45px"
     bigPadding = "15px"
     headingFontColor = ColorConstants.AZURE_BLUE
@@ -47,6 +48,8 @@ export class TurtleTheme extends  TurtleThemeLight{
     ToJson() {
         return {
             ...super.ToJson(),
+            title: this.title,
+            favicon: this.favicon,
             topBarHeightBig: this.topBarHeightBig,
             bigPadding: this.bigPadding,
             headingFontColor: this.headingFontColor,

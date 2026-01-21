@@ -7,6 +7,7 @@ import {CRM_CATEGORIES} from "@TurtleCrm/NavBarModules_CRM";
 import {SECURITY_CATEGORIES} from "@TurtleSecurity/NavBarModules_Security";
 
 import {MyNavbarItemBigger} from "@Turtle/Components/NavBar";
+import IconTortoise from "@Turtle/Icons/IconTortoise"
 
 
 export const ICON_STYLE = {
@@ -113,7 +114,20 @@ export default function TurtleAppsGallery({onRereoute}: TurtleAppsGalleryProps) 
                     )
                 })
             }
+            <_PoweredByTurtle/>
         </Flex>
 
+    )
+}
+
+function _PoweredByTurtle() {
+    return (
+        <Flex justify={"center"}>
+            <Flex vertical>
+                <IconTortoise/>
+                <div>Powered by</div>
+                <div>Turtle Intelligence</div>
+            </Flex>
+        </Flex>
     )
 }

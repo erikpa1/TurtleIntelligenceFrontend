@@ -29,6 +29,7 @@ import IconDriveFileMove from "@Turtle/Icons/IconDriveFileMove";
 import IconSave from "@Turtle/Icons/IconSave"
 import IconExportNotes from "@Turtle/Icons/IconExportNotes"
 import IconDriveFolderUpload from "@Turtle/Icons/IconDriveFolderUpload";
+import IconTortoise from "@Turtle/Icons/IconTortoise"
 
 
 export default function IconsGalleryDock({}) {
@@ -91,6 +92,7 @@ export function IconsGallery({}) {
                         ["IconSave", IconSave],
                         ["IconExportNotes", IconExportNotes],
                         ["IconDriveFolderUpload", IconDriveFolderUpload],
+                        ["IconTortoise", IconTortoise],
                     ].map(([lang, icon], i) => {
 
                         const tmp: any = React.createElement(icon, {
