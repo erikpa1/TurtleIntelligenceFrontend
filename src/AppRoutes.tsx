@@ -15,6 +15,7 @@ import CrmRoutes from "@TurtleCrm/CrmRoutes"
 import SecurityRoutes from "@TurtleSecurity/SecurityRoutes"
 
 import SimRoutes from "@TurtleSim/SimRoutes"
+import DataIntelligenceDock from "@TurtleApp/DataIntelligence/DataIntelligenceDock"
 
 const UsersDock = React.lazy(() => import("@Turtle/Users/UsersDock"))
 
@@ -90,6 +91,9 @@ export default function AppRoutes({}) {
             <Route path={"/doc-int"} element={<DocIntDock/>}/>
             <Route path={"/doc-int/:viewMethod"} element={<DocIntDock/>}/>
             <Route path={"/doc-int/:viewMethod/:documentUid"} element={<DocIntDock/>}/>
+
+            <Route path={"/data-intelligence"} element={<DataIntelligenceDock/>}/>
+            <Route path={"/data-intelligence/:dataUid"} element={<DataIntelligenceDock/>}/>
 
             {/*Knowledge Hub*/}
             <Route path={"/kh"} element={<KHDock/>}/>

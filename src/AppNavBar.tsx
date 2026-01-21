@@ -10,12 +10,9 @@ import "./AppNavBar.css"
 import {MyNavbarItem, NavBarIcon,} from "@Turtle/Components/NavBar"
 import TurtleAppsGallery, {ICON_STYLE} from "@TurtleApp/TurtleAppsGallery"
 import IconChat from "@Turtle/Icons/IconChat";
-import IconSupportAgent from "@Turtle/Icons/IconSupportAgent"
-import IconArticlePerson from "@Turtle/Icons/IconArticlePerson"
-import IconHub from "@Turtle/Icons/IconHub"
-import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import IconRobot2 from "@Turtle/Icons/IconRobot2";
 import NavBarBrandingIcon from "@Turtle/Branding/NavBarIcon";
+import IconSmartToy from "@Turtle/Icons/IconSmartToy"
 
 export default function AppNavBar() {
 
@@ -84,7 +81,7 @@ export default function AppNavBar() {
                         <MyNavbarItem
                             icon={<NavBarIcon icon={IconRobot2}/>}
                             link={"/blueprints"}
-                            lang={"blueprints"}
+                            lang={"diagrams"}
                             iconStyle={ICON_STYLE}
                         />
 
@@ -99,6 +96,13 @@ export default function AppNavBar() {
                             icon={<NavBarIcon icon={IconSimulation}/>}
                             link={"/sim-models"}
                             lang={"simulations"}
+                            iconStyle={ICON_STYLE}
+                        />
+
+                        <MyNavbarItem
+                            icon={<NavBarIcon icon={IconSmartToy}/>}
+                            link={"/data-intelligence"}
+                            lang={"data.intelligence"}
                             iconStyle={ICON_STYLE}
                         />
 

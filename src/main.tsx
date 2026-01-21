@@ -23,7 +23,6 @@ import {App} from "antd";
 
 root.render(
     <QueryClientProvider client={TurtleQueryClient}>
-
         <TurtleThemeProvider>
             <App>
                 <Suspense fallback={""}>

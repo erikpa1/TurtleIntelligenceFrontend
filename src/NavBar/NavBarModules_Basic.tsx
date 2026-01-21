@@ -17,7 +17,7 @@ const AI_WIDGETS: INavBarItem[] = [
         link: "/llms"
     },
     {
-        lang: "blueprints",
+        lang: "diagrams",
         icon: "/icons/robot_2.svg",
         link: "/blueprints"
     },

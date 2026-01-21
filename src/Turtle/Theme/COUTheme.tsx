@@ -8,6 +8,7 @@ import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView"
 import ColorAttributeView from "@Turtle/Components/Forms/ColorAttributeView"
 import {BoolAttributeView} from "@Turtle/Components/Forms/BoolPropertyView"
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
+import {Col, Row} from "antd"
 
 
 export default function COUTheme(props: COUEntityView<TurtleTheme>) {
@@ -30,11 +31,30 @@ export default function COUTheme(props: COUEntityView<TurtleTheme>) {
                 attribute={"name"}
             />
 
-
             <StringAttributeView
                 entity={entity}
                 attribute={"title"}
             />
+
+            <StringAttributeView
+                entity={entity}
+                attribute={"primaryLogo"}
+            />
+
+            <Row gutter={[16, 16]}>
+                <Col span={12}>
+                    <StringAttributeView
+                        entity={entity}
+                        attribute={"primaryLogoSizeX"}
+                    />
+                </Col>
+                <Col span={12}>
+                    <StringAttributeView
+                        entity={entity}
+                        attribute={"primaryLogoSizeY"}
+                    />
+                </Col>
+            </Row>
 
             <StringAttributeView
                 entity={entity}
@@ -56,21 +76,28 @@ export default function COUTheme(props: COUEntityView<TurtleTheme>) {
                 attribute={"primaryColor"}
             />
 
-            <ColorAttributeView
-                entity={entity}
-                attribute={"iconPrimaryColor"}
-            />
 
-            <ColorAttributeView
-                entity={entity}
-                attribute={"iconSecondaryColor"}
-            />
+            <Row gutter={[16, 16]}>
+                <Col span={12}>
+                    <ColorAttributeView
+                        entity={entity}
+                        attribute={"iconPrimaryColor"}
+                    />
+                </Col>
+                <Col span={12}>
+                    <ColorAttributeView
+                        entity={entity}
+                        attribute={"iconSecondaryColor"}
+                    />
+                </Col>
+            </Row>
 
             <COUSubmitButton
                 api={ThemeApi}
                 props={props}
                 afterUpdate={refreshDefault}
             />
+
         </VerticalForm>
     )
 }
