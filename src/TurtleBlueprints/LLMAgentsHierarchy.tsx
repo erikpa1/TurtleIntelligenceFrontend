@@ -31,10 +31,10 @@ export default function LLMAgentsHierarchy({}) {
     function createHierarchy(agents: Array<Blueprint>) {
         return [
             {
-                key: "blueprints",
+                key: "diagrams",
                 title: (
                     <Flex>
-                        {t("blueprints")} ({agents.length})
+                        {t("diagrams")} ({agents.length})
                         <HierarchyRightFlex>
                             <HierarchyAddButton onClick={createAgentPressed}/>
 

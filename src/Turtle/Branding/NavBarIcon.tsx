@@ -1,10 +1,15 @@
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
+
 export default function NavBarBrandingIcon() {
+
+    const {theme} = useTurtleTheme()
+
     return (
         <img
-            src={"/icons/pointe.png"}
+            src={theme.primaryLogo}
             style={{
-                width: "40px",
-                height: "40px",
+                width: theme.primaryLogoSizeX,
+                height:  theme.primaryLogoSizeY,
             }}
         />
     )

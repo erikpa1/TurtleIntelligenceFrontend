@@ -42,8 +42,15 @@ export function useThemeInit(): () => void {
     const {setTheme} = useTurtleTheme()
 
     async function init() {
-        const redOne = await ThemeApi.GetDefaultTheme()
-        setTheme(redOne)
+        const defaultOne = await ThemeApi.GetDefaultTheme()
+
+        console.log(defaultOne.title)
+
+        document.title = defaultOne.title as string
+
+        (document.getElementById('favico') as any).href = defaultOne.favicon
+        setTheme(defaultOne)
+        console.log("Here")
     }
 
     return init

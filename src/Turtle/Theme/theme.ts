@@ -26,7 +26,11 @@ export class TurtleThemeLight {
 }
 
 export class TurtleTheme extends  TurtleThemeLight{
-
+    title = "Turtle Intelligence"
+    favicon = "/icons/tortoise.svg"
+    primaryLogo = "/icons/tortoise.svg"
+    primaryLogoSizeX = "40px"
+    primaryLogoSizeY = "40px"
     topBarHeightBig = "45px"
     bigPadding = "15px"
     headingFontColor = ColorConstants.AZURE_BLUE
@@ -47,6 +51,11 @@ export class TurtleTheme extends  TurtleThemeLight{
     ToJson() {
         return {
             ...super.ToJson(),
+            title: this.title,
+            favicon: this.favicon,
+            primaryLogo: this.primaryLogo,
+            primaryLogoSizeX: this.primaryLogoSizeX,
+            primaryLogoSizeY: this.primaryLogoSizeY,
             topBarHeightBig: this.topBarHeightBig,
             bigPadding: this.bigPadding,
             headingFontColor: this.headingFontColor,

@@ -17,6 +17,7 @@ export default function TurtleThemeProvider({
     const initTheme = useThemeInit()
 
     React.useEffect(() => {
+        console.log("this should work")
         initTheme()
     }, [])
 
