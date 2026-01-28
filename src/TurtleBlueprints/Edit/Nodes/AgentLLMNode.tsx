@@ -7,6 +7,9 @@ import NodeLabel from "@TurtleBlueprints/Edit/VisTools/NodeLabel";
 import NWrapper from "@TurtleBlueprints/Edit/Nodes/NWrapper";
 
 import {ListLLMInputHandles} from "@TurtleBlueprints/Edit/Nodes/LLMInputs"
+import {FlowInput, FlowOutput} from "@TurtleBlueprints/Data/Nodes/Handles/FlowType";
+import {StringInput, StringOutput} from "@TurtleBlueprints/Data/Nodes/Handles/StringType";
+import {ErrorOutput} from "@TurtleBlueprints/Data/Nodes/Handles/ErrorType";
 
 export default function AgentLLMNode(props: NodeProps<NodeParent>) {
 
@@ -17,27 +20,29 @@ export default function AgentLLMNode(props: NodeProps<NodeParent>) {
         >
             <NodeLabel node={props.data}/>
 
-            <Handle
-                id={"a"}
-                position={Position.Left}
-                type="target"
-                style={{
-                    ...INPUT_HANDLE_STYLE,
-                    background: props.data.typeData.GetConnectionType("a") ?? "inherit",
-                    top: "25%",
-                }}
+            <FlowInput
+                handleId={"FlowInput"}
             />
 
-            <Handle
-                id={"b"}
-                position={Position.Right}
-                type="source"
-                style={{
-                    ...OUTPUT_HANDLE_STYLE,
-                    background: props.data.typeData.GetConnectionType("b") ?? "inherit",
-                                        top: "25%",
-                }}
+            <StringInput
+                handleId={"PromptInput"}
+                top={"75%"}
             />
+
+            <FlowOutput
+                handleId={"FlowOutput"}
+            />
+
+            <StringOutput
+                handleId={"ResponseOutput"}
+                top={"50%"}
+            />
+
+            <ErrorOutput
+                handleId={"ErrorOutput"}
+                top={"75%"}
+            />
+
 
             {
                 ListLLMInputHandles()

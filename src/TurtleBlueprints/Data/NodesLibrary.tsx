@@ -19,8 +19,11 @@ import LLMAgentData from "@TurtleBlueprints/Data/Nodes/LLMAgentData"
 import COULLMNodeView from "@TurtleBlueprints/Edit/EditViews/COULLMNodeView"
 
 
-import ChatTriggerData from "@TurtleBlueprints/Data/Nodes/Triggers/ChatTriggerData"
-import COUChatTrigger from "@TurtleBlueprints/Edit/EditViews/Triggers/COUChatTrigger"
+import ChatTriggerData, {
+    ChatInputNodeHandle,
+    COULChatTriggerDataView
+} from "@TurtleBlueprints/Data/Nodes/Triggers/ChatTriggerData"
+
 import {HttpTriggerData} from "@TurtleBlueprints/Data/Nodes/Triggers/HttpTriggerData"
 import COUHttpTriggerView from "@TurtleBlueprints/Edit/EditViews/Triggers/COUHttpTriggerView"
 import ABNodeSmall from "@TurtleBlueprints/Edit/Nodes/ABNodeSmall"
@@ -56,8 +59,8 @@ import {ForeachFileInFolder, COUForeachFileInFolder} from "@TurtleBlueprints/Dat
 import {WriteToFile, COUWriteToFileView} from "@TurtleBlueprints/Data/Nodes/Filesystem/WriteToFile"
 import {MoveFile, COUMoveToFileView} from "@TurtleBlueprints/Data/Nodes/Filesystem/MoveFile"
 import LLMIf, {COULLMIfView} from "@TurtleBlueprints/Data/Nodes/LLM/LLMIf"
-import IfHandle from "@TurtleBlueprints/Edit/Nodes/IfNode"
 import LLMIfHandle from "@TurtleBlueprints/Edit/Nodes/LLMIfHandle"
+import FlowTestNode, {FlowTestNodeHandle} from "@TurtleBlueprints/Data/Nodes/Flows/FlowTestNode";
 
 export default class NodesLibrary {
 
@@ -147,12 +150,17 @@ export default class NodesLibrary {
         return NodesFactory.NODE_GROUPS.get("ocr") ?? []
     }
 
+    static ListFlows(): string[] {
+        return NodesFactory.NODE_GROUPS.get("flows") ?? []
+    }
+
     static ListCategorized(): { name: string, nodes: string[] }[] {
         //TODO toto prepisat na file system
         return [
             {name: "triggers", nodes: (NodesFactory.NODE_GROUPS.get("trigger") ?? [])},
             {name: "llmNodes", nodes: this.ListLLMNodes()},
             {name: "scripts", nodes: this.ListActions()},
+            {name: "flows", nodes: this.ListFlows()},
             {name: "outputs", nodes: this.ListOutputs()},
             {name: "databases", nodes: (NodesFactory.NODE_GROUPS.get("databases") ?? [])},
             {name: "ocr", nodes: this.ListOcr()},
@@ -181,6 +189,17 @@ export default class NodesLibrary {
 
     }
 
+    static InitFlowNodes() {
+        const CATEGORY = "flows"
+
+
+        NodesFactory.Register({
+            type: FlowTestNode.TYPE,
+            dataConstructor: FlowTestNode,
+            nodeHandle: FlowTestNodeHandle,
+            groupType: CATEGORY,
+        })
+    }
 
     static InitLLMNodes() {
         const CATEGORY = "llm"
@@ -237,6 +256,7 @@ export default class NodesLibrary {
 
         this.InitFileNodes()
         this.InitLLMNodes()
+        this.InitFlowNodes()
 
         /*
             Triggers
@@ -253,9 +273,9 @@ export default class NodesLibrary {
         NodesFactory.Register({
             type: this.chatTrigger,
             dataConstructor: ChatTriggerData,
-            couComponent: COUChatTrigger,
+            couComponent: COULChatTriggerDataView,
             icon: IconChat,
-            nodeHandle: TriggerHandle,
+            nodeHandle: ChatInputNodeHandle,
             groupType: "trigger",
         })
 
