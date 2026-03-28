@@ -5,6 +5,7 @@ import {Button, Flex, Tabs} from "antd"
 import SimGallery from "@TurtleSim/SimModelWorldDock/SimGallery"
 import WorldEntitiesHierarchy from "@TurtleSim/SimModelWorldDock/WorldEntitiesHierarchy"
 import {SettingOutlined} from "@ant-design/icons";
+import {TopBarWrapperNoFlex} from "@Turtle/Components/TopBarWrapper";
 
 
 export default function WorldHierarchy({world}) {
@@ -15,47 +16,57 @@ export default function WorldHierarchy({world}) {
     const [segment, setSegment] = React.useState("library")
 
     return (
-        <Flex
-            vertical
-            gap={10}
-        >
+        <>
+            <TopBarWrapperNoFlex>
+                <Tabs
+                    defaultActiveKey="library"
+                    centered
+                    size={"small"}
+                    onChange={setSegment}
+                    items={[
+                        {
+                            label: t("library"),
+                            key: "library",
+                        },
+                        {
+                            label: (
+                                <Flex>
+                                    {t("hierarchy")}
+                                </Flex>
+                            ),
+                            key: "hierarchy",
+                        },
 
-            <Tabs
-                defaultActiveKey="library"
-                centered
-                size={"small"}
-                onChange={setSegment}
-                items={[
+
+                    ]}
+                />
+            </TopBarWrapperNoFlex>
+
+
+            <div
+                style={{
+                    padding: "15px"
+                }}
+            >
+                <Flex
+                    vertical
+                    gap={10}
+                >
                     {
-                        label: t("library"),
-                        key: "library",
-                    },
+                        segment === "library" && (
+                            <SimGallery/>
+                        )
+                    }
+
                     {
-                        label: (
-                            <Flex>
-                                {t("hierarchy")}
-                            </Flex>
-                        ),
-                        key: "hierarchy",
-                    },
+                        segment === "hierarchy" && (
+                            <WorldEntitiesHierarchy world={world}/>
+                        )
+                    }
 
-
-                ]}
-            />
-
-            {
-                segment === "library" && (
-                    <SimGallery/>
-                )
-            }
-
-            {
-                segment === "hierarchy" && (
-                    <WorldEntitiesHierarchy world={world}/>
-                )
-            }
-
-        </Flex>
+                </Flex>
+            </div>
+        </>
     )
 
 }

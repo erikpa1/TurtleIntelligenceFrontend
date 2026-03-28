@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Spin, Splitter, Tabs} from "antd";
+import {Spin, Splitter, Tabs} from "antd";
 
 import WorldFiber from "./WorldFiber";
 import WorldHierarchy from "@TurtleSim/SimModelWorldDock/WorldHierarchy";
@@ -10,8 +10,12 @@ import WorldControllers from "@TurtleSim/SimModelWorldDock/WorldControllers";
 import WorldApi from "@TurtleApp/Api/WorldApi";
 import World, {WorldSingleton} from "@TurtleApp/Data/World";
 import WorldTopBar from "@TurtleSim/SimModelWorldDock/WorldTopBar";
-import WorldRightBar from "@TurtleSim/SimModelWorldDock/WorldRightBar";
+import WorldRightBar from "@TurtleSim/SimModelWorldDock/SimWorldRightBar/WorldRightBar";
 import InitWorldFactory from "@TurtleSim/SimModelWorldDock/WorldInit";
+import TopBarWrapper, {TopBarWrapperNoFlex} from "@Turtle/Components/TopBarWrapper";
+import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
+import {useTranslation} from "react-i18next";
+import ColorConstants from "@Turtle/Constants/ColorConstants";
 
 
 InitWorldFactory()
@@ -48,7 +52,7 @@ export default function SimModelWorldDock({}) {
     } else {
         if (world) {
             return (
-                <_WorldDock world={world}/>
+                <_LayoutDock world={world}/>
             )
         } else {
             return (<div/>)
@@ -63,16 +67,20 @@ interface _WorldDockProps {
     world: World
 }
 
-function _WorldDock({world}: _WorldDockProps) {
+function _LayoutDock({world}: _WorldDockProps) {
 
+    const [t] = useTranslation()
+
+    const {theme} = useTurtleTheme()
+
+    const [activeMid, setActiveMid] = React.useState("world")
 
     return (
         <div>
             <WorldTopBar/>
 
             <Splitter style={{
-                height: "100%",
-                // backgroundColor: "#212124"
+                height: `calc(100vh - ${theme.topBarHeightBig} - ${theme.topBarHeightBig})`,
             }}>
 
                 <Splitter.Panel
@@ -81,48 +89,105 @@ function _WorldDock({world}: _WorldDockProps) {
                         backgroundColor: "white"
                     }}
                 >
-                    <div style={{
-                        paddingLeft: "15px",
-                        paddingRight: "15px"
-                    }}>
-                        <WorldHierarchy world={world}/>
-                    </div>
+                    <WorldHierarchy world={world}/>
 
                 </Splitter.Panel>
 
                 <Splitter.Panel
                     defaultSize="60%"
-                    style={{
-                        backgroundColor: "#212124"
-                    }}
                 >
-                    <div style={{
-                        position: "relative",
-                    }}>
-                        <div style={{
-                            height: "95vh",
-                        }}>
-                            <WorldFiber world={world}/>
-                        </div>
-                        {/*<_Framing/>*/}
-                        {/*<AddButton/>*/}
-                    </div>
+                    <TopBarWrapperNoFlex>
+                        <Tabs
+                            defaultValue={"world"}
+                            onChange={setActiveMid}
+                            items={[
+                                {
+                                    label: t("world"),
+                                    key: "world"
+                                },
+                                {
+                                    label: t("statistics"),
+                                    key: "statistics"
+                                }
+                            ]}
+                        />
+                    </TopBarWrapperNoFlex>
+
+                    {
+                        activeMid === "world" && (
+                            <_WorldDock world={world}/>
+                        )
+                    }
+
+                    {
+                        activeMid === "statistics" && (
+                            <_StatisticsDock/>
+                        )
+                    }
+
+
                 </Splitter.Panel>
 
                 <Splitter.Panel
                     defaultSize="20%"
-                    style={{
-                        padding: "15px"
-
-                    }}
                 >
                     <WorldRightBar/>
                 </Splitter.Panel>
 
             </Splitter>
 
+            <TopBarWrapperNoFlex config={{isBottom: true}}>
+                <div/>
+            </TopBarWrapperNoFlex>
+
             <WorldControllers/>
         </div>
 
+    )
+}
+
+function _StatisticsDock() {
+
+
+    const {theme} = useTurtleTheme()
+
+
+    return (
+        <div
+            style={{
+                position: "relative",
+            }}
+        >
+            <div
+                style={{
+                    height: `calc(100vh - ${theme.topBarHeightBig} - ${theme.topBarHeightBig} - ${theme.topBarHeightBig})`,
+                    backgroundColor: ColorConstants.WHITE
+                }}
+            >
+                Here
+            </div>
+        </div>
+    )
+}
+
+function _WorldDock({world}: _WorldDockProps) {
+
+    const {theme} = useTurtleTheme()
+
+    return (
+        <div
+            style={{
+                position: "relative",
+                backgroundColor: "#212124"
+            }}
+        >
+            <div
+                style={{
+                    height: `calc(100vh - ${theme.topBarHeightBig} - ${theme.topBarHeightBig} - ${theme.topBarHeightBig})`,
+                }}
+            >
+                <WorldFiber world={world}/>
+            </div>
+        </div>
     )
 }

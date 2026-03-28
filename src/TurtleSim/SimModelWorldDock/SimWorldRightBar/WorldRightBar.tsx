@@ -11,6 +11,7 @@ import {useTranslation} from "react-i18next";
 import RunningSimTab from "@TurtleSim/SimModelWorldDock/RunningSimTab";
 import TurtleEmpty from "@Turtle/Components/TurtleEmpty";
 import AIDescriptionItem from "@Turtle/ReflectiveUI/AIDescItem";
+import TopBarWrapper, {TopBarWrapperNoFlex} from "@Turtle/Components/TopBarWrapper";
 
 
 export default function WorldRightBar() {
@@ -33,11 +34,10 @@ export default function WorldRightBar() {
             SelectEntityFromWorld={entityPicked}
         >
 
-            <Flex vertical>
-
+            <TopBarWrapperNoFlex>
                 <Tabs
                     centered
-                    size={"middle"}
+                    size={"small"}
                     defaultValue={"config"}
                     onChange={setActiveTab}
                     items={[
@@ -46,39 +46,46 @@ export default function WorldRightBar() {
                             key: "config"
                         },
                         {
-                            label: t("simulation"),
-                            key: "simulation"
+                            label: t("events"),
+                            key: "events"
                         }
                     ]}
                 />
+            </TopBarWrapperNoFlex>
+
+            <div
+                style={{
+                    padding: "15px",
+                    paddingTop: 0,
+                }}
+            >
 
 
-            </Flex>
-
-
-            {
-                activeTab === "config" && (
-                    entity ? (
-                        <ErrorBoundary>
-                            <_EntityEditProps entity={entity}/>
-                        </ErrorBoundary>
-                    ) : (
-                        <div style={{
-                            marginTop: "30vh"
-                        }}>
-                            <Empty/>
-                        </div>
+                {
+                    activeTab === "config" && (
+                        entity ? (
+                            <ErrorBoundary>
+                                <_EntityEditProps entity={entity}/>
+                            </ErrorBoundary>
+                        ) : (
+                            <div style={{
+                                marginTop: "30vh"
+                            }}>
+                                <Empty/>
+                            </div>
+                        )
                     )
-                )
-            }
+                }
 
-            {
-                activeTab === "simulation" && (
-                    <ErrorBoundary>
-                        <RunningSimTab/>
-                    </ErrorBoundary>
-                )
-            }
+                {
+                    activeTab === "events" && (
+                        <ErrorBoundary>
+                            <RunningSimTab/>
+                        </ErrorBoundary>
+                    )
+                }
+            </div>
+
         </AeeWrapper>
     )
 }

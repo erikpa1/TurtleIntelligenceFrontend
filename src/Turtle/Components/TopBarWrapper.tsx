@@ -7,7 +7,32 @@ import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
 
 import {theme as antdTheme} from 'antd';
 
-export default function TopBarWrapper({children}) {
+interface TopBarWrapperConfig {
+    isBottom?: boolean;
+}
+
+interface TopBarWrapperProps extends React.PropsWithChildren {
+    config?: TopBarWrapperConfig
+}
+
+export default function TopBarWrapper({children, config}: TopBarWrapperProps) {
+
+    return (
+        <TopBarWrapperNoFlex config={config}>
+            <Flex
+                gap={5}
+                style={{
+                    paddingTop: "5px",
+                }}
+            >
+                {children}
+            </Flex>
+        </TopBarWrapperNoFlex>
+    )
+
+}
+
+export function TopBarWrapperNoFlex({children, config}: TopBarWrapperProps) {
 
     const {theme} = useTurtleTheme();
 
@@ -23,14 +48,7 @@ export default function TopBarWrapper({children}) {
             width: "100%",
         }}>
 
-            <Flex
-                gap={5}
-                style={{
-                    paddingTop: "5px",
-                }}
-            >
-                {children}
-            </Flex>
+            {children}
 
             <div
                 style={{
@@ -39,7 +57,8 @@ export default function TopBarWrapper({children}) {
                     width: "100%",
                     position: "absolute",
                     bottom: 0,
-                    left: 0
+                    left: 0,
+                    ...(config?.isBottom ? {top: 0} : {bottom: 0})
                 }}
             />
         </div>

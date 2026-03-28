@@ -73,7 +73,7 @@ export function EventsList() {
                                 }}
                             >
                                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                                    <Space align="center" size="middle">
+                                    <Space align="center" size="small">
                                         <div
                                             style={{
                                                 display: 'flex',

@@ -1,6 +1,6 @@
 import React from "react"
 import {Button, Flex, Segmented, Space} from "antd";
-import {DisconnectOutlined, MergeOutlined, PlayCircleOutlined} from "@ant-design/icons";
+import {DisconnectOutlined, DownOutlined, MergeOutlined, PlayCircleOutlined, UpOutlined} from "@ant-design/icons";
 import {useTranslation} from "react-i18next";
 import aee from "@Turtle/Data/Aee";
 import WorldApi from "@TurtleApp/Api/WorldApi";
@@ -22,11 +22,15 @@ import IconSave from "@Turtle/Icons/IconSave"
 
 export default function WorldTopBar({}) {
 
+
+    const [bigMode, setBigMode] = React.useState(false)
+
     const {bigPadding} = useTurtleTheme()
+
 
     return (
         <div style={{
-            height: "45px",
+            height: `${45 * (bigMode ? 2 : 1)}px`,
             backgroundColor: "white",
             position: "relative",
             paddingLeft: "10px",
@@ -39,6 +43,16 @@ export default function WorldTopBar({}) {
                     paddingTop: "5px"
                 }}
             >
+                <Button
+                    type={"text"}
+                    icon={bigMode ? <UpOutlined/> : <DownOutlined/>}
+                    onClick={() => {
+                        setBigMode(!bigMode)
+                    }}
+                >
+
+                </Button>
+
                 <_ViewMode/>
 
                 <_SaveButton/>
@@ -52,11 +66,38 @@ export default function WorldTopBar({}) {
                         paddingRight: bigPadding
                     }}
                 >
-                    <_SimulationSection/>
+                    <_SimulationUpperSection/>
                 </Flex>
 
-
             </Flex>
+
+            {
+                bigMode && (
+                    <>
+                        <div
+                            style={{
+                                background: "linear-gradient(to right, transparent, rgb(230, 230, 230) 5%, rgb(230, 230, 230) 100%, transparent)",
+                                height: "1px",
+                                width: "100%",
+                                marginTop: "5px",
+                                marginBottom: "5px",
+                            }}
+                        />
+
+                        <Flex
+                            justify={"end"}
+                            flex={1}
+                            style={{
+                                paddingRight: bigPadding
+                            }}
+                        >
+                            <_SimulationLowerSection/>
+                        </Flex>
+
+                    </>
+
+                )
+            }
 
             <div
                 style={{
@@ -76,7 +117,7 @@ function _ViewMode() {
     return (
         <Segmented
             options={[
-                {label: "World",    value: 0},
+                {label: "World", value: 0},
                 {label: "Diagrams", value: 1},
             ]}
         />
@@ -174,7 +215,7 @@ function _DisconnectButton() {
     )
 }
 
-function _SimulationSection({}) {
+function _SimulationUpperSection({}) {
 
     const [t] = useTranslation()
 
@@ -256,8 +297,36 @@ function _SimulationSection({}) {
             </Flex>
         )
     }
-
 }
+
+function _SimulationLowerSection({}) {
+
+    //TODO
+    const [t] = useTranslation()
+
+    const {
+        isRunning,
+    } = useActiveSimulation()
+
+    function changeSpeedPressed() {
+
+    }
+
+    return (
+        <Flex>
+            <Segmented
+                options={[
+                    {label: '1:1', value: 1000},
+                    {label: '1:2', value: 500},
+                    {label: '1:10', value: 100},
+                    {label: '1:100', value: 10},
+                    {label: 'full', value: 0},
+                ]}
+            />
+        </Flex>
+    )
+}
+
 
 function _BreakPoint({}) {
 

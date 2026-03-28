@@ -16,6 +16,7 @@ import SecurityRoutes from "@TurtleSecurity/SecurityRoutes"
 
 import SimRoutes from "@TurtleSim/SimRoutes"
 import DataIntelligenceDock from "@TurtleApp/DataIntelligence/DataIntelligenceDock"
+import NetessRoutes from "@TurtleNetess/NetessRoutes";
 
 const UsersDock = React.lazy(() => import("@Turtle/Users/UsersDock"))
 
@@ -155,6 +156,7 @@ export default function AppRoutes({}) {
             {...CrmRoutes()}
             {...SecurityRoutes()}
             {...SimRoutes()}
+            {...NetessRoutes()}
         </Routes>
 
     );
