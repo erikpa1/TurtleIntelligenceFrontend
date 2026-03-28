@@ -106,12 +106,6 @@ export default function AppNavBar() {
                             iconStyle={ICON_STYLE}
                         />
 
-                                                <MyNavbarItem
-                            icon={<NavBarIcon icon={IconSmartToy}/>}
-                            link={"/turtle-netess"}
-                            lang={"turtle-netess"}
-                            iconStyle={ICON_STYLE}
-                        />
 
                         {/*<MyNavbarItem*/}
                         {/*    lang={"login"}*/}

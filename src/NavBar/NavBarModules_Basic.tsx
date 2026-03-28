@@ -152,6 +152,20 @@ const AOF_WIDGETS: INavBarItem[] = [
     }
 ]
 
+const NETESS_WIDGETS_BASIC: INavBarItem[] = [
+    {
+        lang: "pods",
+        icon: "/icons/article.svg",
+        link: "/netess-pods"
+    }
+]
+
+export const NETESS_CATEGORIES: IWidgetCategory[] = [
+    {
+        titleKey: "basic",
+        items: NETESS_WIDGETS_BASIC
+    },
+]
 
 export const BASIC_CATEGORIES: IWidgetCategory[] = [
     {
