@@ -1,5 +1,5 @@
 import React, {EventHandler, MouseEvent, MouseEventHandler} from "react"
-import {Button, Flex, Popconfirm} from "antd";
+import {Button, Flex, Popconfirm, Typography} from "antd";
 import {
     DeleteRowOutlined,
     DeleteTwoTone, DownOutlined, EditOutlined,
@@ -11,6 +11,9 @@ import {
 } from "@ant-design/icons";
 import IconDriveFileMove from "@Turtle/Icons/IconDriveFileMove";
 import IconDriveFolderUpload from "@Turtle/Icons/IconDriveFolderUpload";
+import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
+import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
+import {useTranslation} from "react-i18next";
 
 
 interface HierarchFlexProps {
@@ -142,22 +145,40 @@ export function HierarchyChatButton({onClick}) {
 
 export function HierarchyDeleteButton({onClick}) {
 
+    const [t] = useTranslation()
+
+    const {activate, deactivate} = useTurtleModal()
+
+    function deletePressed() {
+        activate({
+            title: `${t("are.you.sure")}?`,
+            content: (
+                <Flex vertical gap={15}>
+
+                    <RightSubmitButton
+                        label={"delete"}
+                        onClick={() => {
+                            deactivate()
+                            onClick()
+                        }}/>
+                </Flex>
+            )
+        })
+    }
+
+
     return (
-        <Popconfirm
-            title={"are.you.sure"}
-            onConfirm={(e) => {
+        <HierarchyCustomIcon
+            onClick={(e) => {
                 e?.preventDefault()
-                onClick(e)
+                deletePressed()
             }}
-        >
-            <HierarchyCustomIcon
-                icon={
-                    <DeleteTwoTone
-                        twoToneColor={["red", "white"]}
-                    />
-                }
-            />
-        </Popconfirm>
+            icon={
+                <DeleteTwoTone
+                    twoToneColor={["red", "white"]}
+                />
+            }
+        />
 
     )
 }

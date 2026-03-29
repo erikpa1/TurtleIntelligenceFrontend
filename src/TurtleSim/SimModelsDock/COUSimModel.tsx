@@ -3,7 +3,7 @@ import SimModel from "@TurtleApp/Data/SimModel";
 import {Flex, Form} from "antd";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import TurtleApp from "@TurtleApp/TurtleApp";
-import SimModelsApi from "@TurtleApp/Api/SimModelsApi";
+import SimModelsApi from "@TurtleSim/Api/SimModelsApi";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import {VerticalForm} from "@Turtle/Antd/Formular";
 

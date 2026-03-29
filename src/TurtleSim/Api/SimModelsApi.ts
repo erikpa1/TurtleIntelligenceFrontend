@@ -9,11 +9,11 @@ export default class SimModelsApi {
     static async COU(model: SimModel) {
         const form = new FormData()
         form.set("data", JSON.stringify([model.ToJson()]))
-        await turxios.post("/api/sim-models", form)
+        await turxios.post("/api/sims/models", form)
     }
 
     static async ListModels(): Promise<SimModel[]> {
-        return (await turxios.get<any[]>("/api/sim-models")).data.map((val) => {
+        return (await turxios.get<any[]>("/api/sims/models")).data.map((val) => {
             const tmp = new NeuralNetwork()
             tmp.FromJson(val)
             return tmp
@@ -21,7 +21,7 @@ export default class SimModelsApi {
     }
 
     static async DeleteModel(uid: string) {
-        await turxios.delete("/api/sim-models", {
+        await turxios.delete("/api/sims/models", {
             params: {
                 uid: uid
             }

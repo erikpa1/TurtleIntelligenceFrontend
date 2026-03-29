@@ -9,7 +9,7 @@ interface numberPropertyViewProps {
 }
 
 
-export default function numberPropertyView({entity, property}: numberPropertyViewProps) {
+export default function NumberPropertyView({entity, property}: numberPropertyViewProps) {
 
     const [t] = useTranslation()
 

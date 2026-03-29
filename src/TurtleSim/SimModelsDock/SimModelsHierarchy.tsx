@@ -10,7 +10,7 @@ import {
     HierarchyViewButton
 } from "@Turtle/Components/HierarchyComponents";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
-import SimModelsApi from "@TurtleApp/Api/SimModelsApi";
+import SimModelsApi from "@TurtleSim/Api/SimModelsApi";
 
 import TurtleApp from "@TurtleApp/TurtleApp"
 

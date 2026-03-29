@@ -1,5 +1,5 @@
+import React from "react"
 import {useTranslation} from "react-i18next";
-import React from "react";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {Flex, Tree, TreeDataNode} from "antd";
 import {
@@ -9,17 +9,12 @@ import {
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents";
 import TurtleApp from "@TurtleApp/TurtleApp";
+import NetessPod from "@TurtleNetess/Data/NetessPod";
+import NetessApi from "@TurtleNetess/Api/NetessApi";
+import COUPod from "@TurtleNetess/PodsDock/COUPod";
 
-interface DynamicHierarchyProps {
-    api: any
-    cou: any
-}
 
-export default function DynamicHierarchy<T extends any>({
-                                                            api,
-                                                            cou
-                                                        }: DynamicHierarchyProps) {
-
+export default function PodsHierarchy() {
 
     const [t] = useTranslation()
 
@@ -27,14 +22,14 @@ export default function DynamicHierarchy<T extends any>({
     const {activate, deactivate} = useTurtleModal()
     const [data, setData] = React.useState<TreeDataNode[]>(createHierarchy([]))
 
-    function createHierarchy(entities: T[]): TreeDataNode[] {
+    function createHierarchy(entities: NetessPod[]): TreeDataNode[] {
         return [
             {
-                key: `${api.bucket}s`,
+                key: `pods`,
                 title: (
                     <Flex gap={15}>
 
-                        <div>{t(`${api.bucket}s`)} ({entities.length})</div>
+                        <div>{t("pods")} ({entities.length})</div>
 
                         <HierarchyRightFlex>
                             <HierarchyAddButton
@@ -75,45 +70,46 @@ export default function DynamicHierarchy<T extends any>({
 
     async function deleteEntity(subjectUid: string) {
         TurtleApp.Lock()
-        await api.Delete(subjectUid)
+        await NetessApi.DeletePod(subjectUid)
         TurtleApp.Unlock()
         refresh()
     }
 
-    function editEntity(entity: T) {
-
-        const tmp = React.createElement(cou, {
-            entity: entity,
-            onBeforeUpdate: deactivate,
-            onAfterUpdate: refresh,
-        })
+    function editEntity(entity: NetessPod) {
 
         activate({
-            title: t(`edit.${api.bucket}`),
-            content: (tmp)
+            title: t("edit.pod"),
+            content: (
+                <COUPod
+                    entity={entity}
+                    onBeforeUpdate={deactivate}
+                    onAfterUpdate={refresh}
+                />
+            )
         })
     }
 
     function createEntity() {
-        const entity = new api.TConstructor()
-        entity.name = api.bucket
 
-        const tmp = React.createElement(cou, {
-            entity: new api.TConstructor(),
-            onBeforeUpdate: deactivate,
-            onAfterUpdate: refresh,
-        })
+        const entity = new NetessPod()
+        entity.name = "Pod"
 
         activate({
-            title: t(`create.${api.bucket}`),
-            content: (tmp)
+            title: t(`create.pod`),
+            content: (
+                <COUPod
+                    entity={entity}
+                    onBeforeUpdate={deactivate}
+                    onAfterUpdate={refresh}
+                />
+            )
         })
 
     }
 
     async function refresh() {
 
-        const data = await api.List()
+        const data = await NetessApi.ListPods()
         setData(createHierarchy(data))
         setKey(crypto.randomUUID())
     }

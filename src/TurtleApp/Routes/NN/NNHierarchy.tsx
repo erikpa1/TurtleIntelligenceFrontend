@@ -10,7 +10,7 @@ import {useTranslation} from "react-i18next";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {useNavigate} from "react-router-dom";
 
-import SimModelsApi from "@TurtleApp/Api/SimModelsApi";
+import SimModelsApi from "@TurtleSim/Api/SimModelsApi";
 import CreateNNView from "@TurtleApp/Routes/NN/CreateNNView";
 import {NeuralNetwork} from "@TurtleApp/Data/NN";
 import TurtleApp from "@TurtleApp/TurtleApp";
