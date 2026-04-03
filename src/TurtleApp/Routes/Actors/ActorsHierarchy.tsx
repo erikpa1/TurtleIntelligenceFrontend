@@ -25,9 +25,9 @@ export default function ActorsHierarchy() {
             title: t("edit.actor"),
             content: (
                 <COUSimActor
-                    actor={actor}
-                    onBeforeSubmit={deactivate}
-                    onAfterSubmit={refresh}
+                    entity={actor}
+                    onBeforeUpdate={deactivate}
+                    onAfterUpdate={refresh}
                 />
             )
         })
@@ -41,9 +41,9 @@ export default function ActorsHierarchy() {
             title: t("create.actor"),
             content: (
                 <COUSimActor
-                    actor={actor}
-                    onBeforeSubmit={deactivate}
-                    onAfterSubmit={refresh}
+                    entity={actor}
+                    onBeforeUpdate={deactivate}
+                    onAfterUpdate={refresh}
                 />
             )
         })

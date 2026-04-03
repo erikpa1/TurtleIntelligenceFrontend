@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next"
 import {Button, Flex, Tabs} from "antd"
 
 import SimGallery from "@TurtleSim/SimModelWorldDock/SimGallery"
-import WorldEntitiesHierarchy from "@TurtleSim/SimModelWorldDock/WorldEntitiesHierarchy"
+import SimEntitiesHierarchy from "@TurtleSim/SimModelWorldDock/SimEntitiesHierarchy"
 import {SettingOutlined} from "@ant-design/icons";
 import {TopBarWrapperNoFlex} from "@Turtle/Components/TopBarWrapper";
 
@@ -60,7 +60,7 @@ export default function WorldHierarchy({world}) {
 
                     {
                         segment === "hierarchy" && (
-                            <WorldEntitiesHierarchy world={world}/>
+                            <SimEntitiesHierarchy world={world}/>
                         )
                     }
 

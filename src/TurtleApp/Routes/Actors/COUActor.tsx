@@ -1,46 +1,44 @@
 import React from "react"
 import Actor from "@TurtleApp/Data/Actor";
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
-import {Flex, Form} from "antd";
 import ColorAttributeView from "@Turtle/Components/Forms/ColorAttributeView";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import ActorsApi from "@TurtleApp/Api/ActorsApi";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
+import {COUEntityView} from "@Turtle/Interfaces/ICOUView";
+import {VerticalForm} from "@Turtle/Antd/Formular";
 
 
-interface COUSimActorProps {
-    actor: Actor
-    onBeforeSubmit?: () => void
-    onAfterSubmit?: () => void
-}
+
+export default function COUSimActor(props: COUEntityView<Actor>) {
 
 
-export default function COUSimActor(props: COUSimActorProps) {
-
+    const entity = props.entity
 
     async function submit() {
-        props.onBeforeSubmit && props.onBeforeSubmit()
+        props.onBeforeUpdate && props.onBeforeUpdate()
         TurtleApp.Lock()
-        await ActorsApi.COUActor(props.actor)
+        await ActorsApi.COUActor(entity)
         TurtleApp.Unlock()
-        props.onAfterSubmit && props.onAfterSubmit()
+        props.onAfterUpdate && props.onAfterUpdate()
     }
 
     return (
-        <Form layout={"vertical"}>
+        <VerticalForm>
 
             <StringAttributeView
-                entity={props.actor}
+                entity={entity}
                 attribute={"name"}
             />
 
             <ColorAttributeView
-                entity={props.actor}
+                entity={entity}
                 attribute={"color"}
             />
 
             <RightSubmitButton onClick={submit}/>
-        </Form>
+
+        </VerticalForm>
 
     )
 }

@@ -21,7 +21,7 @@ interface WorldEntitiesHierarchyProps {
     world: World
 }
 
-export default function WorldEntitiesHierarchy({world}: WorldEntitiesHierarchyProps) {
+export default function SimEntitiesHierarchy({world}: WorldEntitiesHierarchyProps) {
 
     const [t] = useTranslation()
 
@@ -59,12 +59,15 @@ export default function WorldEntitiesHierarchy({world}: WorldEntitiesHierarchyPr
                                     icon={SimFactory.GetIcon(val.type)}
                                 />
 
-                                {val.name}
+                                <_EntityLine entity={val}/>
+
 
                                 <HierarchyRightFlex>
-                                    <HierarchyDeleteButton onClick={() => {
-                                        entityDelete(val)
-                                    }}/>
+                                    <HierarchyDeleteButton
+                                        onClick={() => {
+                                            entityDelete(val)
+                                        }}
+                                    />
 
                                 </HierarchyRightFlex>
 
@@ -99,3 +102,14 @@ export default function WorldEntitiesHierarchy({world}: WorldEntitiesHierarchyPr
     )
 }
 
+interface _EntityLineProps {
+    entity: SimEntity
+}
+
+function _EntityLine({entity}: _EntityLineProps) {
+    return (
+        <>
+            {entity.name}
+        </>
+    )
+}
