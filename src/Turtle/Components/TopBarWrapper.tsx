@@ -11,7 +11,7 @@ interface TopBarWrapperConfig {
     isBottom?: boolean;
 }
 
-interface TopBarWrapperProps extends React.PropsWithChildren {
+interface TopBarWrapperProps extends React.PropsWithChildren<any> {
     config?: TopBarWrapperConfig
 }
 

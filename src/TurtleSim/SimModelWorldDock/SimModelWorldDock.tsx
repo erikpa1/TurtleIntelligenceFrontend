@@ -16,6 +16,7 @@ import TopBarWrapper, {TopBarWrapperNoFlex} from "@Turtle/Components/TopBarWrapp
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import {useTranslation} from "react-i18next";
 import ColorConstants from "@Turtle/Constants/ColorConstants";
+import SimStatisticsView from "@TurtleSim/SimModelWorldDock/Statistics/SimStatisticsView";
 
 
 InitWorldFactory()
@@ -121,7 +122,7 @@ function _LayoutDock({world}: _WorldDockProps) {
 
                     {
                         activeMid === "statistics" && (
-                            <_StatisticsDock/>
+                            <SimStatisticsView/>
                         )
                     }
 
@@ -146,29 +147,6 @@ function _LayoutDock({world}: _WorldDockProps) {
     )
 }
 
-function _StatisticsDock() {
-
-
-    const {theme} = useTurtleTheme()
-
-
-    return (
-        <div
-            style={{
-                position: "relative",
-            }}
-        >
-            <div
-                style={{
-                    height: `calc(100vh - ${theme.topBarHeightBig} - ${theme.topBarHeightBig} - ${theme.topBarHeightBig})`,
-                    backgroundColor: ColorConstants.WHITE
-                }}
-            >
-                Here
-            </div>
-        </div>
-    )
-}
 
 function _WorldDock({world}: _WorldDockProps) {
 

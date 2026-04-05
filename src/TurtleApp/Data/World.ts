@@ -185,6 +185,11 @@ export default class World {
         WorldSingleton.I.activeSecond = 0
     }
 
+    GetEntitiesOfType(entityType: string): Array<SimEntity> {
+        const tmp = Array.from(this.entities.values())
+        return tmp.filter((val) => val.type === entityType)
+    }
+
 
 }
 
