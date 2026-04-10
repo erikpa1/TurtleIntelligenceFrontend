@@ -23,7 +23,7 @@ export default function BufferBehProperties({
         <>
             <StringItem
                 attribute={"capacity"}
-                entity={entity}
+                entity={entity.typeData}
             />
 
             <ActorsSelect

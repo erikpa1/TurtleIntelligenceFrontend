@@ -38,16 +38,18 @@ export default function ConnectionFiber({
             {
                 phase === -1 && (
                     <Html>
-                        <Button
-                            type={"primary"}
-                            size={"small"}
-                            onClick={disconnectClicked}
+                        <div
                             style={{
-                                backgroundColor: ColorConstants.RED
+                                width: "10px",
+                                height: "10px",
+                                backgroundColor: ColorConstants.RED,
+                                cursor: "pointer",
+                                borderRadius: "50%",
+                                transform: "translate(-25%, -25%)",
+                                border: `1px solid ${ColorConstants.GRAY}`,
                             }}
-                        >
-                            <CloseOutlined/>
-                        </Button>
+                            onClick={disconnectClicked}
+                        />
                     </Html>
                 )
             }
