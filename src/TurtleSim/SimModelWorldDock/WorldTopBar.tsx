@@ -53,8 +53,6 @@ export default function WorldTopBar({}) {
 
                 </Button>
 
-                <_ViewMode/>
-
                 <_SaveButton/>
                 <_ConnectButton/>
                 <_DisconnectButton/>
@@ -113,16 +111,6 @@ export default function WorldTopBar({}) {
     )
 }
 
-function _ViewMode() {
-    return (
-        <Segmented
-            options={[
-                {label: "World", value: 0},
-                {label: "Diagrams", value: 1},
-            ]}
-        />
-    )
-}
 
 function _SaveButton() {
 
