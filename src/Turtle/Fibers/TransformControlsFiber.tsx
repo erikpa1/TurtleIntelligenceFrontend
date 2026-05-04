@@ -9,7 +9,7 @@ import aee from "@Turtle/Data/Aee";
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
 
 
-interface SelectableObject {
+export interface SelectableObject {
     obj: THREE.Object3D
     entity: SimEntity
     modifyFunction: () => void

@@ -4,6 +4,7 @@ import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
 import ConnectionFiber from "@TurtleSim/SimModelWorldDock/Submodules/ConnectionFiber";
+import {SelectableObject} from "@Turtle/Fibers/TransformControlsFiber";
 
 interface ConnectionsFiberProps {
     world: World
@@ -40,8 +41,8 @@ export default function ConnectionsFiber({world}: ConnectionsFiberProps) {
         setRKey(rKey + 1)
     }
 
-    function posChanged(obj: any) {
-        console.log(obj)
+    function posChanged(obj: SelectableObject) {
+        console.log(obj.entity.position )// is
         refresh()
     }
 
