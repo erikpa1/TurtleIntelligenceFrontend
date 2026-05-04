@@ -1,4 +1,3 @@
-
 import React from "react";
 import * as THREE from "three";
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
@@ -45,6 +44,7 @@ export default function WEFiberWrapper({
         entity.modified = true
         useTransformControls.getState().setObjectToSelect({
             obj: groupRef.current as any,
+            entity: entity,
             modifyFunction: posScaleRotChanged
         })
     }

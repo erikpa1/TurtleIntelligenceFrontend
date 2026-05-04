@@ -1,17 +1,17 @@
-
 import SimDiagram from "@TurtleSim/SimModelWorldDock/Data/SimDiagram"
 import {fetchMongoUid} from "@Turtle/Utils/Uid"
+import WorldEntity from "@TurtleSim/Data/WorldEntity";
 
 
 export type TypeData = {}
 
 
-export default class SimEntity {
+export default class SimEntity extends WorldEntity {
 
-    uid = ""
-    name = ""
+
+
     type = ""
-    position = [0, 0, 0]
+
     dependencies = {}
 
     mesh = ""

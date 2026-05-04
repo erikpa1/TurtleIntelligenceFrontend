@@ -6,10 +6,12 @@ import {create} from "zustand";
 import * as THREE from "three"
 import app from "../../App";
 import aee from "@Turtle/Data/Aee";
+import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
 
 
 interface SelectableObject {
     obj: THREE.Object3D
+    entity: SimEntity
     modifyFunction: () => void
 }
 
@@ -46,7 +48,7 @@ export default function TransformControlsFiber({}) {
                             objectToSelect?.modifyFunction()
                         }}
                         onMouseUp={() => {
-                            aee.emit("EntityPosChanged", null)
+                            aee.emit("EntityPosChanged", objectToSelect)
                         }}
 
 

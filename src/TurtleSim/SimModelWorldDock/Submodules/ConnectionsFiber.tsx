@@ -40,6 +40,11 @@ export default function ConnectionsFiber({world}: ConnectionsFiberProps) {
         setRKey(rKey + 1)
     }
 
+    function posChanged(obj: any) {
+        console.log(obj)
+        refresh()
+    }
+
     React.useEffect(() => {
         refresh()
     }, [])
@@ -50,7 +55,7 @@ export default function ConnectionsFiber({world}: ConnectionsFiberProps) {
             key={rKey}
             aee={aee}
             WorldConnectionsChanged={refresh}
-            EntityPosChanged={refresh}
+            EntityPosChanged={posChanged}
         >
             {
                 connections.map((val) => {
