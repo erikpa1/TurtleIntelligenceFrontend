@@ -10,24 +10,23 @@ interface SpawnEntityPropertiesProps {
 }
 
 export default function HumanBehProperties({
-                                                   entity,
-                                               }: SpawnEntityPropertiesProps) {
+                                               entity,
+                                           }: SpawnEntityPropertiesProps) {
     return (
-        <Flex
-            vertical
-            gap={15}
-        >
+        <>
             <ActorsSelect
                 typeData={entity.typeData}
                 attribute={"actor"}
             />
+
+
 
             <IntItem
                 attribute={"spawn_limit"}
                 entity={entity.typeData}
             />
 
-        </Flex>
+        </>
     )
 }
 

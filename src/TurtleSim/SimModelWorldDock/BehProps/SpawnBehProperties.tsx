@@ -10,29 +10,29 @@ interface SpawnEntityPropertiesProps {
 }
 
 export default function SpawnBehProperties({
-                                                   entity,
-                                               }: SpawnEntityPropertiesProps) {
+                                               entity,
+                                           }: SpawnEntityPropertiesProps) {
+
+    const tData = entity.typeData
+
     return (
-        <Flex
-            vertical
-            gap={15}
-        >
+        <>
             <ActorsSelect
-                typeData={entity.typeData}
+                typeData={tData}
                 attribute={"actor"}
             />
 
             <IntItem
                 attribute={"spawn_interval"}
-                entity={entity.typeData}
+                entity={tData}
             />
 
             <IntItem
                 attribute={"spawn_limit"}
-                entity={entity.typeData}
+                entity={tData}
             />
 
-        </Flex>
+        </>
     )
 }
 

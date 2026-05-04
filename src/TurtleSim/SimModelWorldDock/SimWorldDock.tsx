@@ -17,6 +17,7 @@ import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import {useTranslation} from "react-i18next";
 import ColorConstants from "@Turtle/Constants/ColorConstants";
 import SimStatisticsView from "@TurtleSim/SimModelWorldDock/Statistics/SimStatisticsView";
+import SimWorldHud from "@TurtleSim/SimModelWorldDock/Components/SimWorldHud";
 
 
 InitWorldFactory()
@@ -113,6 +114,7 @@ function _LayoutDock({world}: _WorldDockProps) {
                         />
                     </TopBarWrapperNoFlex>
 
+
                     {
                         activeMid === "world" && (
                             <_WorldDock world={world}/>
@@ -165,6 +167,7 @@ function _WorldDock({world}: _WorldDockProps) {
             >
                 <WorldFiber world={world}/>
             </div>
+            <SimWorldHud/>
         </div>
     )
 }
