@@ -7,9 +7,15 @@ import SwitchBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/SwitchBeh
 import SplitBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/SplitBehProperties";
 import MergeBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/MergeBehProperties";
 import HumanBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/HumanBehProperties"
+import SimBufferFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/SimBufferFiber";
 
 
 export default function InitWorldFactory() {
+    _InitProperties()
+    _InitFibers()
+}
+
+function _InitProperties() {
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_SPAWN] = SpawnBehProperties
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_PROCESS] = ProcessBehProperties
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_SWITCH] = SwitchBehProperties
@@ -22,4 +28,9 @@ export default function InitWorldFactory() {
 
     //Actor properties
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_HUMAN] = HumanBehProperties
+}
+
+function _InitFibers() {
+    
+    SimFactory.FIBER_HANDLERS[SimFactory.TYPE_BUFFER] = SimBufferFiber
 }

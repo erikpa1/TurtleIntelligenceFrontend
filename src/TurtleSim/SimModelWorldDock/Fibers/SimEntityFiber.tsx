@@ -11,6 +11,18 @@ interface EntityFiberProps {
 
 export default function SimEntityFiber({entity}: EntityFiberProps) {
 
+    const component = React.useMemo(() => {
+
+        const tmp = SimFactory.FIBER_HANDLERS[entity.type]
+
+        if (tmp) {
+            return React.createElement(tmp, {entity})
+        } else {
+            return undefined
+        }
+
+    }, [entity])
+
 
     React.useEffect(() => {
 
@@ -33,6 +45,9 @@ export default function SimEntityFiber({entity}: EntityFiberProps) {
                 <meshStandardMaterial/>
             </Cylinder>
 
+            {
+                component
+            }
 
         </WEFiberWrapper>
     )

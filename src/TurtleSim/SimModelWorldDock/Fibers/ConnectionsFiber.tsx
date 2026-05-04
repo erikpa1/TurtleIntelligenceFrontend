@@ -3,7 +3,7 @@ import World from "@TurtleApp/Data/World";
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
-import ConnectionFiber from "@TurtleSim/SimModelWorldDock/Submodules/ConnectionFiber";
+import ConnectionFiber from "@TurtleSim/SimModelWorldDock/Fibers/ConnectionFiber";
 import {SelectableObject} from "@Turtle/Fibers/TransformControlsFiber";
 
 interface ConnectionsFiberProps {

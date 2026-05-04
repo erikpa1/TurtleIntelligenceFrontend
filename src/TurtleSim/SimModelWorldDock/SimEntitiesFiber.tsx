@@ -3,7 +3,7 @@ import World from "@TurtleApp/Data/World";
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
-import SimEntityFiber from "@TurtleSim/SimModelWorldDock/Submodules/SimEntityFiber";
+import SimEntityFiber from "@TurtleSim/SimModelWorldDock/Fibers/SimEntityFiber";
 
 
 interface EntitiesFiberProps {

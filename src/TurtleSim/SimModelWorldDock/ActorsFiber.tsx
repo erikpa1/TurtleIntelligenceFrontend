@@ -3,7 +3,7 @@ import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
 import RuntimeEntity from "@Turtle/Data/RuntimeEntity";
-import RuntimeEntityFiber from "@TurtleSim/SimModelWorldDock/Submodules/RuntimeEntityFiber";
+import RuntimeEntityFiber from "@TurtleSim/SimModelWorldDock/Fibers/RuntimeEntityFiber";
 
 
 export function ActorsFiber({world}) {

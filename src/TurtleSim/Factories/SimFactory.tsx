@@ -55,6 +55,8 @@ export default class SimFactory {
 
     static RIGHT_BAR_COMPONENTS = {}
 
+    static FIBER_HANDLERS = {}
+
 
     static CAN_CON_OUTPUT = {
         [SimFactory.TYPE_SINK]: false

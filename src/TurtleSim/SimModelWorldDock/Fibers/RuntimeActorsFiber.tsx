@@ -1,6 +1,6 @@
 import React from "react"
 import {useActiveSimulation} from "@TurtleSim/SimModelWorldDock/Controllers/RunningSimulationController";
-import RuntimeActorFiber from "@TurtleSim/SimModelWorldDock/Submodules/RuntimeActorFiber";
+import RuntimeActorFiber from "@TurtleSim/SimModelWorldDock/Fibers/RuntimeActorFiber";
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee from "@Turtle/Data/Aee";
 import {RuntimeActor} from "@TurtleApp/Data/Actor";
