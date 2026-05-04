@@ -114,7 +114,7 @@ function _SceneCameraRotationGizmo() {
 
 function _UniversalWorldEnvironment({}) {
     return (
-        <React.Suspense fallback={""}>
+        <React.Suspense fallback={<></>}>
             <Environment files={"/textures/venice_sunset_1k.hdr"}/>
         </React.Suspense>
     )

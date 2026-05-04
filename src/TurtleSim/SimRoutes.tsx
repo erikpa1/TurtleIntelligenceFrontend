@@ -3,7 +3,7 @@ import {Route} from "react-router-dom"
 
 const SimModelsDock = React.lazy(() => import("@TurtleSim/SimModelsDock/SimModelsDock"))
 
-const SimModelWorldDock = React.lazy(() => import("@TurtleSim/SimModelWorldDock/SimModelWorldDock"))
+const SimModelWorldDock = React.lazy(() => import("@TurtleSim/SimModelWorldDock/SimWorldDock"))
 
 
 export default function SimRoutes() {

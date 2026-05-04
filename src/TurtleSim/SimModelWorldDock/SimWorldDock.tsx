@@ -3,14 +3,14 @@ import React from "react"
 import {Spin, Splitter, Tabs} from "antd";
 
 import WorldFiber from "./WorldFiber";
-import WorldHierarchy from "@TurtleSim/SimModelWorldDock/WorldHierarchy";
+import SimWorldHierarchy from "@TurtleSim/SimModelWorldDock/SimWorldHierarchy";
 import {useParams} from "react-router-dom";
 
 import WorldControllers from "@TurtleSim/SimModelWorldDock/WorldControllers";
 import WorldApi from "@TurtleApp/Api/WorldApi";
 import World, {WorldSingleton} from "@TurtleApp/Data/World";
 import WorldTopBar from "@TurtleSim/SimModelWorldDock/WorldTopBar";
-import WorldRightBar from "@TurtleSim/SimModelWorldDock/SimWorldRightBar/WorldRightBar";
+import SimWorldRightBar from "@TurtleSim/SimModelWorldDock/SimWorldRightBar/SimWorldRightBar";
 import InitWorldFactory from "@TurtleSim/SimModelWorldDock/WorldInit";
 import TopBarWrapper, {TopBarWrapperNoFlex} from "@Turtle/Components/TopBarWrapper";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
@@ -21,7 +21,7 @@ import SimStatisticsView from "@TurtleSim/SimModelWorldDock/Statistics/SimStatis
 
 InitWorldFactory()
 
-export default function SimModelWorldDock({}) {
+export default function SimWorldDock({}) {
 
     const {modelUid} = useParams()
 
@@ -90,8 +90,7 @@ function _LayoutDock({world}: _WorldDockProps) {
                         backgroundColor: "white"
                     }}
                 >
-                    <WorldHierarchy world={world}/>
-
+                    <SimWorldHierarchy world={world}/>
                 </Splitter.Panel>
 
                 <Splitter.Panel
@@ -132,7 +131,7 @@ function _LayoutDock({world}: _WorldDockProps) {
                 <Splitter.Panel
                     defaultSize="20%"
                 >
-                    <WorldRightBar/>
+                    <SimWorldRightBar/>
                 </Splitter.Panel>
 
             </Splitter>

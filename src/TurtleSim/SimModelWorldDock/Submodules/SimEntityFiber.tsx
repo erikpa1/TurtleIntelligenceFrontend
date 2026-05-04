@@ -20,7 +20,9 @@ export default function SimEntityFiber({entity}: EntityFiberProps) {
         <WEFiberWrapper entity={entity}>
 
             <ErrorBoundary onError={<></>}>
-                <_EntityIcon textPath={SimFactory.GetIconSvg(entity.type)}/>
+                <React.Suspense fallback={<></>}>
+                    <_EntityIcon textPath={SimFactory.GetIconSvg(entity.type)}/>
+                </React.Suspense>
             </ErrorBoundary>
 
             <Cylinder

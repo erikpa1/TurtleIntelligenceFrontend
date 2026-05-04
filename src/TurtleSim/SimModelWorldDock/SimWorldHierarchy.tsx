@@ -2,16 +2,17 @@ import React from "react"
 import {useTranslation} from "react-i18next"
 import {Button, Flex, Tabs} from "antd"
 
-import SimGallery from "@TurtleSim/SimModelWorldDock/SimGallery"
+import SimEntitiesGallery from "@TurtleSim/SimModelWorldDock/SimEntitiesGallery"
 import SimEntitiesHierarchy from "@TurtleSim/SimModelWorldDock/SimEntitiesHierarchy"
 import {SettingOutlined} from "@ant-design/icons";
 import {TopBarWrapperNoFlex} from "@Turtle/Components/TopBarWrapper";
 
 
-export default function WorldHierarchy({world}) {
+export default function SimWorldHierarchy({world}) {
 
 
     const [t] = useTranslation()
+
 
     const [segment, setSegment] = React.useState("library")
 
@@ -19,6 +20,9 @@ export default function WorldHierarchy({world}) {
         <>
             <TopBarWrapperNoFlex>
                 <Tabs
+                    className="no-border-tabs"
+                    type={"line"}
+                    tabBarStyle={{borderBottom: 'none'}}
                     defaultActiveKey="library"
                     centered
                     size={"small"}
@@ -29,11 +33,7 @@ export default function WorldHierarchy({world}) {
                             key: "library",
                         },
                         {
-                            label: (
-                                <Flex>
-                                    {t("hierarchy")}
-                                </Flex>
-                            ),
+                            label: t("hierarchy"),
                             key: "hierarchy",
                         },
 
@@ -54,7 +54,7 @@ export default function WorldHierarchy({world}) {
                 >
                     {
                         segment === "library" && (
-                            <SimGallery/>
+                            <SimEntitiesGallery/>
                         )
                     }
 

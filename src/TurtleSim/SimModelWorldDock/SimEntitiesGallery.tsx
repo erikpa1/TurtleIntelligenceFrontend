@@ -12,7 +12,7 @@ import SimFactory from "@TurtleSim/Factories/SimFactory"
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity"
 
 
-export default function SimGallery() {
+export default function SimEntitiesGallery() {
 
     const [t] = useTranslation()
 

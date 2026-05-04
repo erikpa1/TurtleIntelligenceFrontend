@@ -14,7 +14,7 @@ import AIDescriptionItem from "@Turtle/ReflectiveUI/AIDescItem";
 import TopBarWrapper, {TopBarWrapperNoFlex} from "@Turtle/Components/TopBarWrapper";
 
 
-export default function WorldRightBar() {
+export default function SimWorldRightBar() {
 
     const [t] = useTranslation()
 
@@ -36,6 +36,7 @@ export default function WorldRightBar() {
 
             <TopBarWrapperNoFlex>
                 <Tabs
+                    className="no-border-tabs"
                     centered
                     size={"small"}
                     defaultValue={"config"}
