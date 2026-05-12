@@ -77,7 +77,12 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
     const resources = React.useMemo(() => {
         return [
             {title: t(SimFactory.TYPE_WORKER_POOL), key: SimFactory.TYPE_WORKER_POOL},
+        ]
+    }, [])
 
+    const controls = React.useMemo(() => {
+        return [
+            {title: t(SimFactory.TYPE_LOGISTICS_CONTROL), key: SimFactory.TYPE_LOGISTICS_CONTROL},
         ]
     }, [])
 
@@ -147,7 +152,26 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
                         </Flex>
                     ),
                 }))
-            }
+            },
+            {
+                title: t("controls"),
+                key: "controls",
+                children: controls.map((val) => ({
+                    key: val.key,
+                    title: (
+                        <Flex
+                            gap={10}
+                            flex={1}
+                            onClick={() => {
+                                elementClicked(val.key)
+                            }}
+                        >
+                            <HierarchyCustomIcon icon={SimFactory.GetIconSvg(val.key)}/>
+                            {val.title}
+                        </Flex>
+                    ),
+                }))
+            },
         ]
     }, [])
 

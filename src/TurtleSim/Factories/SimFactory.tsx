@@ -14,6 +14,9 @@ export default class SimFactory {
     static TYPE_DOWNTIME = "downtime"
     static TYPE_WORKER_POOL = "workerPool"
 
+    //Controls
+    static TYPE_LOGISTICS_CONTROL = "logisticsControl"
+
     //Actor spawns
     static TYPE_HUMAN = "human"
 
@@ -32,6 +35,7 @@ export default class SimFactory {
         [SimFactory.TYPE_DOWNTIME]: "/icons/arrow_and_edge.svg",
         [SimFactory.TYPE_WORKER_POOL]: "/icons/arrow_and_edge.svg",
         [SimFactory.TYPE_TIME_TRIGGER]: "/icons/arrow_and_edge.svg",
+        [SimFactory.TYPE_LOGISTICS_CONTROL]: "/icons/article_person.svg",
     }
 
     static ICONS_COMPONENTS = {
