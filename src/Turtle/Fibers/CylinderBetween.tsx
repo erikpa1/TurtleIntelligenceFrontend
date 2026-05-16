@@ -38,12 +38,12 @@ const _MATERIAL = <meshMatcapMaterial attach="material" color={ColorConstants.AZ
 export default function CylinderBetweenPoints({
                                                   start = [0, 0, 0],
                                                   end = [1, 1, 1],
-                                                  radius = 0.025,
+                                                  radius = 0.02,
                                                   segments = 16,
                                                   endpointDiameter = 1.7,
                                                   showArrow = true,
-                                                  arrowHeight = 0.5,
-                                                  arrowRadius = 0.15,
+                                                  arrowHeight = 0.4,
+                                                  arrowRadius = 0.1,
                                                   children,
                                               }: CylinderBetweenPointsProps) {
 
