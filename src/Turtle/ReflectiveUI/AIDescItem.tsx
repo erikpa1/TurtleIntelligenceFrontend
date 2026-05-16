@@ -23,12 +23,8 @@ export default function AIDescriptionItem({
     return (
         <Form.Item
             label={`${t(attribute)}:`}
-            style={{
-                margin: 0
-            }}
         >
             <TextArea
-                size={"small"}
                 disabled={disabled}
                 defaultValue={entity[attribute]}
                 onChange={((e) => {

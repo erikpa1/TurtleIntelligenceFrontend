@@ -21,12 +21,8 @@ export default function StringItem({
     return (
         <Form.Item
             label={`${t(attribute)}:`}
-            style={{
-                margin: 0
-            }}
         >
             <Input
-                size={"small"}
                 disabled={disabled}
                 defaultValue={entity[attribute]}
                 onChange={(e) => {

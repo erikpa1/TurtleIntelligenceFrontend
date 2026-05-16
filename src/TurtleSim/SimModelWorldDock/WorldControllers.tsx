@@ -2,7 +2,7 @@ import React from "react";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import {WorldSingleton} from "@TurtleApp/Data/World";
 import aee, {AnyEventEmmiter} from "@Turtle/Data/Aee";
-import WorldApi from "@TurtleApp/Api/WorldApi";
+import SimWorldApi from "@TurtleSim/Api/SimWorldApi";
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
 import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
 import {runningSimulationController} from "@TurtleSim/SimModelWorldDock/Controllers/RunningSimulationController";
@@ -81,7 +81,7 @@ function saveController() {
 
     async function savePressed() {
         TurtleApp.Lock()
-        await WorldApi.SaveWorld(WorldSingleton.I)
+        await SimWorldApi.SaveWorld(WorldSingleton.I)
         TurtleApp.Unlock()
     }
 

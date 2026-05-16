@@ -9,16 +9,18 @@ interface SpawnEntityPropertiesProps {
     entity: SimEntity
 }
 
+
 export default function SpawnBehProperties({
                                                entity,
                                            }: SpawnEntityPropertiesProps) {
 
     const tData = entity.typeData
 
-    console.log(tData)
+    fixDefaultData(tData)
 
     return (
         <>
+
             <ActorsSelect
                 typeData={tData}
                 attribute={"actor"}
@@ -38,3 +40,13 @@ export default function SpawnBehProperties({
     )
 }
 
+function fixDefaultData(typeData: any) {
+    if (!typeData.spawn_interval) {
+        typeData.spawn_interval = 5
+    }
+
+    if (!typeData.spawn_limit) {
+        typeData.spawn_limit = 0
+    }
+
+}

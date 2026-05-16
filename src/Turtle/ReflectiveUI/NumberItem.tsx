@@ -19,12 +19,8 @@ export default function IntItem({
     return (
         <Form.Item
             label={t(attribute)}
-            style={{
-                margin: 0
-            }}
         >
             <Input
-                size={"small"}
                 type={"number"}
                 disabled={disabled}
                 defaultValue={entity[attribute]}

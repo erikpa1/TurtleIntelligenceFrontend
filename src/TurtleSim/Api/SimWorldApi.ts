@@ -1,14 +1,18 @@
-import turxios from "../../Turtle/Api/Turxios";
+import turxios from "@Turtle/Api/Turxios";
 import World from "@TurtleApp/Data/World";
 import {json} from "react-router-dom";
 import axios from "axios";
 
 
-export default class WorldApi {
+export default class SimWorldApi {
 
+    static V0 = "w"
+    static V1 = "simulation"
+
+    static VERSION = this.V1
 
     static async Simulate(worldUid: string): Promise<IRunningWorld> {
-        return (await axios.post("/api/w/simulate", null, {
+        return (await axios.post(`/api/${this.VERSION}/simulate`, null, {
             params: {
                 uid: worldUid
             }
@@ -16,7 +20,7 @@ export default class WorldApi {
     }
 
     static async PauseSimulation(simUid: string) {
-        await axios.post("/api/w/pause", null, {
+        await axios.post(`/api/${this.VERSION}/pause`, null, {
             params: {
                 uid: simUid
             }
@@ -24,7 +28,7 @@ export default class WorldApi {
     }
 
     static async ResumeSimulation(simUid: string) {
-        await axios.post("/api/w/resume", null, {
+        await axios.post(`/api/${this.VERSION}/resume`, null, {
             params: {
                 uid: simUid
             }
@@ -32,7 +36,7 @@ export default class WorldApi {
     }
 
     static async StopSimulation(simUid: string) {
-        await axios.post("/api/w/stop", null, {
+        await axios.post(`/api/${this.VERSION}/stop`, null, {
             params: {
                 uid: simUid
             }
@@ -47,12 +51,12 @@ export default class WorldApi {
         formData.set("tmp", "xxxxxx")
 
 
-        await axios.post("/api/w/save", formData)
+        await axios.post(`/api/${this.VERSION}/save`, formData)
     }
 
     static async GetWorld(worldUid: string): Promise<World> {
 
-        const data = (await axios.get("/api/w", {
+        const data = (await axios.get(`/api/w`, {
             params: {
                 uid: worldUid
             }

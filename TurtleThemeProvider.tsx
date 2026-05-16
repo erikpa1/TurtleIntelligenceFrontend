@@ -48,6 +48,9 @@ export default function TurtleThemeProvider({
                     DatePicker: {
                         borderRadius: 0,
                     },
+                    Form: {
+                        itemMarginBottom: 8,
+                    },
                     Modal: {
                         borderRadius: 0,
                         borderRadiusLG: 0,

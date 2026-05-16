@@ -7,7 +7,7 @@ import SimWorldHierarchy from "@TurtleSim/SimModelWorldDock/SimWorldHierarchy";
 import {useParams} from "react-router-dom";
 
 import WorldControllers from "@TurtleSim/SimModelWorldDock/WorldControllers";
-import WorldApi from "@TurtleApp/Api/WorldApi";
+import SimWorldApi from "@TurtleSim/Api/SimWorldApi";
 import World, {WorldSingleton} from "@TurtleApp/Data/World";
 import WorldTopBar from "@TurtleSim/SimModelWorldDock/WorldTopBar";
 import SimWorldRightBar from "@TurtleSim/SimModelWorldDock/SimWorldRightBar/SimWorldRightBar";
@@ -26,14 +26,14 @@ export default function SimWorldDock({}) {
 
     const {modelUid} = useParams()
 
-    const [world, setWorld] = React.useState<World | null>(null)
+    const [world, setWorld] = React.useState<World>(new World())
 
     const [isLoading, setIsLoading] = React.useState(false)
 
 
     async function refresh() {
         setIsLoading(true)
-        const world = await WorldApi.GetWorld(modelUid as any)
+        const world = await SimWorldApi.GetWorld(modelUid as any)
         WorldSingleton.I = world
 
         document.title = `Model - ${world.name}`
@@ -47,21 +47,9 @@ export default function SimWorldDock({}) {
     }, [modelUid])
 
 
-    if (isLoading) {
-        return (
-            <Spin size="large"/>
-        )
-    } else {
-        if (world) {
-            return (
-                <_LayoutDock world={world}/>
-            )
-        } else {
-            return (<div/>)
-        }
-
-    }
-
+    return (
+        <_LayoutDock key={world.uid} world={world}/>
+    )
 
 }
 

@@ -3,7 +3,7 @@ import {Button, Flex, Segmented, Space} from "antd";
 import {DisconnectOutlined, DownOutlined, MergeOutlined, PlayCircleOutlined, UpOutlined} from "@ant-design/icons";
 import {useTranslation} from "react-i18next";
 import aee from "@Turtle/Data/Aee";
-import WorldApi from "@TurtleApp/Api/WorldApi";
+import SimWorldApi from "@TurtleSim/Api/SimWorldApi";
 import {WorldSingleton} from "@TurtleApp/Data/World";
 import {
     HierarchyPauseButton,
@@ -219,7 +219,7 @@ function _SimulationUpperSection({}) {
 
     async function simulatePressed() {
         TurtleApp.Lock()
-        const simStates = await WorldApi.Simulate(WorldSingleton.I.uid)
+        const simStates = await SimWorldApi.Simulate(WorldSingleton.I.uid)
 
         WorldSingleton.I.SimStarted()
 
@@ -240,23 +240,22 @@ function _SimulationUpperSection({}) {
     async function pausePressed() {
         if (isPaused) {
             setIsPaused(false)
-            await WorldApi.ResumeSimulation(isRunning)
+            await SimWorldApi.ResumeSimulation(isRunning)
         } else {
             setIsPaused(true)
-            await WorldApi.PauseSimulation(isRunning)
+            await SimWorldApi.PauseSimulation(isRunning)
         }
     }
 
     async function stopPressed() {
         setIsRunning("")
-        await WorldApi.StopSimulation(isRunning)
+        await SimWorldApi.StopSimulation(isRunning)
     }
 
 
     if (isRunning !== "") {
-
         return (
-            <Space>
+            <Space key={isRunning}>
 
                 <span>{second} (s) / 100 (s)</span>
 

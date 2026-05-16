@@ -2,7 +2,7 @@ import AeeWrapper from "@Turtle/Data/AeeWrapper";
 import aee, {KeyboardKeys, useKeyDownEvent} from "@Turtle/Data/Aee";
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
 import React from "react";
-import {Empty, Flex, Form, Tabs} from "antd";
+import {Divider, Empty, Flex, Form, Tabs} from "antd";
 
 import {EntityNameProperty, EntityTypeProperty} from "@TurtleSim/SimModelWorldDock/BehProps/Common";
 import SimFactory from "@TurtleSim/Factories/SimFactory";
@@ -13,6 +13,9 @@ import TurtleEmpty from "@Turtle/Components/TurtleEmpty";
 import AIDescriptionItem from "@Turtle/ReflectiveUI/AIDescItem";
 import TopBarWrapper, {TopBarWrapperNoFlex} from "@Turtle/Components/TopBarWrapper";
 import {WorldSingleton} from "@TurtleApp/Data/World";
+import UidAttributeView from "@Turtle/Components/Forms/UidAttributeView";
+import StringItem from "@Turtle/ReflectiveUI/StringItem";
+import {HorizontalForm} from "@Turtle/Antd/Formular";
 
 
 export default function SimWorldRightBar() {
@@ -107,32 +110,43 @@ interface _EntityEditPropsProps {
 
 function _EntityEditProps({entity}: _EntityEditPropsProps) {
 
-
     return (
-        <Form
-            layout={'horizontal'}
+        <HorizontalForm
+            // size={"large"}
             key={entity.uid}
             labelCol={{span: 10}}
             wrapperCol={{span: 15}}
+            size={"middle"}
+
         >
-            <EntityNameProperty entity={entity}/>
 
-            <AIDescriptionItem entity={entity} attribute={"aiDescription"}/>
+            <Divider>
+                {entity.type}
+            </Divider>
 
-            <EntityTypeProperty entity={entity}/>
+            <EntityNameProperty
+                entity={entity}
+            />
+
+            <StringItem
+                entity={entity}
+                attribute={"uid"}
+                disabled={true}
+            />
+
+            <AIDescriptionItem
+                entity={entity}
+                attribute={"aiDescription"}
+            />
+
+            <EntityTypeProperty
+                entity={entity}
+            />
 
             <_ViewDispatcher entity={entity}/>
 
-            {/*{*/}
-            {/*    entity.type == "buffer" && (*/}
-            {/*        <BufferBehProperties*/}
-            {/*            entity={entity}*/}
-            {/*        />*/}
-            {/*    )*/}
-            {/*}*/}
 
-
-        </Form>
+        </HorizontalForm>
     )
 }
 
