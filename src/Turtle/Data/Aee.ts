@@ -64,9 +64,9 @@ function receiver_keydown(evt: KeyboardEvent) {
 
     if (conversion !== "") {
         if (hasCtrl) {
-            aee.emit(`keydown-ctrl-${conversion}`, evt)
+            aee.emit(`keydown_ctrl_${conversion}`, evt)
         } else {
-            aee.emit(`keydown-${conversion}`, evt)
+            aee.emit(`keydown_${conversion}`, evt)
         }
     }
 }
@@ -94,9 +94,9 @@ export function useAnyEventEmmiter(key: string, fun: any): [] {
 
 export function useKeyDownEvent(key: string, fun: any): [] {
     React.useEffect(() => {
-        aee.on(`keydown-${key}`, fun)
+        aee.on(`keydown_${key}`, fun)
         return () => {
-            aee.off(`keydown-${key}`, fun)
+            aee.off(`keydown_${key}`, fun)
         }
     })
     return []
@@ -104,9 +104,9 @@ export function useKeyDownEvent(key: string, fun: any): [] {
 
 export function useCtrlKeyDownEvent(key: string, fun: any): [] {
     React.useEffect(() => {
-        aee.on(`keydown-ctrl-${key}`, fun)
+        aee.on(`keydown_ctrl_${key}`, fun)
         return () => {
-            aee.off(`keydown-ctrl-${key}`, fun)
+            aee.off(`keydown_ctrl_${key}`, fun)
         }
     })
     return []

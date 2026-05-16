@@ -15,6 +15,8 @@ export default function SpawnBehProperties({
 
     const tData = entity.typeData
 
+    console.log(tData)
+
     return (
         <>
             <ActorsSelect

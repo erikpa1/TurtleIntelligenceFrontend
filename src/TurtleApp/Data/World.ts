@@ -1,7 +1,7 @@
-
 import aee from "@Turtle/Data/Aee";
 import {CreateUid} from "@Turtle/Utils/Uid";
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity"
+import {useTransformControls} from "@Turtle/Fibers/TransformControlsFiber";
 
 
 export default class World {
@@ -156,7 +156,6 @@ export default class World {
     }
 
     DeleteEntity(entity: SimEntity) {
-
         this.deletedEntities.add(entity.uid)
         this.entities.delete(entity.uid)
 
@@ -168,6 +167,7 @@ export default class World {
 
         this.connections.delete(entity.uid)
 
+        useTransformControls.getState().setObjectToSelect(null)
         this.EmitEntitiesChanged()
         this.EmitConnectionsChanged()
     }

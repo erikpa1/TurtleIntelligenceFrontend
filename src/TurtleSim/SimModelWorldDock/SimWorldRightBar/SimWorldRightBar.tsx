@@ -1,5 +1,5 @@
 import AeeWrapper from "@Turtle/Data/AeeWrapper";
-import aee from "@Turtle/Data/Aee";
+import aee, {KeyboardKeys, useKeyDownEvent} from "@Turtle/Data/Aee";
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
 import React from "react";
 import {Empty, Flex, Form, Tabs} from "antd";
@@ -12,6 +12,7 @@ import RunningSimTab from "@TurtleSim/SimModelWorldDock/RunningSimTab";
 import TurtleEmpty from "@Turtle/Components/TurtleEmpty";
 import AIDescriptionItem from "@Turtle/ReflectiveUI/AIDescItem";
 import TopBarWrapper, {TopBarWrapperNoFlex} from "@Turtle/Components/TopBarWrapper";
+import {WorldSingleton} from "@TurtleApp/Data/World";
 
 
 export default function SimWorldRightBar() {
@@ -26,6 +27,14 @@ export default function SimWorldRightBar() {
     function entityPicked(entity: SimEntity) {
         setEntity(entity)
     }
+
+    function deletePressedEntity() {
+        if (entity) {
+            WorldSingleton.I.DeleteEntity(entity)
+        }
+    }
+
+    useKeyDownEvent(KeyboardKeys.DEL, deletePressedEntity)
 
     return (
         <AeeWrapper
