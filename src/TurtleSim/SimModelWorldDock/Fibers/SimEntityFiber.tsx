@@ -33,7 +33,7 @@ export default function SimEntityFiber({entity}: EntityFiberProps) {
 
             <ErrorBoundary onError={<></>}>
                 <React.Suspense fallback={<></>}>
-                    <_EntityIcon textPath={SimFactory.GetIconSvg(entity.type)}/>
+                    <_EntityIcon textPath={SimFactory.GetIconPng(entity.type)}/>
                 </React.Suspense>
             </ErrorBoundary>
 

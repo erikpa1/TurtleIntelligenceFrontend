@@ -8,6 +8,8 @@ import SimFactory from "@TurtleSim/Factories/SimFactory";
 import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity"
 import {useTransformControls} from "@Turtle/Fibers/TransformControlsFiber"
+import PlantSimDialog from "@TurtleSim/SimModelWorldDock/PlantDesignTest";
+import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 
 
 export interface EntityFiberProps {
@@ -24,6 +26,7 @@ export default function WEFiberWrapper({
                                            entity
                                        }: _WEFiberWrapperProps) {
 
+    const {activate, deactivate} = useTurtleModal()
 
     const groupRef = React.useRef<THREE.Group>(null)
 
@@ -63,6 +66,17 @@ export default function WEFiberWrapper({
         }
     }
 
+    function doubleClick(e) {
+        e.stopPropagation()
+
+        activate({
+            title: "dialog",
+            content: (
+                <PlantSimDialog/>
+            )
+        })
+    }
+
 
     return (
         <AeeWrapper
@@ -74,6 +88,7 @@ export default function WEFiberWrapper({
                 name={entity.uid}
                 position={entity.position as any}
                 onClick={clickedFromWorld}
+                onDoubleClick={doubleClick}
             >
                 {children}
 

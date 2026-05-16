@@ -18,11 +18,13 @@ import {useTranslation} from "react-i18next";
 import ColorConstants from "@Turtle/Constants/ColorConstants";
 import SimStatisticsView from "@TurtleSim/SimModelWorldDock/Statistics/SimStatisticsView";
 import SimWorldHud from "@TurtleSim/SimModelWorldDock/Components/SimWorldHud";
+import PlantSimDialog from "@TurtleSim/SimModelWorldDock/PlantDesignTest";
 
 
 InitWorldFactory()
 
 export default function SimWorldDock({}) {
+
 
     const {modelUid} = useParams()
 
@@ -114,7 +116,6 @@ function _LayoutDock({world}: _WorldDockProps) {
                             <SimStatisticsView/>
                         )
                     }
-
 
                 </Splitter.Panel>
 
