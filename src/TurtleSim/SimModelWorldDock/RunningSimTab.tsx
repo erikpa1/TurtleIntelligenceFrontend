@@ -32,9 +32,6 @@ export function EventsList() {
     function receivedNewEvents(stepState: SimSecondUpdate) {
 
         const stayingEvenets = simEvents.filter((event) => {
-
-            console.log(event.second, stepState.second)
-
             return event.second <= stepState.second
         })
 

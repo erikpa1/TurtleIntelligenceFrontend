@@ -227,6 +227,7 @@ function _SimulationUpperSection({}) {
             const entity = WorldSingleton.I.entities.get(key)
 
             if (entity) {
+                entity.runtimeId = value
                 WorldSingleton.I.entitiesById.set(value, entity)
             }
 

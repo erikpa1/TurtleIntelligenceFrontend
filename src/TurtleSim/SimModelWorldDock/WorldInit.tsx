@@ -8,6 +8,8 @@ import SplitBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/SplitBehPr
 import MergeBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/MergeBehProperties";
 import HumanBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/HumanBehProperties"
 import SimBufferFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/SimBufferFiber";
+import SimSinkFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/SimSinkFiber";
+import SimStationFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/SimStationFiber";
 
 
 export default function InitWorldFactory() {
@@ -31,6 +33,8 @@ function _InitProperties() {
 }
 
 function _InitFibers() {
-    
+
     SimFactory.FIBER_HANDLERS[SimFactory.TYPE_BUFFER] = SimBufferFiber
+    SimFactory.FIBER_HANDLERS[SimFactory.TYPE_SINK] = SimSinkFiber
+    SimFactory.FIBER_HANDLERS[SimFactory.TYPE_PROCESS] = SimStationFiber
 }

@@ -6,20 +6,22 @@ import {SimSecondUpdate} from "@TurtleApp/Data/SimulationResponse";
 import aee from "@Turtle/Data/Aee";
 
 
-export default function SimBufferFiber({entity}: SimFiber) {
+export default function SimSinkFiber({entity}: SimFiber) {
     const [activeCount, setActiveCount] = React.useState(0)
     const {isRunning} = useActiveSimulation()
 
-
     function receivedNewEvents(stepState: SimSecondUpdate) {
+
         if (stepState.states) {
             const stateExists = stepState.states[entity.runtimeId]
             if (stateExists) {
-                if (Object.hasOwn(stateExists, "count")) {
-                    setActiveCount(stateExists.count as any)
+                const count = stateExists.count
+                if (count) {
+                    setActiveCount(count)
                 }
             }
         }
+
     }
 
     React.useEffect(() => {
@@ -51,7 +53,7 @@ export default function SimBufferFiber({entity}: SimFiber) {
                 whiteSpace: "nowrap",
                 userSelect: "none",
             }}>
-                {activeCount}/{(entity.typeData as any).capacity}
+                {activeCount}
             </div>
         </Html>
     )
