@@ -5,14 +5,13 @@ import { useActiveSimulation } from "@TurtleSim/SimModelWorldDock/Controllers/Ru
 import { SimSecondUpdate } from "@TurtleApp/Data/SimulationResponse";
 import aee from "@Turtle/Data/Aee";
 
-export default function SimBufferFiber({ entity }: SimFiber) {
+export default function SimSpawnFiber({ entity }: SimFiber) {
     const [activeCount, setActiveCount] = React.useState(0);
     const { isRunning } = useActiveSimulation();
 
     function receivedNewEvents(stepState: SimSecondUpdate) {
         if (stepState.states) {
             const stateExists = stepState.states[entity.runtimeId];
-
             if (stateExists) {
                 if (Object.hasOwn(stateExists, "count")) {
                     setActiveCount(stateExists.count as any);
@@ -49,7 +48,7 @@ export default function SimBufferFiber({ entity }: SimFiber) {
                     userSelect: "none",
                 }}
             >
-                {activeCount}/{(entity.typeData as any).capacity}
+                {activeCount}/{(entity.typeData as any).spawn_limit}
             </div>
         </Html>
     );

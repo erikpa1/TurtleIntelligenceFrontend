@@ -1,101 +1,98 @@
-import React from "react"
-import {Button, Flex, Segmented, Space} from "antd";
-import {DisconnectOutlined, DownOutlined, MergeOutlined, PlayCircleOutlined, UpOutlined} from "@ant-design/icons";
-import {useTranslation} from "react-i18next";
+import React from "react";
+import { Button, Flex, Segmented, Space } from "antd";
+import {
+    DisconnectOutlined,
+    DownOutlined,
+    MergeOutlined,
+    PlayCircleOutlined,
+    UpOutlined,
+} from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 import aee from "@Turtle/Data/Aee";
 import SimWorldApi from "@TurtleSim/Api/SimWorldApi";
-import {WorldSingleton} from "@TurtleApp/Data/World";
+import { WorldSingleton } from "@TurtleApp/Data/World";
 import {
     HierarchyPauseButton,
     HierarchyPlayButton,
-    HierarchyStopButton
+    HierarchyStopButton,
 } from "@Turtle/Components/HierarchyComponents";
-import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
+import { useTurtleModal } from "@Turtle/Hooks/useTurtleModal";
 import Myio from "@Turtle/Data/myio";
-import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
-import {useActiveSimulation} from "@TurtleSim/SimModelWorldDock/Controllers/RunningSimulationController";
+import { useWorldConnection } from "@TurtleApp/Data/WorldZuses";
+import { useActiveSimulation } from "@TurtleSim/SimModelWorldDock/Controllers/RunningSimulationController";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import SimConfigSettingsButton from "@TurtleSim/SimModelWorldDock/Components/SimConfig";
-import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
-import IconSave from "@Turtle/Icons/IconSave"
-
+import { useTurtleTheme } from "@Turtle/Theme/useTurleTheme";
+import IconSave from "@Turtle/Icons/IconSave";
 
 export default function WorldTopBar({}) {
+    const [bigMode, setBigMode] = React.useState(false);
 
-
-    const [bigMode, setBigMode] = React.useState(false)
-
-    const {bigPadding} = useTurtleTheme()
-
+    const { bigPadding } = useTurtleTheme();
 
     return (
-        <div style={{
-            height: `${45 * (bigMode ? 2 : 1)}px`,
-            backgroundColor: "white",
-            position: "relative",
-            paddingLeft: "10px",
-            width: "100%",
-        }}>
-
+        <div
+            style={{
+                height: `${45 * (bigMode ? 2 : 1)}px`,
+                backgroundColor: "white",
+                position: "relative",
+                paddingLeft: "10px",
+                width: "100%",
+            }}
+        >
             <Flex
                 gap={5}
                 style={{
-                    paddingTop: "5px"
+                    paddingTop: "5px",
                 }}
             >
                 <Button
                     type={"text"}
-                    icon={bigMode ? <UpOutlined/> : <DownOutlined/>}
+                    icon={bigMode ? <UpOutlined /> : <DownOutlined />}
                     onClick={() => {
-                        setBigMode(!bigMode)
+                        setBigMode(!bigMode);
                     }}
-                >
+                ></Button>
 
-                </Button>
-
-                <_SaveButton/>
-                <_ConnectButton/>
-                <_DisconnectButton/>
+                <_SaveButton />
+                <_ConnectButton />
+                <_DisconnectButton />
 
                 <Flex
                     justify={"end"}
                     flex={1}
                     style={{
-                        paddingRight: bigPadding
+                        paddingRight: bigPadding,
                     }}
                 >
-                    <_SimulationUpperSection/>
+                    <_SimulationUpperSection />
                 </Flex>
-
             </Flex>
 
-            {
-                bigMode && (
-                    <>
-                        <div
-                            style={{
-                                background: "linear-gradient(to right, transparent, rgb(230, 230, 230) 5%, rgb(230, 230, 230) 100%, transparent)",
-                                height: "1px",
-                                width: "100%",
-                                marginTop: "5px",
-                                marginBottom: "5px",
-                            }}
-                        />
+            {bigMode && (
+                <>
+                    <div
+                        style={{
+                            background:
+                                "linear-gradient(to right, transparent, rgb(230, 230, 230) 5%, rgb(230, 230, 230) 100%, transparent)",
+                            height: "1px",
+                            width: "100%",
+                            marginTop: "5px",
+                            marginBottom: "5px",
+                        }}
+                    />
 
-                        <Flex
-                            justify={"end"}
-                            flex={1}
-                            style={{
-                                paddingRight: bigPadding
-                            }}
-                        >
-                            <_SimulationLowerSection/>
-                        </Flex>
-
-                    </>
-
-                )
-            }
+                    <Flex
+                        justify={"end"}
+                        flex={1}
+                        style={{
+                            paddingRight: bigPadding,
+                        }}
+                    >
+                        <_SimulationLowerSection />
+                    </Flex>
+                </>
+            )}
 
             <div
                 style={{
@@ -104,82 +101,64 @@ export default function WorldTopBar({}) {
                     width: "100%",
                     position: "absolute",
                     bottom: 0,
-                    left: 0
+                    left: 0,
                 }}
             />
         </div>
-    )
+    );
 }
-
 
 function _SaveButton() {
-
-
-    const [t] = useTranslation()
-
+    const [t] = useTranslation();
 
     function savePressed() {
-        aee.emit("SaveWorld", null)
+        aee.emit("SaveWorld", null);
     }
 
-
     return (
-        <Button
-            onClick={savePressed}
-            type={"text"}
-        >
-            <IconSave/>
+        <Button onClick={savePressed} type={"text"}>
+            <IconSave />
             {t("save")}
         </Button>
-    )
+    );
 }
 
-
 function _ConnectButton() {
+    const [t] = useTranslation();
 
-    const [t] = useTranslation()
-
-
-    const {phase, setPhase} = useWorldConnection()
+    const { phase, setPhase } = useWorldConnection();
 
     function startConnecting() {
-        setPhase(1)
-        aee.emit("ConnectFirstOne", null)
+        setPhase(1);
+        aee.emit("ConnectFirstOne", null);
     }
 
     function stopConnecting() {
-        setPhase(0)
-        aee.emit("ConnectStop", null)
+        setPhase(0);
+        aee.emit("ConnectStop", null);
     }
 
     if (phase > 0) {
         return (
-            <Button
-                onClick={stopConnecting}
-                type={"primary"}
-            >
-                <MergeOutlined/>
+            <Button onClick={stopConnecting} type={"primary"}>
+                <MergeOutlined />
                 {t("stop.connecting")}
             </Button>
-        )
+        );
     } else {
         return (
-            <Button
-                onClick={startConnecting}
-                type={"text"}
-            >
-                <MergeOutlined/>
+            <Button onClick={startConnecting} type={"text"}>
+                <MergeOutlined />
                 {t("connect")}
             </Button>
-        )
+        );
     }
-
 }
 
 function _DisconnectButton() {
+    const [t] = useTranslation();
 
-    const {phase, setPhase} = useWorldConnection()
-
+    const { phase, setPhase } = useWorldConnection();
 
     return (
         <Button
@@ -190,22 +169,22 @@ function _DisconnectButton() {
                 paddingRight: "2px",
             }}
             onClick={() => {
-
                 if (phase == -1) {
-                    setPhase(0)
+                    setPhase(0);
                 } else {
-                    setPhase(-1)
+                    setPhase(-1);
                 }
             }}
         >
-            <DisconnectOutlined/>
+            <DisconnectOutlined />
+
+            {phase == -1 && t("disconnect")}
         </Button>
-    )
+    );
 }
 
 function _SimulationUpperSection({}) {
-
-    const [t] = useTranslation()
+    const [t] = useTranslation();
 
     const {
         isRunning,
@@ -214,148 +193,123 @@ function _SimulationUpperSection({}) {
         setIsPaused,
         second,
         endSecond,
-    } = useActiveSimulation()
-
+    } = useActiveSimulation();
 
     async function simulatePressed() {
-        TurtleApp.Lock()
-        const simStates = await SimWorldApi.Simulate(WorldSingleton.I.uid)
+        TurtleApp.Lock();
+        const simStates = await SimWorldApi.Simulate(WorldSingleton.I.uid);
 
-        WorldSingleton.I.SimStarted()
+        WorldSingleton.I.SimStarted();
 
-        Object.entries(simStates.runStates.runtimeIds).forEach(([key, value]: any) => {
-            const entity = WorldSingleton.I.entities.get(key)
+        Object.entries(simStates.runStates.runtimeIds).forEach(
+            ([key, value]: any) => {
+                const entity = WorldSingleton.I.entities.get(key);
 
-            if (entity) {
-                entity.runtimeId = value
-                WorldSingleton.I.entitiesById.set(value, entity)
-            }
+                if (entity) {
+                    entity.runtimeId = value;
+                    WorldSingleton.I.entitiesById.set(value, entity);
+                }
+            },
+        );
 
-        })
-
-        setIsRunning(simStates.runUid)
-        TurtleApp.Unlock()
+        setIsRunning(simStates.runUid);
+        TurtleApp.Unlock();
     }
-
 
     async function pausePressed() {
         if (isPaused) {
-            setIsPaused(false)
-            await SimWorldApi.ResumeSimulation(isRunning)
+            setIsPaused(false);
+            await SimWorldApi.ResumeSimulation(isRunning);
         } else {
-            setIsPaused(true)
-            await SimWorldApi.PauseSimulation(isRunning)
+            setIsPaused(true);
+            await SimWorldApi.PauseSimulation(isRunning);
         }
     }
 
     async function stopPressed() {
-        setIsRunning("")
-        await SimWorldApi.StopSimulation(isRunning)
+        setIsRunning("");
+        await SimWorldApi.StopSimulation(isRunning);
     }
-
 
     if (isRunning !== "") {
         return (
             <Space key={isRunning}>
-
                 <span>{second} (s) / 100 (s)</span>
 
-                {
-                    isPaused ? (
-                        <HierarchyPlayButton onClick={pausePressed}/>
-                    ) : (
-                        <HierarchyPauseButton onClick={pausePressed}/>
-                    )
-                }
+                {isPaused ? (
+                    <HierarchyPlayButton onClick={pausePressed} />
+                ) : (
+                    <HierarchyPauseButton onClick={pausePressed} />
+                )}
 
-                <HierarchyStopButton onClick={stopPressed}/>
+                <HierarchyStopButton onClick={stopPressed} />
             </Space>
-        )
+        );
     } else {
         return (
             <Flex>
                 <Button
                     onClick={simulatePressed}
                     type={"primary"}
-                    icon={<PlayCircleOutlined/>}
+                    icon={<PlayCircleOutlined />}
                 >
                     {t("simulate")}
                 </Button>
-                <SimConfigSettingsButton/>
+                <SimConfigSettingsButton />
             </Flex>
-        )
+        );
     }
 }
 
 function _SimulationLowerSection({}) {
-
     //TODO
-    const [t] = useTranslation()
+    const [t] = useTranslation();
 
-    const {
-        isRunning,
-    } = useActiveSimulation()
+    const { isRunning } = useActiveSimulation();
 
-    function changeSpeedPressed() {
-
-    }
+    function changeSpeedPressed() {}
 
     return (
         <Flex>
             <Segmented
                 options={[
-                    {label: '1:1', value: 1000},
-                    {label: '1:2', value: 500},
-                    {label: '1:10', value: 100},
-                    {label: '1:100', value: 10},
-                    {label: 'full', value: 0},
+                    { label: "1:1", value: 1000 },
+                    { label: "1:2", value: 500 },
+                    { label: "1:10", value: 100 },
+                    { label: "1:100", value: 10 },
+                    { label: "full", value: 0 },
                 ]}
             />
         </Flex>
-    )
+    );
 }
 
-
 function _BreakPoint({}) {
-
-    const [t] = useTranslation()
+    const [t] = useTranslation();
 
     return (
         <Flex>
-            <Button
-                type={"text"}
-            >
-                {t("break.point")}
-            </Button>
+            <Button type={"text"}>{t("break.point")}</Button>
         </Flex>
-    )
+    );
 }
 
 function _SimHudEditView({}) {
+    const [t] = useTranslation();
 
-    const [t] = useTranslation()
-
-    const {activate, deactivate} = useTurtleModal()
+    const { activate, deactivate } = useTurtleModal();
 
     function editHudPressed() {
         activate({
             title: `${t("edit.hud")}:`,
-            content: (
-                <div>
-                    Here
-                </div>
-            )
-        })
+            content: <div>Here</div>,
+        });
     }
 
     return (
-        <Button
-            onClick={editHudPressed}
-            type={"text"}
-
-        >
-            <IconSave/>
+        <Button onClick={editHudPressed} type={"text"}>
+            <IconSave />
             HUD
         </Button>
-    )
+    );
 }

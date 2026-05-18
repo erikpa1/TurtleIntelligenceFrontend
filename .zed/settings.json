@@ -1,0 +1,79 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+    "ui_font_family": ".ZedSans",
+    "buffer_font_family": "JetBrains Mono",
+    "buffer_font_features": {
+        "calt": false,
+    },
+    "icon_theme": "VSCode Icons for Zed (Light)",
+    "terminal": {
+        "font_family": "JetBrains Mono",
+        "dock": "bottom",
+    },
+    "project_panel": {
+        "dock": "left",
+    },
+    "base_keymap": "JetBrains",
+    "ui_font_size": 16,
+    "buffer_font_size": 15,
+    "theme": "JetBrains Islands Light",
+    "scroll_sensitivity": 1.0,
+    "mouse_wheel_zoom": true,
+    "tab_size": 4,
+    "languages": {
+        "JavaScript": {
+            "format_on_save": "on",
+            "formatter": [
+                { "code_action": "source.fixAll.eslint" },
+                {
+                    "external": {
+                        "command": "prettier",
+                        "arguments": ["--stdin-filepath", "{buffer_path}"],
+                    },
+                },
+                { "code_action": "source.organizeImports" },
+            ],
+        },
+        "TypeScript": {
+            "format_on_save": "on",
+            "formatter": [
+                { "code_action": "source.fixAll.eslint" },
+                {
+                    "external": {
+                        "command": "prettier",
+                        "arguments": ["--stdin-filepath", "{buffer_path}"],
+                    },
+                },
+                { "code_action": "source.organizeImports" },
+            ],
+        },
+        "TSX": {
+            "format_on_save": "on",
+            "formatter": [
+                { "code_action": "source.fixAll.eslint" },
+                {
+                    "external": {
+                        "command": "prettier",
+                        "arguments": ["--stdin-filepath", "{buffer_path}"],
+                    },
+                },
+            ],
+        },
+    },
+    "lsp": {
+        "eslint": {
+            "settings": {
+                "codeActionOnSave": {
+                    "rules": ["import/order"],
+                },
+            },
+        },
+    },
+}

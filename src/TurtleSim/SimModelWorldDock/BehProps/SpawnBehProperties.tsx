@@ -1,52 +1,43 @@
-import React from "react"
-import IntItem from "@Turtle/ReflectiveUI/NumberItem"
-import {Flex} from "antd"
-import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity"
+import React from "react";
+import IntItem from "@Turtle/ReflectiveUI/NumberItem";
+import { Flex } from "antd";
+import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
 
-import {ActorsSelect} from "@TurtleSim/SimModelWorldDock/BehProps/ActorSelect";
+import { ActorsSelect } from "@TurtleSim/SimModelWorldDock/BehProps/ActorSelect";
 
 interface SpawnEntityPropertiesProps {
-    entity: SimEntity
+    entity: SimEntity;
 }
 
-
 export default function SpawnBehProperties({
-                                               entity,
-                                           }: SpawnEntityPropertiesProps) {
+    entity,
+}: SpawnEntityPropertiesProps) {
+    const tData = entity.typeData;
 
-    const tData = entity.typeData
-
-    fixDefaultData(tData)
+    fixDefaultData(tData);
 
     return (
         <>
+            <ActorsSelect typeData={tData} attribute={"actor"} />
 
-            <ActorsSelect
-                typeData={tData}
-                attribute={"actor"}
-            />
+            <IntItem attribute={"spawn_interval"} entity={tData} />
 
-            <IntItem
-                attribute={"spawn_interval"}
-                entity={tData}
-            />
+            <IntItem attribute={"spawn_limit"} entity={tData} />
 
-            <IntItem
-                attribute={"spawn_limit"}
-                entity={tData}
-            />
-
+            <IntItem attribute={"spawn_multiplication"} entity={tData} />
         </>
-    )
+    );
 }
 
 function fixDefaultData(typeData: any) {
     if (!typeData.spawn_interval) {
-        typeData.spawn_interval = 5
+        typeData.spawn_interval = 5;
     }
 
     if (!typeData.spawn_limit) {
-        typeData.spawn_limit = 0
+        typeData.spawn_limit = 0;
     }
-
+    if (!typeData.spawn_multiplication) {
+        typeData.spawn_multiplication = 1;
+    }
 }

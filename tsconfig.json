@@ -1,11 +1,7 @@
 {
     "compilerOptions": {
         "target": "ESNext",
-        "lib": [
-            "DOM",
-            "DOM.Iterable",
-            "ESNext"
-        ],
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
         "allowJs": true,
         "module": "ESNext",
         "skipLibCheck": true,
@@ -24,47 +20,23 @@
         "noFallthroughCasesInSwitch": true,
         //        "baseUrl": ".",
         "paths": {
-            "@Turtle/*": [
-                "./src/Turtle/*"
-            ],
-            "@TurtleData/*": [
-                "./src/TurtleData/*"
-            ],
-            "@TurtleApp/*": [
-                "./src/TurtleApp/*"
-            ],
-            "@TurtleCrm/*": [
-                "./src/TurtleCrm/*"
-            ],
-            "@TurtleSecurity/*": [
-                "./src/TurtleSecurity/*"
-            ],
-            "@TurtlePostman/*": [
-                "./src/TurtlePostman/*"
-            ],
-            "@TurtleChat/*": [
-                "./src/TurtleChat/*"
-            ],
-            "@TurtleSim/*": [
-                "./src/TurtleSim/*"
-            ],
-            "@TurtleBlueprints/*": [
-                "./src/TurtleBlueprints/*"
-            ],
-            "@TurtleNetess/*": [
-                "./src/TurtleNetess/*"
-            ],
-            "@NavBar/*": [
-                "./src/NavBar/*"
-            ]
-        }
+            "@Turtle/*": ["./src/Turtle/*"],
+            "@TurtleData/*": ["./src/TurtleData/*"],
+            "@TurtleApp/*": ["./src/TurtleApp/*"],
+            "@TurtleCrm/*": ["./src/TurtleCrm/*"],
+            "@TurtleSecurity/*": ["./src/TurtleSecurity/*"],
+            "@TurtlePostman/*": ["./src/TurtlePostman/*"],
+            "@TurtleChat/*": ["./src/TurtleChat/*"],
+            "@TurtleSim/*": ["./src/TurtleSim/*"],
+            "@TurtleBlueprints/*": ["./src/TurtleBlueprints/*"],
+            "@TurtleNetess/*": ["./src/TurtleNetess/*"],
+            "@NavBar/*": ["./src/NavBar/*"],
+        },
     },
-    "include": [
-        "src"
-    ],
+    "include": ["src"],
     "references": [
         {
-            "path": "./tsconfig.node.json"
-        }
-    ]
+            "path": "./tsconfig.node.json",
+        },
+    ],
 }
