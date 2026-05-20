@@ -17,7 +17,7 @@ import TopBarWrapper, {
 } from "@Turtle/Components/TopBarWrapper";
 import { useTurtleTheme } from "@Turtle/Theme/useTurleTheme";
 import { useTranslation } from "react-i18next";
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 import SimStatisticsView from "@TurtleSim/SimModelWorldDock/Statistics/SimStatisticsView";
 import SimWorldHud from "@TurtleSim/SimModelWorldDock/Components/SimWorldHud";
 import PlantSimDialog from "@TurtleSim/SimModelWorldDock/PlantDesignTest";

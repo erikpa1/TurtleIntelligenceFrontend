@@ -1,4 +1,4 @@
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 import {create} from "zustand"
 import ThemeApi from "@Turtle/Theme/ThemeApi"
 
@@ -6,7 +6,7 @@ export class TurtleThemeLight {
     uid = ""
     name = ""
     default = false
-    color = ColorConstants.AZURE_BLUE
+    color = TurtleColors.AZURE_BLUE
 
     ToJson() {
         return {
@@ -33,12 +33,12 @@ export class TurtleTheme extends  TurtleThemeLight{
     primaryLogoSizeY = "40px"
     topBarHeightBig = "45px"
     bigPadding = "15px"
-    headingFontColor = ColorConstants.AZURE_BLUE
-    iconPrimaryColor = ColorConstants.AZURE_BLUE
-    primaryColor = ColorConstants.AZURE_BLUE
-    iconSecondaryColor = ColorConstants.GRAY
-    borderColor = ColorConstants.AZURE_BLUE
-    borderHoverColor = ColorConstants.AZURE_BLUE_HOVER
+    headingFontColor = TurtleColors.AZURE_BLUE
+    iconPrimaryColor = TurtleColors.AZURE_BLUE
+    primaryColor = TurtleColors.AZURE_BLUE
+    iconSecondaryColor = TurtleColors.GRAY
+    borderColor = TurtleColors.AZURE_BLUE
+    borderHoverColor = TurtleColors.AZURE_BLUE_HOVER
 
     GetSplitterBigHeight(): string {
         return `calc(100vh - ${this.topBarHeightBig})`

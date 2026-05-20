@@ -1,4 +1,4 @@
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 import NodeColors from "@TurtleBlueprints/Data/Nodes/NodeColors";
 
 export enum SimUpcomingEventType {
@@ -39,13 +39,13 @@ export class SimUpcomingEvent {
         if (this.type === SimUpcomingEventType.UPC_EVNT_SPAWN) {
             return NodeColors.STRING
         } else if (this.type === SimUpcomingEventType.UPC_EVENT_UNSPAWN) {
-            return ColorConstants.GRAY
+            return TurtleColors.GRAY
         } else if (this.type === SimUpcomingEventType.UPC_EVENT_START) {
-            return ColorConstants.ORANGE
+            return TurtleColors.ORANGE
         } else if (this.type === SimUpcomingEventType.UPC_EVENT_FINISH) {
-            return ColorConstants.GREEN
+            return TurtleColors.GREEN
         } else {
-            return ColorConstants.BLACK
+            return TurtleColors.BLACK
         }
     }
 

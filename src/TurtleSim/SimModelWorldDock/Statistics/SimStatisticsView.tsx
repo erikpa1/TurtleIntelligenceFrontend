@@ -1,5 +1,5 @@
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 import {WorldSingleton} from "@TurtleApp/Data/World";
 import {useTranslation} from "react-i18next";
 import SimFactory from "@TurtleSim/Factories/SimFactory";
@@ -22,7 +22,7 @@ export default function SimStatisticsView({}) {
             <div
                 style={{
                     height: `calc(100vh - ${theme.topBarHeightBig} - ${theme.topBarHeightBig} - ${theme.topBarHeightBig})`,
-                    backgroundColor: ColorConstants.WHITE,
+                    backgroundColor: TurtleColors.WHITE,
                     padding: bigPadding
                 }}
             >

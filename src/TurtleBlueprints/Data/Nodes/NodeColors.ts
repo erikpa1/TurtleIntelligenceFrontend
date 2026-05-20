@@ -1,7 +1,7 @@
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 
 
 export default class NodeColors {
-    static STRING = ColorConstants.POINTE_GREEN
-    static ERROR = ColorConstants.RED
+    static STRING = TurtleColors.POINTE_GREEN
+    static ERROR = TurtleColors.RED
 }

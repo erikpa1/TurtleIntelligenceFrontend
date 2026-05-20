@@ -2,7 +2,7 @@ import {Node, NodeProps} from "reactflow";
 import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {Tooltip} from "antd";
 import {nodeMoveAndModify} from "@TurtleBlueprints/Edit/VisTools/nodeFuncts";
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 import SelectedNodeMarker from "@TurtleBlueprints/Edit/Utils/SelectedeNodeMarker";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {useTranslation} from "react-i18next";
@@ -53,7 +53,7 @@ export default function NWrapper({
                         transform: "translate(-50%, 50%)",
                         backgroundColor: "white",
                         borderRadius: "50%",
-                        border: `1px solid ${ColorConstants.GRAY}`,
+                        border: `1px solid ${TurtleColors.GRAY}`,
                         padding: 10
                     }}>
                         {
@@ -82,7 +82,7 @@ export default function NWrapper({
             className="react-flow__node-default"
             style={{
                 backgroundColor: nodeColor === ""? "white" : nodeColor,
-                borderColor: ColorConstants.GRAY,
+                borderColor: TurtleColors.GRAY,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',

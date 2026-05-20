@@ -1,4 +1,4 @@
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 
 export class FlowLight {
 
@@ -58,9 +58,9 @@ export class Flow extends FlowLight {
 
 export class FlowTypes {
     static COLOR_MAPS = new Map<string, string>([
-        ["string", ColorConstants.AZURE_BLUE],
-        ["float64", ColorConstants.GREEN],
-        ["boolean", ColorConstants.RED],
+        ["string", TurtleColors.AZURE_BLUE],
+        ["float64", TurtleColors.GREEN],
+        ["boolean", TurtleColors.RED],
     ])
 
     static GetVariableColor(varType: string): string {

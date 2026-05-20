@@ -1,4 +1,4 @@
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 import TurtleIcon from "./A";
 

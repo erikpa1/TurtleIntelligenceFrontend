@@ -1,5 +1,5 @@
 import NodeTypeData from "@TurtleBlueprints/Data/Nodes/NodeTypeData";
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 
 import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {Form} from "antd";

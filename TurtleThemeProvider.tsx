@@ -1,7 +1,7 @@
 import React from "react"
 import {ConfigProvider, theme as antdTheme} from "antd";
 
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "./src/Turtle/Constants/TurtleColors";
 import {useThemeInit, useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 
 
@@ -56,9 +56,9 @@ export default function TurtleThemeProvider({
                         borderRadiusLG: 0,
                         borderRadiusSM: 0,
                         titleColor: theme.primaryColor,
-                        headerBg: ColorConstants.MUI_BACKGROUND,
-                        contentBg: ColorConstants.MUI_BACKGROUND,
-                        footerBg: ColorConstants.MUI_BACKGROUND,
+                        headerBg: TurtleColors.MUI_BACKGROUND,
+                        contentBg: TurtleColors.MUI_BACKGROUND,
+                        footerBg: TurtleColors.MUI_BACKGROUND,
                     }
                     // Add other input components as needed
                 },

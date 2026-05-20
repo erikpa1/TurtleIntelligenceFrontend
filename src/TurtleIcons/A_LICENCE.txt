@@ -1,0 +1,6 @@
+This folder is part of TurtleIntelligence project under MIT licence.
+
+Link to whole repository: https://github.com/erikpa1/TurtleIntelligenceFrontend.
+
+This files can be frelly copied and modified.
+

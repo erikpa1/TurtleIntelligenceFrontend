@@ -16,7 +16,7 @@ import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView";
 import SelectItem, {SelectItemRaw} from "@Turtle/ReflectiveUI/SelectItem";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import IconColor from "../../../TurtleIcons/IconColor";
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 
 interface FlowRightBarProps {
     flow: Flow

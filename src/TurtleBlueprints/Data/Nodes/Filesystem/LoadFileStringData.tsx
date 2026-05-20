@@ -4,7 +4,7 @@ import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent"
 import StringAttributeView from "@Turtle/Components/Forms/StringAttributeView"
 import {BoolAttributeView} from "@Turtle/Components/Forms/BoolPropertyView"
 import NodeTypeData from "@TurtleBlueprints/Data/Nodes/NodeTypeData";
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 import NodeColors from "@TurtleBlueprints/Data/Nodes/NodeColors";
 
 export class LoadFileStringData extends NodeTypeData {

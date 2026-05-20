@@ -1,6 +1,6 @@
 import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
 import {Splitter} from "antd";
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 
 export default function OcrToolsDock({}) {
     return (
@@ -9,7 +9,7 @@ export default function OcrToolsDock({}) {
             <Splitter.Panel
                 defaultSize={"30%"}
                 style={{
-                    backgroundColor: ColorConstants.BG_1
+                    backgroundColor: TurtleColors.BG_1
                 }}
             >
 

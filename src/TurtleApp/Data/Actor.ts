@@ -1,11 +1,11 @@
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 
 export default class Actor {
 
     uid = ""
     name = ""
     model = ""
-    color = ColorConstants.AZURE_BLUE
+    color = TurtleColors.AZURE_BLUE
 
     varDef = {}
 
@@ -23,7 +23,7 @@ export default class Actor {
     FromJson(jObj: any) {
         this.uid = jObj.uid ?? ""
         this.name = jObj.name ?? ""
-        this.color = jObj.color ?? ColorConstants.AZURE_BLUE
+        this.color = jObj.color ?? TurtleColors.AZURE_BLUE
         this.model = jObj.model ?? ""
         this.varDef = jObj.varDef ?? this.varDef
     }
@@ -43,7 +43,7 @@ export class RuntimeActor {
         this.uid = data.uid ?? ""
         this.name = data.name ?? ""
         this.position = data.position ?? [0, 0, 0]
-        this.color = data.color ?? ColorConstants.AZURE_BLUE
+        this.color = data.color ?? TurtleColors.AZURE_BLUE
 
     }
 

@@ -2,7 +2,7 @@ import {Handle, NodeProps, Position} from "reactflow";
 import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {nodeMoveAndModify} from "@TurtleBlueprints/Edit/VisTools/nodeFuncts";
 import {Tooltip} from "antd";
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 import {HierarchyDivIcon} from "@Turtle/Components/HierarchyComponents";
 import {SUBNODE_HANDLE_STYLE} from "@TurtleBlueprints/Edit/Styles";
 import IconOllama from "../../../TurtleIcons/IconOllama";
@@ -18,7 +18,7 @@ export default function CircleUpTargetNode(props: NodeProps<NodeParent>) {
             nodeStyle={{
                 width: 50,
                 height: 50,
-                borderColor: ColorConstants.GRAY,
+                borderColor: TurtleColors.GRAY,
                 borderRadius: '50%',
                 justifyContent: 'center',
             }}

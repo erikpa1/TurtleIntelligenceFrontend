@@ -20,7 +20,7 @@ import {
     SearchOutlined,
     TagOutlined
 } from '@ant-design/icons';
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 import {HierarchyDeleteButton} from "@Turtle/Components/HierarchyComponents";
 
 const {Title, Text} = Typography;
@@ -72,10 +72,10 @@ interface TagsListProps {
 export default function TagsList({type}: TagsListProps) {
 
     const [tags, setTags] = React.useState([
-        {id: "1", name: "Important", color: ColorConstants.RED, documentCount: 12},
-        {id: "2", name: "Work", color: ColorConstants.AZURE_BLUE, documentCount: 8},
-        {id: "3", name: "Personal", color: ColorConstants.GREEN, documentCount: 5},
-        {id: "4", name: "Archive", color: ColorConstants.GRAY, documentCount: 23},
+        {id: "1", name: "Important", color: TurtleColors.RED, documentCount: 12},
+        {id: "2", name: "Work", color: TurtleColors.AZURE_BLUE, documentCount: 8},
+        {id: "3", name: "Personal", color: TurtleColors.GREEN, documentCount: 5},
+        {id: "4", name: "Archive", color: TurtleColors.GRAY, documentCount: 23},
     ]);
 
     const [searchQuery, setSearchQuery] = React.useState("");

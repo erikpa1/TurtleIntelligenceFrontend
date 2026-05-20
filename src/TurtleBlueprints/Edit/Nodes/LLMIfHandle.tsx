@@ -3,7 +3,7 @@ import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent"
 import NWrapper from "@TurtleBlueprints/Edit/Nodes/NWrapper"
 import NodeLabel from "@TurtleBlueprints/Edit/VisTools/NodeLabel"
 import {INPUT_HANDLE_STYLE, OUTPUT_HANDLE_STYLE} from "@TurtleBlueprints/Edit/Styles"
-import ColorConstants from "@Turtle/Constants/ColorConstants"
+import TurtleColors from "@Turtle/Constants/TurtleColors"
 import {ListLLMInputHandles} from "@TurtleBlueprints/Edit/Nodes/LLMInputs"
 
 export default function LLMIfHandle(props: NodeProps<NodeParent>) {
@@ -54,7 +54,7 @@ export default function LLMIfHandle(props: NodeProps<NodeParent>) {
                 style={{
                     ...OUTPUT_HANDLE_STYLE,
                     top: "75%",
-                    background: ColorConstants.BURGUNDY
+                    background: TurtleColors.BURGUNDY
                 }}
             />
 

@@ -2,7 +2,7 @@
 import {create} from "zustand";
 import React from "react";
 import {useTranslation} from "react-i18next";
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 
 
 interface IGlobalLock {
@@ -51,16 +51,16 @@ export function GlobalLock() {
             }}/>
 
             <div style={{position: "relative", width: 72, height: 72}}>
-                <SpinRing size={72} duration="2.4s" color={ColorConstants.AZURE_BLUE}
-                          colorFaint={`${ColorConstants.AZURE_BLUE}33`}/>
-                <SpinRing size={52} duration="1.6s" color={ColorConstants.AZURE_BLUE_HOVER}
-                          colorFaint={ColorConstants.AZURE_BLUE_HOVER} reverse/>
-                <SpinRing size={28} duration="1s" color={`${ColorConstants.AZURE_BLUE}99`} colorFaint="transparent"/>
+                <SpinRing size={72} duration="2.4s" color={TurtleColors.AZURE_BLUE}
+                          colorFaint={`${TurtleColors.AZURE_BLUE}33`}/>
+                <SpinRing size={52} duration="1.6s" color={TurtleColors.AZURE_BLUE_HOVER}
+                          colorFaint={TurtleColors.AZURE_BLUE_HOVER} reverse/>
+                <SpinRing size={28} duration="1s" color={`${TurtleColors.AZURE_BLUE}99`} colorFaint="transparent"/>
                 <div style={{
                     position: "absolute", top: "50%", left: "50%",
                     transform: "translate(-50%, -50%)",
                     width: 10, height: 10, borderRadius: "50%",
-                    background: ColorConstants.AZURE_BLUE,
+                    background: TurtleColors.AZURE_BLUE,
                     animation: "ti-pulse 2s ease-in-out infinite",
                     willChange: "transform",
                 }}/>
@@ -70,7 +70,7 @@ export function GlobalLock() {
                 marginTop: 22,
                 fontFamily: "'DM Sans', sans-serif",
                 fontWeight: 300, fontSize: 15,
-                color: ColorConstants.AZURE_BLUE_HOVER, letterSpacing: "0.05em",
+                color: TurtleColors.AZURE_BLUE_HOVER, letterSpacing: "0.05em",
                 animation: "ti-fade 2.8s ease-in-out infinite",
             }}>
                 {t("wait")}…

@@ -5,7 +5,7 @@ import NWrapper from "@TurtleBlueprints/Edit/Nodes/NWrapper";
 import NodeLabel, {NodeIcon} from "@TurtleBlueprints/Edit/VisTools/NodeLabel";
 import {INPUT_HANDLE_STYLE, OUTPUT_HANDLE_STYLE, SUBNODE_HANDLE_STYLE} from "@TurtleBlueprints/Edit/Styles";
 import IconBookmarkManager from "../../../TurtleIcons/IconBookmarkManager";
-import ColorConstants from "@Turtle/Constants/ColorConstants"
+import TurtleColors from "@Turtle/Constants/TurtleColors"
 
 
 export default function ABCircle(props: NodeProps<NodeParent>) {
@@ -16,7 +16,7 @@ export default function ABCircle(props: NodeProps<NodeParent>) {
             nodeStyle={{
                 width: 50,
                 height: 50,
-                borderColor: ColorConstants.GRAY,
+                borderColor: TurtleColors.GRAY,
                 borderRadius: '50%',
                 justifyContent: 'center',
             }}

@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react'
 import {Cylinder, Cone, Sphere, Box} from '@react-three/drei'
 import * as THREE from 'three'
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 import {useWorldConnection} from "@TurtleApp/Data/WorldZuses";
 
 /**
@@ -33,7 +33,7 @@ interface CylinderBetweenPointsProps {
     children?: any
 }
 
-const _MATERIAL = <meshMatcapMaterial attach="material" color={ColorConstants.AZURE_BLUE}/>
+const _MATERIAL = <meshMatcapMaterial attach="material" color={TurtleColors.AZURE_BLUE}/>
 
 export default function CylinderBetweenPoints({
                                                   start = [0, 0, 0],

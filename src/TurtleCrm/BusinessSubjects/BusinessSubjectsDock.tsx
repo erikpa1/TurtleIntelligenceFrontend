@@ -1,7 +1,7 @@
 import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
 import {Splitter} from "antd";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 import BusinessSubjectsHierarchy from "@TurtleCrm/BusinessSubjects/BusinessSubjectsHierarchy";
 
 
@@ -15,7 +15,7 @@ export default function BusinessSubjectsDock({}) {
                 defaultSize={"30%"}
                 style={{
                     padding: bigPadding,
-                    backgroundColor: ColorConstants.BG_1
+                    backgroundColor: TurtleColors.BG_1
                 }}
             >
                 <BusinessSubjectsHierarchy/>

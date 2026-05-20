@@ -1,7 +1,7 @@
-export default class ColorConstants {
+export default class TurtleColors {
     static BG_1 = "#ffffff"
 
-    static POINTE_GREEN = "#4E8A6E"
+
     static ICON_COLOR = "#069AF3"
     static AZURE_BLUE = "#069AF3"
     static AZURE_BLUE_HOVER = "#52b7f8"
@@ -17,4 +17,4 @@ export default class ColorConstants {
 }
 
 
-ColorConstants.ICON_COLOR = ColorConstants.AZURE_BLUE;
+TurtleColors.ICON_COLOR = TurtleColors.AZURE_BLUE;

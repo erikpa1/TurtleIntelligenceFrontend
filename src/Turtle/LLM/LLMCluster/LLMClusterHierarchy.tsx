@@ -15,7 +15,7 @@ import {bodkaBodkaText} from "@Turtle/Utils/StringFormatters"
 import TurtleApp from "@TurtleApp/TurtleApp"
 import CreateLLMClusterModal from "@Turtle/LLM/LLMCluster/CreateLLMClusterModal";
 import LLMCluster from "@Turtle/LLM/Data/LLMCluster";
-import ColorConstants from "@Turtle/Constants/ColorConstants";
+import TurtleColors from "@Turtle/Constants/TurtleColors";
 
 
 export default function LLMClusterHierarchy() {
@@ -133,7 +133,7 @@ function _ClusterHealthCheck({clusterUid}) {
                 width: "10px",
                 height: "10px",
                 borderRadius: "50%",
-                backgroundColor: ColorConstants.GREEN,
+                backgroundColor: TurtleColors.GREEN,
                 border: "solid 1px grey",
             }}
         />
