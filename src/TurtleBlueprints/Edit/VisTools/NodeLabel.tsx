@@ -1,7 +1,7 @@
 import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
 import {Flex, Tooltip} from "antd";
 import {HierarchyCustomIcon} from "@Turtle/Components/HierarchyComponents";
-import IconAutoRenew from "@Turtle/Icons/IconAutoRenew";
+import IconAutoRenew from "../../../TurtleIcons/IconAutoRenew";
 import React from "react"
 import NodesFactory from "@TurtleBlueprints/Data/NodesFactory"
 

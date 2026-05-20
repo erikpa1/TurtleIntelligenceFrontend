@@ -8,7 +8,7 @@ import {TurtleSkeleton} from "@Turtle/Components/TurtleSkeleton"
 import {useIsLoading} from "@Turtle/Utils/isLoading"
 import TurtleEmpty from "@Turtle/Components/TurtleEmpty"
 import ThemeApi from "@Turtle/Theme/ThemeApi"
-import IconExportNotes from "@Turtle/Icons/IconExportNotes"
+import IconExportNotes from "../../TurtleIcons/IconExportNotes"
 
 interface ThemeEditViewProps {
     themeUid: string

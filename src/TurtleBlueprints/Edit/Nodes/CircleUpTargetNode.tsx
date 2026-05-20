@@ -5,7 +5,7 @@ import {Tooltip} from "antd";
 import ColorConstants from "@Turtle/Constants/ColorConstants";
 import {HierarchyDivIcon} from "@Turtle/Components/HierarchyComponents";
 import {SUBNODE_HANDLE_STYLE} from "@TurtleBlueprints/Edit/Styles";
-import IconOllama from "@Turtle/Icons/IconOllama";
+import IconOllama from "../../../TurtleIcons/IconOllama";
 import NWrapper from "@TurtleBlueprints/Edit/Nodes/NWrapper";
 import {NodeIcon} from "@TurtleBlueprints/Edit/VisTools/NodeLabel"
 

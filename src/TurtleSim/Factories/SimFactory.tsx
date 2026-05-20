@@ -1,4 +1,4 @@
-import IconFlagCheck from "@Turtle/Icons/IconFlagCheck";
+import IconFlagCheck from "../../TurtleIcons/IconFlagCheck";
 
 export default class SimFactory {
 

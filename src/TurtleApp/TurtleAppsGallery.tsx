@@ -7,7 +7,7 @@ import {CRM_CATEGORIES} from "@TurtleCrm/NavBarModules_CRM";
 import {SECURITY_CATEGORIES} from "@TurtleSecurity/NavBarModules_Security";
 
 import {MyNavbarItemBigger} from "@Turtle/Components/NavBar";
-import IconTortoise from "@Turtle/Icons/IconTortoise"
+import IconTortoise from "../TurtleIcons/IconTortoise"
 
 
 export const ICON_STYLE = {

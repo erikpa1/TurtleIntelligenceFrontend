@@ -11,7 +11,7 @@ import ActorsApi from "@TurtleApp/Api/ActorsApi";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import Actor from "@TurtleApp/Data/Actor";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
-import IconColor from "@Turtle/Icons/IconColor";
+import IconColor from "../../../TurtleIcons/IconColor";
 import COUSimActor from "@TurtleApp/Routes/Actors/COUActor";
 
 export default function ActorsHierarchy() {

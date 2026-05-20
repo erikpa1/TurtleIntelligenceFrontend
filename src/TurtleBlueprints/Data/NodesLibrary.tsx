@@ -1,8 +1,8 @@
-import IconChat from "@Turtle/Icons/IconChat"
-import IconApi from "@Turtle/Icons/IconApi"
-import IconOllama from "@Turtle/Icons/IconOllama"
-import IconRobot2 from "@Turtle/Icons/IconRobot2"
-import IconNetworkIntelNode from "@Turtle/Icons/IconNetworkIntelNode"
+import IconChat from "../../TurtleIcons/IconChat"
+import IconApi from "../../TurtleIcons/IconApi"
+import IconOllama from "../../TurtleIcons/IconOllama"
+import IconRobot2 from "../../TurtleIcons/IconRobot2"
+import IconNetworkIntelNode from "../../TurtleIcons/IconNetworkIntelNode"
 
 import TriggerHandle from "@TurtleBlueprints/Edit/Nodes/TriggerHandle"
 import AgentLLMNode from "@TurtleBlueprints/Edit/Nodes/AgentLLMNode"
@@ -28,7 +28,7 @@ import {HttpTriggerData} from "@TurtleBlueprints/Data/Nodes/Triggers/HttpTrigger
 import COUHttpTriggerView from "@TurtleBlueprints/Edit/EditViews/Triggers/COUHttpTriggerView"
 import ABNodeSmall from "@TurtleBlueprints/Edit/Nodes/ABNodeSmall"
 import ABCircle from "@TurtleBlueprints/Edit/Nodes/ABCircle"
-import IconSmartToy from "@Turtle/Icons/IconSmartToy"
+import IconSmartToy from "../../TurtleIcons/IconSmartToy"
 
 import "./Nodes"
 import DeepseekOcr from "@TurtleBlueprints/Data/Nodes/Ocr/DeepseekOcr"
@@ -38,20 +38,20 @@ import SqliteInsertNode from "@TurtleBlueprints/Data/Nodes/Databases/Sqllite/Sql
 import COUSqlite from "@TurtleBlueprints/Edit/EditViews/Databases/COUSqlite"
 import ABWithConn from "@TurtleBlueprints/Edit/Nodes/ABWithConn"
 import ForeachHandle from "@TurtleBlueprints/Edit/Nodes/ForeachHandle"
-import IconRepeat from "@Turtle/Icons/IconRepeat"
-import IconLeftClick from "@Turtle/Icons/IconLeftClick"
+import IconRepeat from "../../TurtleIcons/IconRepeat"
+import IconLeftClick from "../../TurtleIcons/IconLeftClick"
 
-import {IconSimulation} from "@Turtle/Icons"
+import {IconSimulation} from "../../TurtleIcons"
 import ABErrorNodeHandle from "@TurtleBlueprints/Edit/Nodes/ABErrorNodeHandle"
-import IconJson from "@Turtle/Icons/IconJson"
+import IconJson from "../../TurtleIcons/IconJson"
 import ABErrorWithConnNodeHandle from "@TurtleBlueprints/Edit/Nodes/ABErrorWithConnNodeHandle"
-import IconClinicalNotes from "@Turtle/Icons/IconClinicalNotes"
+import IconClinicalNotes from "../../TurtleIcons/IconClinicalNotes"
 import COUFormTrigger from "@TurtleBlueprints/Edit/EditViews/Triggers/COUFormTrigger"
 
 import StrToJsonArrayData from "@TurtleBlueprints/Data/Nodes/Json/StrToJsonArrayData"
 
 
-import IconDriveFileMove from "@Turtle/Icons/IconDriveFileMove"
+import IconDriveFileMove from "../../TurtleIcons/IconDriveFileMove"
 
 //FIle system nodes
 import {LoadFileStringData, COULoadFileStringView} from "@TurtleBlueprints/Data/Nodes/Filesystem/LoadFileStringData"

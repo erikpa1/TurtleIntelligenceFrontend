@@ -1,8 +1,8 @@
 import {INavBarItem, NavBarIcon} from "@Turtle/Components/NavBar";
 import {IWidgetCategory} from "@NavBar/NavBarInterface";
-import IconHub from "@Turtle/Icons/IconHub";
+import IconHub from "../TurtleIcons/IconHub";
 import React from "react";
-import IconArticlePerson from "@Turtle/Icons/IconArticlePerson";
+import IconArticlePerson from "../TurtleIcons/IconArticlePerson";
 
 
 const AI_WIDGETS: INavBarItem[] = [

@@ -1,35 +1,35 @@
 import React from "react"
 import {Col, Flex, Row, Space, Splitter} from "antd";
-import IconAutoRenew from "@Turtle/Icons/IconAutoRenew";
+import IconAutoRenew from "../../TurtleIcons/IconAutoRenew";
 
-import IconCleaningServices from "@Turtle/Icons/IconCleaningServices";
-import IconColor from "@Turtle/Icons/IconColor";
-import IconDatabaseSearch from "@Turtle/Icons/IconDatabaseSearch";
-import IconFlagCheck from "@Turtle/Icons/IconFlagCheck";
-import {IconFolder, IconSimulation, IconWidgets} from "@Turtle/Icons";
-import IconNetworkIntelNode from "@Turtle/Icons/IconNetworkIntelNode";
-import IconSearchInsight from "@Turtle/Icons/IconSearchInsight";
-import IconSprint from "@Turtle/Icons/IconSprint";
+import IconCleaningServices from "../../TurtleIcons/IconCleaningServices";
+import IconColor from "../../TurtleIcons/IconColor";
+import IconDatabaseSearch from "../../TurtleIcons/IconDatabaseSearch";
+import IconFlagCheck from "../../TurtleIcons/IconFlagCheck";
+import {IconFolder, IconSimulation, IconWidgets} from "../../TurtleIcons";
+import IconNetworkIntelNode from "../../TurtleIcons/IconNetworkIntelNode";
+import IconSearchInsight from "../../TurtleIcons/IconSearchInsight";
+import IconSprint from "../../TurtleIcons/IconSprint";
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
-import IconChat from "@Turtle/Icons/IconChat";
-import IconRobot2 from "@Turtle/Icons/IconRobot2";
-import IconApi from "@Turtle/Icons/IconApi";
-import IconWebhook from "@Turtle/Icons/IconWebhook";
-import IconOllama from "@Turtle/Icons/IconOllama";
-import IconBookmarkManager from "@Turtle/Icons/IconBookmarkManager";
+import IconChat from "../../TurtleIcons/IconChat";
+import IconRobot2 from "../../TurtleIcons/IconRobot2";
+import IconApi from "../../TurtleIcons/IconApi";
+import IconWebhook from "../../TurtleIcons/IconWebhook";
+import IconOllama from "../../TurtleIcons/IconOllama";
+import IconBookmarkManager from "../../TurtleIcons/IconBookmarkManager";
 import {SplitterWithHeader} from "@Turtle/Antd/Splitter";
-import IconRepeat from "@Turtle/Icons/IconRepeat"
-import IconLeftClick from "@Turtle/Icons/IconLeftClick"
-import IconJson from "@Turtle/Icons/IconJson"
-import IconSupportAgent from "@Turtle/Icons/IconSupportAgent"
-import IconArticlePerson from "@Turtle/Icons/IconArticlePerson"
-import IconClinicalNotes from "@Turtle/Icons/IconClinicalNotes";
-import IconSdCard from "@Turtle/Icons/IconSdCard";
-import IconDriveFileMove from "@Turtle/Icons/IconDriveFileMove";
-import IconSave from "@Turtle/Icons/IconSave"
-import IconExportNotes from "@Turtle/Icons/IconExportNotes"
-import IconDriveFolderUpload from "@Turtle/Icons/IconDriveFolderUpload";
-import IconTortoise from "@Turtle/Icons/IconTortoise"
+import IconRepeat from "../../TurtleIcons/IconRepeat"
+import IconLeftClick from "../../TurtleIcons/IconLeftClick"
+import IconJson from "../../TurtleIcons/IconJson"
+import IconSupportAgent from "../../TurtleIcons/IconSupportAgent"
+import IconArticlePerson from "../../TurtleIcons/IconArticlePerson"
+import IconClinicalNotes from "../../TurtleIcons/IconClinicalNotes";
+import IconSdCard from "../../TurtleIcons/IconSdCard";
+import IconDriveFileMove from "../../TurtleIcons/IconDriveFileMove";
+import IconSave from "../../TurtleIcons/IconSave"
+import IconExportNotes from "../../TurtleIcons/IconExportNotes"
+import IconDriveFolderUpload from "../../TurtleIcons/IconDriveFolderUpload";
+import IconTortoise from "../../TurtleIcons/IconTortoise"
 
 
 export default function IconsGalleryDock({}) {

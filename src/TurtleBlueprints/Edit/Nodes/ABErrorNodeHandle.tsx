@@ -4,7 +4,7 @@ import {nodeMoveAndModify} from "@TurtleBlueprints/Edit/VisTools/nodeFuncts";
 import NWrapper from "@TurtleBlueprints/Edit/Nodes/NWrapper";
 import NodeLabel from "@TurtleBlueprints/Edit/VisTools/NodeLabel";
 import {INPUT_HANDLE_STYLE, OUTPUT_HANDLE_STYLE, SUBNODE_HANDLE_STYLE} from "@TurtleBlueprints/Edit/Styles";
-import IconBookmarkManager from "@Turtle/Icons/IconBookmarkManager";
+import IconBookmarkManager from "../../../TurtleIcons/IconBookmarkManager";
 import ColorConstants from "@Turtle/Constants/ColorConstants";
 
 

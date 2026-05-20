@@ -1,7 +1,7 @@
 import {Button} from "antd";
 import {SaveTwoTone} from "@ant-design/icons";
 import {useTranslation} from "react-i18next";
-import IconSave from "@Turtle/Icons/IconSave"
+import IconSave from "../../TurtleIcons/IconSave"
 
 
 interface SaveButtonProps {

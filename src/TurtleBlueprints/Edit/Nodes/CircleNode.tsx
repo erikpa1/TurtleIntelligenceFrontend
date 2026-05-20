@@ -6,7 +6,7 @@ import {HierarchyDivIcon} from "@Turtle/Components/HierarchyComponents";
 import {SUBNODE_HANDLE_STYLE} from "@TurtleBlueprints/Edit/Styles";
 import NWrapper from "@TurtleBlueprints/Edit/Nodes/NWrapper";
 import NodesFactory from "@TurtleBlueprints/Data/NodesFactory"
-import {IconSimulation} from "@Turtle/Icons";
+import {IconSimulation} from "../../../TurtleIcons";
 import {NodeIcon} from "@TurtleBlueprints/Edit/VisTools/NodeLabel"
 
 

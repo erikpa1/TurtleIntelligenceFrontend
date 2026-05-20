@@ -13,7 +13,7 @@ import {
 
 import TurtleApp from "@TurtleApp/TurtleApp"
 
-import IconDatabaseSearch from "@Turtle/Icons/IconDatabaseSearch"
+import IconDatabaseSearch from "../../../TurtleIcons/IconDatabaseSearch"
 import KhDomain from "@Turtle/KnowledgeHub/Data/Domains"
 import COUDomainView from "@Turtle/KnowledgeHub/Domains/COUDomain"
 import KhDomainApi from "@Turtle/KnowledgeHub/Api/KhDomainApi";

@@ -7,7 +7,7 @@ import {Flow} from "@Turtle/Flows/Flow"
 import {useTranslation} from "react-i18next"
 import TurtleApp from "@TurtleApp/TurtleApp"
 import FlowsApi from "@Turtle/Flows/FlowsApi"
-import IconSave from "@Turtle/Icons/IconSave"
+import IconSave from "../../TurtleIcons/IconSave"
 
 interface FlowsTopBarProps {
     flow: Flow | null

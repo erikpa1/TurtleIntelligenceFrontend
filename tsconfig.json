@@ -30,6 +30,7 @@
             "@TurtleSim/*": ["./src/TurtleSim/*"],
             "@TurtleBlueprints/*": ["./src/TurtleBlueprints/*"],
             "@TurtleNetess/*": ["./src/TurtleNetess/*"],
+            "@TurtleIcons/*": ["./src/TurtleIcons/*"],
             "@NavBar/*": ["./src/NavBar/*"],
         },
     },

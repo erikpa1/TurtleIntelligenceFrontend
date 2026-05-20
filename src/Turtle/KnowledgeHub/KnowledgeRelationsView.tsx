@@ -10,7 +10,7 @@ import {
     HierarchyFlex,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents";
-import IconDatabaseSearch from "@Turtle/Icons/IconDatabaseSearch";
+import IconDatabaseSearch from "../../TurtleIcons/IconDatabaseSearch";
 import COUKnowledgeView from "@Turtle/KnowledgeHub/COUKnowledgeView";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import KnowledgeApi from "@Turtle/KnowledgeHub/Api/KnowledgeApi";

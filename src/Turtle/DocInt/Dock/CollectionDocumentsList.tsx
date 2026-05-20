@@ -14,9 +14,9 @@ import {FileDocument} from "@Turtle/DocInt/Data/Document"
 import {useNavigate} from "react-router-dom";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import {DocumentsCollection} from "@Turtle/DocInt/Data/DocumentsCollection";
-import IconAutoRenew from "@Turtle/Icons/IconAutoRenew";
-import {IconSimulation} from "@Turtle/Icons";
-import IconCleaningServices from "@Turtle/Icons/IconCleaningServices";
+import IconAutoRenew from "../../../TurtleIcons/IconAutoRenew";
+import {IconSimulation} from "../../../TurtleIcons";
+import IconCleaningServices from "../../../TurtleIcons/IconCleaningServices";
 
 interface CollectionDocumentsListProps {
     colUid: string;

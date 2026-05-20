@@ -1,7 +1,7 @@
 import React from "react"
 
 import NodeParent from "@TurtleBlueprints/Data/Nodes/NodeParent";
-import {IconSimulation} from "@Turtle/Icons"
+import {IconSimulation} from "../../TurtleIcons"
 import {EmptyTypeData} from "@TurtleBlueprints/Data/Nodes/NodeTypeData";
 
 interface RetFun {

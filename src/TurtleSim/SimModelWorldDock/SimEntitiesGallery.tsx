@@ -7,7 +7,7 @@ import aee from "@Turtle/Data/Aee"
 import {HierarchyCustomIcon} from "@Turtle/Components/HierarchyComponents"
 import TurtleApp from "@TurtleApp/TurtleApp"
 import {fetchMongoUid} from "@Turtle/Utils/Uid"
-import IconFlagCheck from "@Turtle/Icons/IconFlagCheck"
+import IconFlagCheck from "../../TurtleIcons/IconFlagCheck"
 import SimFactory from "@TurtleSim/Factories/SimFactory"
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity"
 

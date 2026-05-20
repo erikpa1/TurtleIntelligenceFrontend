@@ -19,6 +19,7 @@ export default defineConfig({
             "@TurtleSim": path.resolve(__dirname, "src/TurtleSim"),
             "@TurtleBlueprints": path.resolve(__dirname, "src/TurtleBlueprints"),
             "@TurtleNetess": path.resolve(__dirname, "src/TurtleNetess"),
+            "@TurtleIcons": path.resolve(__dirname, "src/TurtleIcons"),
             "@NavBar": path.resolve(__dirname, "src/NavBar"),
         },
     },

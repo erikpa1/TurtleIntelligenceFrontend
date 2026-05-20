@@ -1,6 +1,6 @@
 import React from "react"
 import {Button, Space} from "antd";
-import IconNetworkIntelNode from "@Turtle/Icons/IconNetworkIntelNode";
+import IconNetworkIntelNode from "../../TurtleIcons/IconNetworkIntelNode";
 import {useTranslation} from "react-i18next";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal"
 import CopilotChatBubble from "@Turtle/Copilot/CopilotChatBubble"

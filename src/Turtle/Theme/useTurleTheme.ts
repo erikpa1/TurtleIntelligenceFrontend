@@ -3,9 +3,6 @@ import {create} from "zustand";
 import ThemeApi from "@Turtle/Theme/ThemeApi"
 import {TurtleTheme} from "@Turtle/Theme/theme"
 
-import {theme as antdTheme} from 'antd';
-import ColorConstants from "@Turtle/Constants/ColorConstants"
-
 
 type AntdToken = {
     colorBgContainer: string

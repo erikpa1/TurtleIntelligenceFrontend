@@ -16,7 +16,7 @@ import {Knowledge, KnowledgeType} from "@Turtle/KnowledgeHub/Data/Knowledge"
 import COUKnowledgeView from "@Turtle/KnowledgeHub/COUKnowledgeView";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import KnowledgeApi from "@Turtle/KnowledgeHub/Api/KnowledgeApi";
-import IconDatabaseSearch from "@Turtle/Icons/IconDatabaseSearch";
+import IconDatabaseSearch from "../../TurtleIcons/IconDatabaseSearch";
 
 
 interface KnowledgeHierarchyProps {

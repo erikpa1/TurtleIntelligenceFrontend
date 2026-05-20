@@ -2,17 +2,17 @@ import {Flex, Layout, Modal,} from "antd";
 
 import {useNavigate} from "react-router-dom"
 import {useTranslation} from "react-i18next"
-import {IconSimulation, IconWidgets} from "@Turtle/Icons"
+import {IconSimulation, IconWidgets} from "./TurtleIcons"
 
 import React from "react"
 
 import "./AppNavBar.css"
 import {MyNavbarItem, NavBarIcon,} from "@Turtle/Components/NavBar"
 import TurtleAppsGallery, {ICON_STYLE} from "@TurtleApp/TurtleAppsGallery"
-import IconChat from "@Turtle/Icons/IconChat";
-import IconRobot2 from "@Turtle/Icons/IconRobot2";
+import IconChat from "./TurtleIcons/IconChat";
+import IconRobot2 from "./TurtleIcons/IconRobot2";
 import NavBarBrandingIcon from "@Turtle/Branding/NavBarIcon";
-import IconSmartToy from "@Turtle/Icons/IconSmartToy"
+import IconSmartToy from "./TurtleIcons/IconSmartToy"
 
 export default function AppNavBar() {
 

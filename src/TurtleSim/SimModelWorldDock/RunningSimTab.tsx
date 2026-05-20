@@ -6,7 +6,7 @@ import {Card, Tag, Space, Typography, Empty} from 'antd';
 import Icon, {PlayCircleOutlined, StopOutlined, CheckCircleOutlined, ClockCircleOutlined} from '@ant-design/icons';
 import aee from "@Turtle/Data/Aee";
 import {SimSecondUpdate} from "@TurtleApp/Data/SimulationResponse";
-import {IconSimulation} from "@Turtle/Icons";
+import {IconSimulation} from "../../TurtleIcons";
 import {WorldSingleton} from "@TurtleApp/Data/World";
 import SimFactory from "@TurtleSim/Factories/SimFactory";
 import {useTranslation} from "react-i18next";

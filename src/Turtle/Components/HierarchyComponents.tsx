@@ -9,8 +9,8 @@ import {
     StepForwardOutlined,
     StopOutlined, UpOutlined, WechatWorkOutlined
 } from "@ant-design/icons";
-import IconDriveFileMove from "@Turtle/Icons/IconDriveFileMove";
-import IconDriveFolderUpload from "@Turtle/Icons/IconDriveFolderUpload";
+import IconDriveFileMove from "../../TurtleIcons/IconDriveFileMove";
+import IconDriveFolderUpload from "../../TurtleIcons/IconDriveFolderUpload";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import {RightSubmitButton} from "@Turtle/Components/RightSubmitButton";
 import {useTranslation} from "react-i18next";

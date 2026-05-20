@@ -1,5 +1,5 @@
 import SimFactory from "@TurtleSim/Factories/SimFactory"
-import IconApi from "@Turtle/Icons/IconApi"
+import IconApi from "../../TurtleIcons/IconApi"
 
 
 export default class SimLibrary {

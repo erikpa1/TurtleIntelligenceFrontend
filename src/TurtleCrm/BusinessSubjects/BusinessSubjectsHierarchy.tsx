@@ -10,7 +10,7 @@ import {
     HierarchyEditButton,
     HierarchyRightFlex
 } from "@Turtle/Components/HierarchyComponents";
-import {IconSimulation} from "@Turtle/Icons";
+import {IconSimulation} from "../../TurtleIcons";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import ForecastApi from "@TurtleApp/Forecasting/ForecastsApi";
 import BusinessSubject from "@TurtleCrm/BusinessSubjects/BusinessSubject";
