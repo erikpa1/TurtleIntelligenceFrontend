@@ -17,13 +17,14 @@ import {
     HierarchyStopButton,
 } from "@Turtle/Components/HierarchyComponents";
 import { useTurtleModal } from "@Turtle/Hooks/useTurtleModal";
-import Myio from "@Turtle/Data/myio";
+
 import { useWorldConnection } from "@TurtleApp/Data/WorldZuses";
 import { useActiveSimulation } from "@TurtleSim/SimModelWorldDock/Controllers/RunningSimulationController";
 import TurtleApp from "@TurtleApp/TurtleApp";
 import SimConfigSettingsButton from "@TurtleSim/SimModelWorldDock/Components/SimConfig";
 import { useTurtleTheme } from "@Turtle/Theme/useTurleTheme";
 import IconSave from "../../TurtleIcons/IconSave";
+import {TopBarSettingsButton} from "@TurtleSim/SimModelWorldDock/TopBar/TopBarSettingsView";
 
 export default function WorldTopBar({}) {
     const [bigMode, setBigMode] = React.useState(false);
@@ -58,6 +59,7 @@ export default function WorldTopBar({}) {
                 <_ConnectButton />
                 <_DisconnectButton />
 
+
                 <Flex
                     justify={"end"}
                     flex={1}
@@ -66,11 +68,16 @@ export default function WorldTopBar({}) {
                     }}
                 >
                     <_SimulationUpperSection />
+                    <TopBarSettingsButton/>
                 </Flex>
+
+
             </Flex>
 
             {bigMode && (
                 <>
+
+
                     <div
                         style={{
                             background:
@@ -154,6 +161,9 @@ function _ConnectButton() {
         );
     }
 }
+
+
+
 
 function _DisconnectButton() {
     const [t] = useTranslation();

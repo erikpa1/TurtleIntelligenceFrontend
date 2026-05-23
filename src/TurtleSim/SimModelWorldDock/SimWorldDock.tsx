@@ -60,7 +60,7 @@ function _LayoutDock({ world }: _WorldDockProps) {
 
     const [activeMid, setActiveMid] = React.useState("world");
 
-    return <ShelfScene />;
+    // return <ShelfScene />;
 
     return (
         <div>
