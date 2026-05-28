@@ -2,7 +2,13 @@ import React from "react"
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme";
 
 
-export default function TurtleIcon(props) {
+export interface TurtleIconProps extends React.PropsWithChildren {
+    viewBox?: string,
+    width?: string | number
+    height?: number | string
+}
+
+export default function TurtleIcon(props: TurtleIconProps) {
 
     return (
         <span
