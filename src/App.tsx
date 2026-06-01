@@ -7,16 +7,6 @@ import {Alert, Layout} from "antd";
 import AppNavBar from "./AppNavBar";
 import Sider from "antd/es/layout/Sider";
 import {GlobalLock} from "@Turtle/Components/GlobalLock";
-import {useThemeInit} from "@Turtle/Theme/useTurleTheme";
-import IconHub from "@TurtleIcons/IconHub";
-import IconMonitor from "@TurtleIcons/IconMonitor";
-import IconFactory from "@TurtleIcons/IconFactory";
-import IconQueryStats from "@TurtleIcons/IconQueryStats";
-import IconModeling from "@TurtleIcons/IconModeling";
-import IconCampaign from "@TurtleIcons/IconCampaign";
-import IconGroup from "@TurtleIcons/IconGroup";
-import IconCrown from "@TurtleIcons/IconCrown";
-
 
 export default function TurtleApp() {
 
