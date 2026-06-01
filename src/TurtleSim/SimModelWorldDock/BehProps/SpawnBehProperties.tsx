@@ -4,6 +4,8 @@ import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
 
 import {ActorsSelect} from "@TurtleSim/SimModelWorldDock/BehProps/ActorSelect";
 import {BoolAttributeView} from "@Turtle/Components/Forms/BoolPropertyView";
+import {StringInput} from "@TurtleBlueprints/Data/Nodes/Handles/StringType";
+import StringItem from "@Turtle/ReflectiveUI/StringItem";
 
 interface SpawnEntityPropertiesProps {
     entity: SimEntity;
@@ -20,7 +22,7 @@ export default function SpawnBehProperties({
         <>
             <ActorsSelect typeData={tData} attribute={"actor"}/>
 
-            <IntItem attribute={"spawn_interval"} entity={tData}/>
+            <StringItem attribute={"spawn_interval"} entity={tData}/>
 
             <BoolAttributeView entity={tData} attribute={"spawn_on_init"}/>
 
@@ -33,7 +35,7 @@ export default function SpawnBehProperties({
 
 function fixDefaultData(typeData: any) {
     if (!typeData.spawn_interval) {
-        typeData.spawn_interval = 5;
+        typeData.spawn_interval = "00:05";
     }
 
     if (!typeData.spawn_limit) {
