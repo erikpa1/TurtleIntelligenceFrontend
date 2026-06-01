@@ -33,9 +33,9 @@ export default function TurtleApp() {
         refresh()
     }, [])
 
-    return (
-        <IconCrown width={"100"} height={"100"}/>
-    )
+    // return (
+    //     <IconCrown width={"100"} height={"100"}/>
+    // )
 
     if (isLoading) {
         return (

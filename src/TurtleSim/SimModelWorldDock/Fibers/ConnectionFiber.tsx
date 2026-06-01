@@ -29,6 +29,8 @@ export default function ConnectionFiber({
     const {phase, numbering} = useWorldConnection()
 
 
+    console.log(numbering)
+
     function disconnectClicked() {
         WorldSingleton.I.DeleteConnection(a, b)
     }
