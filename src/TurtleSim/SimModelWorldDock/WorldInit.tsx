@@ -13,6 +13,8 @@ import SimBufferFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/
 import SimSinkFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/SimSinkFiber";
 import SimStationFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/SimStationFiber";
 import SimSpawnFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/SimSpawnFiber";
+import EnterStatisticsBehProperties
+    from "@TurtleSim/SimModelWorldDock/BehProps/StatisticsBehaviours/EnterStatisticsBehProperties";
 
 export default function InitWorldFactory() {
     _InitProperties();
@@ -37,6 +39,9 @@ function _InitProperties() {
 
     //Actor properties
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_HUMAN] = HumanBehProperties;
+
+    //Statistics
+    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_ENTRY_STATISTICS] = EnterStatisticsBehProperties;
 }
 
 function _InitFibers() {

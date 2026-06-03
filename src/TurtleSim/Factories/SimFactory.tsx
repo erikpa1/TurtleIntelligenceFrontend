@@ -20,6 +20,9 @@ export default class SimFactory {
     //Actor spawns
     static TYPE_HUMAN = "human"
 
+    //Statistics
+    static TYPE_ENTRY_STATISTICS = "entry_statistics"
+
     static TYPE_TIME_TRIGGER= "timeTrigger"
 
     static ICONS = {
@@ -36,6 +39,7 @@ export default class SimFactory {
         [SimFactory.TYPE_WORKER_POOL]: "/icons/arrow_and_edge.svg",
         [SimFactory.TYPE_TIME_TRIGGER]: "/icons/arrow_and_edge.svg",
         [SimFactory.TYPE_LOGISTICS_CONTROL]: "/icons/article_person.svg",
+        [SimFactory.TYPE_ENTRY_STATISTICS]: "/icons/save.svg", //TODO icon
     }
 
     static ICONS_COMPONENTS = {
@@ -54,7 +58,7 @@ export default class SimFactory {
         [SimFactory.TYPE_SINK]: "/iconsPng/arrow_and_edge.png",
         [SimFactory.TYPE_DOWNTIME]: "/iconsPng/arrow_and_edge.png",
         [SimFactory.TYPE_WORKER_POOL]: "/iconsPng/arrow_and_edge.png",
-        [SimFactory.TYPE_TIME_TRIGGER]: "/iconsPng/arrow_and_edge.png",
+        [SimFactory.TYPE_TIME_TRIGGER]: "/iconsPng/arrow_and_edge.png"
     }
 
     static RIGHT_BAR_COMPONENTS = {}
