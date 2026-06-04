@@ -7,6 +7,11 @@ import {Alert, Layout} from "antd";
 import AppNavBar from "./AppNavBar";
 import Sider from "antd/es/layout/Sider";
 import {GlobalLock} from "@Turtle/Components/GlobalLock";
+import IconDetectionAndZone from "@TurtleIcons/IconDetectionAndZone";
+import IconAnalytics from "@TurtleIcons/IconAnalytics";
+import IconForklift from "@TurtleIcons/IconForklift";
+import IconRouter from "@TurtleIcons/IconRouter";
+import IconRoute from "@TurtleIcons/IconRoute";
 
 export default function TurtleApp() {
 
@@ -23,9 +28,9 @@ export default function TurtleApp() {
         refresh()
     }, [])
 
-    // return (
-    //     <IconCrown width={"100"} height={"100"}/>
-    // )
+    return (
+        <IconRoute width={"100"} height={"100"}/>
+    )
 
     if (isLoading) {
         return (
