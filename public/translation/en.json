@@ -1,4 +1,12 @@
 {
+  "events": "Events",
+  "statistics": "Statistics",
+  "world": "World",
+  "spawn_interval": "Spawn interval",
+  "spawn_on_init": "Spawn on init",
+  "spawn_limit": "Spawn limit",
+  "spawn_multiplication": "Spawn multiplication",
+  "actor": "Actor",
   "edit.node": "Edit node",
   "home": "Home",
   "create.container": "Create container",
