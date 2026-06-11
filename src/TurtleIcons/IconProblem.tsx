@@ -1,7 +1,7 @@
 import { useTurtleTheme } from "@Turtle/Theme/useTurleTheme";
 import TurtleIcon from "./A";
 
-export default function IcomProblem(props: any = {}) {
+export default function IconProblem(props: any = {}) {
     const { theme } = useTurtleTheme();
 
     return (
