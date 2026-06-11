@@ -8,6 +8,7 @@ import AppNavBar from "./AppNavBar";
 import Sider from "antd/es/layout/Sider";
 import { GlobalLock } from "@Turtle/Components/GlobalLock";
 import IconPackage from "@TurtleIcons/IconPackage";
+import IconWarehouse from "@TurtleIcons/IconWarehouse";
 
 export default function TurtleApp() {
     const [isLoading, setIsLoading] = React.useState(true);
@@ -22,7 +23,7 @@ export default function TurtleApp() {
         refresh();
     }, []);
 
-    // return <IconPackage width={"100"} height={"100"} />;
+    // return <IconWarehouse width={"100"} height={"100"} />;
 
     if (isLoading) {
         return <></>;
