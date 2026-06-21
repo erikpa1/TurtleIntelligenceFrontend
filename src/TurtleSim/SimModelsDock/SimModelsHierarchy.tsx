@@ -42,13 +42,18 @@ export default function SimModelsHierarchy({}) {
                     return {
                         key: val.uid,
                         title: (
-                            <HierarchyFlex>
+                            <HierarchyFlex
+                                onClick={() => {
+                                    navigate(`/sim-models/${val.uid}/runs`)
+                                }}
+                            >
                                 {val.name}
 
                                 <HierarchyRightFlex>
 
-                                    <HierarchyViewButton onClick={() => {
-                                        navigate(`/sim-models/${val.uid}`)
+                                    <HierarchyViewButton
+                                        onClick={() => {
+                                        navigate(`/sim-models/${val.uid}/edit`)
                                     }}/>
 
                                     <HierarchyDeleteButton onClick={() => {
