@@ -5,6 +5,7 @@ import SimModel from "@TurtleApp/Data/SimModel";
 
 export default class SimModelsApi {
 
+    static RBAC = "/api/sims/rbac"
 
     static async COU(model: SimModel) {
         const form = new FormData()
