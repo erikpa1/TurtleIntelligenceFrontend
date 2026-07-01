@@ -13,6 +13,7 @@ export function RbacButton({modulesRoute}: RbacButtonProps) {
 
     return (
         <Button
+            type={"text"}
             icon={<IconHub/>}
         >
             RBAC

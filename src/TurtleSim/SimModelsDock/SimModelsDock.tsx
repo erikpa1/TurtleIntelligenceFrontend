@@ -5,6 +5,7 @@ import {useParams} from "react-router-dom"
 import SimModelsHierarchy from "@TurtleSim/SimModelsDock/SimModelsHierarchy"
 import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
 import {SplitterWithHeader} from "@Turtle/Antd/Splitter"
+import SimModelsTopBar from "@TurtleSim/SimModelsDock/SimModelsTopBar";
 
 
 
@@ -17,7 +18,9 @@ export default function SimModelsDock({}) {
     const {token} = antdTheme.useToken()
 
     return (
-        <SplitterWithHeader topbar={<div/>}>
+        <SplitterWithHeader
+            topbar={<SimModelsTopBar/>}
+        >
             <Splitter.Panel
                 defaultSize={"20%"}
                 style={{

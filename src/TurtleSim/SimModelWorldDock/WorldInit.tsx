@@ -15,6 +15,7 @@ import SimStationFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers
 import SimSpawnFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/SimSpawnFiber";
 import EnterStatisticsBehProperties
     from "@TurtleSim/SimModelWorldDock/BehProps/StatisticsBehaviours/EnterStatisticsBehProperties";
+import WorkerPoolBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/BehWorkerPool";
 
 export default function InitWorldFactory() {
     _InitProperties();
@@ -23,18 +24,14 @@ export default function InitWorldFactory() {
 
 function _InitProperties() {
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_SPAWN] = SpawnBehProperties;
-    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_PROCESS] =
-        ProcessBehProperties;
-    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_SWITCH] =
-        SwitchBehProperties;
+    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_PROCESS] = ProcessBehProperties;
+    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_SWITCH] = SwitchBehProperties;
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_MERGE] = MergeBehProperties;
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_DELAY] = DelayBehProperties;
 
     //This ones have the same UI (for now)
-    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_QUEUE] =
-        BufferBehProperties;
-    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_BUFFER] =
-        BufferBehProperties;
+    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_QUEUE] = BufferBehProperties;
+    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_BUFFER] = BufferBehProperties;
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_SPLIT] = SplitBehProperties;
 
     //Actor properties
@@ -42,6 +39,10 @@ function _InitProperties() {
 
     //Statistics
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_ENTRY_STATISTICS] = EnterStatisticsBehProperties;
+    
+    //Resources
+    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_WORKER_POOL] = WorkerPoolBehProperties;
+
 }
 
 function _InitFibers() {
