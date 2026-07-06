@@ -7,6 +7,9 @@ export type ItemCategory = (typeof ITEM_CATEGORIES)[number]
 
 export const ITEM_UOMS = ["pcs", "kg", "g", "l", "ml", "m", "cm", "m2", "m3", "h"] as const
 
+export const PROCUREMENT_TYPES = ["make", "buy"] as const
+export type ProcurementType = (typeof PROCUREMENT_TYPES)[number]
+
 export default class Item {
     uid = ""
     sku = ""
@@ -20,6 +23,14 @@ export default class Item {
     qtyOnHand = 0
     reorderPoint = 0
     warehouse = ""
+
+    // MRP / planning view
+    procurementType: string = "buy"
+    leadTimeDays = 0
+    safetyStock = 0
+    lotSize = 0
+    minLotSize = 0
+
     active = true
 
     ToJson(): any {
@@ -36,6 +47,11 @@ export default class Item {
             qtyOnHand: this.qtyOnHand,
             reorderPoint: this.reorderPoint,
             warehouse: this.warehouse,
+            procurementType: this.procurementType,
+            leadTimeDays: this.leadTimeDays,
+            safetyStock: this.safetyStock,
+            lotSize: this.lotSize,
+            minLotSize: this.minLotSize,
             active: this.active,
         }
     }
@@ -53,6 +69,11 @@ export default class Item {
         this.qtyOnHand = jObj.qtyOnHand ?? 0
         this.reorderPoint = jObj.reorderPoint ?? 0
         this.warehouse = jObj.warehouse ?? ""
+        this.procurementType = jObj.procurementType ?? "buy"
+        this.leadTimeDays = jObj.leadTimeDays ?? 0
+        this.safetyStock = jObj.safetyStock ?? 0
+        this.lotSize = jObj.lotSize ?? 0
+        this.minLotSize = jObj.minLotSize ?? 0
         this.active = jObj.active ?? true
     }
 }

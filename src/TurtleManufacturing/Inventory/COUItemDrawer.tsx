@@ -1,8 +1,8 @@
 import React from "react"
-import {Button, Col, Drawer, Flex, Form, Input, InputNumber, Row, Select, Space, Switch, message} from "antd"
+import {Button, Col, Divider, Drawer, Flex, Form, Input, InputNumber, Row, Select, Space, Switch, message} from "antd"
 import {useTranslation} from "react-i18next"
 
-import Item, {ITEM_CATEGORIES, ITEM_UOMS} from "@TurtleManufacturing/Data/Item"
+import Item, {ITEM_CATEGORIES, ITEM_UOMS, PROCUREMENT_TYPES} from "@TurtleManufacturing/Data/Item"
 import ItemsApi from "@TurtleManufacturing/Data/ItemsApi"
 
 interface COUItemDrawerProps {
@@ -147,6 +147,52 @@ export default function COUItemDrawer({open, item, onClose, onSaved}: COUItemDra
                     <Col span={12}>
                         <Form.Item name={"active"} label={t("Active")} valuePropName={"checked"}>
                             <Switch/>
+                        </Form.Item>
+                    </Col>
+                </Row>
+
+                <Divider titlePlacement={"start"}>{t("MRP / Planning")}</Divider>
+
+                <Row gutter={12}>
+                    <Col span={12}>
+                        <Form.Item
+                            name={"procurementType"}
+                            label={t("Procurement type")}
+                            tooltip={t("Make = produced via BOM, Buy = purchased externally")}
+                        >
+                            <Select
+                                options={PROCUREMENT_TYPES.map((p) => ({
+                                    value: p,
+                                    label: t(`procurement.${p}`),
+                                }))}
+                            />
+                        </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                        <Form.Item name={"leadTimeDays"} label={t("Lead time (days)")}>
+                            <InputNumber style={{width: "100%"}} min={0}/>
+                        </Form.Item>
+                    </Col>
+                </Row>
+
+                <Row gutter={12}>
+                    <Col span={8}>
+                        <Form.Item name={"safetyStock"} label={t("Safety stock")}>
+                            <InputNumber style={{width: "100%"}} min={0}/>
+                        </Form.Item>
+                    </Col>
+                    <Col span={8}>
+                        <Form.Item
+                            name={"lotSize"}
+                            label={t("Lot size")}
+                            tooltip={t("0 = lot-for-lot (order exact net requirement)")}
+                        >
+                            <InputNumber style={{width: "100%"}} min={0}/>
+                        </Form.Item>
+                    </Col>
+                    <Col span={8}>
+                        <Form.Item name={"minLotSize"} label={t("Min lot size")}>
+                            <InputNumber style={{width: "100%"}} min={0}/>
                         </Form.Item>
                     </Col>
                 </Row>
