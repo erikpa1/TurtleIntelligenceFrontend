@@ -15,7 +15,7 @@ import SimStationFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers
 import SimSpawnFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/SimSpawnFiber";
 import EnterStatisticsBehProperties
     from "@TurtleSim/SimModelWorldDock/BehProps/StatisticsBehaviours/EnterStatisticsBehProperties";
-import WorkerPoolBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/BehWorkerPool";
+import WorkerPoolBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/WorkerPoolBehProperties";
 
 export default function InitWorldFactory() {
     _InitProperties();

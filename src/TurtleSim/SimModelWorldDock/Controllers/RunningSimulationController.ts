@@ -48,6 +48,8 @@ export function runningSimulationController() {
 
     function simStepReceived(stepData: SimSecondUpdate) {
 
+        console.log(stepData)
+
         stepData.events = stepData.events.map((val) => {
             const tmp = new SimUpcomingEvent()
             tmp.FromJson(val)

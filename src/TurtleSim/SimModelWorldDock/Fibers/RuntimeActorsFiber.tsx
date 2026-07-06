@@ -19,14 +19,12 @@ export default function RuntimeActorsFiber() {
 
     function spawnActors(newActors: Array<RuntimeActor>) {
 
-        console.log(newActors)
 
         newActors.forEach((val) => {
             actorsGuard.actors.set(val.id, val)
         })
 
         setActors(Array.from(actorsGuard.actors.values()))
-
     }
 
     function unspawnActors(actors: number[]) {
@@ -37,13 +35,25 @@ export default function RuntimeActorsFiber() {
         setActors(Array.from(actorsGuard.actors.values()))
     }
 
-    React.useEffect(() => {
-        if (isRunning !== "") {
+    function clearStates() {
+        return () => {
             actorsGuard.actors.clear()
             setActors(Array.from(actorsGuard.actors.values()))
         }
+    }
+    React.useEffect(() => {
+        // if (isRunning !== "") {
+        //     actorsGuard.actors.clear()
+        //     setActors(Array.from(actorsGuard.actors.values()))
+        // }
+        //
+        // return () => {
+        //     actorsGuard.actors.clear()
+        //     setActors(Array.from(actorsGuard.actors.values()))
+        // }
     }, [isRunning])
 
+    console.log(actors.length)
     return (
         <AeeWrapper
             aee={aee}

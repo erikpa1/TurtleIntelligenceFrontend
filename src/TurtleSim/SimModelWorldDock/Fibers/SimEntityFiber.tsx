@@ -11,6 +11,8 @@ interface EntityFiberProps {
 
 export default function SimEntityFiber({entity}: EntityFiberProps) {
 
+
+
     const component = React.useMemo(() => {
 
         const tmp = SimFactory.FIBER_HANDLERS[entity.type]

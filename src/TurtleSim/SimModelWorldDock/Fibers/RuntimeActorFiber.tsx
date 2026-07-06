@@ -17,6 +17,8 @@ export default function RuntimeActorFiber({actor}: RuntimeActorFiberProps) {
 
     function refreshFn(newState: any) {
 
+        console.log(newState)
+
         if (newState.position) {
             actor.position = newState.position
             setPosition(newState.position)
