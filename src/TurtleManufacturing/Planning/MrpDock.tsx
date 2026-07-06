@@ -32,6 +32,10 @@ export default function MrpDock() {
         setRunning(true)
         try {
             const res = await MrpApi.Run()
+            // Go marshals empty slices as null — normalise to arrays.
+            res.plannedOrders = res.plannedOrders ?? []
+            res.requirements = res.requirements ?? []
+            res.exceptions = res.exceptions ?? []
             setResult(res)
             message.success(t("MRP run complete"))
         } finally {

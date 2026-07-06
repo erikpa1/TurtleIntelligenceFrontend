@@ -34,6 +34,10 @@ export default function ApsDock() {
         setRunning(true)
         try {
             const res = await ApsApi.Run()
+            // Go marshals empty slices as null — normalise to arrays.
+            res.operations = res.operations ?? []
+            res.workCenterLoads = res.workCenterLoads ?? []
+            res.unscheduled = res.unscheduled ?? []
             setResult(res)
             message.success(t("Schedule generated"))
         } finally {
