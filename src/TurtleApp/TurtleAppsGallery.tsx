@@ -5,6 +5,7 @@ import Search from "antd/es/input/Search";
 import {BASIC_CATEGORIES, NETESS_CATEGORIES} from "@NavBar/NavBarModules_Basic";
 import {CRM_CATEGORIES} from "@TurtleCrm/NavBarModules_CRM";
 import {SECURITY_CATEGORIES} from "@TurtleSecurity/NavBarModules_Security";
+import {MANUFACTURING_CATEGORIES} from "@TurtleManufacturing/NavBarModules_Manufacturing";
 
 import {MyNavbarItemBigger} from "@Turtle/Components/NavBar";
 import IconTortoise from "../TurtleIcons/IconTortoise"
@@ -60,6 +61,10 @@ export default function TurtleAppsGallery({onRereoute}: TurtleAppsGalleryProps) 
                         key: "security",
                         label: t("security"),
                     },
+                    {
+                        key: "manufacturing",
+                        label: t("manufacturing"),
+                    },
                 ]}
             />
 
@@ -89,6 +94,8 @@ export default function TurtleAppsGallery({onRereoute}: TurtleAppsGalleryProps) 
                         return NETESS_CATEGORIES
                     } else if (activeTab === "security") {
                         return SECURITY_CATEGORIES
+                    } else if (activeTab === "manufacturing") {
+                        return MANUFACTURING_CATEGORIES
                     } else {
                         return []
                     }

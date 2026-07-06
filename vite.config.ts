@@ -1,8 +1,7 @@
-import {defineConfig} from "vite";
 import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 
 import path from "path";
-
 
 // basicSsl()
 // https://vitejs.dev/config/
@@ -17,9 +16,16 @@ export default defineConfig({
             "@TurtlePostman": path.resolve(__dirname, "src/TurtlePostman"),
             "@TurtleChat": path.resolve(__dirname, "src/TurtleChat"),
             "@TurtleSim": path.resolve(__dirname, "src/TurtleSim"),
-            "@TurtleBlueprints": path.resolve(__dirname, "src/TurtleBlueprints"),
+            "@TurtleBlueprints": path.resolve(
+                __dirname,
+                "src/TurtleBlueprints",
+            ),
             "@TurtleNetess": path.resolve(__dirname, "src/TurtleNetess"),
             "@TurtleIcons": path.resolve(__dirname, "src/TurtleIcons"),
+            "@TurtleManufacturing": path.resolve(
+                __dirname,
+                "src/TurtleManufacturing",
+            ),
             "@NavBar": path.resolve(__dirname, "src/NavBar"),
         },
     },

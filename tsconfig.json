@@ -31,6 +31,7 @@
             "@TurtleBlueprints/*": ["./src/TurtleBlueprints/*"],
             "@TurtleNetess/*": ["./src/TurtleNetess/*"],
             "@TurtleIcons/*": ["./src/TurtleIcons/*"],
+            "@TurtleManufacturing/*": ["./src/TurtleManufacturing/*"],
             "@NavBar/*": ["./src/NavBar/*"],
         },
     },
