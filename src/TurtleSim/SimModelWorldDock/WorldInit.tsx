@@ -16,6 +16,7 @@ import SimSpawnFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/S
 import EnterStatisticsBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/StatisticsBehaviours/EnterStatisticsBehProperties";
 import WorkerPoolBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/WorkerPoolBehProperties";
 import LogisticsControlBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/LogisticsControlBehProperties";
+import TableBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/TableBehProperties";
 
 export default function InitWorldFactory() {
     _InitProperties();
@@ -52,6 +53,9 @@ function _InitProperties() {
     //Controls
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_LOGISTICS_CONTROL] =
         LogisticsControlBehProperties;
+
+    //Data
+    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_TABLE] = TableBehProperties;
 }
 
 function _InitFibers() {

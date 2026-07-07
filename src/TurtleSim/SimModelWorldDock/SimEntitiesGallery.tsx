@@ -92,6 +92,12 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
         ]
     }, [])
 
+    const data = React.useMemo(() => {
+        return [
+            {title: t(SimFactory.TYPE_TABLE), key: SimFactory.TYPE_TABLE},
+        ]
+    }, [])
+
     const actors = React.useMemo(() => {
         return [
             {title: t("human"), key: "human", icon: "/icons/robot_2.svg"},
@@ -182,6 +188,25 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
                 title: t("statistics"),
                 key: "statistics",
                 children: statistics.map((val) => ({
+                    key: val.key,
+                    title: (
+                        <Flex
+                            gap={10}
+                            flex={1}
+                            onClick={() => {
+                                elementClicked(val.key)
+                            }}
+                        >
+                            <HierarchyCustomIcon icon={SimFactory.GetIconSvg(val.key)}/>
+                            {val.title}
+                        </Flex>
+                    ),
+                }))
+            },
+            {
+                title: t("data"),
+                key: "data",
+                children: data.map((val) => ({
                     key: val.key,
                     title: (
                         <Flex

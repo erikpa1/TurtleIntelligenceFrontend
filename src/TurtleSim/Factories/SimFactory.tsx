@@ -17,6 +17,9 @@ export default class SimFactory {
     //Controls
     static TYPE_LOGISTICS_CONTROL = "logisticsControl"
 
+    //Data
+    static TYPE_TABLE = "table"
+
     //Actor spawns
     static TYPE_HUMAN = "human"
 
@@ -40,6 +43,7 @@ export default class SimFactory {
         [SimFactory.TYPE_TIME_TRIGGER]: "/icons/arrow_and_edge.svg",
         [SimFactory.TYPE_LOGISTICS_CONTROL]: "/icons/article_person.svg",
         [SimFactory.TYPE_ENTRY_STATISTICS]: "/icons/save.svg", //TODO icon
+        [SimFactory.TYPE_TABLE]: "/icons/newsstand.svg", //TODO dedicated table icon
     }
 
     static ICONS_COMPONENTS = {
