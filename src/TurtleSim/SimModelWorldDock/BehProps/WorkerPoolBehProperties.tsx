@@ -1,29 +1,25 @@
-import React from "react"
+import React from "react";
 
-import IntItem from "@Turtle/ReflectiveUI/NumberItem"
-import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity"
-import { BoolAttributeView } from "@Turtle/Components/Forms/BoolPropertyView"
+import IntItem from "@Turtle/ReflectiveUI/NumberItem";
+import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
+import { BoolAttributeView } from "@Turtle/Components/Forms/BoolPropertyView";
 
 interface WorkerPoolBehPropertiesProps {
-    entity: SimEntity
+    entity: SimEntity;
 }
 
 export default function WorkerPoolBehProperties({
-                                                entity,
-                                            }: WorkerPoolBehPropertiesProps) {
-
+    entity,
+}: WorkerPoolBehPropertiesProps) {
     if (Object.keys(entity.typeData).length === 0) {
         entity.typeData = {
             spawn_limit: 1,
-        }
+        };
     }
 
     return (
         <>
-            <IntItem
-                attribute={"spawn_limit"}
-                entity={entity.typeData}
-            />
+            <IntItem attribute={"spawn_limit"} entity={entity.typeData} />
 
             <BoolAttributeView
                 entity={entity.typeData}
@@ -35,7 +31,6 @@ export default function WorkerPoolBehProperties({
                 entity={entity.typeData}
                 attribute="free"
             />*/}
-
         </>
-    )
+    );
 }

@@ -13,9 +13,9 @@ import SimBufferFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/
 import SimSinkFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/SimSinkFiber";
 import SimStationFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/SimStationFiber";
 import SimSpawnFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/SimSpawnFiber";
-import EnterStatisticsBehProperties
-    from "@TurtleSim/SimModelWorldDock/BehProps/StatisticsBehaviours/EnterStatisticsBehProperties";
+import EnterStatisticsBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/StatisticsBehaviours/EnterStatisticsBehProperties";
 import WorkerPoolBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/WorkerPoolBehProperties";
+import LogisticsControlBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/LogisticsControlBehProperties";
 
 export default function InitWorldFactory() {
     _InitProperties();
@@ -24,25 +24,34 @@ export default function InitWorldFactory() {
 
 function _InitProperties() {
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_SPAWN] = SpawnBehProperties;
-    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_PROCESS] = ProcessBehProperties;
-    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_SWITCH] = SwitchBehProperties;
+    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_PROCESS] =
+        ProcessBehProperties;
+    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_SWITCH] =
+        SwitchBehProperties;
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_MERGE] = MergeBehProperties;
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_DELAY] = DelayBehProperties;
 
     //This ones have the same UI (for now)
-    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_QUEUE] = BufferBehProperties;
-    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_BUFFER] = BufferBehProperties;
+    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_QUEUE] =
+        BufferBehProperties;
+    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_BUFFER] =
+        BufferBehProperties;
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_SPLIT] = SplitBehProperties;
 
     //Actor properties
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_HUMAN] = HumanBehProperties;
 
     //Statistics
-    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_ENTRY_STATISTICS] = EnterStatisticsBehProperties;
-    
-    //Resources
-    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_WORKER_POOL] = WorkerPoolBehProperties;
+    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_ENTRY_STATISTICS] =
+        EnterStatisticsBehProperties;
 
+    //Resources
+    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_WORKER_POOL] =
+        WorkerPoolBehProperties;
+
+    //Controls
+    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_LOGISTICS_CONTROL] =
+        LogisticsControlBehProperties;
 }
 
 function _InitFibers() {

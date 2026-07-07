@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import {
     Badge,
     Button,
@@ -13,78 +13,85 @@ import {
     Typography,
     message,
     theme as antdTheme,
-} from "antd"
-import type {ColumnsType} from "antd/es/table"
-import {useTranslation} from "react-i18next"
+} from "antd";
+import type { ColumnsType } from "antd/es/table";
+import { useTranslation } from "react-i18next";
 
-import {useTurtleTheme} from "@Turtle/Theme/useTurleTheme"
-import Item from "@TurtleManufacturing/Data/Item"
-import ItemsApi from "@TurtleManufacturing/Data/ItemsApi"
-import COUItemDrawer from "@TurtleManufacturing/Inventory/COUItemDrawer"
+import { useTurtleTheme } from "@Turtle/Theme/useTurleTheme";
+import Item from "@TurtleManufacturing/Data/Item";
+import ItemsApi from "@TurtleManufacturing/Data/ItemsApi";
+import COUItemDrawer from "@TurtleManufacturing/Inventory/COUItemDrawer";
+import TopBarWrapper from "@Turtle/Components/TopBarWrapper";
+import { HierarchyRightFlex } from "@Turtle/Components/HierarchyComponents";
 
 const CATEGORY_COLORS: Record<string, string> = {
     raw: "blue",
     semiFinished: "gold",
     finished: "green",
     trading: "purple",
-}
+};
 
 // InventoryDock is the material master list, styled after an SAP inventory
 // screen: a KPI header, a searchable material table and a drawer editor.
 export default function InventoryDock() {
-    const [t] = useTranslation()
-    const {token} = antdTheme.useToken()
-    const {bigPadding, theme} = useTurtleTheme()
+    const [t] = useTranslation();
+    const { token } = antdTheme.useToken();
+    const { bigPadding, theme } = useTurtleTheme();
 
-    const [items, setItems] = React.useState<Item[]>([])
-    const [loading, setLoading] = React.useState(false)
-    const [search, setSearch] = React.useState("")
+    const [items, setItems] = React.useState<Item[]>([]);
+    const [loading, setLoading] = React.useState(false);
+    const [search, setSearch] = React.useState("");
 
-    const [drawerOpen, setDrawerOpen] = React.useState(false)
-    const [editing, setEditing] = React.useState<Item | null>(null)
+    const [drawerOpen, setDrawerOpen] = React.useState(false);
+    const [editing, setEditing] = React.useState<Item | null>(null);
 
     async function refresh() {
-        setLoading(true)
+        setLoading(true);
         try {
-            setItems(await ItemsApi.List())
+            setItems(await ItemsApi.List());
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     }
 
     React.useEffect(() => {
-        refresh()
-    }, [])
+        refresh();
+    }, []);
 
     function openCreate() {
-        setEditing(new Item())
-        setDrawerOpen(true)
+        setEditing(new Item());
+        setDrawerOpen(true);
     }
 
     function openEdit(item: Item) {
-        setEditing(item)
-        setDrawerOpen(true)
+        setEditing(item);
+        setDrawerOpen(true);
     }
 
     async function remove(item: Item) {
-        await ItemsApi.Delete(item.uid)
-        message.success(t("Material deleted"))
-        refresh()
+        await ItemsApi.Delete(item.uid);
+        message.success(t("Material deleted"));
+        refresh();
     }
 
     const filtered = React.useMemo(() => {
-        const q = search.trim().toLowerCase()
-        if (!q) return items
+        const q = search.trim().toLowerCase();
+        if (!q) return items;
         return items.filter(
             (i) =>
                 i.sku.toLowerCase().includes(q) ||
                 i.name.toLowerCase().includes(q) ||
                 i.warehouse.toLowerCase().includes(q),
-        )
-    }, [items, search])
+        );
+    }, [items, search]);
 
-    const stockValue = items.reduce((acc, i) => acc + i.unitPrice * i.qtyOnHand, 0)
-    const lowStock = items.filter((i) => i.reorderPoint > 0 && i.qtyOnHand <= i.reorderPoint).length
+    const stockValue = items.reduce(
+        (acc, i) => acc + i.unitPrice * i.qtyOnHand,
+        0,
+    );
+    const lowStock = items.filter(
+        (i) => i.reorderPoint > 0 && i.qtyOnHand <= i.reorderPoint,
+    ).length;
 
     const columns: ColumnsType<Item> = [
         {
@@ -103,11 +110,18 @@ export default function InventoryDock() {
             title: t("Category"),
             dataIndex: "category",
             width: 130,
-            filters: Object.keys(CATEGORY_COLORS).map((c) => ({text: t(`item.category.${c}`), value: c})),
+            filters: Object.keys(CATEGORY_COLORS).map((c) => ({
+                text: t(`item.category.${c}`),
+                value: c,
+            })),
             onFilter: (val, r) => r.category === val,
-            render: (c) => <Tag color={CATEGORY_COLORS[c] ?? "default"}>{t(`item.category.${c}`)}</Tag>,
+            render: (c) => (
+                <Tag color={CATEGORY_COLORS[c] ?? "default"}>
+                    {t(`item.category.${c}`)}
+                </Tag>
+            ),
         },
-        {title: t("UoM"), dataIndex: "uom", width: 80},
+        { title: t("UoM"), dataIndex: "uom", width: 80 },
         {
             title: t("Unit price"),
             dataIndex: "unitPrice",
@@ -123,26 +137,26 @@ export default function InventoryDock() {
             align: "right",
             sorter: (a, b) => a.qtyOnHand - b.qtyOnHand,
             render: (v, r) => {
-                const low = r.reorderPoint > 0 && v <= r.reorderPoint
+                const low = r.reorderPoint > 0 && v <= r.reorderPoint;
                 return (
                     <Tooltip title={low ? t("Below reorder point") : ""}>
                         <Typography.Text type={low ? "danger" : undefined}>
                             {v} {r.uom}
                         </Typography.Text>
                     </Tooltip>
-                )
+                );
             },
         },
-        {title: t("Warehouse"), dataIndex: "warehouse", width: 130},
+        { title: t("Warehouse"), dataIndex: "warehouse", width: 130 },
         {
             title: t("Status"),
             dataIndex: "active",
             width: 110,
             render: (active) =>
                 active ? (
-                    <Badge status={"success"} text={t("Active")}/>
+                    <Badge status={"success"} text={t("Active")} />
                 ) : (
-                    <Badge status={"default"} text={t("Inactive")}/>
+                    <Badge status={"default"} text={t("Inactive")} />
                 ),
         },
         {
@@ -151,7 +165,11 @@ export default function InventoryDock() {
             width: 130,
             render: (_, r) => (
                 <Space>
-                    <Button size={"small"} onClick={() => openEdit(r)}>
+                    <Button
+                        type="text"
+                        size={"small"}
+                        onClick={() => openEdit(r)}
+                    >
                         {t("Edit")}
                     </Button>
                     <Popconfirm
@@ -161,84 +179,95 @@ export default function InventoryDock() {
                         cancelText={t("Cancel")}
                     >
                         <Button size={"small"} danger>
-                            {t("Delete")}
+                            {t("delete")}
                         </Button>
                     </Popconfirm>
                 </Space>
             ),
         },
-    ]
+    ];
 
     return (
-        <Flex
-            vertical
-            style={{
-                height: theme.GetSplitterBigHeight(),
-                padding: bigPadding,
-                gap: 16,
-                overflow: "auto",
-                backgroundColor: token.colorBgLayout,
-            }}
-        >
-            <Flex justify={"space-between"} align={"center"} wrap>
-                <Typography.Title level={3} style={{margin: 0}}>
+        <>
+            <TopBarWrapper>
+                <Typography.Title level={4} style={{ margin: 0 }}>
                     {t("Inventory · Materials")}
                 </Typography.Title>
-                <Button type={"primary"} onClick={openCreate}>
-                    {t("New material")}
-                </Button>
+
+                <HierarchyRightFlex>
+                    <Button type={"primary"} onClick={openCreate}>
+                        {t("create.material")}
+                    </Button>
+                </HierarchyRightFlex>
+            </TopBarWrapper>
+
+            <Flex
+                vertical
+                style={{
+                    height: theme.GetSplitterBigHeight(),
+                    padding: bigPadding,
+                    gap: 16,
+                    overflow: "auto",
+                    backgroundColor: token.colorBgLayout,
+                }}
+            >
+                <Flex gap={16} wrap>
+                    <_StatCard>
+                        <Statistic
+                            title={t("Materials")}
+                            value={items.length}
+                        />
+                    </_StatCard>
+                    <_StatCard>
+                        <Statistic
+                            title={t("Stock value")}
+                            value={stockValue}
+                            precision={2}
+                            suffix={items[0]?.currency ?? "EUR"}
+                        />
+                    </_StatCard>
+                    <_StatCard>
+                        <Statistic
+                            title={t("Below reorder point")}
+                            value={lowStock}
+                            valueStyle={{
+                                color:
+                                    lowStock > 0 ? token.colorError : undefined,
+                            }}
+                        />
+                    </_StatCard>
+                </Flex>
+
+                <Input.Search
+                    allowClear
+                    placeholder={t("Search by SKU, name or warehouse")}
+                    style={{ maxWidth: 360 }}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+
+                <Table<Item>
+                    rowKey={"uid"}
+                    size={"middle"}
+                    loading={loading}
+                    columns={columns}
+                    dataSource={filtered}
+                    pagination={{ pageSize: 20, showSizeChanger: true }}
+                    scroll={{ x: 1000 }}
+                />
+
+                <COUItemDrawer
+                    open={drawerOpen}
+                    item={editing}
+                    onClose={() => setDrawerOpen(false)}
+                    onSaved={refresh}
+                />
             </Flex>
-
-            <Flex gap={16} wrap>
-                <_StatCard>
-                    <Statistic title={t("Materials")} value={items.length}/>
-                </_StatCard>
-                <_StatCard>
-                    <Statistic
-                        title={t("Stock value")}
-                        value={stockValue}
-                        precision={2}
-                        suffix={items[0]?.currency ?? "EUR"}
-                    />
-                </_StatCard>
-                <_StatCard>
-                    <Statistic
-                        title={t("Below reorder point")}
-                        value={lowStock}
-                        valueStyle={{color: lowStock > 0 ? token.colorError : undefined}}
-                    />
-                </_StatCard>
-            </Flex>
-
-            <Input.Search
-                allowClear
-                placeholder={t("Search by SKU, name or warehouse")}
-                style={{maxWidth: 360}}
-                onChange={(e) => setSearch(e.target.value)}
-            />
-
-            <Table<Item>
-                rowKey={"uid"}
-                size={"middle"}
-                loading={loading}
-                columns={columns}
-                dataSource={filtered}
-                pagination={{pageSize: 20, showSizeChanger: true}}
-                scroll={{x: 1000}}
-            />
-
-            <COUItemDrawer
-                open={drawerOpen}
-                item={editing}
-                onClose={() => setDrawerOpen(false)}
-                onSaved={refresh}
-            />
-        </Flex>
-    )
+        </>
+    );
 }
 
-function _StatCard({children}: {children: React.ReactNode}) {
-    const {token} = antdTheme.useToken()
+function _StatCard({ children }: { children: React.ReactNode }) {
+    const { token } = antdTheme.useToken();
     return (
         <div
             style={{
@@ -250,5 +279,5 @@ function _StatCard({children}: {children: React.ReactNode}) {
         >
             {children}
         </div>
-    )
+    );
 }
