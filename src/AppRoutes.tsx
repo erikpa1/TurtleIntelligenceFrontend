@@ -47,6 +47,7 @@ const LLMAgentsDock = React.lazy(() => import("./TurtleBlueprints/LLMAgentsDock"
 const LLMChatDock = React.lazy(() => import("@Turtle/LLM/LLMChatDock/LLMChatDock"))
 const ActorsDock = React.lazy(() => import("@TurtleApp/Routes/Actors/ActorsDock"))
 const FilesystemDock = React.lazy(() => import("@TurtleApp/Routes/Filesystem/FilesystemDock"))
+const PointCloudDock = React.lazy(() => import("@TurtleApp/Routes/PointCloud/PointCloudDock"))
 const DocumentationDock = React.lazy(() => import("@TurtleApp/Routes/Documentation/DocumentationDock"))
 const ContainersDock = React.lazy(() => import("@TurtleApp/Routes/ContainersDock/ContainersDock"))
 
@@ -83,6 +84,8 @@ export default function AppRoutes({}) {
             <Route path={"/documentation/:topic/:document"} element={<DocumentationDock/>}/>
             <Route path={"/actors"} element={<ActorsDock/>}/>
             <Route path={"/filesystem"} element={<FilesystemDock/>}/>
+            <Route path={"/pointclouds"} element={<PointCloudDock/>}/>
+            <Route path={"/pointclouds/:cloudUid"} element={<PointCloudDock/>}/>
             <Route path={"/llm-chat"} element={<LLMChatDock/>}/>
             <Route path={"/llm-agent-chat/:chatUid"} element={<LLMAgentChatDock/>}/>
             <Route path={"/llm-chat/:chatUid"} element={<LLMChatDock/>}/>

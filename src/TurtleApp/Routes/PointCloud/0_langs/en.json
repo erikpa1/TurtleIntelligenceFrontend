@@ -1,0 +1,12 @@
+{
+    "pointclouds": "Point clouds",
+    "upload.point.cloud": "Upload point cloud",
+    "delete.point.cloud": "Delete this point cloud?",
+    "no.point.clouds": "No point clouds",
+    "select.a.point.cloud": "Select a point cloud",
+    "processing.point.cloud": "Processing point cloud...",
+    "processing": "Processing",
+    "ready": "Ready",
+    "points": "Points",
+    "created": "Created"
+}
