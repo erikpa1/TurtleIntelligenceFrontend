@@ -65,6 +65,11 @@ const DATA_WIDGETS: INavBarItem[] = [
         link: "/resources"
     },
     {
+        lang: "filesystem",
+        icon: "/icons/folder.svg",
+        link: "/filesystem"
+    },
+    {
         lang: "flows",
         icon: "/icons/flowsheet.svg",
         link: "/flows"

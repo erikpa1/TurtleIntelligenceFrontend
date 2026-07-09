@@ -23,8 +23,9 @@ import { useActiveSimulation } from "@TurtleSim/SimModelWorldDock/Controllers/Ru
 import TurtleApp from "@TurtleApp/TurtleApp";
 import SimConfigSettingsButton from "@TurtleSim/SimModelWorldDock/Components/SimConfig";
 import { useTurtleTheme } from "@Turtle/Theme/useTurleTheme";
-import IconSave from "../../TurtleIcons/IconSave";
 import {TopBarSettingsButton} from "@TurtleSim/SimModelWorldDock/TopBar/TopBarSettingsView";
+import SimWorldWidgetsGallery from "@TurtleSim/SimModelWorldDock/SimWorldWidgetsGallery";
+import IconSave from "@TurtleIcons/IconSave";
 
 export default function WorldTopBar({}) {
     const [bigMode, setBigMode] = React.useState(false);
@@ -55,6 +56,7 @@ export default function WorldTopBar({}) {
                     }}
                 ></Button>
 
+                <SimWorldWidgetsGallery/>
                 <_SaveButton />
                 <_ConnectButton />
                 <_DisconnectButton />
