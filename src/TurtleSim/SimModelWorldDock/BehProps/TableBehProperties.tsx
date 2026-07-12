@@ -5,6 +5,7 @@ import {useTranslation} from "react-i18next";
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
 import SimTableEditor from "@TurtleSim/SimModelWorldDock/Components/SimTableEditor";
 import Card from "antd/es/card/Card";
+import { BoolAttributeView } from "@Turtle/Components/Forms/BoolPropertyView";
 
 interface TableBehPropertiesProps {
     entity: SimEntity;
@@ -20,6 +21,7 @@ export default function TableBehProperties({entity}: TableBehPropertiesProps) {
 
     return (
         <>
+
             <Card>
                 <Typography.Text type="secondary">
                     {t("table.entity.hint")}

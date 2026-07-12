@@ -45,13 +45,6 @@ export default function SimTableEditor({entity, onChange}: SimTableEditorProps) 
             columns={columns}
             data={td}
             attribute={TABLE_ROWS}
-            editableColumns
-            onColumnsChange={(next) => {
-                td[TABLE_COLUMNS] = next;
-                setColumns(next);
-                entity.modified = true;
-                onChange?.();
-            }}
             onChange={() => {
                 entity.modified = true;
                 onChange?.();

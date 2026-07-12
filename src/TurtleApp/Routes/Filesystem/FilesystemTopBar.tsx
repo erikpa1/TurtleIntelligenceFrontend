@@ -83,6 +83,7 @@ export default function FilesystemTopBar({folderPath, onChanged, onNavigateFolde
                 <Button
                     icon={<FolderAddOutlined/>}
                     onClick={createFolder}
+                    type="text"
                 >
                     {t("create.folder")}
                 </Button>
@@ -98,6 +99,7 @@ export default function FilesystemTopBar({folderPath, onChanged, onNavigateFolde
                     <Button
                         icon={<UploadOutlined/>}
                         disabled={uploadProgress !== null}
+                        type="text"
                     >
                         {t("upload")}
                     </Button>

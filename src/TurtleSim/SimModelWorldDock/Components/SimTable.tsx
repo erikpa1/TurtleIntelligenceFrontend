@@ -1,11 +1,12 @@
 import React from "react";
-import {Button, Input, Select, theme, Tooltip} from "antd";
-import {DeleteOutlined, PlusOutlined} from "@ant-design/icons";
+import {Button, Input, Select, Space, Table, TableColumnType, theme, Tooltip} from "antd";
+import {DeleteOutlined, PlusOutlined, SearchOutlined} from "@ant-design/icons";
 import {useTranslation} from "react-i18next";
 
 import {WorldSingleton} from "@TurtleApp/Data/World";
 import aee from "@Turtle/Data/Aee";
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
+import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 
 /**
  * Reusable spreadsheet-like table, formatted in the style of Siemens Tecnomatix
@@ -298,29 +299,16 @@ interface SimTableCellProps {
 }
 
 function SimTableCell({column, value, onChange}: SimTableCellProps) {
-    const entities = useWorldEntities(
-        column.type === "entityRef" ? column.entityType : undefined
-    );
-
     const cellInputStyle: React.CSSProperties = {
         width: "100%",
     };
 
     if (column.type === "entityRef") {
         return (
-            <Select
-                variant="borderless"
-                size="small"
-                style={cellInputStyle}
-                value={value || undefined}
-                allowClear
-                showSearch
-                optionFilterProp="label"
-                onChange={(v) => onChange(v ?? "")}
-                options={entities.map((e) => ({
-                    value: e.uid,
-                    label: e.name || e.uid,
-                }))}
+            <EntityRefCell
+                entityType={column.entityType}
+                value={value}
+                onChange={onChange}
             />
         );
     }
@@ -352,6 +340,156 @@ function SimTableCell({column, value, onChange}: SimTableCellProps) {
             type={isNumber ? "number" : "text"}
             value={value}
             onChange={(e) => onChange(e.target.value)}
+        />
+    );
+}
+
+interface EntityRefCellProps {
+    entityType?: string;
+    value: string;
+    onChange: (value: string) => void;
+}
+
+/**
+ * entityRef cell: looks and behaves like the plain "select" column (same
+ * borderless Select chrome, clearable, shows the picked name), but a real
+ * dropdown listing every entity's full name breaks down once names get long.
+ * So the dropdown never opens (open={false}) and a click instead opens a
+ * searchable table (uid / name / type / pick) in a modal.
+ */
+function EntityRefCell({entityType, value, onChange}: EntityRefCellProps) {
+    const entities = useWorldEntities(entityType);
+    const {activate, deactivate} = useTurtleModal();
+
+    const selected = entities.find((e) => e.uid === value);
+
+    function openPicker(e: React.MouseEvent<HTMLDivElement>) {
+        // Clicking the "clear" (x) icon bubbles up to this same root — don't
+        // reopen the picker right after the user just cleared the value.
+        if ((e.target as HTMLElement).closest(".ant-select-clear")) {
+            return;
+        }
+
+        activate({
+            title: "pick.entity",
+            width: 560,
+            content: (
+                <EntityPickerTable
+                    entities={entities}
+                    onPick={(uid) => {
+                        onChange(uid);
+                        deactivate();
+                    }}
+                />
+            ),
+        });
+    }
+
+    return (
+        <Select
+            variant="borderless"
+            size="small"
+            style={{width: "100%"}}
+            open={false}
+            value={value || undefined}
+            allowClear
+            onClear={() => onChange("")}
+            onClick={openPicker}
+            options={value ? [{value, label: selected?.name || value}] : []}
+        />
+    );
+}
+
+interface EntityPickerTableProps {
+    entities: SimEntity[];
+    onPick: (uid: string) => void;
+}
+
+/** Column-header search box (text field + search/reset) for a text dataIndex. */
+function getColumnSearchProps(
+    dataIndex: "uid" | "name",
+    t: (key: string) => string
+): TableColumnType<SimEntity> {
+    return {
+        filterDropdown: ({setSelectedKeys, selectedKeys, confirm, clearFilters}) => (
+            <div style={{padding: 8}} onKeyDown={(e) => e.stopPropagation()}>
+                <Input
+                    size="small"
+                    placeholder={t("search")}
+                    value={selectedKeys[0] as string}
+                    onChange={(e) =>
+                        setSelectedKeys(e.target.value ? [e.target.value] : [])
+                    }
+                    onPressEnter={() => confirm()}
+                    style={{display: "block", marginBottom: 8, width: 160}}
+                />
+                <Space>
+                    <Button type="primary" size="small" onClick={() => confirm()}>
+                        {t("search")}
+                    </Button>
+                    <Button
+                        size="small"
+                        onClick={() => {
+                            clearFilters?.();
+                            confirm();
+                        }}
+                    >
+                        {t("reset")}
+                    </Button>
+                </Space>
+            </div>
+        ),
+        filterIcon: (filtered: boolean) => (
+            <SearchOutlined style={{color: filtered ? "#1677ff" : undefined}} />
+        ),
+        onFilter: (value, record) =>
+            (record[dataIndex] ?? "")
+                .toString()
+                .toLowerCase()
+                .includes(String(value).toLowerCase()),
+    };
+}
+
+function EntityPickerTable({entities, onPick}: EntityPickerTableProps) {
+    const [t] = useTranslation();
+
+    const typeFilters = React.useMemo(
+        () =>
+            Array.from(new Set(entities.map((e) => e.type).filter(Boolean))).map(
+                (v) => ({text: v, value: v})
+            ),
+        [entities]
+    );
+
+    return (
+        <Table<SimEntity>
+            size="small"
+            rowKey="uid"
+            dataSource={entities}
+            pagination={entities.length > 8 ? {pageSize: 8} : false}
+            columns={[
+                {title: t("uid"), dataIndex: "uid", ellipsis: true, ...getColumnSearchProps("uid", t)},
+                {title: t("name"), dataIndex: "name", ellipsis: true, ...getColumnSearchProps("name", t)},
+                {
+                    title: t("type"),
+                    dataIndex: "type",
+                    ellipsis: true,
+                    width: 120,
+                    filters: typeFilters,
+                    filterSearch: true,
+                    onFilter: (value, record) => record.type === value,
+                },
+                {
+                    title: t("actions"),
+                    key: "actions",
+                    width: 80,
+                    render: (_, e) => (
+                        <Button size="small" onClick={() => onPick(e.uid)}>
+                            {t("pick")}
+                        </Button>
+                    ),
+                },
+            ]}
         />
     );
 }
