@@ -6,6 +6,7 @@ import {useTranslation} from "react-i18next";
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
 import SimTable, {SimTableColumn, useWorldEntities} from "@TurtleSim/SimModelWorldDock/Components/SimTable";
 import SimTableEditor, {TABLE_COLUMNS, TABLE_ROWS} from "@TurtleSim/SimModelWorldDock/Components/SimTableEditor";
+import SimTablePreview from "@TurtleSim/SimModelWorldDock/Components/SimTablePreview";
 import WorldEntitySelect from "@TurtleSim/SimModelWorldDock/Components/WorldEntitySelect";
 import SimFactory from "@TurtleSim/Factories/SimFactory";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
@@ -78,9 +79,11 @@ export default function LogisticsControlBehProperties({
 
     const td = entity.typeData as any;
     const [mode, setMode] = React.useState<string>(td[LC_TABLE_MODE] ?? MODE_EMBEDDED);
+    const [, forceUpdate] = React.useState(0);
 
     function markModified() {
         entity.modified = true;
+        forceUpdate((v) => v + 1);
     }
 
     return (
@@ -116,11 +119,18 @@ export default function LogisticsControlBehProperties({
             </Form.Item>
 
             {mode === MODE_EMBEDDED ? (
-                <SimTable
+                <SimTablePreview
                     columns={COLUMNS}
-                    data={td}
-                    attribute={LC_TABLE}
-                    onChange={markModified}
+                    rowCount={Array.isArray(td[LC_TABLE]) ? td[LC_TABLE].length : 0}
+                    modalTitle={t("embedded.table")}
+                    renderEditor={() => (
+                        <SimTable
+                            columns={COLUMNS}
+                            data={td}
+                            attribute={LC_TABLE}
+                            onChange={markModified}
+                        />
+                    )}
                 />
             ) : (
                 <ReferencedTableConfig typeData={td} onChange={markModified} />
