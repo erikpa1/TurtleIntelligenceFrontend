@@ -18,13 +18,25 @@ import TurtleThemeProvider from "../TurtleThemeProvider";
 const root = createRoot(document.getElementById("root") as any);
 
 import { App, Button } from "antd";
-import IconFolderOpen from "@TurtleIcons/IconFolderOpen";
-import IconCamping from "@TurtleIcons/IconCamping";
-import IconCategory from "@TurtleIcons/IconCategory";
-import IconSearch from "@TurtleIcons/IconSearch";
-import IconStream from "@TurtleIcons/IconStream";
-import IconCalendar from "@TurtleIcons/IconCalendar";
-import IconScene from "@TurtleIcons/IconScene";
+
+import IconKey from "@TurtleIcons/IconKey";
+import IconSpahgetti from "@TurtleIcons/IconSpaghetti";
+import IconReset from "@TurtleIcons/IconReset";
+import IconPlay from "@TurtleIcons/IconPlay";
+import IconDeployCodeHistory from "@TurtleIcons/IconDeployCodeHistory";
+import IconMonitorHealth from "@TurtleIcons/IconMonitorHearth";
+import IconImage from "@TurtleIcons/IconImage";
+import IconManufacturing from "@TurtleIcons/IconManufacturing";
+import IconNetworkIntelligence from "@TurtleIcons/IconNetworkIntelligence";
+import IconThreatIntelligence from "@TurtleIcons/IconThreatIntelligence";
+import IconBookRibbon from "@TurtleIcons/IconBookRibbon";
+import IconHomeImprovement from "@TurtleIcons/IconHomeImprovement";
+import IconAgvPace from "@TurtleIcons/IconAgvPace";
+import IconNavigation from "@TurtleIcons/IconNavigation";
+import IconStop from "@TurtleIcons/IconStop";
+import IconArchitecture from "@TurtleIcons/IconArchitecture";
+import IconEmergencyShare from "@TurtleIcons/IconEmergencyShare";
+import IconAssistantDirection from "@TurtleIcons/IconAssistantDirection";
 
 root.render(
     <QueryClientProvider client={TurtleQueryClient}>
@@ -48,9 +60,9 @@ root.render(
 
 root.render(
     <>
-        <IconScene />
+        <IconAssistantDirection />
 
-        <Button type="primary" icon={<IconScene />}>
+        <Button type="primary" icon={<IconAssistantDirection />}>
             Here
         </Button>
     </>,

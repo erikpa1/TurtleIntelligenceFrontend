@@ -1,0 +1,21 @@
+import TurtleIcon from "./A";
+import { useTurtleTheme } from "@Turtle/Theme/useTurleTheme";
+
+export default function IconHomeImprovement(props: any = {}) {
+    const { theme } = useTurtleTheme();
+
+    return (
+        <TurtleIcon {...props} viewBox={"0 0 1024 1024"}>
+            <path
+                d="M297.845,106.667L726.155,106.667L618.667,257.973L618.667,801.643L512,908.309L405.333,801.643L405.333,257.973L297.845,106.667ZM554.667,501.333L469.333,501.333L469.333,608L554.667,608L554.667,501.333ZM554.667,769.643L554.667,672L469.333,672L469.333,769.643L512,812.309L554.667,769.643ZM469.333,437.333L554.667,437.333L554.667,238.933L597.333,170.667L426.667,170.667L469.333,238.933L469.333,437.333Z"
+                fill={theme.iconSecondaryColor}
+            />
+            <g transform="matrix(0,-0.585663,0.585663,0,793.118218,1009.121683)">
+                <path
+                    d="M400,-93.85L13.85,-480L400,-866.15L456.77,-809.38L127.38,-480L456.77,-150.62L400,-93.85Z"
+                    fill={theme.iconPrimaryColor}
+                />
+            </g>
+        </TurtleIcon>
+    );
+}
