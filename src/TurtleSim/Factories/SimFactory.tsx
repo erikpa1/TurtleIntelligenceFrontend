@@ -14,6 +14,9 @@ export default class SimFactory {
     static TYPE_DOWNTIME = "downtime"
     static TYPE_WORKER_POOL = "workerPool"
 
+    //Navigation
+    static TYPE_NAV_SYSTEM = "navSystem"
+
     //Controls
     static TYPE_LOGISTICS_CONTROL = "logisticsControl"
 
@@ -41,6 +44,7 @@ export default class SimFactory {
         [SimFactory.TYPE_DOWNTIME]: "/icons/arrow_and_edge.svg",
         [SimFactory.TYPE_WORKER_POOL]: "/icons/arrow_and_edge.svg",
         [SimFactory.TYPE_TIME_TRIGGER]: "/icons/arrow_and_edge.svg",
+        [SimFactory.TYPE_NAV_SYSTEM]: "/icons/route.svg",
         [SimFactory.TYPE_LOGISTICS_CONTROL]: "/icons/article_person.svg",
         [SimFactory.TYPE_ENTRY_STATISTICS]: "/icons/save.svg", //TODO icon
         [SimFactory.TYPE_TABLE]: "/icons/newsstand.svg", //TODO dedicated table icon

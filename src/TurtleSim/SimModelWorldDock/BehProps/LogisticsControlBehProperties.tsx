@@ -1,13 +1,15 @@
 import React from "react";
-import {Button, Divider, Form, Modal, Segmented, Select, Space, Typography} from "antd";
-import {EditOutlined, FormatPainterOutlined, ThunderboltOutlined} from "@ant-design/icons";
+import {Button, Divider, Form, List, Modal, Segmented, Select, Space, Typography} from "antd";
+import {EditOutlined, FormatPainterOutlined, MoreOutlined, ThunderboltOutlined} from "@ant-design/icons";
 import {useTranslation} from "react-i18next";
 
 import SimEntity from "@TurtleSim/SimModelWorldDock/Data/SimEntity";
 import SimTable, {SimTableColumn, useWorldEntities} from "@TurtleSim/SimModelWorldDock/Components/SimTable";
 import SimTableEditor, {TABLE_COLUMNS, TABLE_ROWS} from "@TurtleSim/SimModelWorldDock/Components/SimTableEditor";
+import SimTablePreview from "@TurtleSim/SimModelWorldDock/Components/SimTablePreview";
 import WorldEntitySelect from "@TurtleSim/SimModelWorldDock/Components/WorldEntitySelect";
 import SimFactory from "@TurtleSim/Factories/SimFactory";
+import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 
 interface LogisticsControlBehPropertiesProps {
     entity: SimEntity;
@@ -77,9 +79,11 @@ export default function LogisticsControlBehProperties({
 
     const td = entity.typeData as any;
     const [mode, setMode] = React.useState<string>(td[LC_TABLE_MODE] ?? MODE_EMBEDDED);
+    const [, forceUpdate] = React.useState(0);
 
     function markModified() {
         entity.modified = true;
+        forceUpdate((v) => v + 1);
     }
 
     return (
@@ -115,11 +119,18 @@ export default function LogisticsControlBehProperties({
             </Form.Item>
 
             {mode === MODE_EMBEDDED ? (
-                <SimTable
+                <SimTablePreview
                     columns={COLUMNS}
-                    data={td}
-                    attribute={LC_TABLE}
-                    onChange={markModified}
+                    rowCount={Array.isArray(td[LC_TABLE]) ? td[LC_TABLE].length : 0}
+                    modalTitle={t("embedded.table")}
+                    renderEditor={() => (
+                        <SimTable
+                            columns={COLUMNS}
+                            data={td}
+                            attribute={LC_TABLE}
+                            onChange={markModified}
+                        />
+                    )}
                 />
             ) : (
                 <ReferencedTableConfig typeData={td} onChange={markModified} />
@@ -139,6 +150,7 @@ function ReferencedTableConfig({typeData, onChange}: ReferencedTableConfigProps)
     const [tableRef, setTableRef] = React.useState<string>(typeData[LC_TABLE_REF] ?? "");
     const [version, setVersion] = React.useState(0);
     const [editorOpen, setEditorOpen] = React.useState(false);
+    const {activate, deactivate} = useTurtleModal();
 
     const referenced = tables.find((e) => e.uid === tableRef);
 
@@ -192,6 +204,38 @@ function ReferencedTableConfig({typeData, onChange}: ReferencedTableConfigProps)
         onChange();
     }
 
+    const tableActions = [
+        {key: "edit", icon: <EditOutlined />, label: t("edit.table"), onClick: () => setEditorOpen(true)},
+        {key: "format", icon: <FormatPainterOutlined />, label: t("format.and.map"), onClick: formatAndMap},
+        {key: "auto", icon: <ThunderboltOutlined />, label: t("auto.map"), onClick: autoMapByName},
+    ];
+
+    function openTableActions() {
+        activate({
+            title: "actions",
+            width: 320,
+            content: (
+                <List
+                    dataSource={tableActions}
+                    renderItem={(action) => (
+                        <List.Item
+                            style={{cursor: "pointer", padding: "8px 4px"}}
+                            onClick={() => {
+                                deactivate();
+                                action.onClick();
+                            }}
+                        >
+                            <Space>
+                                {action.icon}
+                                {action.label}
+                            </Space>
+                        </List.Item>
+                    )}
+                />
+            ),
+        });
+    }
+
     return (
         <>
             <WorldEntitySelect
@@ -204,34 +248,15 @@ function ReferencedTableConfig({typeData, onChange}: ReferencedTableConfigProps)
                     setTableRef(typeData[LC_TABLE_REF] ?? "");
                     onChange();
                 }}
+                suffix={
+                    <Button
+                        size="small"
+                        icon={<MoreOutlined />}
+                        disabled={!referenced}
+                        onClick={openTableActions}
+                    />
+                }
             />
-
-            <Space wrap style={{marginBottom: 8}}>
-                <Button
-                    size="small"
-                    icon={<EditOutlined />}
-                    disabled={!referenced}
-                    onClick={() => setEditorOpen(true)}
-                >
-                    {t("edit.table")}
-                </Button>
-                <Button
-                    size="small"
-                    icon={<FormatPainterOutlined />}
-                    disabled={!referenced}
-                    onClick={formatAndMap}
-                >
-                    {t("format.and.map")}
-                </Button>
-                <Button
-                    size="small"
-                    icon={<ThunderboltOutlined />}
-                    disabled={!referenced}
-                    onClick={autoMapByName}
-                >
-                    {t("auto.map")}
-                </Button>
-            </Space>
 
             {referenced ? (
                 <>

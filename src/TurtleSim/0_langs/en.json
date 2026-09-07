@@ -6,5 +6,14 @@
     "spawn_on_init": "Spawn on init",
     "spawn_limit": "Spawn limit",
     "spawn_multiplication": "Spawn multiplication",
-    "actor": "Actor"
+    "actor": "Actor",
+    "navigation": "Navigation",
+    "navSystem": "Nav system",
+    "rounding": "Rounding",
+    "nav_system.points": "Points",
+    "nav_system.add_point": "Add point (click in scene)",
+    "nav_system.cancel_pick": "Cancel",
+    "nav_system.remove": "Remove",
+    "nav_system.clear_points": "Clear points",
+    "nav_system.no_points": "No points yet"
 }

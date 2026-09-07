@@ -42,3 +42,10 @@ canvas {
     outline: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+/* Turtle icons inherit the text color of solid antd buttons (primary, danger, ...)
+   so they turn white instead of keeping their themed fill.
+   `fill` on the paths is a presentation attribute, so this rule wins without !important. */
+.ant-btn-variant-solid .turtle-icon svg [fill],
+.ant-btn-primary .turtle-icon svg [fill] {
+    fill: currentColor;
+}

@@ -86,6 +86,12 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
         ]
     }, [])
 
+    const navigation = React.useMemo(() => {
+        return [
+            {title: t(SimFactory.TYPE_NAV_SYSTEM), key: SimFactory.TYPE_NAV_SYSTEM},
+        ]
+    }, [])
+
     const statistics = React.useMemo(() => {
         return [
             {title: t(SimFactory.TYPE_ENTRY_STATISTICS), key: SimFactory.TYPE_ENTRY_STATISTICS},
@@ -160,6 +166,25 @@ function getBasicElements(elementClicked: (element: string) => void): Array<Tree
                             }}
                         >
                             <HierarchyCustomIcon icon={val.icon}/>
+                            {val.title}
+                        </Flex>
+                    ),
+                }))
+            },
+            {
+                title: t("navigation"),
+                key: "navigation",
+                children: navigation.map((val) => ({
+                    key: val.key,
+                    title: (
+                        <Flex
+                            gap={10}
+                            flex={1}
+                            onClick={() => {
+                                elementClicked(val.key)
+                            }}
+                        >
+                            <HierarchyCustomIcon icon={SimFactory.GetIconSvg(val.key)}/>
                             {val.title}
                         </Flex>
                     ),

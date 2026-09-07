@@ -86,19 +86,34 @@ export default function TurtleAppsGallery({onRereoute}: TurtleAppsGalleryProps) 
 
             {
                 (() => {
+                    let categories
                     if (activeTab === "basic") {
-                        return BASIC_CATEGORIES
+                        categories = BASIC_CATEGORIES
                     } else if (activeTab === "crm") {
-                        return CRM_CATEGORIES
+                        categories = CRM_CATEGORIES
                     } else if (activeTab === "turtlenetess") {
-                        return NETESS_CATEGORIES
+                        categories = NETESS_CATEGORIES
                     } else if (activeTab === "security") {
-                        return SECURITY_CATEGORIES
+                        categories = SECURITY_CATEGORIES
                     } else if (activeTab === "manufacturing") {
-                        return MANUFACTURING_CATEGORIES
+                        categories = MANUFACTURING_CATEGORIES
                     } else {
-                        return []
+                        categories = []
                     }
+
+                    const search = searchText.trim().toLowerCase()
+                    if (!search) {
+                        return categories
+                    }
+
+                    return categories
+                        .map((category) => ({
+                            ...category,
+                            items: category.items.filter((item) =>
+                                t(item.lang ?? "").toLowerCase().includes(search)
+                            )
+                        }))
+                        .filter((category) => category.items.length > 0)
                 })().map((category) => {
                     return (
                         <React.Fragment key={category.titleKey}>

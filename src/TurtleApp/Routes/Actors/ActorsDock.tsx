@@ -1,13 +1,11 @@
 import React from 'react'
 import {Splitter} from "antd"
 import ActorsHierarchy from "@TurtleApp/Routes/Actors/ActorsHierarchy";
+import { SplitterWithHeader } from '@Turtle/Antd/Splitter';
 
 export default function ActorsDock() {
     return (
-        <Splitter style={{
-            height: "100vh",
-
-        }}>
+        <SplitterWithHeader topbar={<></>}>
 
             <Splitter.Panel
                 defaultSize={"20%"}
@@ -23,6 +21,6 @@ export default function ActorsDock() {
 
             </Splitter.Panel>
 
-        </Splitter>
+        </SplitterWithHeader>
     )
 }

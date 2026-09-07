@@ -1,5 +1,5 @@
 import React from "react";
-import {Form, Select} from "antd";
+import {Form, Select, Space} from "antd";
 import {useTranslation} from "react-i18next";
 
 import {useWorldEntities} from "@TurtleSim/SimModelWorldDock/Components/SimTable";
@@ -14,6 +14,8 @@ interface WorldEntitySelectProps {
     label?: string;
     allowEmpty?: boolean;
     onChange?: () => void;
+    /** Rendered inline after the select, e.g. an actions button. */
+    suffix?: React.ReactNode;
 }
 
 /**
@@ -27,6 +29,7 @@ export default function WorldEntitySelect({
     label,
     allowEmpty = true,
     onChange,
+    suffix,
 }: WorldEntitySelectProps) {
     const [t] = useTranslation();
     const entities = useWorldEntities(entityType);
@@ -40,22 +43,26 @@ export default function WorldEntitySelect({
 
     return (
         <Form.Item label={`${t(label ?? attribute)}:`} style={{marginBottom: 8}}>
-            <Select
-                size="small"
-                value={value}
-                allowClear={allowEmpty}
-                showSearch
-                optionFilterProp="label"
-                onChange={(v) => {
-                    data[attribute] = v ?? "";
-                    setValue(v ?? undefined);
-                    onChange?.();
-                }}
-                options={entities.map((e) => ({
-                    value: e.uid,
-                    label: e.name || e.uid,
-                }))}
-            />
+            <Space.Compact style={{width: "100%"}}>
+                <Select
+                    size="small"
+                    style={{flex: 1}}
+                    value={value}
+                    allowClear={allowEmpty}
+                    showSearch
+                    optionFilterProp="label"
+                    onChange={(v) => {
+                        data[attribute] = v ?? "";
+                        setValue(v ?? undefined);
+                        onChange?.();
+                    }}
+                    options={entities.map((e) => ({
+                        value: e.uid,
+                        label: e.name || e.uid,
+                    }))}
+                />
+                {suffix}
+            </Space.Compact>
         </Form.Item>
     );
 }

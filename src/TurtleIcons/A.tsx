@@ -13,7 +13,7 @@ export default function TurtleIcon(props: TurtleIconProps) {
     return (
         <span
             role={"img"}
-            className={`anticon`}
+            className={`anticon turtle-icon`}
             style={{
                 // transform: "translateX(-50%) translateY(50%)",
             }}
@@ -49,7 +49,7 @@ export function TurtleExperimentalIcon(props: TurtleExperimentalIconProps | any)
     return (
         <span
             role={"img"}
-            className={`anticon`}
+            className={`anticon turtle-icon`}
             style={{
                 // transform: "translateX(-50%) translateY(50%)",
             }}

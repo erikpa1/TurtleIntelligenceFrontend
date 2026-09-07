@@ -17,6 +17,9 @@ import EnterStatisticsBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/
 import WorkerPoolBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/WorkerPoolBehProperties";
 import LogisticsControlBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/LogisticsControlBehProperties";
 import TableBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/TableBehProperties";
+import NavSystemBehProperties from "@TurtleSim/SimModelWorldDock/BehProps/NavSystemBehProperties";
+
+import SimNavSystemFiber from "@TurtleSim/SimModelWorldDock/Fibers/EntityModifiers/SimNavSystemFiber";
 
 export default function InitWorldFactory() {
     _InitProperties();
@@ -56,6 +59,10 @@ function _InitProperties() {
 
     //Data
     SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_TABLE] = TableBehProperties;
+
+    //Navigation
+    SimFactory.RIGHT_BAR_COMPONENTS[SimFactory.TYPE_NAV_SYSTEM] =
+        NavSystemBehProperties;
 }
 
 function _InitFibers() {
@@ -63,4 +70,5 @@ function _InitFibers() {
     SimFactory.FIBER_HANDLERS[SimFactory.TYPE_SINK] = SimSinkFiber;
     SimFactory.FIBER_HANDLERS[SimFactory.TYPE_PROCESS] = SimStationFiber;
     SimFactory.FIBER_HANDLERS[SimFactory.TYPE_SPAWN] = SimSpawnFiber;
+    SimFactory.FIBER_HANDLERS[SimFactory.TYPE_NAV_SYSTEM] = SimNavSystemFiber;
 }

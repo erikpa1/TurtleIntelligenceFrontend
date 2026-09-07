@@ -119,5 +119,9 @@
   "select.world.table.hint": "Vyberte objekt Tabulka ze světa, který se použije jako tabulka misí.",
   "edit.table": "Upravit tabulku",
   "format.and.map": "Formátovat a namapovat",
-  "auto.map": "Automaticky namapovat"
+  "auto.map": "Automaticky namapovat",
+  "columns": "sloupců",
+  "rows": "řádků",
+  "more.columns": "dalších sloupců",
+  "open.table": "Otevřít tabulku"
 }
