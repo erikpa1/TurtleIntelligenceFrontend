@@ -13,7 +13,7 @@ import COUForecast from "@TurtleApp/Forecasting/COUForecast";
 import {useTurtleModal} from "@Turtle/Hooks/useTurtleModal";
 import ForecastApi from "@TurtleApp/Forecasting/ForecastsApi";
 import TurtleApp from "@TurtleApp/TurtleApp";
-import {IconSimulation} from "../../TurtleIcons";
+import IconSimulation from "@TurtleIcons/IconSimulation";
 
 export default function ForecastingHierarchy() {
 
